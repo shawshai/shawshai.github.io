@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为MuJoCo官方教程的简单翻译.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MuJoCo 教程">
+<meta property="og:url" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="本文为MuJoCo官方教程的简单翻译.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/0.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/1.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/2.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/3.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/4.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/5.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/6.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/7.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/8.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/9.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/10.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/11.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/12.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/13.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/14.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/15.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/16.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/17.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/18.png">
+<meta property="article:published_time" content="2023-04-13T11:30:42.000Z">
+<meta property="article:modified_time" content="2023-04-13T14:13:55.642Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="mujoco">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2023/04/13/mujoco-tutorial/0.png">
+
+<link rel="canonical" href="http://shawshai.cn/2023/04/13/mujoco-tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MuJoCo 教程 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/04/13/mujoco-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="摆脱冷气 只向上走">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MuJoCo 教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-13 19:30:42 / 修改时间：22:13:55" itemprop="dateCreated datePublished" datetime="2023-04-13T19:30:42+08:00">2023-04-13</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>35k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">本文为MuJoCo官方教程的简单翻译. </div>
+
+<span id="more"></span>
+
+<p>原文链接如下:</p>
+<p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/deepmind/mujoco/blob/main/python/tutorial.ipynb">https://colab.research.google.com/github/deepmind/mujoco/blob/main/python/tutorial.ipynb</a></p>
+<p>官方GitHub 链接为 <a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco#readme">https://github.com/deepmind/mujoco</a>.</p>
+<h2 id="安装-MuJoCo"><a href="#安装-MuJoCo" class="headerlink" title="安装 MuJoCo"></a><strong>安装 MuJoCo</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install mujoco</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查是否安装成功"><a href="#检查是否安装成功" class="headerlink" title="检查是否安装成功"></a><strong>检查是否安装成功</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Check if installation was successful</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> distutils.util</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">if</span> subprocess.run(<span class="string">&#x27;nvidia-smi&#x27;</span>).returncode:</span><br><span class="line">  <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Cannot communicate with GPU. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Make sure you are using a GPU Colab runtime. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Go to the Runtime menu and select Choose runtime type.&#x27;</span>)</span><br><span class="line"><span class="comment"># Configure MuJoCo to use the EGL rendering backend (requires GPU)</span></span><br><span class="line"><span class="comment"># use WGL for Windows</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Setting environment variable to use GPU rendering:&#x27;</span>)</span><br><span class="line">%env MUJOCO_GL=egl</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;Checking that the installation succeeded:&#x27;</span>)</span><br><span class="line">  <span class="keyword">import</span> mujoco</span><br><span class="line">  mujoco.MjModel.from_xml_string(<span class="string">&#x27;&lt;mujoco/&gt;&#x27;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="keyword">raise</span> e <span class="keyword">from</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Something went wrong during installation. Check the shell output above &#x27;</span></span><br><span class="line">      <span class="string">&#x27;for more information.\n&#x27;</span></span><br><span class="line">      <span class="string">&#x27;If using a hosted Colab runtime, make sure you enable GPU acceleration &#x27;</span></span><br><span class="line">      <span class="string">&#x27;by going to the Runtime menu and selecting &quot;Choose runtime type&quot;.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Installation successful.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="导入相关图形和绘图包"><a href="#导入相关图形和绘图包" class="headerlink" title="导入相关图形和绘图包"></a><strong>导入相关图形和绘图包</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Import packages for plotting and creating graphics</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Callable</span>, NamedTuple, <span class="type">Optional</span>, <span class="type">Union</span>, <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Graphics and plotting.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Installing mediapy:&#x27;</span>)</span><br><span class="line">!command -v ffmpeg &gt;/dev/null || (apt update &amp;&amp; apt install -y ffmpeg)</span><br><span class="line">!pip install -q mediapy</span><br><span class="line"><span class="keyword">import</span> mediapy <span class="keyword">as</span> media</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># More legible printing from numpy.</span></span><br><span class="line">np.set_printoptions(precision=<span class="number">3</span>, suppress=<span class="literal">True</span>, linewidth=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="MuJoCo-基础"><a href="#MuJoCo-基础" class="headerlink" title="MuJoCo 基础"></a><strong>MuJoCo 基础</strong></h2><p>我们从定义与读入一个简单的模型来开始:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">xml = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br></pre></td></tr></table></figure>
+
+<p>这段 <code>xml</code> 代码依据 MuJoCo 的 <a target="_blank" rel="noopener" href="http://www.mujoco.org/book/modeling.html">MJCF</a> 编写, 这是一种 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/XML#Key_terminology">XML</a>-based 建模语言.</p>
+<ul>
+<li>唯一必需的元素为 <code>&lt;mujoco&gt;</code>. 最小的有效 MJCF 模型为 <code>&lt;mujoco/&gt;</code> , 这是一个完全空模型.</li>
+<li>所有的物理元素放在 <code>&lt;worldbody&gt;</code> 中, 这始终为顶层物体并构成笛卡尔坐标系的全局原点.</li>
+<li>我们在世界中定义两个几何体 <code>red_box</code> 和 <code>green_sphere</code>.</li>
+<li><strong>问题:</strong> <code>red_box</code> 没有位置, the <code>green_sphere</code> 没有类型, 为什么?<ul>
+<li><strong>答:</strong> MJCF 属性中有 <em>default values</em>. 默认位置为 <code>0 0 0</code>, 默认几何类型为 <code>sphere</code>. MJCF 语言在文档 <a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/XMLreference.html">XML Reference chapter</a> 中有相关解释.</li>
+</ul>
+</li>
+</ul>
+<p>方法 <code>from_xml_string()</code> 调用了模型编译器, 其创建了一个二进制 <code>mjModel</code> 实例.</p>
+<h3 id="mjModel"><a href="#mjModel" class="headerlink" title="mjModel"></a><strong>mjModel</strong></h3><p>MuJoCo 中的 <code>mjModel</code>, 包含了模型描述, 比如所有均不随时间变化的量. <code>mjModel</code> 的完整描述可以在头文件 <a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjmodel.h">mjmodel.h</a> 的末尾找到. 注意, 头文件包含简短的有用的行内注释, 用于描述每个字段.</p>
+<p>可以在模型 <code>mjModel</code> 找到一些量, 比如场景中的几何体数量<code>ngeom</code>,  以及它们各自的颜色 <code>geom_rgba</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.ngeom</span><br><span class="line">model.geom_rgba</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2</p>
+</blockquote>
+<blockquote>
+<p>array([[1., 0., 0., 1.],<br>       [0., 1., 0., 1.]], dtype=float32)</p>
+</blockquote>
+<h3 id="Named-access"><a href="#Named-access" class="headerlink" title="Named access"></a><strong>Named access</strong></h3><p>MuJoCo Python 的绑定使用名称提供了便捷的访问器, 在没有名称字符串的情况下调用 <code>model.geom()</code> 访问器会生成一个方便的错误提示, 告诉我们有效的名称是什么.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  model.geom()</span><br><span class="line"><span class="keyword">except</span> KeyError <span class="keyword">as</span> e:</span><br><span class="line">  <span class="built_in">print</span>(e)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>“Invalid name”. Valid names: [‘green_sphere’, ‘red_box’]</p>
+</blockquote>
+<p>调用命名访问器而不指定属性将告诉我们所有有效的属性是什么:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.geom(<span class="string">&#x27;green_sphere&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&lt;_MjModelGeomViews<br>bodyid: array([0], dtype=int32)<br>conaffinity: array([1], dtype=int32)<br>condim: array([3], dtype=int32)<br>contype: array([1], dtype=int32)<br>dataid: array([-1], dtype=int32)<br>friction: array([1.   , 0.005, 0.   ])<br>gap: array([0.])<br>group: array([0], dtype=int32)<br>id: 1<br>margin: array([0.])<br>matid: array([-1], dtype=int32)<br>name: ‘green_sphere’<br>pos: array([0.2, 0.2, 0.2])<br>priority: array([0], dtype=int32)<br>quat: array([1., 0., 0., 0.])<br>rbound: array([0.1])<br>rgba: array([0., 1., 0., 1.], dtype=float32)<br>sameframe: array([0], dtype=uint8)<br>size: array([0.1, 0. , 0. ])<br>solimp: array([0.9  , 0.95 , 0.001, 0.5  , 2.   ])<br>solmix: array([1.])<br>solref: array([0.02, 1.  ])<br>type: array([2], dtype=int32)<br>user: array([], dtype=float64)</p>
+</blockquote>
+<p>让我们获取 <code>green_sphere</code> 的rgba值:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.geom(<span class="string">&#x27;green_sphere&#x27;</span>).rgba</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>array([0., 1., 0., 1.], dtype=float32)</p>
+</blockquote>
+<p>这个函数是MuJoCo的 <a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/APIreference.html?highlight=mj_name2id#mj-name2id">mj_name2id</a> 函数的一个方便的快捷方式:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span> = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, <span class="string">&#x27;green_sphere&#x27;</span>)</span><br><span class="line">model.geom_rgba[<span class="built_in">id</span>, :]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>array([0., 1., 0., 1.], dtype=float32)</p>
+</blockquote>
+<p>类似地, 只读的 <code>id</code> 和<code>name</code> 属性可用于从id转换到name以及反之:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;id of &quot;green_sphere&quot;: &#x27;</span>, model.geom(<span class="string">&#x27;green_sphere&#x27;</span>).<span class="built_in">id</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;name of geom 1: &#x27;</span>, model.geom(<span class="number">1</span>).name)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;name of body 0: &#x27;</span>, model.body(<span class="number">0</span>).name)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>id of “green_sphere”:  1<br>name of geom 1:  green_sphere<br>name of body 0:  world</p>
+</blockquote>
+<p>注意, 第0个物体总是 <code>world</code>. 不能重命名.</p>
+<p><code>id</code> 和 <code>name</code> 属性在Python推导式中很有用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[model.geom(i).name <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(model.ngeom)]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[‘red_box’, ‘green_sphere’]</p>
+</blockquote>
+<h3 id="mjData"><a href="#mjData" class="headerlink" title="mjData"></a><strong>mjData</strong></h3><p><code>mjData</code> 包含依赖于它的状态和数量. 状态由时间, 广义位置和广义速度组成, 分别为<code>data.time</code>, <code>data.qpos</code> 和 <code>data.qvel</code>. 为了创建一个新的 <code>mjData</code>，我们只需要 <code>mjModel</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = mujoco.MjData(model)</span><br></pre></td></tr></table></figure>
+
+<p><code>mjData</code> 还包含状态函数, 例如世界坐标系中对象的笛卡尔位置. 两个几何体的 (x, y, z) 位置在 <code>data.geom_xpos</code> 中:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(data.geom_xpos)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[[0. 0. 0.]<br> [0. 0. 0.]]</p>
+</blockquote>
+<p>等等, 为什么两个几何体都在原点? 绿色球体不是有位移吗? 答案是 <code>mjData</code> 中的派生量需要显式地传播(见下文). 在我们的例子中, 所需的最小函数是 <a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/APIreference.html#mj-kinematics">mj_kinematics</a>, 它计算所有对象(不包括相机和灯光)的全局笛卡尔姿态.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_kinematics(model, data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;raw access:\n&#x27;</span>, data.geom_xpos)</span><br><span class="line"></span><br><span class="line"><span class="comment"># MjData also supports named access:</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\nnamed access:\n&#x27;</span>, data.geom(<span class="string">&#x27;green_sphere&#x27;</span>).xpos)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>raw access:<br> [[0.  0.  0. ]<br> [0.2 0.2 0.2]]</p>
+<p>named access:<br>[0.2 0.2 0.2]</p>
+</blockquote>
+<h2 id="基本的渲染、模拟和动画"><a href="#基本的渲染、模拟和动画" class="headerlink" title="基本的渲染、模拟和动画"></a><strong>基本的渲染、模拟和动画</strong></h2><p>要实现渲染, 我们需要实例化一个 <code>Renderer</code> 对象并调用它的 <code>render</code> 方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">xml = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="comment"># Make model and data</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make renderer, render and show the pixels</span></span><br><span class="line">renderer = mujoco.Renderer(model)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/0.png" class="" title="black"></div>
+
+<p>嗯… 为什么是黑色像素?</p>
+<p><strong>答</strong>: 出于与上面相同的原因, 我们首先需要传播 <code>mjData</code> 中的值. 这次我们将调用 <a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/APIreference.html#mj-forward">mj_forward</a>, 它将调用整个管线, 直到计算加速度, 即, 它计算 $\dot{x}=f(x)$, 其中 $x$ 是状态. 这个函数所做的比我们实际需要的要多, 但是除非我们关心节省计算时间, 否则调用 <code>mj_forward</code> 是一个很好的实践, 因为这样我们就知道我们不会遗漏任何东西.</p>
+<p>我们还需要更新 <code>mjvScene</code>, 这是一个由渲染器持有的描述可视化场景的对象. 我们稍后将看到场景可以包括不属于物理模型的可视化对象.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line"></span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/1.png" class="" title="dark"></div>
+
+<p>这是有效的, 但这张照片有点暗. 让我们添加一个灯光并重新渲染.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">xml = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;top&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br><span class="line"></span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line"></span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/2.png" class="" title="light"></div>
+
+<p>好多了!</p>
+<p>注意, <code>mjModel</code> 实例中的所有值都是可写入的. 虽然通常不建议这样做, 而是建议更改 <strong>XML</strong> 中的值, 因为很容易创建无效的模型, 但有些值是可以安全写入的, 例如颜色:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Run this cell multiple times for different colors</span></span><br><span class="line">model.geom(<span class="string">&#x27;red_box&#x27;</span>).rgba[:<span class="number">3</span>] = np.random.rand(<span class="number">3</span>)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/3.png" class="" title="color"></div>
+
+<h2 id="仿真"><a href="#仿真" class="headerlink" title="仿真"></a><strong>仿真</strong></h2><p>现在进行仿真并制作一个视频. 我们将使用MuJoCo的主要高级函数 <code>mj_step</code>, 该函数每步更新状态 $x_{t+h}=f(x_t)$.</p>
+<p>注意, 在下面的代码块中, 我们不会在每次调用 <code>mj_step</code> 后进行渲染. 这是因为默认的时间步长是2ms, 我们想要一个60fps的视频, 而不是500fps.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">duration = <span class="number">3.8</span>  <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">60</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line">mujoco.mj_resetData(model, data)  <span class="comment"># Reset state and time.</span></span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="static.mp4" type="video/mp4">
+</video>
+
+
+<p>嗯… 视频在播放, 但是没有东西在动, 为什么呢?</p>
+<p>这是因为这个模型没有<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(mechanics)">自由度</a>(DoFs). 运动的(有惯性的)物体叫做 bodies. 我们通过给 bodies 添加 joints 来添加 DoFs, 指定它们如何相对于 parents 移动. 让我们创建一个包含几何体的新 body, 添加一个铰链关节并重新渲染, 同时使用可视化选项对象 <code>MjvOption</code> 来可视化关节轴。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">xml = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;top&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;box_and_sphere&quot; euler=&quot;0 0 -30&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;swing&quot; type=&quot;hinge&quot; axis=&quot;1 -1 0&quot; pos=&quot;-.2 -.2 -.2&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># enable joint visualization option:</span></span><br><span class="line">scene_option = mujoco.MjvOption()</span><br><span class="line">scene_option.flags[mujoco.mjtVisFlag.mjVIS_JOINT] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">3.8</span>  <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">60</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">    renderer.update_scene(data, scene_option=scene_option)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="rolling.mp4" type="video/mp4">
+</video>
+
+
+<p>注意, 我们将 <code>box_and_sphere</code> body 绕Z(垂直)轴旋转30°, 指令 <code>euler=&quot;0 0 -30&quot;</code>. 这样做是为了强调<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kinematic_chain">运动树</a>中元素的姿态总是相对于它们的父体, 所以我们的两个几何体也通过这个变换旋转.</p>
+<p>物理选项位于 <code>mjModel.opt</code> 中, 例如时间步:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.opt.timestep</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.002</p>
+</blockquote>
+<p>让我们翻转重力并重新渲染:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;default gravity&#x27;</span>, model.opt.gravity)</span><br><span class="line">model.opt.gravity = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;flipped gravity&#x27;</span>, model.opt.gravity)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">    renderer.update_scene(data, scene_option=scene_option)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=<span class="number">60</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>default gravity [ 0.    0.   -9.81]<br>flipped gravity [ 0.  0. 10.]</p>
+</blockquote>
+<video controls >
+     <source src="flipG.mp4" type="video/mp4">
+</video>
+
+
+<p>我们也可以在 XML 中使用顶级元素 <code>&lt;option&gt;</code> 来实现它:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mujoco</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span> <span class="attr">gravity</span>=<span class="string">&quot;0 0 10&quot;</span>/&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">mujoco</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="理解自由度"><a href="#理解自由度" class="headerlink" title="理解自由度"></a><strong>理解自由度</strong></h3><p>在现实世界中, 所有刚体都有6个自由度: 3个平移和3个旋转. 现实世界中的关节充当约束, 消除了由关节连接的物体的相对自由度. 一些物理模拟软件使用这种被称为“Cartesian”或“subtractive”的表示法, 但它的效率很低. MuJoCo使用一种被称为“Lagrangian”, “generalized”或“additive”的表示, 其中对象没有自由度, 除非使用关节显式地添加.</p>
+<p>我们的模型有一个铰链关节, 有一个自由度, 整个状态由这个关节的角度和角速度定义. 这是系统的广义位置和速度.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Total number of DoFs in the model:&#x27;</span>, model.nv)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Generalized positions:&#x27;</span>, data.qpos)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Generalized velocities:&#x27;</span>, data.qvel)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Total number of DoFs in the model: 1<br>Generalized positions: [1.392]<br>Generalized velocities: [-3.79]</p>
+</blockquote>
+<p>MuJoCo使用广义坐标的原因是在渲染或读取对象的全局位置之前需要调用函数(例如 <a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/APIreference.html#mj-forward">mj_forward</a>) - 笛卡尔位置是从广义位置派生出来的, 需要显式计算.</p>
+<h2 id="示例-用自反转的“tippe-top”模拟自由体"><a href="#示例-用自反转的“tippe-top”模拟自由体" class="headerlink" title="示例: 用自反转的“tippe-top”模拟自由体"></a><strong>示例: 用自反转的“tippe-top”模拟自由体</strong></h2><p>一个自由物体是一个具有6个自由度的<a target="_blank" rel="noopener" href="https://mujoco.readthedocs.io/en/latest/XMLreference.html?highlight=freejoint#body-freejoint">自由关节</a>的物体, 即3个平移和3个旋转. 我们其实可以给 <code>box_and_sphere</code> 体一个自由关节, 然后看着它下落，但是让我们看一些更有趣的东西. 一个“tippe top”是一个旋转的玩具, 它可以自己翻转(<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=kbYpVrdcszQ">视频</a>，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tippe_top">维基百科</a>). 我们将其建模如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">tippe_top = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco model=&quot;tippe top&quot;&gt;</span></span><br><span class="line"><span class="string">  &lt;option integrator=&quot;RK4&quot;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;asset&gt;</span></span><br><span class="line"><span class="string">    &lt;texture name=&quot;grid&quot; type=&quot;2d&quot; builtin=&quot;checker&quot; rgb1=&quot;.1 .2 .3&quot;</span></span><br><span class="line"><span class="string">     rgb2=&quot;.2 .3 .4&quot; width=&quot;300&quot; height=&quot;300&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;material name=&quot;grid&quot; texture=&quot;grid&quot; texrepeat=&quot;8 8&quot; reflectance=&quot;.2&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/asset&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;geom size=&quot;.2 .2 .01&quot; type=&quot;plane&quot; material=&quot;grid&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;light pos=&quot;0 0 .6&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;camera name=&quot;closeup&quot; pos=&quot;0 -.1 .07&quot; xyaxes=&quot;1 0 0 0 1 2&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;top&quot; pos=&quot;0 0 .02&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;freejoint/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;ball&quot; type=&quot;sphere&quot; size=&quot;.02&quot; /&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;stem&quot; type=&quot;cylinder&quot; pos=&quot;0 0 .02&quot; size=&quot;0.004 .008&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;ballast&quot; type=&quot;box&quot; size=&quot;.023 .023 0.005&quot;  pos=&quot;0 0 -.015&quot;</span></span><br><span class="line"><span class="string">       contype=&quot;0&quot; conaffinity=&quot;0&quot; group=&quot;3&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;keyframe&gt;</span></span><br><span class="line"><span class="string">    &lt;key name=&quot;spinning&quot; qpos=&quot;0 0 0.02 1 0 0 0&quot; qvel=&quot;0 0 0 0 1 200&quot; /&gt;</span></span><br><span class="line"><span class="string">  &lt;/keyframe&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(tippe_top)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data, camera=<span class="string">&quot;closeup&quot;</span>)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/4.png" class="" title="tippe-top"></div>
+
+<p>注意这个模型定义的几个新特性:</p>
+<ol>
+<li>一个使用 <code>&lt;freejoint/&gt;</code> 标签添加的6自由度自由关节.</li>
+<li>我们使用 <code>&lt;option/&gt;</code> 标签将积分器设置为4阶 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge Kutta</a>. Runge-Kutta 具有比默认的欧拉积分器更高的收敛速率, 在许多情况下, 在给定的时间步长下提高了精度.</li>
+<li>我们在 <code>&lt;asset/&gt;</code> 标签中定义地板的网格材质, 并在 “floor” 几何体中引用它.</li>
+<li>我们使用一种看不见的, 不碰撞的 box 几何体, 称为 ballast , 来降低顶部的质心. 低质心是发生翻转行为所必需的(与直觉相反).</li>
+<li>我们将初始旋转状态保存为关键帧. 它绕Z轴有很高的旋转速度, 但并不完全朝向世界坐标轴, 这引入了翻转所需的对称性破坏.</li>
+<li>我们在模型中定义了一个 <code>&lt;camera&gt;</code>, 然后使用 <code>&lt;camera&gt;</code> 参数对 <code>update_scene()</code> 进行渲染. 让我们来检查一下现在的状态:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;positions&#x27;</span>, data.qpos)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;velocities&#x27;</span>, data.qvel)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>positions [0.   0.   0.02 1.   0.   0.   0.  ]<br>velocities [0. 0. 0. 0. 0. 0.]</p>
+</blockquote>
+<p>速度很容易解释, 6个0, 每个自由度一个. 那么长度为7的位置呢? 我们可以看到 body 最初的2厘米高度; 后面的四个数字是三维朝向, 由单位四元数定义. 三维朝向用4个数字表示, 角速度用3个数字表示. 有关更多信息, 请参阅维基百科关于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">四元数和空间旋转</a>的文章.</p>
+<p>让我们做一个视频:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">duration = <span class="number">7</span>    <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">60</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">0</span>)  <span class="comment"># Reset the state to keyframe 0</span></span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">    renderer.update_scene(data, <span class="string">&quot;closeup&quot;</span>)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="tippe-top.mp4" type="video/mp4">
+</video>
+
+
+<h3 id="测量-mjData-中的值"><a href="#测量-mjData-中的值" class="headerlink" title="测量 mjData 中的值"></a><strong>测量 <code>mjData</code> 中的值</strong></h3><p>如上所述, <code>mjData</code> 结构包含由模拟产生的动态变量和中间结果, 这些结果预计会在每个时间步上发生变化. 下面我们模拟了2000个时间步长, 并绘制了杆顶的角速度和高度作为时间的函数.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">timevals = []</span><br><span class="line">angular_velocity = []</span><br><span class="line">stem_height = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and save data</span></span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  timevals.append(data.time)</span><br><span class="line">  angular_velocity.append(data.qvel[<span class="number">3</span>:<span class="number">6</span>].copy())</span><br><span class="line">  stem_height.append(data.geom_xpos[<span class="number">2</span>,<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">dpi = <span class="number">120</span></span><br><span class="line">width = <span class="number">600</span></span><br><span class="line">height = <span class="number">800</span></span><br><span class="line">figsize = (width / dpi, height / dpi)</span><br><span class="line">_, ax = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=figsize, dpi=dpi, sharex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">0</span>].plot(timevals, angular_velocity)</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;angular velocity&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;radians / second&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">1</span>].plot(timevals, stem_height)</span><br><span class="line">ax[<span class="number">1</span>].set_xlabel(<span class="string">&#x27;time (seconds)&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_ylabel(<span class="string">&#x27;meters&#x27;</span>)</span><br><span class="line">_ = ax[<span class="number">1</span>].set_title(<span class="string">&#x27;stem height&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/5.png" class="" title="mjData"></div>
+
+<h2 id="实例-一个混沌摆"><a href="#实例-一个混沌摆" class="headerlink" title="实例: 一个混沌摆"></a><strong>实例: 一个混沌摆</strong></h2><p>下面是一个混沌摆模型, 与旧金山探索博物馆的<a target="_blank" rel="noopener" href="https://www.exploratorium.edu/exhibits/chaotic-pendulum">这个</a>模型相似.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">chaotic_pendulum = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;option timestep=&quot;.001&quot;&gt;</span></span><br><span class="line"><span class="string">    &lt;flag energy=&quot;enable&quot; contact=&quot;disable&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/option&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;default&gt;</span></span><br><span class="line"><span class="string">    &lt;joint type=&quot;hinge&quot; axis=&quot;0 -1 0&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom type=&quot;capsule&quot; size=&quot;.02&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/default&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light pos=&quot;0 -.4 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;camera name=&quot;fixed&quot; pos=&quot;0 -1 0&quot; xyaxes=&quot;1 0 0 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;0&quot; pos=&quot;0 0 .2&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;root&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom fromto=&quot;-.2 0 0 .2 0 0&quot; rgba=&quot;1 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom fromto=&quot;0 0 0 0 0 -.25&quot; rgba=&quot;1 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;body name=&quot;1&quot; pos=&quot;-.2 0 0&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;joint/&gt;</span></span><br><span class="line"><span class="string">        &lt;geom fromto=&quot;0 0 0 0 0 -.2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;/body&gt;</span></span><br><span class="line"><span class="string">      &lt;body name=&quot;2&quot; pos=&quot;.2 0 0&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;joint/&gt;</span></span><br><span class="line"><span class="string">        &lt;geom fromto=&quot;0 0 0 0 0 -.2&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;/body&gt;</span></span><br><span class="line"><span class="string">      &lt;body name=&quot;3&quot; pos=&quot;0 0 -.25&quot;&gt;</span></span><br><span class="line"><span class="string">        &lt;joint/&gt;</span></span><br><span class="line"><span class="string">        &lt;geom fromto=&quot;0 0 0 0 0 -.2&quot; rgba=&quot;0 0 1 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(chaotic_pendulum)</span><br><span class="line">renderer = mujoco.Renderer(model, <span class="number">480</span>, <span class="number">640</span>)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data, camera=<span class="string">&quot;fixed&quot;</span>)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/6.png" class="" title="chaotic"></div>
+
+<h3 id="Timing"><a href="#Timing" class="headerlink" title="Timing"></a><strong>Timing</strong></h3><p>让我们来看看它在运行时的视频, 同时我们对组件进行计时:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup</span></span><br><span class="line">n_seconds = <span class="number">6</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># Hz</span></span><br><span class="line">n_frames = <span class="built_in">int</span>(n_seconds * framerate)</span><br><span class="line">frames = []</span><br><span class="line">renderer = mujoco.Renderer(model, <span class="number">240</span>, <span class="number">320</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># set initial state</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.joint(<span class="string">&#x27;root&#x27;</span>).qvel = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate and record frames</span></span><br><span class="line">frame = <span class="number">0</span></span><br><span class="line">sim_time = <span class="number">0</span></span><br><span class="line">render_time = <span class="number">0</span></span><br><span class="line">n_steps = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_frames):</span><br><span class="line">  <span class="keyword">while</span> data.time * framerate &lt; i:</span><br><span class="line">    tic = time.time()</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">    sim_time += time.time() - tic</span><br><span class="line">    n_steps += <span class="number">1</span></span><br><span class="line">  tic = time.time()</span><br><span class="line">  renderer.update_scene(data, <span class="string">&quot;fixed&quot;</span>)</span><br><span class="line">  frame = renderer.render()</span><br><span class="line">  render_time += time.time() - tic</span><br><span class="line">  frames.append(frame)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print timing and play video</span></span><br><span class="line">step_time = <span class="number">1e6</span>*sim_time/n_steps</span><br><span class="line">step_fps = n_steps/sim_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;simulation: <span class="subst">&#123;step_time:<span class="number">5.3</span>g&#125;</span> μs/step  (<span class="subst">&#123;step_fps:<span class="number">5.0</span>f&#125;</span>Hz)&#x27;</span>)</span><br><span class="line">frame_time = <span class="number">1e6</span>*render_time/n_frames</span><br><span class="line">frame_fps = n_frames/render_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;rendering:  <span class="subst">&#123;frame_time:<span class="number">5.3</span>g&#125;</span> μs/frame (<span class="subst">&#123;frame_fps:<span class="number">5.0</span>f&#125;</span>Hz)&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># show video</span></span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>simulation:  3.74 μs/step  (267581Hz)<br>rendering:  3.31e+04 μs/frame (   30Hz)</p>
+</blockquote>
+<video controls >
+     <source src="chaotic.mp4" type="video/mp4">
+</video>
+
+
+<p>注意, 渲染比模拟物理要慢得多.</p>
+<h3 id="Chaos"><a href="#Chaos" class="headerlink" title="Chaos"></a><strong>Chaos</strong></h3><p>这是一个<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chaos_theory">混沌</a>系统(初始条件下的小扰动会迅速累积):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">PERTURBATION = <span class="number">1e-7</span></span><br><span class="line">SIM_DURATION = <span class="number">10</span> <span class="comment"># seconds</span></span><br><span class="line">NUM_REPEATS = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># preallocate</span></span><br><span class="line">n_steps = <span class="built_in">int</span>(SIM_DURATION / model.opt.timestep)</span><br><span class="line">sim_time = np.zeros(n_steps)</span><br><span class="line">angle = np.zeros(n_steps)</span><br><span class="line">energy = np.zeros(n_steps)</span><br><span class="line"></span><br><span class="line"><span class="comment"># prepare plotting axes</span></span><br><span class="line">_, ax = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">8</span>, <span class="number">6</span>), sharex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate NUM_REPEATS times with slightly different initial conditions</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(NUM_REPEATS):</span><br><span class="line">  <span class="comment"># initialize</span></span><br><span class="line">  mujoco.mj_resetData(model, data)</span><br><span class="line">  data.qvel[<span class="number">0</span>] = <span class="number">10</span> <span class="comment"># root joint velocity</span></span><br><span class="line">  <span class="comment"># perturb initial velocities</span></span><br><span class="line">  data.qvel[:] += PERTURBATION * np.random.randn(model.nv)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># simulate</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_steps):</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">    sim_time[i] = data.time</span><br><span class="line">    angle[i] = data.joint(<span class="string">&#x27;root&#x27;</span>).qpos</span><br><span class="line">    energy[i] = data.energy[<span class="number">0</span>] + data.energy[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># plot</span></span><br><span class="line">  ax[<span class="number">0</span>].plot(sim_time, angle)</span><br><span class="line">  ax[<span class="number">1</span>].plot(sim_time, energy)</span><br><span class="line"></span><br><span class="line"><span class="comment"># finalize plot</span></span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;root angle&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;radian&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">&#x27;total energy&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_ylabel(<span class="string">&#x27;Joule&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<div style="width:70%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/7.png" class="" title="chaos"></div>
+
+<h3 id="时间步长和精度"><a href="#时间步长和精度" class="headerlink" title="时间步长和精度"></a><strong>时间步长和精度</strong></h3><p><strong>问题:</strong> 为什么能量会发生变化? 没有摩擦和阻尼, 这个系统应该节省能量.</p>
+<p><strong>答:</strong> 因为时间的离散化.</p>
+<p>如果我们减少时间步长, 我们将获得更好的精度和更好的节能:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">SIM_DURATION = <span class="number">10</span> <span class="comment"># (seconds)</span></span><br><span class="line">TIMESTEPS = np.power(<span class="number">10</span>, np.linspace(-<span class="number">2</span>, -<span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># prepare plotting axes</span></span><br><span class="line">_, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dt <span class="keyword">in</span> TIMESTEPS:</span><br><span class="line">   <span class="comment"># set timestep, print</span></span><br><span class="line">  model.opt.timestep = dt</span><br><span class="line"></span><br><span class="line">  <span class="comment"># allocate</span></span><br><span class="line">  n_steps = <span class="built_in">int</span>(SIM_DURATION / model.opt.timestep)</span><br><span class="line">  sim_time = np.zeros(n_steps)</span><br><span class="line">  energy = np.zeros(n_steps)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># initialize</span></span><br><span class="line">  mujoco.mj_resetData(model, data)</span><br><span class="line">  data.qvel[<span class="number">0</span>] = <span class="number">9</span> <span class="comment"># root joint velocity</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># simulate</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125; steps at dt = &#123;:2.2g&#125;ms&#x27;</span>.<span class="built_in">format</span>(n_steps, <span class="number">1000</span>*dt))</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_steps):</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">    sim_time[i] = data.time</span><br><span class="line">    energy[i] = data.energy[<span class="number">0</span>] + data.energy[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># plot</span></span><br><span class="line">  ax.plot(sim_time, energy, label=<span class="string">&#x27;timestep = &#123;:2.2g&#125;ms&#x27;</span>.<span class="built_in">format</span>(<span class="number">1000</span>*dt))</span><br><span class="line"></span><br><span class="line"><span class="comment"># finalize plot</span></span><br><span class="line">ax.set_title(<span class="string">&#x27;energy&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;Joule&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line">ax.legend(frameon=<span class="literal">True</span>);</span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1000 steps at dt = 10ms<br>3162 steps at dt = 3.2ms<br>10000 steps at dt =  1ms<br>31622 steps at dt = 0.32ms<br>100000 steps at dt = 0.1ms</p>
+</blockquote>
+<div style="width:60%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/8.png" class="" title="accuracy"></div>
+
+<h3 id="时间步长和敛散性"><a href="#时间步长和敛散性" class="headerlink" title="时间步长和敛散性"></a><strong>时间步长和敛散性</strong></h3><p>当我们增加时间步长时, 模拟会迅速发散:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">SIM_DURATION = <span class="number">10</span> <span class="comment"># (seconds)</span></span><br><span class="line">TIMESTEPS = np.power(<span class="number">10</span>, np.linspace(-<span class="number">2</span>, -<span class="number">1.5</span>, <span class="number">7</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># get plotting axes</span></span><br><span class="line">ax = plt.gca()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dt <span class="keyword">in</span> TIMESTEPS:</span><br><span class="line">  <span class="comment"># set timestep</span></span><br><span class="line">  model.opt.timestep = dt</span><br><span class="line"></span><br><span class="line">  <span class="comment"># allocate</span></span><br><span class="line">  n_steps = <span class="built_in">int</span>(SIM_DURATION / model.opt.timestep)</span><br><span class="line">  sim_time = np.zeros(n_steps)</span><br><span class="line">  energy = np.zeros(n_steps) * np.nan</span><br><span class="line">  speed = np.zeros(n_steps) * np.nan</span><br><span class="line"></span><br><span class="line">  <span class="comment"># initialize</span></span><br><span class="line">  mujoco.mj_resetData(model, data)</span><br><span class="line">  data.qvel[<span class="number">0</span>] = <span class="number">11</span> <span class="comment"># set root joint velocity</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># simulate</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;simulating &#123;&#125; steps at dt = &#123;:2.2g&#125;ms&#x27;</span>.<span class="built_in">format</span>(n_steps, <span class="number">1000</span>*dt))</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_steps):</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">    <span class="keyword">if</span> data.warning.number.<span class="built_in">any</span>():</span><br><span class="line">      warning_index = np.nonzero(data.warning.number)[<span class="number">0</span>]</span><br><span class="line">      warning = mujoco.mjtWarning(warning_index).name</span><br><span class="line">      <span class="built_in">print</span>(<span class="string">f&#x27;stopped due to divergence (<span class="subst">&#123;warning&#125;</span>) at timestep <span class="subst">&#123;i&#125;</span>.\n&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    sim_time[i] = data.time</span><br><span class="line">    energy[i] = <span class="built_in">sum</span>(<span class="built_in">abs</span>(data.qvel))</span><br><span class="line">    speed[i] = np.linalg.norm(data.qvel)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># plot</span></span><br><span class="line">  ax.plot(sim_time, energy, label=<span class="string">&#x27;timestep = &#123;:2.2g&#125;ms&#x27;</span>.<span class="built_in">format</span>(<span class="number">1000</span>*dt))</span><br><span class="line">  ax.set_yscale(<span class="string">&#x27;log&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># finalize plot</span></span><br><span class="line">ax.set_ybound(<span class="number">1</span>, <span class="number">1e3</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;energy&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;Joule&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line">ax.legend(frameon=<span class="literal">True</span>, loc=<span class="string">&#x27;lower right&#x27;</span>);</span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>simulating 1000 steps at dt = 10ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 385.</p>
+<p>simulating 825 steps at dt = 12ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 322.</p>
+<p>simulating 681 steps at dt = 15ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 166.</p>
+<p>simulating 562 steps at dt = 18ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 105.</p>
+<p>simulating 464 steps at dt = 22ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 84.</p>
+<p>simulating 383 steps at dt = 26ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 61.</p>
+<p>simulating 316 steps at dt = 32ms<br>stopped due to divergence (mjWARN_BADQACC) at timestep 45.</p>
+</blockquote>
+<div style="width:60%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/9.png" class="" title="divergence"></div>
+
+<h2 id="接触力"><a href="#接触力" class="headerlink" title="接触力"></a><strong>接触力</strong></h2><p>让我们回到我们的盒子和球体的例子, 给它一个自由关节:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">free_body_MJCF = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;asset&gt;</span></span><br><span class="line"><span class="string">    &lt;texture name=&quot;grid&quot; type=&quot;2d&quot; builtin=&quot;checker&quot; rgb1=&quot;.1 .2 .3&quot; </span></span><br><span class="line"><span class="string">    rgb2=&quot;.2 .3 .4&quot; width=&quot;300&quot; height=&quot;300&quot; mark=&quot;edge&quot; markrgb=&quot;.2 .3 .4&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;material name=&quot;grid&quot; texture=&quot;grid&quot; texrepeat=&quot;2 2&quot; texuniform=&quot;true&quot;</span></span><br><span class="line"><span class="string">    reflectance=&quot;.2&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/asset&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light pos=&quot;0 0 1&quot; mode=&quot;trackcom&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;ground&quot; type=&quot;plane&quot; pos=&quot;0 0 -.5&quot; size=&quot;2 2 .1&quot; material=&quot;grid&quot; solimp=&quot;.99 .99 .01&quot; solref=&quot;.001 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;box_and_sphere&quot; pos=&quot;0 0 0&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;freejoint/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.1 .1 .1&quot; rgba=&quot;1 0 0 1&quot; solimp=&quot;.99 .99 .01&quot;  solref=&quot;.001 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;green_sphere&quot; size=&quot;.06&quot; pos=&quot;.1 .1 .1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;camera name=&quot;fixed&quot; pos=&quot;0 -.6 .3&quot; xyaxes=&quot;1 0 0 0 1 2&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;camera name=&quot;track&quot; pos=&quot;0 -.6 .3&quot; xyaxes=&quot;1 0 0 0 1 2&quot; mode=&quot;track&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(free_body_MJCF)</span><br><span class="line">renderer = mujoco.Renderer(model, <span class="number">400</span>, <span class="number">600</span>)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data, <span class="string">&quot;fixed&quot;</span>)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/10.png" class="" title="contact"></div>
+
+<p>让我们渲染这个body在地板上滚动, 慢动作, 同时可视化接触点和力:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">n_frames = <span class="number">200</span></span><br><span class="line">height = <span class="number">240</span></span><br><span class="line">width = <span class="number">320</span></span><br><span class="line">frames = []</span><br><span class="line">renderer = mujoco.Renderer(model, height, width)</span><br><span class="line"></span><br><span class="line"><span class="comment"># visualize contact frames and forces, make body transparent</span></span><br><span class="line">options = mujoco.MjvOption()</span><br><span class="line">mujoco.mjv_defaultOption(options)</span><br><span class="line">options.flags[mujoco.mjtVisFlag.mjVIS_CONTACTPOINT] = <span class="literal">True</span></span><br><span class="line">options.flags[mujoco.mjtVisFlag.mjVIS_CONTACTFORCE] = <span class="literal">True</span></span><br><span class="line">options.flags[mujoco.mjtVisFlag.mjVIS_TRANSPARENT] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tweak scales of contact visualization elements</span></span><br><span class="line">model.vis.scale.contactwidth = <span class="number">0.1</span></span><br><span class="line">model.vis.scale.contactheight = <span class="number">0.03</span></span><br><span class="line">model.vis.scale.forcewidth = <span class="number">0.05</span></span><br><span class="line">model.vis.<span class="built_in">map</span>.force = <span class="number">0.3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># random initial rotational velocity:</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qvel[<span class="number">3</span>:<span class="number">6</span>] = <span class="number">5</span>*np.random.randn(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate and render</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_frames):</span><br><span class="line">  <span class="keyword">while</span> data.time &lt; i/<span class="number">120.0</span>: <span class="comment">#1/4x real time</span></span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">  renderer.update_scene(data, <span class="string">&quot;track&quot;</span>, options)</span><br><span class="line">  frame = renderer.render()</span><br><span class="line">  frames.append(frame)</span><br><span class="line"></span><br><span class="line"><span class="comment"># show video</span></span><br><span class="line">media.show_video(frames, fps=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="force.mp4" type="video/mp4">
+</video>
+
+
+<h3 id="分析接触力"><a href="#分析接触力" class="headerlink" title="分析接触力"></a><strong>分析接触力</strong></h3><p>让我们重新运行上述模拟(使用不同的随机初始条件)并绘制与接触相关的一些值.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">n_steps = <span class="number">499</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># allocate</span></span><br><span class="line">sim_time = np.zeros(n_steps)</span><br><span class="line">ncon = np.zeros(n_steps)</span><br><span class="line">force = np.zeros((n_steps,<span class="number">3</span>))</span><br><span class="line">velocity = np.zeros((n_steps, model.nv))</span><br><span class="line">penetration = np.zeros(n_steps)</span><br><span class="line">acceleration = np.zeros((n_steps, model.nv))</span><br><span class="line">forcetorque = np.zeros(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># random initial rotational velocity:</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qvel[<span class="number">3</span>:<span class="number">6</span>] = <span class="number">2</span>*np.random.randn(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate and save data</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_steps):</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  sim_time[i] = data.time</span><br><span class="line">  ncon[i] = data.ncon</span><br><span class="line">  velocity[i] = data.qvel[:]</span><br><span class="line">  acceleration[i] = data.qacc[:]</span><br><span class="line">  <span class="comment"># iterate over active contacts, save force and distance</span></span><br><span class="line">  <span class="keyword">for</span> j,c <span class="keyword">in</span> <span class="built_in">enumerate</span>(data.contact):</span><br><span class="line">    mujoco.mj_contactForce(model, data, j, forcetorque)</span><br><span class="line">    force[i] += forcetorque[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">    penetration[i] = <span class="built_in">min</span>(penetration[i], c.dist)</span><br><span class="line">  <span class="comment"># we could also do</span></span><br><span class="line">  <span class="comment"># force[i] += data.qfrc_constraint[0:3]</span></span><br><span class="line">  <span class="comment"># do you see why?</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># plot</span></span><br><span class="line">_, ax = plt.subplots(<span class="number">3</span>, <span class="number">2</span>, sharex=<span class="literal">True</span>, figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">lines = ax[<span class="number">0</span>,<span class="number">0</span>].plot(sim_time, force)</span><br><span class="line">ax[<span class="number">0</span>,<span class="number">0</span>].set_title(<span class="string">&#x27;contact force&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>,<span class="number">0</span>].set_ylabel(<span class="string">&#x27;Newton&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>,<span class="number">0</span>].legend(<span class="built_in">iter</span>(lines), (<span class="string">&#x27;normal z&#x27;</span>, <span class="string">&#x27;friction x&#x27;</span>, <span class="string">&#x27;friction y&#x27;</span>));</span><br><span class="line"></span><br><span class="line">ax[<span class="number">1</span>,<span class="number">0</span>].plot(sim_time, acceleration)</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">0</span>].set_title(<span class="string">&#x27;acceleration&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">0</span>].set_ylabel(<span class="string">&#x27;(meter,radian)/s/s&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">2</span>,<span class="number">0</span>].plot(sim_time, velocity)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">0</span>].set_title(<span class="string">&#x27;velocity&#x27;</span>)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">0</span>].set_ylabel(<span class="string">&#x27;(meter,radian)/s&#x27;</span>)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">0</span>].set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">0</span>,<span class="number">1</span>].plot(sim_time, ncon)</span><br><span class="line">ax[<span class="number">0</span>,<span class="number">1</span>].set_title(<span class="string">&#x27;number of contacts&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>,<span class="number">1</span>].set_yticks(<span class="built_in">range</span>(<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line">ax[<span class="number">1</span>,<span class="number">1</span>].plot(sim_time, force[:,<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">1</span>].set_yscale(<span class="string">&#x27;log&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">1</span>].set_title(<span class="string">&#x27;normal (z) force - log scale&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">1</span>].set_ylabel(<span class="string">&#x27;Newton&#x27;</span>)</span><br><span class="line">z_gravity = -model.opt.gravity[<span class="number">2</span>]</span><br><span class="line">mg = model.body(<span class="string">&quot;box_and_sphere&quot;</span>).mass[<span class="number">0</span>] * z_gravity</span><br><span class="line">mg_line = ax[<span class="number">1</span>,<span class="number">1</span>].plot(sim_time, np.ones(n_steps)*mg, label=<span class="string">&#x27;m*g&#x27;</span>, linewidth=<span class="number">1</span>)</span><br><span class="line">ax[<span class="number">1</span>,<span class="number">1</span>].legend()</span><br><span class="line"></span><br><span class="line">ax[<span class="number">2</span>,<span class="number">1</span>].plot(sim_time, <span class="number">1000</span>*penetration)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">1</span>].set_title(<span class="string">&#x27;penetration depth&#x27;</span>)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">1</span>].set_ylabel(<span class="string">&#x27;millimeter&#x27;</span>)</span><br><span class="line">ax[<span class="number">2</span>,<span class="number">1</span>].set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/11.png" class="" title="analysis"></div>
+
+<h3 id="摩擦力"><a href="#摩擦力" class="headerlink" title="摩擦力"></a><strong>摩擦力</strong></h3><p>让我们看看改变摩擦值的效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">MJCF = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;asset&gt;</span></span><br><span class="line"><span class="string">    &lt;texture name=&quot;grid&quot; type=&quot;2d&quot; builtin=&quot;checker&quot; rgb1=&quot;.1 .2 .3&quot;</span></span><br><span class="line"><span class="string">     rgb2=&quot;.2 .3 .4&quot; width=&quot;300&quot; height=&quot;300&quot; mark=&quot;none&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;material name=&quot;grid&quot; texture=&quot;grid&quot; texrepeat=&quot;6 6&quot;</span></span><br><span class="line"><span class="string">     texuniform=&quot;true&quot; reflectance=&quot;.2&quot;/&gt;</span></span><br><span class="line"><span class="string">     &lt;material name=&quot;wall&quot; rgba=&#x27;.5 .5 .5 1&#x27;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/asset&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;default&gt;</span></span><br><span class="line"><span class="string">    &lt;geom type=&quot;box&quot; size=&quot;.05 .05 .05&quot; /&gt;</span></span><br><span class="line"><span class="string">    &lt;joint type=&quot;free&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/default&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;light&quot; pos=&quot;-.2 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;ground&quot; type=&quot;plane&quot; size=&quot;.5 .5 10&quot; material=&quot;grid&quot;</span></span><br><span class="line"><span class="string">     zaxis=&quot;-.3 0 1&quot; friction=&quot;.1&quot;/&gt; </span></span><br><span class="line"><span class="string">    &lt;camera name=&quot;y&quot; pos=&quot;-.1 -.6 .3&quot; xyaxes=&quot;1 0 0 0 1 2&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body pos=&quot;0 0 .1&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;body pos=&quot;0 .2 .1&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom friction=&quot;.33&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">n_frames = <span class="number">60</span></span><br><span class="line">height = <span class="number">300</span></span><br><span class="line">width = <span class="number">300</span></span><br><span class="line">frames = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># load</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(MJCF)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model, height, width)</span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate and render</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_frames):</span><br><span class="line">  <span class="keyword">while</span> data.time &lt; i/<span class="number">30.0</span>:</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">  renderer.update_scene(data, <span class="string">&quot;y&quot;</span>)</span><br><span class="line">  frame = renderer.render()</span><br><span class="line">  frames.append(frame)</span><br><span class="line">media.show_video(frames, fps=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="friction.mp4" type="video/mp4">
+</video>
+
+
+<h2 id="肌腱-执行器和传感器"><a href="#肌腱-执行器和传感器" class="headerlink" title="肌腱, 执行器和传感器"></a><strong>肌腱, 执行器和传感器</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">MJCF = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;asset&gt;</span></span><br><span class="line"><span class="string">    &lt;texture name=&quot;grid&quot; type=&quot;2d&quot; builtin=&quot;checker&quot; rgb1=&quot;.1 .2 .3&quot;</span></span><br><span class="line"><span class="string">     rgb2=&quot;.2 .3 .4&quot; width=&quot;300&quot; height=&quot;300&quot; mark=&quot;none&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;material name=&quot;grid&quot; texture=&quot;grid&quot; texrepeat=&quot;1 1&quot;</span></span><br><span class="line"><span class="string">     texuniform=&quot;true&quot; reflectance=&quot;.2&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/asset&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;light&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;floor&quot; type=&quot;plane&quot; pos=&quot;0 0 -.5&quot; size=&quot;2 2 .1&quot; material=&quot;grid&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;site name=&quot;anchor&quot; pos=&quot;0 0 .3&quot; size=&quot;.01&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;camera name=&quot;fixed&quot; pos=&quot;0 -1.3 .5&quot; xyaxes=&quot;1 0 0 0 1 2&quot;/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;pole&quot; type=&quot;cylinder&quot; fromto=&quot;.3 0 -.5 .3 0 -.1&quot; size=&quot;.04&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;bat&quot; pos=&quot;.3 0 -.1&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;swing&quot; type=&quot;hinge&quot; damping=&quot;1&quot; axis=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;bat&quot; type=&quot;capsule&quot; fromto=&quot;0 0 .04 0 -.3 .04&quot;</span></span><br><span class="line"><span class="string">       size=&quot;.04&quot; rgba=&quot;0 0 1 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;body name=&quot;box_and_sphere&quot; pos=&quot;0 0 0&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;free&quot; type=&quot;free&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.1 .1 .1&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;green_sphere&quot;  size=&quot;.06&quot; pos=&quot;.1 .1 .1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;site name=&quot;hook&quot; pos=&quot;-.1 -.1 -.1&quot; size=&quot;.01&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;site name=&quot;IMU&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;tendon&gt;</span></span><br><span class="line"><span class="string">    &lt;spatial name=&quot;wire&quot; limited=&quot;true&quot; range=&quot;0 0.35&quot; width=&quot;0.003&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;site site=&quot;anchor&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;site site=&quot;hook&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/spatial&gt;</span></span><br><span class="line"><span class="string">  &lt;/tendon&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;actuator&gt;</span></span><br><span class="line"><span class="string">    &lt;motor name=&quot;my_motor&quot; joint=&quot;swing&quot; gear=&quot;1&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/actuator&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;sensor&gt;</span></span><br><span class="line"><span class="string">    &lt;accelerometer name=&quot;accelerometer&quot; site=&quot;IMU&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/sensor&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(MJCF)</span><br><span class="line">renderer = mujoco.Renderer(model, <span class="number">480</span>, <span class="number">480</span>)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data, <span class="string">&quot;fixed&quot;</span>)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/12.png" class="" title="bat"></div>
+
+<p>驱动球棒和被动的皮纳塔.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">n_frames = <span class="number">180</span></span><br><span class="line">height = <span class="number">240</span></span><br><span class="line">width = <span class="number">320</span></span><br><span class="line">frames = []</span><br><span class="line">fps = <span class="number">60.0</span></span><br><span class="line">times = []</span><br><span class="line">sensordata = []</span><br><span class="line"></span><br><span class="line">renderer = mujoco.Renderer(model, height, width)</span><br><span class="line"></span><br><span class="line"><span class="comment"># constant actuator signal</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.ctrl = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># simulate and render</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_frames):</span><br><span class="line">  <span class="keyword">while</span> data.time &lt; i/fps:</span><br><span class="line">    mujoco.mj_step(model, data)</span><br><span class="line">    times.append(data.time)</span><br><span class="line">    sensordata.append(data.sensor(<span class="string">&#x27;accelerometer&#x27;</span>).data.copy())</span><br><span class="line">  renderer.update_scene(data, <span class="string">&quot;fixed&quot;</span>)</span><br><span class="line">  frame = renderer.render()</span><br><span class="line">  frames.append(frame)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=fps)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="bat.mp4" type="video/mp4">
+</video>
+
+
+<p>让我们绘制加速度传感器测量的值:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ax = plt.gca()</span><br><span class="line"></span><br><span class="line">ax.plot(np.asarray(times), np.asarray(sensordata), label=<span class="string">&#x27;timestep = &#123;:2.2g&#125;ms&#x27;</span>.<span class="built_in">format</span>(<span class="number">1000</span>*dt))</span><br><span class="line"></span><br><span class="line"><span class="comment"># finalize plot</span></span><br><span class="line">ax.set_title(<span class="string">&#x27;Accelerometer values&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;meter/second^2&#x27;</span>)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;second&#x27;</span>)</span><br><span class="line">ax.legend(frameon=<span class="literal">True</span>, loc=<span class="string">&#x27;lower right&#x27;</span>);</span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<div style="width:60%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/13.png" class="" title="acceleration"></div>
+
+<p>注意 body 被球棒击中的瞬间是如何在加速度测量中清晰可见的.</p>
+<h2 id="高级渲染"><a href="#高级渲染" class="headerlink" title="高级渲染"></a><strong>高级渲染</strong></h2><p>与关节可视化一样, 附加的渲染选项作为参数公开给 <code>render</code> 方法.</p>
+<p>让我们回到第一个模型:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">xml = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;top&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;box_and_sphere&quot; euler=&quot;0 0 -30&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;swing&quot; type=&quot;hinge&quot; axis=&quot;1 -1 0&quot; pos=&quot;-.2 -.2 -.2&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line"></span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/14.png" class="" title="render"></div>
+
+<h3 id="启用透明度和坐标轴可视化"><a href="#启用透明度和坐标轴可视化" class="headerlink" title="启用透明度和坐标轴可视化"></a><strong>启用透明度和坐标轴可视化</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Enable transparency and frame visualization</span></span><br><span class="line"></span><br><span class="line">scene_option.frame = mujoco.mjtFrame.mjFRAME_GEOM</span><br><span class="line">scene_option.flags[mujoco.mjtVisFlag.mjVIS_TRANSPARENT] = <span class="literal">True</span></span><br><span class="line">renderer.update_scene(data, scene_option=scene_option)</span><br><span class="line">frame = renderer.render()</span><br><span class="line">media.show_image(frame)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/15.png" class="" title="transparency"></div>
+
+<h3 id="深度渲染"><a href="#深度渲染" class="headerlink" title="深度渲染"></a><strong>深度渲染</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Depth rendering</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># update renderer to render depth</span></span><br><span class="line">renderer.enable_depth_rendering()</span><br><span class="line"></span><br><span class="line"><span class="comment"># reset the scene</span></span><br><span class="line">renderer.update_scene(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># depth is a float array, in meters.</span></span><br><span class="line">depth = renderer.render()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Shift nearest values to the origin.</span></span><br><span class="line">depth -= depth.<span class="built_in">min</span>()</span><br><span class="line"><span class="comment"># Scale by 2 mean distances of near rays.</span></span><br><span class="line">depth /= <span class="number">2</span>*depth[depth &lt;= <span class="number">1</span>].mean()</span><br><span class="line"><span class="comment"># Scale to [0, 255]</span></span><br><span class="line">pixels = <span class="number">255</span>*np.clip(depth, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">media.show_image(pixels.astype(np.uint8))</span><br><span class="line"></span><br><span class="line">renderer.disable_depth_rendering()</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/16.png" class="" title="depth"></div>
+
+<h3 id="分割渲染"><a href="#分割渲染" class="headerlink" title="分割渲染"></a><strong>分割渲染</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Segmentation rendering</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># update renderer to render segmentation</span></span><br><span class="line">renderer.enable_segmentation_rendering()</span><br><span class="line"></span><br><span class="line"><span class="comment"># reset the scene</span></span><br><span class="line">renderer.update_scene(data)</span><br><span class="line"></span><br><span class="line">seg = renderer.render()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the contents of the first channel, which contains object</span></span><br><span class="line"><span class="comment"># IDs. The second channel, seg[:, :, 1], contains object types.</span></span><br><span class="line">geom_ids = seg[:, :, <span class="number">0</span>]</span><br><span class="line"><span class="comment"># Infinity is mapped to -1</span></span><br><span class="line">geom_ids = geom_ids.astype(np.float64) + <span class="number">1</span></span><br><span class="line"><span class="comment"># Scale to [0, 1]</span></span><br><span class="line">geom_ids = geom_ids / geom_ids.<span class="built_in">max</span>()</span><br><span class="line">pixels = <span class="number">255</span>*geom_ids</span><br><span class="line">media.show_image(pixels.astype(np.uint8))</span><br><span class="line"></span><br><span class="line">renderer.disable_segmentation_rendering()</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/17.png" class="" title="segmentation"></div>
+
+<h3 id="相机矩阵"><a href="#相机矩阵" class="headerlink" title="相机矩阵"></a><strong>相机矩阵</strong></h3><p>有关相机矩阵的描述, 请参阅维基百科上关于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Camera_matrix">相机矩阵</a>的文章.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_camera_matrix</span>(<span class="params">renderer, data</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;Returns the 3x4 camera matrix.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="comment"># If the camera is a &#x27;free&#x27; camera, we get its position and orientation</span></span><br><span class="line">  <span class="comment"># from the scene data structure. It is a stereo camera, so we average over</span></span><br><span class="line">  <span class="comment"># the left and right channels. Note: we call `self.update()` in order to</span></span><br><span class="line">  <span class="comment"># ensure that the contents of `scene.camera` are correct.</span></span><br><span class="line">  renderer.update_scene(data)</span><br><span class="line">  pos = np.mean([camera.pos <span class="keyword">for</span> camera <span class="keyword">in</span> renderer.scene.camera], axis=<span class="number">0</span>)</span><br><span class="line">  z = -np.mean([camera.forward <span class="keyword">for</span> camera <span class="keyword">in</span> renderer.scene.camera], axis=<span class="number">0</span>)</span><br><span class="line">  y = np.mean([camera.up <span class="keyword">for</span> camera <span class="keyword">in</span> renderer.scene.camera], axis=<span class="number">0</span>)</span><br><span class="line">  rot = np.vstack((np.cross(y, z), y, z))</span><br><span class="line">  fov = model.vis.global_.fovy</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Translation matrix (4x4).</span></span><br><span class="line">  translation = np.eye(<span class="number">4</span>)</span><br><span class="line">  translation[<span class="number">0</span>:<span class="number">3</span>, <span class="number">3</span>] = -pos</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Rotation matrix (4x4).</span></span><br><span class="line">  rotation = np.eye(<span class="number">4</span>)</span><br><span class="line">  rotation[<span class="number">0</span>:<span class="number">3</span>, <span class="number">0</span>:<span class="number">3</span>] = rot</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Focal transformation matrix (3x4).</span></span><br><span class="line">  focal_scaling = (<span class="number">1.</span>/np.tan(np.deg2rad(fov)/<span class="number">2</span>)) * renderer.height / <span class="number">2.0</span></span><br><span class="line">  focal = np.diag([-focal_scaling, focal_scaling, <span class="number">1.0</span>, <span class="number">0</span>])[<span class="number">0</span>:<span class="number">3</span>, :]</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Image matrix (3x3).</span></span><br><span class="line">  image = np.eye(<span class="number">3</span>)</span><br><span class="line">  image[<span class="number">0</span>, <span class="number">2</span>] = (renderer.width - <span class="number">1</span>) / <span class="number">2.0</span></span><br><span class="line">  image[<span class="number">1</span>, <span class="number">2</span>] = (renderer.height - <span class="number">1</span>) / <span class="number">2.0</span></span><br><span class="line">  <span class="keyword">return</span> image @ focal @ rotation @ translation</span><br></pre></td></tr></table></figure>
+
+<p>让我们使用相机矩阵从世界坐标投影到相机坐标:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># reset the scene</span></span><br><span class="line">renderer.update_scene(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the world coordinates of the box corners</span></span><br><span class="line">box_pos = data.geom_xpos[model.geom(<span class="string">&#x27;red_box&#x27;</span>).<span class="built_in">id</span>]</span><br><span class="line">box_mat = data.geom_xmat[model.geom(<span class="string">&#x27;red_box&#x27;</span>).<span class="built_in">id</span>].reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">box_size = model.geom_size[model.geom(<span class="string">&#x27;red_box&#x27;</span>).<span class="built_in">id</span>]</span><br><span class="line">offsets = np.array([-<span class="number">1</span>, <span class="number">1</span>]) * box_size[:, <span class="literal">None</span>]</span><br><span class="line">xyz_local = np.stack(<span class="built_in">list</span>(itertools.product(*offsets))).T</span><br><span class="line">xyz_global = box_pos[:, <span class="literal">None</span>] + box_mat @ xyz_local</span><br><span class="line"></span><br><span class="line"><span class="comment"># Camera matrices multiply homogenous [x, y, z, 1] vectors.</span></span><br><span class="line">corners_homogeneous = np.ones((<span class="number">4</span>, xyz_global.shape[<span class="number">1</span>]), dtype=<span class="built_in">float</span>)</span><br><span class="line">corners_homogeneous[:<span class="number">3</span>, :] = xyz_global</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the camera matrix.</span></span><br><span class="line">m = compute_camera_matrix(renderer, data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project world coordinates into pixel space. See:</span></span><br><span class="line"><span class="comment"># https://en.wikipedia.org/wiki/3D_projection#Mathematical_formula</span></span><br><span class="line">xs, ys, s = m @ corners_homogeneous</span><br><span class="line"><span class="comment"># x and y are in the pixel coordinate system.</span></span><br><span class="line">x = xs / s</span><br><span class="line">y = ys / s</span><br><span class="line"></span><br><span class="line"><span class="comment"># Render the camera view and overlay the projected corner coordinates.</span></span><br><span class="line">pixels = renderer.render()</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">ax.imshow(pixels)</span><br><span class="line">ax.plot(x, y, <span class="string">&#x27;+&#x27;</span>, c=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">ax.set_axis_off()</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/13/mujoco-tutorial/18.png" class="" title="projection"></div>
+
+<h3 id="修改场景"><a href="#修改场景" class="headerlink" title="修改场景"></a><strong>修改场景</strong></h3><p>让我们在 <code>mjvScene</code> 中添加一些任意的几何图形.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_geom_speed</span>(<span class="params">model, data, geom_name</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;Returns the speed of a geom.&quot;&quot;&quot;</span></span><br><span class="line">  geom_vel = np.zeros(<span class="number">6</span>)</span><br><span class="line">  geom_type = mujoco.mjtObj.mjOBJ_GEOM</span><br><span class="line">  geom_id = data.geom(geom_name).<span class="built_in">id</span></span><br><span class="line">  mujoco.mj_objectVelocity(model, data, geom_type, geom_id, geom_vel, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> np.linalg.norm(geom_vel)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_visual_capsule</span>(<span class="params">scene, point1, point2, radius, rgba</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;Adds one capsule to an mjvScene.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">if</span> scene.ngeom &gt;= scene.maxgeom:</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  scene.ngeom += <span class="number">1</span>  <span class="comment"># increment ngeom</span></span><br><span class="line">  <span class="comment"># initialise a new capsule, add it to the scene using mjv_makeConnector</span></span><br><span class="line">  mujoco.mjv_initGeom(scene.geoms[scene.ngeom-<span class="number">1</span>],</span><br><span class="line">                      mujoco.mjtGeom.mjGEOM_CAPSULE, np.zeros(<span class="number">3</span>),</span><br><span class="line">                      np.zeros(<span class="number">3</span>), np.zeros(<span class="number">9</span>), rgba.astype(np.float32))</span><br><span class="line">  mujoco.mjv_makeConnector(scene.geoms[scene.ngeom-<span class="number">1</span>],</span><br><span class="line">                           mujoco.mjtGeom.mjGEOM_CAPSULE, radius,</span><br><span class="line">                           point1[<span class="number">0</span>], point1[<span class="number">1</span>], point1[<span class="number">2</span>],</span><br><span class="line">                           point2[<span class="number">0</span>], point2[<span class="number">1</span>], point2[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"> <span class="comment"># traces of time, position and speed</span></span><br><span class="line">times = []</span><br><span class="line">positions = []</span><br><span class="line">speeds = []</span><br><span class="line">offset = model.jnt_axis[<span class="number">0</span>]/<span class="number">8</span>  <span class="comment"># offset along the joint axis</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">modify_scene</span>(<span class="params">scn</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;Draw position trace, speed modifies width and colors.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(positions) &gt; <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(positions)-<span class="number">1</span>):</span><br><span class="line">      rgba=np.array((np.clip(speeds[i]/<span class="number">10</span>, <span class="number">0</span>, <span class="number">1</span>),</span><br><span class="line">                     np.clip(<span class="number">1</span>-speeds[i]/<span class="number">10</span>, <span class="number">0</span>, <span class="number">1</span>),</span><br><span class="line">                     <span class="number">.5</span>, <span class="number">1.</span>))</span><br><span class="line">      radius=<span class="number">.003</span>*(<span class="number">1</span>+speeds[i])</span><br><span class="line">      point1 = positions[i] + offset*times[i]</span><br><span class="line">      point2 = positions[i+<span class="number">1</span>] + offset*times[i+<span class="number">1</span>]</span><br><span class="line">      add_visual_capsule(scn, point1, point2, radius, rgba)</span><br><span class="line"></span><br><span class="line">duration = <span class="number">6</span>    <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset state and time.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">  <span class="comment"># append data to the traces</span></span><br><span class="line">  positions.append(data.geom_xpos[data.geom(<span class="string">&quot;green_sphere&quot;</span>).<span class="built_in">id</span>].copy())</span><br><span class="line">  times.append(data.time)</span><br><span class="line">  speeds.append(get_geom_speed(model, data, <span class="string">&quot;green_sphere&quot;</span>))</span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    modify_scene(renderer.scene)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="mjvScene.mp4" type="video/mp4">
+</video>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2023/04/13/mujoco-tutorial/" title="MuJoCo 教程">http://shawshai.cn/2023/04/13/mujoco-tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mujoco/" rel="tag"># mujoco</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/13/win2sublinux/" rel="prev" title="Windows10 与子系统 Linux Ubuntu 的文件访问">
+      <i class="fa fa-chevron-left"></i> Windows10 与子系统 Linux Ubuntu 的文件访问
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="nav-number">1.</span> <span class="nav-text">安装 MuJoCo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">1.1.</span> <span class="nav-text">检查是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E7%9B%B8%E5%85%B3%E5%9B%BE%E5%BD%A2%E5%92%8C%E7%BB%98%E5%9B%BE%E5%8C%85"><span class="nav-number">1.2.</span> <span class="nav-text">导入相关图形和绘图包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MuJoCo-%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">MuJoCo 基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mjModel"><span class="nav-number">2.1.</span> <span class="nav-text">mjModel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Named-access"><span class="nav-number">2.2.</span> <span class="nav-text">Named access</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mjData"><span class="nav-number">2.3.</span> <span class="nav-text">mjData</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%B8%B2%E6%9F%93%E3%80%81%E6%A8%A1%E6%8B%9F%E5%92%8C%E5%8A%A8%E7%94%BB"><span class="nav-number">3.</span> <span class="nav-text">基本的渲染、模拟和动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E7%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">仿真</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E8%87%AA%E7%94%B1%E5%BA%A6"><span class="nav-number">4.1.</span> <span class="nav-text">理解自由度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-%E7%94%A8%E8%87%AA%E5%8F%8D%E8%BD%AC%E7%9A%84%E2%80%9Ctippe-top%E2%80%9D%E6%A8%A1%E6%8B%9F%E8%87%AA%E7%94%B1%E4%BD%93"><span class="nav-number">5.</span> <span class="nav-text">示例: 用自反转的“tippe-top”模拟自由体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F-mjData-%E4%B8%AD%E7%9A%84%E5%80%BC"><span class="nav-number">5.1.</span> <span class="nav-text">测量 mjData 中的值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B-%E4%B8%80%E4%B8%AA%E6%B7%B7%E6%B2%8C%E6%91%86"><span class="nav-number">6.</span> <span class="nav-text">实例: 一个混沌摆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Timing"><span class="nav-number">6.1.</span> <span class="nav-text">Timing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chaos"><span class="nav-number">6.2.</span> <span class="nav-text">Chaos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF%E5%92%8C%E7%B2%BE%E5%BA%A6"><span class="nav-number">6.3.</span> <span class="nav-text">时间步长和精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF%E5%92%8C%E6%95%9B%E6%95%A3%E6%80%A7"><span class="nav-number">6.4.</span> <span class="nav-text">时间步长和敛散性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E8%A7%A6%E5%8A%9B"><span class="nav-number">7.</span> <span class="nav-text">接触力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E6%8E%A5%E8%A7%A6%E5%8A%9B"><span class="nav-number">7.1.</span> <span class="nav-text">分析接触力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%A9%E6%93%A6%E5%8A%9B"><span class="nav-number">7.2.</span> <span class="nav-text">摩擦力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%82%8C%E8%85%B1-%E6%89%A7%E8%A1%8C%E5%99%A8%E5%92%8C%E4%BC%A0%E6%84%9F%E5%99%A8"><span class="nav-number">8.</span> <span class="nav-text">肌腱, 执行器和传感器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93"><span class="nav-number">9.</span> <span class="nav-text">高级渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E9%80%8F%E6%98%8E%E5%BA%A6%E5%92%8C%E5%9D%90%E6%A0%87%E8%BD%B4%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">9.1.</span> <span class="nav-text">启用透明度和坐标轴可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%B8%B2%E6%9F%93"><span class="nav-number">9.2.</span> <span class="nav-text">深度渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E6%B8%B2%E6%9F%93"><span class="nav-number">9.3.</span> <span class="nav-text">分割渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E6%9C%BA%E7%9F%A9%E9%98%B5"><span class="nav-number">9.4.</span> <span class="nav-text">相机矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%9C%BA%E6%99%AF"><span class="nav-number">9.5.</span> <span class="nav-text">修改场景</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">43k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : 'e8dca1eb89439719baa41ecb4a85c68a',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
