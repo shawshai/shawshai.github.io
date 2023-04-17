@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为 MuJoCo 官方 LQR 教程的简单翻译.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LQR 教程">
+<meta property="og:url" content="http://shawshai.cn/2023/04/17/lqr-tutorial/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="本文为 MuJoCo 官方 LQR 教程的简单翻译.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/0.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/1.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/2.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/3.png">
+<meta property="article:published_time" content="2023-04-17T06:57:19.000Z">
+<meta property="article:modified_time" content="2023-04-17T07:38:37.926Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="lqr">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/0.png">
+
+<link rel="canonical" href="http://shawshai.cn/2023/04/17/lqr-tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>LQR 教程 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/04/17/lqr-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="摆脱冷气 只向上走">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LQR 教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-17 14:57:19 / 修改时间：15:38:37" itemprop="dateCreated datePublished" datetime="2023-04-17T14:57:19+08:00">2023-04-17</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>15k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">本文为 MuJoCo 官方 LQR 教程的简单翻译. </div>
+
+<span id="more"></span>
+
+<p>原文链接如下:</p>
+<p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/deepmind/mujoco/blob/main/python/LQR.ipynb">https://colab.research.google.com/github/deepmind/mujoco/blob/main/python/LQR.ipynb</a></p>
+<p>官方GitHub 链接为 <a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco#readme">https://github.com/deepmind/mujoco</a>.</p>
+<h2 id="安装-MuJoCo"><a href="#安装-MuJoCo" class="headerlink" title="安装 MuJoCo"></a><strong>安装 MuJoCo</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install mujoco</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查是否安装成功"><a href="#检查是否安装成功" class="headerlink" title="检查是否安装成功"></a><strong>检查是否安装成功</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Check if installation was successful</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> distutils.util</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">if</span> subprocess.run(<span class="string">&#x27;nvidia-smi&#x27;</span>).returncode:</span><br><span class="line">  <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Cannot communicate with GPU. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Make sure you are using a GPU Colab runtime. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Go to the Runtime menu and select Choose runtime type.&#x27;</span>)</span><br><span class="line"><span class="comment"># Configure MuJoCo to use the EGL rendering backend (requires GPU)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Setting environment variable to use GPU rendering:&#x27;</span>)</span><br><span class="line">%env MUJOCO_GL=egl</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;Checking that the installation succeeded:&#x27;</span>)</span><br><span class="line">  <span class="keyword">import</span> mujoco</span><br><span class="line">  mujoco.MjModel.from_xml_string(<span class="string">&#x27;&lt;mujoco/&gt;&#x27;</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="keyword">raise</span> e <span class="keyword">from</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Something went wrong during installation. Check the shell output above &#x27;</span></span><br><span class="line">      <span class="string">&#x27;for more information.\n&#x27;</span></span><br><span class="line">      <span class="string">&#x27;If using a hosted Colab runtime, make sure you enable GPU acceleration &#x27;</span></span><br><span class="line">      <span class="string">&#x27;by going to the Runtime menu and selecting &quot;Choose runtime type&quot;.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Installation successful.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="其它导入包与帮助函数"><a href="#其它导入包与帮助函数" class="headerlink" title="其它导入包与帮助函数"></a><strong>其它导入包与帮助函数</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Other imports and helper functions</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Callable</span>, <span class="type">Optional</span>, <span class="type">Union</span>, <span class="type">List</span></span><br><span class="line"><span class="keyword">import</span> scipy.linalg</span><br><span class="line"></span><br><span class="line"><span class="comment"># Graphics and plotting.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Installing mediapy:&#x27;</span>)</span><br><span class="line">!command -v ffmpeg &gt;/dev/null || (apt update &amp;&amp; apt install -y ffmpeg)</span><br><span class="line">!pip install -q mediapy</span><br><span class="line"><span class="keyword">import</span> mediapy <span class="keyword">as</span> media</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># More legible printing from numpy.</span></span><br><span class="line">np.set_printoptions(precision=<span class="number">3</span>, suppress=<span class="literal">True</span>, linewidth=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="加载与渲染标准人体模型"><a href="#加载与渲染标准人体模型" class="headerlink" title="加载与渲染标准人体模型"></a><strong>加载与渲染标准人体模型</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Getting MuJoCo humanoid XML description from GitHub:&#x27;</span>)</span><br><span class="line">!git clone https://github.com/deepmind/mujoco</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;mujoco/model/humanoid/humanoid.xml&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">  xml = f.read()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Getting MuJoCo humanoid XML description from GitHub:<br>Cloning into ‘mujoco’…<br>remote: Enumerating objects: 7096, done.<br>remote: Counting objects: 100% (289/289), done.<br>remote: Compressing objects: 100% (153/153), done.<br>remote: Total 7096 (delta 145), reused 245 (delta 130), pack-reused 6807<br>Receiving objects: 100% (7096/7096), 42.89 MiB | 13.65 MiB/s, done.<br>Resolving deltas: 100% (5123/5123), done.</p>
+</blockquote>
+<p>XML用于实例化 <code>MjModel</code>. 给定模型，我们可以创建一个 <code>MjData</code> 来保存仿真状态, 以及上面定义的 <code>Renderer</code> 类的实例.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br></pre></td></tr></table></figure>
+
+<p><code>data</code> 对象的状态为默认配置. 让我们调用正向动力学来填充所有的派生的量(如几何体的世界坐标), 更新场景并渲染它:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/0.png" class="" title="humanoid"></div>
+
+<p>该模型带有一些内置的“关键帧”, 这些关键帧保存了仿真状态.</p>
+<p>可以用 <code>mj_resetDataKeyframe</code> 来加载它们, 让我们看看它们长什么样:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> <span class="built_in">range</span>(model.nkey):</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, key)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  renderer.update_scene(data)</span><br><span class="line">  media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/1.png" class="" title="kframe1"></div>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/2.png" class="" title="kframe2"></div>
+
+<p>现在让我们物理仿真并渲染来制作一个视频.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DURATION  = <span class="number">3</span>   <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>  <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize to the standing-on-one-leg pose.</span></span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display video.</span></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="fall.mp4" type="video/mp4">
+</video>
+
+<p>该模型定义了内置的力矩执行器, 我们可以通过设置 <code>data.ctrl</code> 向量来驱动人体模型关节. 让我们看看如果引入噪声会发生什么.</p>
+<p>这里, 我们使用一个自定义摄像机来跟踪人体模型的质心.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">DURATION  = <span class="number">3</span>   <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>  <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a new camera, move it to a closer distance.</span></span><br><span class="line">camera = mujoco.MjvCamera()</span><br><span class="line">mujoco.mjv_defaultFreeCamera(model, camera)</span><br><span class="line">camera.distance = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Set control vector.</span></span><br><span class="line">  data.ctrl = np.random.randn(model.nu)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    <span class="comment"># Set the lookat point to the humanoid&#x27;s center of mass.</span></span><br><span class="line">    camera.lookat = data.body(<span class="string">&#x27;torso&#x27;</span>).subtree_com</span><br><span class="line"></span><br><span class="line">    renderer.update_scene(data, camera)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="noise.mp4" type="video/mp4">
+</video>
+
+<h2 id="稳定的单腿站立"><a href="#稳定的单腿站立" class="headerlink" title="稳定的单腿站立"></a><strong>稳定的单腿站立</strong></h2><p>显然这个初始姿态是不稳定的. 我们将尝试使用 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">Linear Quadratic Regulator</a> 找到一个稳定的控制策略.</p>
+<h3 id="LQR-理论回顾"><a href="#LQR-理论回顾" class="headerlink" title="LQR 理论回顾"></a><strong>LQR 理论回顾</strong></h3><p>这个理论是由 Rudolph Kalman 在20世纪60年代提出的, 网上有很多解释这个理论的资源, 但我们只提供一个简单的概述.</p>
+<p>给定一个状态 $x$ 和控制 $u$ 为线性的动力系统,</p>
+<p>$$<br>x_{t+h}=Ax_t+Bu_t<br>$$</p>
+<p>如果系统满足一个可控性条件, 就有可能以最佳方式达到稳定(驱动 $x$ 到 $0$), 如下所示. 使用两个对称正定矩阵 $Q$ 和 $R$ 定义状态和控制上的二次代价函数 $J(x,u)$:</p>
+<p>$$<br>J(x,u)=x^TQx+u^TRu<br>$$</p>
+<p>Cost-to-go 函数 $V^\pi(x_0)$, 也称为值函数, 是未来成本的总和, 让状态从 $x_0$ 开始, 并根据动力学推演, 同时使用控制策略 $u=\pi(x)$:</p>
+<p>$$<br>V^\pi(x_0)=\sum_{t=0}^\infty J(x_t,\pi(x_t))<br>$$</p>
+<p>Kalman 的中心结论现在可以表述了. 在所有可能的控制策略中, 使得值函数最小化的最优控制策略是线性的</p>
+<p>$$<br>\pi^*(x)=\arg\min_\pi V^\pi(x)=-Kx<br>$$</p>
+<p>以及最优的值函数为二次的</p>
+<p>$$<br>V^*(x)=\min_\pi V^\pi(x)=x^TPx<br>$$</p>
+<p>矩阵 $P$ 满足 Riccati 方程</p>
+<p>$$<br>P=Q+A^TPA-A^TPB(R+B^TPB)^{-1}B^TPA<br>$$</p>
+<p>其与控制增益矩阵 $K$ 的关系为</p>
+<p>$$<br>K=(R+B^TPB)^{-1}B^TPA<br>$$</p>
+<h3 id="理解线性化设定值"><a href="#理解线性化设定值" class="headerlink" title="理解线性化设定值"></a><strong>理解线性化设定值</strong></h3><p>当然我们的人体模型仿真绝不是线性的. 但是, 当 MuJoCo 的 <code>mj_step</code> 函数计算一些非线性动力学方程 $x_{t+h}=f(x_t,u_t)$ 时, 我们可以在任何状态-控制对附近来线性化这个函数. 简记下一个状态为 $y=x_{t+h}$, 当前状态为 $x=x_t$ 以及当前控制为 $u=u_t$, 并使用 $\delta$ 表示“微小变化”, 我们可以这样表示</p>
+<p>$$<br>\delta y=\frac{\partial f}{\partial x}\delta x+\frac{\partial f}{\partial u}\delta u<br>$$</p>
+<p>换句话说, 偏导数矩阵描述了对 $x$ 和 $u$ 的扰动和对 $y$ 的变化之间的线性关系. 与上述理论相比, 当考虑线性化动力系统时, 我们可以用转换矩阵 $A$ 和 $B$ 来表示偏导数(雅可比矩阵)矩阵:</p>
+<p>$$<br>A=\frac{\partial f}{\partial x} ~~~~~~ B=\frac{\partial f}{\partial u}<br>$$</p>
+<p>为了进行线性化, 我们需要选择一些设定值 $x$ 和 $u$, 在它们附近进行线性化. 我们已经知道了 $x$, 这是我们单腿站立的初始姿势. 但是 $u$ 呢? 我们如何找到可以在其附近进行线性化的“最佳”控制值?</p>
+<p>答案是反向动力学.</p>
+<h3 id="通过反向动力学寻找控制设定值"><a href="#通过反向动力学寻找控制设定值" class="headerlink" title="通过反向动力学寻找控制设定值"></a><strong>通过反向动力学寻找控制设定值</strong></h3><p>MuJoCo 的前向动力学函数 <code>mj_forward</code>, 我们在上面使用它来传播派生量, 计算给定状态和系统中的所有力时的加速度, 其中一些是由执行器创建的.</p>
+<p>反向动力学函数将加速度作为输入, 并计算产生加速度所需的力. 独特的是, MuJoCo 的<a target="_blank" rel="noopener" href="https://doi.org/10.1109/ICRA.2014.6907751">快速反向动力学</a>考虑到所有的约束, 包括接触. 让我们看看它是如何工作的.</p>
+<p>我们将在目标位置的设定值处调用前向动力学, 在 <code>data.qacc</code> 中设置加速度为 0, 并调用逆动力学:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">data.qacc = <span class="number">0</span>  <span class="comment"># Assert that there is no the acceleration.</span></span><br><span class="line">mujoco.mj_inverse(model, data)</span><br><span class="line"><span class="built_in">print</span>(data.qfrc_inverse)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[  0.      0.    275.879 -33.186   4.995  -6.688  -4.305   3.693 -15.451 -10.906   0.412  -1.613 -9.793  -2.312  -0.366  -5.913  -0.417  -1.914   5.759   2.665  -0.202  -5.755   0.994   1.141 -1.987   3.821   1.151]</p>
+</blockquote>
+<p>检查由反向动力学得到的力, 我们看到一些相当令人不安的东西. 有一个非常大的力作用在第三自由度(DoF), 即根关节的垂直运动自由度.</p>
+<p>这意味着, 为了解释加速度为零的设定, 反向动力学必须创造一个直接作用于根关节的“神奇”的力. 让我们看看当我们将人体模型上下移动 1mm 时, 这个力是如何变化的, 增量为 1μm:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">height_offsets = np.linspace(-<span class="number">0.001</span>, <span class="number">0.001</span>, <span class="number">2001</span>)</span><br><span class="line">vertical_forces = []</span><br><span class="line"><span class="keyword">for</span> offset <span class="keyword">in</span> height_offsets:</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  data.qacc = <span class="number">0</span></span><br><span class="line">  <span class="comment"># Offset the height by `offset`.</span></span><br><span class="line">  data.qpos[<span class="number">2</span>] += offset</span><br><span class="line">  mujoco.mj_inverse(model, data)</span><br><span class="line">  vertical_forces.append(data.qfrc_inverse[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find the height-offset at which the vertical force is smallest.</span></span><br><span class="line">idx = np.argmin(np.<span class="built_in">abs</span>(vertical_forces))</span><br><span class="line">best_offset = height_offsets[idx]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the relationship.</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(height_offsets * <span class="number">1000</span>, vertical_forces, linewidth=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># Red vertical line at offset corresponding to smallest vertical force.</span></span><br><span class="line">plt.axvline(x=best_offset*<span class="number">1000</span>, color=<span class="string">&#x27;red&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line"><span class="comment"># Green horizontal line at the humanoid&#x27;s weight.</span></span><br><span class="line">weight = model.body_subtreemass[<span class="number">1</span>]*np.linalg.norm(model.opt.gravity)</span><br><span class="line">plt.axhline(y=weight, color=<span class="string">&#x27;green&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Height offset (mm)&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Vertical force (N)&#x27;</span>)</span><br><span class="line">plt.grid(which=<span class="string">&#x27;major&#x27;</span>, color=<span class="string">&#x27;#DDDDDD&#x27;</span>, linewidth=<span class="number">0.8</span>)</span><br><span class="line">plt.grid(which=<span class="string">&#x27;minor&#x27;</span>, color=<span class="string">&#x27;#EEEEEE&#x27;</span>, linestyle=<span class="string">&#x27;:&#x27;</span>, linewidth=<span class="number">0.5</span>)</span><br><span class="line">plt.minorticks_on()</span><br><span class="line">plt.title(<span class="string">f&#x27;Smallest vertical force &#x27;</span></span><br><span class="line">          <span class="string">f&#x27;found at offset <span class="subst">&#123;best_offset*<span class="number">1000</span>:<span class="number">.4</span>f&#125;</span>mm.&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<div style="width:70%;margin:auto"><img src="/2023/04/17/lqr-tutorial/3.png" class="" title="force"></div>
+
+<p>在上面的图中, 我们可以看到由于脚的接触而产生的强非线性关系. 在左边, 当我们把人体模型推到地板上时, 唯一能解释它没有跳出地板的原因是一个巨大的外力把它往<strong>下</strong>推. 在右边, 当我们将人体模型移离地面时, 解释加速度为零的唯一方法是有一个力向<strong>上</strong>支撑着它, 我们可以清楚地看到脚离开地面的高度, 所需的力正好等于人体模型的重量(绿线), 并且在我们不断向上移动时保持不变.</p>
+<p>在 -0.5mm 附近是完美的高度偏移量(红线), 在这里, 零垂直加速度可以完全用关节内力来解释, 而不需要借助“神奇的”外力. 让我们修正初始姿态的高度, 将其保存在 <code>qpos0</code> 中, 并再次通过反向动力学计算受力:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">data.qacc = <span class="number">0</span></span><br><span class="line">data.qpos[<span class="number">2</span>] += best_offset</span><br><span class="line">qpos0 = data.qpos.copy()  <span class="comment"># Save the position setpoint.</span></span><br><span class="line">mujoco.mj_inverse(model, data)</span><br><span class="line">qfrc0 = data.qfrc_inverse.copy()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;desired forces:&#x27;</span>, qfrc0)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>desired forces: [  0.      0.     -0.191  -3.447   0.222  -0.817   2.586  14.637 -18.64  -10.906   0.412  -1.613 -9.793  -2.312  -0.366 -23.755  -2.171  12.264  26.101  13.337  -0.113  -5.755   0.994   1.141 -1.987   3.821   1.151]</p>
+</blockquote>
+<p>好多了, 根关节上的力很小. 现在我们有了执行器可以合理地产生的力, 我们如何找到产生这些力的执行器值呢? 对于像人体模型这样的简单 <code>motor</code> 执行器, 我们可以简单地“除以”驱动力矩臂矩阵, 即乘以它的伪逆:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ctrl0 = np.atleast_2d(qfrc0) @ np.linalg.pinv(data.actuator_moment)</span><br><span class="line">ctrl0 = ctrl0.flatten()  <span class="comment"># Save the ctrl setpoint.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;control setpoint:&#x27;</span>, ctrl0)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>control setpoint: [ 0.366  0.065 -0.466 -0.273  0.01  -0.013 -0.122 -0.018 -0.116 -0.594 -0.054  0.102  0.326 -0.006 0.667 -0.288  0.05   0.029 -0.099  0.191  0.029]</p>
+</blockquote>
+<p>更精细的执行器将需要不同的方法来恢复 $\frac{\partial<del>\text{qfrc_actuator}}{\partial</del>\text{ctrl}}$, 而有限差分总是一个简单的选择.</p>
+<p>让我们在前向动力学中应用这些控制, 并将它们产生的力与上面打印的期望力进行比较:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data.ctrl = ctrl0</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;actuator forces:&#x27;</span>, data.qfrc_actuator)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>actuator forces: [  0.      0.      0.      0.      0.      0.      2.586  14.637 -18.64  -10.906   0.412  -1.613<br>-9.793  -2.312  -0.366 -23.755  -2.171  12.264  26.101  13.337  -0.113  -5.755   0.994   1.141<br>-1.987   3.821   1.151]</p>
+</blockquote>
+<p>由于人体模型是完全驱动的(除了根关节), 所需的力都在执行器的限制范围内, 我们可以看到所有内部关节的所需力完全匹配. 在根关节处还有一些不匹配，但是很小. 让我们看看当我们应用这些控制时的仿真效果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">DURATION  = <span class="number">3</span>   <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>  <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the state and controls to their setpoints.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qpos = qpos0</span><br><span class="line">data.ctrl = ctrl0</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    <span class="comment"># Set the lookat point to the humanoid&#x27;s center of mass.</span></span><br><span class="line">    camera.lookat = data.body(<span class="string">&#x27;torso&#x27;</span>).subtree_com</span><br><span class="line">    renderer.update_scene(data, camera)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="better.mp4" type="video/mp4">
+</video>
+
+<p>与我们上面制作的完全被动的视频相比, 我们可以看到这是一个更好的控制设定值. 人形机器人仍然摔倒了, 但它试图稳定下来, 并成功了一小会儿.</p>
+<h3 id="选择-Q-和-R-矩阵"><a href="#选择-Q-和-R-矩阵" class="headerlink" title="选择 $Q$ 和 $R$ 矩阵"></a><strong>选择 $Q$ 和 $R$ 矩阵</strong></h3><p>为了得到LQR反馈控制策略, 我们需要设计 $Q$ 和 $R$ 矩阵. 由于线性结构, 解对于两个矩阵的缩放是不变的, 所以在不失一般性的情况下, 我们可以选择 $R$ 为单位矩阵:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nu = model.nu  <span class="comment"># Alias for the number of actuators.</span></span><br><span class="line">R = np.eye(nu)</span><br></pre></td></tr></table></figure>
+
+<p>$Q$ 的选择更为复杂. 我们将把它构造成两项的和.</p>
+<p>首先, 是一个平衡成本, 使重心(CoM)保持在脚上. 为了描述它, 我们将使用运动学雅可比矩阵来映射关节空间和全局笛卡尔位置. MuJoCo 对这些进行了分析计算.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">nv = model.nv  <span class="comment"># Shortcut for the number of DoFs.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the Jacobian for the root body (torso) CoM.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qpos = qpos0</span><br><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">jac_com = np.zeros((<span class="number">3</span>, nv))</span><br><span class="line">mujoco.mj_jacSubtreeCom(model, data, jac_com, model.body(<span class="string">&#x27;torso&#x27;</span>).<span class="built_in">id</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the Jacobian for the left foot.</span></span><br><span class="line">jac_foot = np.zeros((<span class="number">3</span>, nv))</span><br><span class="line">mujoco.mj_jacBodyCom(model, data, jac_foot, <span class="literal">None</span>, model.body(<span class="string">&#x27;foot_left&#x27;</span>).<span class="built_in">id</span>)</span><br><span class="line"></span><br><span class="line">jac_diff = jac_com - jac_foot</span><br><span class="line">Qbalance = jac_diff.T @ jac_diff</span><br></pre></td></tr></table></figure>
+
+<p>第二, 关节偏离其初始配置的成本, 对于不同的关节集合, 我们需要不同的系数:</p>
+<ul>
+<li>自由关节的系数将为 0, 因为 CoM 成本项已经考虑到了这一点.</li>
+<li>左腿平衡所需要的关节, 即左腿关节和水平腹部关节, 应该保持非常接近他们的初始值.</li>
+<li>所有其他关节的系数都应该小一些, 这样人体模型就能通过摆动手臂来保持平衡.</li>
+</ul>
+<p>我们求出所有这些关节集的指标.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Get all joint names.</span></span><br><span class="line">joint_names = [model.joint(i).name <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(model.njnt)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get indices into relevant sets of joints.</span></span><br><span class="line">root_dofs = <span class="built_in">range</span>(<span class="number">6</span>)</span><br><span class="line">body_dofs = <span class="built_in">range</span>(<span class="number">6</span>, nv)</span><br><span class="line">abdomen_dofs = [</span><br><span class="line">    model.joint(name).dofadr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> joint_names</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;abdomen&#x27;</span> <span class="keyword">in</span> name</span><br><span class="line">    <span class="keyword">and</span> <span class="keyword">not</span> <span class="string">&#x27;z&#x27;</span> <span class="keyword">in</span> name</span><br><span class="line">]</span><br><span class="line">left_leg_dofs = [</span><br><span class="line">    model.joint(name).dofadr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> joint_names</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;left&#x27;</span> <span class="keyword">in</span> name</span><br><span class="line">    <span class="keyword">and</span> (<span class="string">&#x27;hip&#x27;</span> <span class="keyword">in</span> name <span class="keyword">or</span> <span class="string">&#x27;knee&#x27;</span> <span class="keyword">in</span> name <span class="keyword">or</span> <span class="string">&#x27;ankle&#x27;</span> <span class="keyword">in</span> name)</span><br><span class="line">    <span class="keyword">and</span> <span class="keyword">not</span> <span class="string">&#x27;z&#x27;</span> <span class="keyword">in</span> name</span><br><span class="line">]</span><br><span class="line">balance_dofs = abdomen_dofs + left_leg_dofs</span><br><span class="line">other_dofs = np.setdiff1d(body_dofs, balance_dofs)</span><br></pre></td></tr></table></figure>
+
+<p>现在我们准备构造 $Q$ 矩阵. 注意, 平衡项的系数相当高. 这是由于3个不同的原因:</p>
+<ul>
+<li>这是我们最关心的事情. 平衡意味着保持重心在脚上.</li>
+<li>我们对 CoM (相对于身体关节)的控制权限较少.</li>
+<li>在平衡环境中, 长度单位“更大”. 如果膝盖弯曲 0.1 弧度(≈6°), 我们可能仍然可以恢复. 如果 CoM 的位置离脚的位置有 10cm 的距离, 我们很可能正在倒向地板.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Cost coefficients.</span></span><br><span class="line">BALANCE_COST        = <span class="number">1000</span>  <span class="comment"># Balancing.</span></span><br><span class="line">BALANCE_JOINT_COST  = <span class="number">3</span>     <span class="comment"># Joints required for balancing.</span></span><br><span class="line">OTHER_JOINT_COST    = <span class="number">.3</span>    <span class="comment"># Other joints.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct the Qjoint matrix.</span></span><br><span class="line">Qjoint = np.eye(nv)</span><br><span class="line">Qjoint[root_dofs, root_dofs] *= <span class="number">0</span>  <span class="comment"># Don&#x27;t penalize free joint directly.</span></span><br><span class="line">Qjoint[balance_dofs, balance_dofs] *= BALANCE_JOINT_COST</span><br><span class="line">Qjoint[other_dofs, other_dofs] *= OTHER_JOINT_COST</span><br><span class="line"></span><br><span class="line"><span class="comment"># Construct the Q matrix for position DoFs.</span></span><br><span class="line">Qpos = BALANCE_COST * Qbalance + Qjoint</span><br><span class="line"></span><br><span class="line"><span class="comment"># No explicit penalty for velocities.</span></span><br><span class="line">Q = np.block([[Qpos, np.zeros((nv, nv))],</span><br><span class="line">              [np.zeros((nv, <span class="number">2</span>*nv))]])</span><br></pre></td></tr></table></figure>
+
+<h3 id="计算-LQR-增益矩阵-K"><a href="#计算-LQR-增益矩阵-K" class="headerlink" title="计算 LQR 增益矩阵 $K$"></a>计算 LQR 增益矩阵 $K$</h3><p>在我们求解 LQR 控制器之前, 我们需要矩阵 $A$ 和 $B$. 这些是由 MuJoCo 的 <code>mjd_transitionFD</code> 函数计算的, 该函数使用有效的有限差分导数来计算它们, 利用可配置的计算管道来避免重新计算没有变化的量.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the initial state and control.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.ctrl = ctrl0</span><br><span class="line">data.qpos = qpos0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Allocate the A and B matrices, compute them.</span></span><br><span class="line">A = np.zeros((<span class="number">2</span>*nv, <span class="number">2</span>*nv))</span><br><span class="line">B = np.zeros((<span class="number">2</span>*nv, nu))</span><br><span class="line">epsilon = <span class="number">1e-6</span></span><br><span class="line">centered = <span class="literal">True</span></span><br><span class="line">mujoco.mjd_transitionFD(model, data, epsilon, centered, A, B, <span class="literal">None</span>, <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>现在我们可以求解稳定控制器了. 我们将使用 <code>scipy</code> 的 <code>solve_discrete_are</code> 来求解 Riccati 方程, 并使用概述中描述的公式得到反馈增益矩阵.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Solve discrete Riccati equation.</span></span><br><span class="line">P = scipy.linalg.solve_discrete_are(A, B, Q, R)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute the feedback gain matrix K.</span></span><br><span class="line">K = np.linalg.inv(R + B.T @ P @ B) @ B.T @ P @ A</span><br></pre></td></tr></table></figure>
+
+<h3 id="稳定站立"><a href="#稳定站立" class="headerlink" title="稳定站立"></a><strong>稳定站立</strong></h3><p>现在我们可以试试稳定控制器.</p>
+<p>注意, 为了应用我们的增益矩阵 $K$, 我们需要使用 <code>mj_differentiatePos</code> 来计算两个位置的差值. 这很重要, 因为根关节朝向是由长度为 4 的四元数给出的, 而两个四元数的差值(在切线空间中)是长度为 3 的. 在 MuJoCo 符号中, 位置(<code>qpos</code>)的大小为 <code>nq</code>, 而位置差(和速度)的大小为 <code>nv</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Parameters.</span></span><br><span class="line">DURATION = <span class="number">5</span>          <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>        <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset data, set initial pose.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qpos = qpos0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Allocate position difference dq.</span></span><br><span class="line">dq = np.zeros(model.nv)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Get state difference dx.</span></span><br><span class="line">  mujoco.mj_differentiatePos(model, dq, <span class="number">1</span>, qpos0, data.qpos)</span><br><span class="line">  dx = np.hstack((dq, data.qvel)).T</span><br><span class="line"></span><br><span class="line">  <span class="comment"># LQR control law.</span></span><br><span class="line">  data.ctrl = ctrl0 - K @ dx</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="stable.mp4" type="video/mp4">
+</video>
+
+<h3 id="最终视频"><a href="#最终视频" class="headerlink" title="最终视频"></a><strong>最终视频</strong></h3><p>上面的视频有点令人失望, 因为这个人体模型基本上是一动不动的. 让我们来解决这个问题, 并为我们的最终产品添加一些华丽的装饰:</p>
+<ul>
+<li>在 LQR 控制器上引入平滑的噪声, 使平衡动作更明显, 但不抖动.</li>
+<li>为场景添加接触力可视化.</li>
+<li>让摄像机平稳地绕着人体模型旋转.</li>
+<li>实例化一个具有更高分辨率的新渲染器.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Parameters.</span></span><br><span class="line">DURATION = <span class="number">12</span>         <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>        <span class="comment"># Hz</span></span><br><span class="line">TOTAL_ROTATION = <span class="number">15</span>   <span class="comment"># degrees</span></span><br><span class="line">CTRL_STD = <span class="number">0.05</span>       <span class="comment"># actuator units</span></span><br><span class="line">CTRL_RATE = <span class="number">0.8</span>       <span class="comment"># seconds</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make new camera, set distance.</span></span><br><span class="line">camera = mujoco.MjvCamera()</span><br><span class="line">mujoco.mjv_defaultFreeCamera(model, camera)</span><br><span class="line">camera.distance = <span class="number">2.3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable contact force visualisation.</span></span><br><span class="line">scene_option = mujoco.MjvOption()</span><br><span class="line">scene_option.flags[mujoco.mjtVisFlag.mjVIS_CONTACTFORCE] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the scale of visualized contact forces to 1cm/N.</span></span><br><span class="line">model.vis.<span class="built_in">map</span>.force = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Define smooth orbiting function.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unit_smooth</span>(<span class="params">normalised_time: <span class="built_in">float</span></span>) -&gt; <span class="built_in">float</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> - np.cos(normalised_time*<span class="number">2</span>*np.pi)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">azimuth</span>(<span class="params">time: <span class="built_in">float</span></span>) -&gt; <span class="built_in">float</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">100</span> + unit_smooth(data.time/DURATION) * TOTAL_ROTATION</span><br><span class="line"></span><br><span class="line"><span class="comment"># Precompute some noise.</span></span><br><span class="line">np.random.seed(<span class="number">1</span>)</span><br><span class="line">nsteps = <span class="built_in">int</span>(np.ceil(DURATION/model.opt.timestep))</span><br><span class="line">perturb = np.random.randn(nsteps, nu)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Smooth the noise.</span></span><br><span class="line">width = <span class="built_in">int</span>(nsteps * CTRL_RATE/DURATION)</span><br><span class="line">kernel = np.exp(-<span class="number">0.5</span>*np.linspace(-<span class="number">3</span>, <span class="number">3</span>, width)**<span class="number">2</span>)</span><br><span class="line">kernel /= np.linalg.norm(kernel)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nu):</span><br><span class="line">  perturb[:, i] = np.convolve(perturb[:, i], kernel, mode=<span class="string">&#x27;same&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset data, set initial pose.</span></span><br><span class="line">mujoco.mj_resetData(model, data)</span><br><span class="line">data.qpos = qpos0</span><br><span class="line"></span><br><span class="line"><span class="comment"># New renderer instance with higher resolution.</span></span><br><span class="line">renderer = mujoco.Renderer(model, width=<span class="number">1280</span>, height=<span class="number">720</span>)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line">step = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Get state difference dx.</span></span><br><span class="line">  mujoco.mj_differentiatePos(model, dq, <span class="number">1</span>, qpos0, data.qpos)</span><br><span class="line">  dx = np.hstack((dq, data.qvel)).T</span><br><span class="line"></span><br><span class="line">  <span class="comment"># LQR control law.</span></span><br><span class="line">  data.ctrl = ctrl0 - K @ dx</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Add perturbation, increment step.</span></span><br><span class="line">  data.ctrl += CTRL_STD*perturb[step]</span><br><span class="line">  step += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    camera.azimuth = azimuth(data.time)</span><br><span class="line">    renderer.update_scene(data, camera, scene_option)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="final.mp4" type="video/mp4">
+</video>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2023/04/17/lqr-tutorial/" title="LQR 教程">http://shawshai.cn/2023/04/17/lqr-tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lqr/" rel="tag"># lqr</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/13/mujoco-tutorial/" rel="prev" title="MuJoCo 教程">
+      <i class="fa fa-chevron-left"></i> MuJoCo 教程
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="nav-number">1.</span> <span class="nav-text">安装 MuJoCo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">1.1.</span> <span class="nav-text">检查是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%AF%BC%E5%85%A5%E5%8C%85%E4%B8%8E%E5%B8%AE%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">其它导入包与帮助函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%B8%B2%E6%9F%93%E6%A0%87%E5%87%86%E4%BA%BA%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">加载与渲染标准人体模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E7%9A%84%E5%8D%95%E8%85%BF%E7%AB%99%E7%AB%8B"><span class="nav-number">3.</span> <span class="nav-text">稳定的单腿站立</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LQR-%E7%90%86%E8%AE%BA%E5%9B%9E%E9%A1%BE"><span class="nav-number">3.1.</span> <span class="nav-text">LQR 理论回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E7%BA%BF%E6%80%A7%E5%8C%96%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">理解线性化设定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AF%BB%E6%89%BE%E6%8E%A7%E5%88%B6%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="nav-number">3.3.</span> <span class="nav-text">通过反向动力学寻找控制设定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9-Q-%E5%92%8C-R-%E7%9F%A9%E9%98%B5"><span class="nav-number">3.4.</span> <span class="nav-text">选择 $Q$ 和 $R$ 矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97-LQR-%E5%A2%9E%E7%9B%8A%E7%9F%A9%E9%98%B5-K"><span class="nav-number">3.5.</span> <span class="nav-text">计算 LQR 增益矩阵 $K$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E7%AB%99%E7%AB%8B"><span class="nav-number">3.6.</span> <span class="nav-text">稳定站立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%86%E9%A2%91"><span class="nav-number">3.7.</span> <span class="nav-text">最终视频</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">58k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : '9f5e72b96709822fb00ca1ed983f7164',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
