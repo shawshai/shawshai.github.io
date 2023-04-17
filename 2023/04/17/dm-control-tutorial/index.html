@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为 dm_control 教程的简单翻译.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dm_control 教程">
+<meta property="og:url" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="本文为 dm_control 教程的简单翻译.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/0.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/1.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/2.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/3.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/4.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/5.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/6.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/7.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/8.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/9.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/10.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/11.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/12.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/13.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/14.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/15.png">
+<meta property="og:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/16.png">
+<meta property="article:published_time" content="2023-04-17T08:25:00.000Z">
+<meta property="article:modified_time" content="2023-04-17T08:43:33.948Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="dm_control">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2023/04/17/dm-control-tutorial/0.png">
+
+<link rel="canonical" href="http://shawshai.cn/2023/04/17/dm-control-tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>dm_control 教程 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/04/17/dm-control-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="摆脱冷气 只向上走">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          dm_control 教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-17 16:25:00 / 修改时间：16:43:33" itemprop="dateCreated datePublished" datetime="2023-04-17T16:25:00+08:00">2023-04-17</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>33k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">本文为 dm_control 教程的简单翻译. </div>
+
+<span id="more"></span>
+
+<p>原教程链接:</p>
+<p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/deepmind/dm_control/blob/main/tutorial.ipynb">https://colab.research.google.com/github/deepmind/dm_control/blob/main/tutorial.ipynb</a></p>
+<p>GitHub链接: <a target="_blank" rel="noopener" href="https://github.com/deepmind/dm_control">deepmind/dm_control</a> </p>
+<p><a target="_blank" rel="noopener" href="http://arxiv.org/abs/2006.12983">相关文献</a> </p>
+<h2 id="在-Colab-中安装-dm-control"><a href="#在-Colab-中安装-dm-control" class="headerlink" title="在 Colab 中安装 dm_control"></a><strong>在 Colab 中安装 <code>dm_control</code></strong></h2><h3 id="运行命令安装MuJoCo和-dm-control"><a href="#运行命令安装MuJoCo和-dm-control" class="headerlink" title="运行命令安装MuJoCo和 dm_control"></a><strong>运行命令安装MuJoCo和 <code>dm_control</code></strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Run to install MuJoCo and `dm_control`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> distutils.util</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">if</span> subprocess.run(<span class="string">&#x27;nvidia-smi&#x27;</span>).returncode:</span><br><span class="line">  <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Cannot communicate with GPU. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Make sure you are using a GPU Colab runtime. &#x27;</span></span><br><span class="line">      <span class="string">&#x27;Go to the Runtime menu and select Choose runtime type.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Installing dm_control...&#x27;</span>)</span><br><span class="line">!pip install -q dm_control&gt;=<span class="number">1.0</span><span class="number">.11</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure dm_control to use the EGL rendering backend (requires GPU)</span></span><br><span class="line">%env MUJOCO_GL=egl</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Checking that the dm_control installation succeeded...&#x27;</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="keyword">from</span> dm_control <span class="keyword">import</span> suite</span><br><span class="line">  env = suite.load(<span class="string">&#x27;cartpole&#x27;</span>, <span class="string">&#x27;swingup&#x27;</span>)</span><br><span class="line">  pixels = env.physics.render()</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="keyword">raise</span> e <span class="keyword">from</span> RuntimeError(</span><br><span class="line">      <span class="string">&#x27;Something went wrong during installation. Check the shell output above &#x27;</span></span><br><span class="line">      <span class="string">&#x27;for more information.\n&#x27;</span></span><br><span class="line">      <span class="string">&#x27;If using a hosted Colab runtime, make sure you enable GPU acceleration &#x27;</span></span><br><span class="line">      <span class="string">&#x27;by going to the Runtime menu and selecting &quot;Choose runtime type&quot;.&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="keyword">del</span> pixels, suite</span><br><span class="line"></span><br><span class="line">!echo Installed dm_control $(pip show dm_control | grep -Po <span class="string">&quot;(?&lt;=Version: ).+&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a><strong>导入包</strong></h2><h3 id="本教程所需的所有-dm-control-导入包"><a href="#本教程所需的所有-dm-control-导入包" class="headerlink" title="本教程所需的所有 dm_control 导入包"></a><strong>本教程所需的所有 <code>dm_control</code> 导入包</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title All `dm_control` imports required for this tutorial</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The basic mujoco wrapper.</span></span><br><span class="line"><span class="keyword">from</span> dm_control <span class="keyword">import</span> mujoco</span><br><span class="line"></span><br><span class="line"><span class="comment"># Access to enums and MuJoCo library functions.</span></span><br><span class="line"><span class="keyword">from</span> dm_control.mujoco.wrapper.mjbindings <span class="keyword">import</span> enums</span><br><span class="line"><span class="keyword">from</span> dm_control.mujoco.wrapper.mjbindings <span class="keyword">import</span> mjlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># PyMJCF</span></span><br><span class="line"><span class="keyword">from</span> dm_control <span class="keyword">import</span> mjcf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Composer high level imports</span></span><br><span class="line"><span class="keyword">from</span> dm_control <span class="keyword">import</span> composer</span><br><span class="line"><span class="keyword">from</span> dm_control.composer.observation <span class="keyword">import</span> observable</span><br><span class="line"><span class="keyword">from</span> dm_control.composer <span class="keyword">import</span> variation</span><br><span class="line"></span><br><span class="line"><span class="comment"># Imports for Composer tutorial example</span></span><br><span class="line"><span class="keyword">from</span> dm_control.composer.variation <span class="keyword">import</span> distributions</span><br><span class="line"><span class="keyword">from</span> dm_control.composer.variation <span class="keyword">import</span> noises</span><br><span class="line"><span class="keyword">from</span> dm_control.locomotion.arenas <span class="keyword">import</span> floors</span><br><span class="line"></span><br><span class="line"><span class="comment"># Control Suite</span></span><br><span class="line"><span class="keyword">from</span> dm_control <span class="keyword">import</span> suite</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run through corridor example</span></span><br><span class="line"><span class="keyword">from</span> dm_control.locomotion.walkers <span class="keyword">import</span> cmu_humanoid</span><br><span class="line"><span class="keyword">from</span> dm_control.locomotion.arenas <span class="keyword">import</span> corridors <span class="keyword">as</span> corridor_arenas</span><br><span class="line"><span class="keyword">from</span> dm_control.locomotion.tasks <span class="keyword">import</span> corridors <span class="keyword">as</span> corridor_tasks</span><br><span class="line"></span><br><span class="line"><span class="comment"># Soccer</span></span><br><span class="line"><span class="keyword">from</span> dm_control.locomotion <span class="keyword">import</span> soccer</span><br><span class="line"></span><br><span class="line"><span class="comment"># Manipulation</span></span><br><span class="line"><span class="keyword">from</span> dm_control <span class="keyword">import</span> manipulation</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他导入包和帮助函数"><a href="#其他导入包和帮助函数" class="headerlink" title="其他导入包和帮助函数"></a><strong>其他导入包和帮助函数</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Other imports and helper functions</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># General</span></span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> clear_output</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Graphics-related</span></span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.animation <span class="keyword">as</span> animation</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> HTML</span><br><span class="line"><span class="keyword">import</span> PIL.Image</span><br><span class="line"><span class="comment"># Internal loading of video libraries.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use svg backend for figure rendering</span></span><br><span class="line">%config InlineBackend.figure_format = <span class="string">&#x27;svg&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Font sizes</span></span><br><span class="line">SMALL_SIZE = <span class="number">8</span></span><br><span class="line">MEDIUM_SIZE = <span class="number">10</span></span><br><span class="line">BIGGER_SIZE = <span class="number">12</span></span><br><span class="line">plt.rc(<span class="string">&#x27;font&#x27;</span>, size=SMALL_SIZE)          <span class="comment"># controls default text sizes</span></span><br><span class="line">plt.rc(<span class="string">&#x27;axes&#x27;</span>, titlesize=SMALL_SIZE)     <span class="comment"># fontsize of the axes title</span></span><br><span class="line">plt.rc(<span class="string">&#x27;axes&#x27;</span>, labelsize=MEDIUM_SIZE)    <span class="comment"># fontsize of the x and y labels</span></span><br><span class="line">plt.rc(<span class="string">&#x27;xtick&#x27;</span>, labelsize=SMALL_SIZE)    <span class="comment"># fontsize of the tick labels</span></span><br><span class="line">plt.rc(<span class="string">&#x27;ytick&#x27;</span>, labelsize=SMALL_SIZE)    <span class="comment"># fontsize of the tick labels</span></span><br><span class="line">plt.rc(<span class="string">&#x27;legend&#x27;</span>, fontsize=SMALL_SIZE)    <span class="comment"># legend fontsize</span></span><br><span class="line">plt.rc(<span class="string">&#x27;figure&#x27;</span>, titlesize=BIGGER_SIZE)  <span class="comment"># fontsize of the figure title</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Inline video helper function</span></span><br><span class="line"><span class="keyword">if</span> os.environ.get(<span class="string">&#x27;COLAB_NOTEBOOK_TEST&#x27;</span>, <span class="literal">False</span>):</span><br><span class="line">  <span class="comment"># We skip video generation during tests, as it is quite expensive.</span></span><br><span class="line">  display_video = <span class="keyword">lambda</span> *args, **kwargs: <span class="literal">None</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">display_video</span>(<span class="params">frames, framerate=<span class="number">30</span></span>):</span></span><br><span class="line">    height, width, _ = frames[<span class="number">0</span>].shape</span><br><span class="line">    dpi = <span class="number">70</span></span><br><span class="line">    orig_backend = matplotlib.get_backend()</span><br><span class="line">    matplotlib.use(<span class="string">&#x27;Agg&#x27;</span>)  <span class="comment"># Switch to headless &#x27;Agg&#x27; to inhibit figure rendering.</span></span><br><span class="line">    fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>, figsize=(width / dpi, height / dpi), dpi=dpi)</span><br><span class="line">    matplotlib.use(orig_backend)  <span class="comment"># Switch back to the original backend.</span></span><br><span class="line">    ax.set_axis_off()</span><br><span class="line">    ax.set_aspect(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">    ax.set_position([<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">    im = ax.imshow(frames[<span class="number">0</span>])</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span>(<span class="params">frame</span>):</span></span><br><span class="line">      im.set_data(frame)</span><br><span class="line">      <span class="keyword">return</span> [im]</span><br><span class="line">    interval = <span class="number">1000</span>/framerate</span><br><span class="line">    anim = animation.FuncAnimation(fig=fig, func=update, frames=frames,</span><br><span class="line">                                   interval=interval, blit=<span class="literal">True</span>, repeat=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">return</span> HTML(anim.to_html5_video())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Seed numpy&#x27;s global RNG so that cell outputs are deterministic. We also try to</span></span><br><span class="line"><span class="comment"># use RandomState instances that are local to a single cell wherever possible.</span></span><br><span class="line">np.random.seed(<span class="number">42</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模型定义-编译和渲染"><a href="#模型定义-编译和渲染" class="headerlink" title="模型定义, 编译和渲染"></a><strong>模型定义, 编译和渲染</strong></h2><p>我们首先描述 <a target="_blank" rel="noopener" href="http://mujoco.org/">MuJoCo</a> 物理模拟库的一些基本概念, 但推荐使用<a target="_blank" rel="noopener" href="http://mujoco.org/book/">官方文档</a>了解详细信息.</p>
+<h3 id="静态模型"><a href="#静态模型" class="headerlink" title="静态模型"></a><strong>静态模型</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title A static model &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">static_model = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;top&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">physics = mujoco.Physics.from_xml_string(static_model)</span><br><span class="line">pixels = physics.render()</span><br><span class="line">PIL.Image.fromarray(pixels)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/0.png" class="" title="model"></div>
+
+<p><code>static_model</code> 是用 MuJoCo 基于 XML 的 <a target="_blank" rel="noopener" href="http://www.mujoco.org/book/modeling.html">MJCF</a> 建模语言编写的. <code>from_xml_string()</code> 方法调用模型编译器, 该编译器实例化库的内部数据结构. 这些可以通过 <code>physics</code> 对象访问, 见下文.</p>
+<h3 id="添加自由度和仿真-高级渲染"><a href="#添加自由度和仿真-高级渲染" class="headerlink" title="添加自由度和仿真, 高级渲染"></a><strong>添加自由度和仿真, 高级渲染</strong></h3><p>这是一个完全合理的模型, 但如果我们模拟它, 除了时间推进, 什么都不会发生. 这是因为这个模型没有自由度(DOFs). 我们通过给物体添加关节(<strong>joints</strong>)来添加自由度, 指定它们如何相对于它们的 parents 移动. 让我们添加一个铰链关节并重新渲染, 并可视化关节轴.</p>
+<p><strong>带关节的子 body</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title A child body with a joint &#123; vertical-output: true &#125;</span></span><br><span class="line"></span><br><span class="line">swinging_body = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name=&quot;top&quot; pos=&quot;0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;box_and_sphere&quot; euler=&quot;0 0 -30&quot;&gt;  </span></span><br><span class="line"><span class="string">      &lt;joint name=&quot;swing&quot; type=&quot;hinge&quot; axis=&quot;1 -1 0&quot; pos=&quot;-.2 -.2 -.2&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;red_box&quot; type=&quot;box&quot; size=&quot;.2 .2 .2&quot; rgba=&quot;1 0 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;green_sphere&quot; pos=&quot;.2 .2 .2&quot; size=&quot;.1&quot; rgba=&quot;0 1 0 1&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">physics = mujoco.Physics.from_xml_string(swinging_body)</span><br><span class="line"><span class="comment"># Visualize the joint axis.</span></span><br><span class="line">scene_option = mujoco.wrapper.core.MjvOption()</span><br><span class="line">scene_option.flags[enums.mjtVisFlag.mjVIS_JOINT] = <span class="literal">True</span></span><br><span class="line">pixels = physics.render(scene_option=scene_option)</span><br><span class="line">PIL.Image.fromarray(pixels)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/1.png" class="" title="joint"></div>
+
+<p>运动的(有惯性的)物体叫做 bodies. Body 的子 <code>joint</code> 指定了该 body 如何相对于它的 parent 移动, 在本例中 <code>box_and_sphere</code> 关于<code>worldbody</code>.</p>
+<p>注意, body 的坐标系是用 <code>euler</code> 指令旋转(<strong>rotated</strong>)的, 它的附属几何体和关节也随之旋转. 这是为了强调 MJCF 中位置和方向指令的 local-to-parent-frame 的性质.</p>
+<p>我们来做个视频, 了解一下动力学, 看看物体在重力作用下的摆动.</p>
+<p><strong>制作视频</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Making a video &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">2</span>    <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Visualize the joint axis</span></span><br><span class="line">scene_option = mujoco.wrapper.core.MjvOption()</span><br><span class="line">scene_option.flags[enums.mjtVisFlag.mjVIS_JOINT] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line">physics.reset()  <span class="comment"># Reset state and time</span></span><br><span class="line"><span class="keyword">while</span> physics.data.time &lt; duration:</span><br><span class="line">  physics.step()</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; physics.data.time * framerate:</span><br><span class="line">    pixels = physics.render(scene_option=scene_option)</span><br><span class="line">    frames.append(pixels)</span><br><span class="line">display_video(frames, framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="rolling.mp4" type="video/mp4">
+</video>
+
+<p>注意我们是如何采样视频帧的. 因为物理模拟时间步长通常比帧速率小得多(默认时间步长是2毫秒), 所以我们不会在每一步之后都渲染.</p>
+<h3 id="渲染选项"><a href="#渲染选项" class="headerlink" title="渲染选项"></a><strong>渲染选项</strong></h3><p>与关节可视化一样, 附加的渲染选项作为参数公开给 <code>render</code> 方法.</p>
+<p><strong>启用透明度和框架可视化</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Enable transparency and frame visualization &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">scene_option = mujoco.wrapper.core.MjvOption()</span><br><span class="line">scene_option.frame = enums.mjtFrame.mjFRAME_GEOM</span><br><span class="line">scene_option.flags[enums.mjtVisFlag.mjVIS_TRANSPARENT] = <span class="literal">True</span></span><br><span class="line">pixels = physics.render(scene_option=scene_option)</span><br><span class="line">PIL.Image.fromarray(pixels)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/2.png" class="" title="transparent"></div>
+
+<p><strong>深度渲染</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Depth rendering &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># depth is a float array, in meters.</span></span><br><span class="line">depth = physics.render(depth=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># Shift nearest values to the origin.</span></span><br><span class="line">depth -= depth.<span class="built_in">min</span>()</span><br><span class="line"><span class="comment"># Scale by 2 mean distances of near rays.</span></span><br><span class="line">depth /= <span class="number">2</span>*depth[depth &lt;= <span class="number">1</span>].mean()</span><br><span class="line"><span class="comment"># Scale to [0, 255]</span></span><br><span class="line">pixels = <span class="number">255</span>*np.clip(depth, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">PIL.Image.fromarray(pixels.astype(np.uint8))</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/3.png" class="" title="depth"></div>
+
+<p><strong>分割渲染</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Segmentation rendering &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">seg = physics.render(segmentation=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># Display the contents of the first channel, which contains object</span></span><br><span class="line"><span class="comment"># IDs. The second channel, seg[:, :, 1], contains object types.</span></span><br><span class="line">geom_ids = seg[:, :, <span class="number">0</span>]</span><br><span class="line"><span class="comment"># Infinity is mapped to -1</span></span><br><span class="line">geom_ids = geom_ids.astype(np.float64) + <span class="number">1</span></span><br><span class="line"><span class="comment"># Scale to [0, 1]</span></span><br><span class="line">geom_ids = geom_ids / geom_ids.<span class="built_in">max</span>()</span><br><span class="line">pixels = <span class="number">255</span>*geom_ids</span><br><span class="line">PIL.Image.fromarray(pixels.astype(np.uint8))</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/4.png" class="" title="segmentation"></div>
+
+<p><strong>从世界到相机坐标系投影</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Projecting from world to camera coordinates &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the world coordinates of the box corners</span></span><br><span class="line">box_pos = physics.named.data.geom_xpos[<span class="string">&#x27;red_box&#x27;</span>]</span><br><span class="line">box_mat = physics.named.data.geom_xmat[<span class="string">&#x27;red_box&#x27;</span>].reshape(<span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">box_size = physics.named.model.geom_size[<span class="string">&#x27;red_box&#x27;</span>]</span><br><span class="line">offsets = np.array([-<span class="number">1</span>, <span class="number">1</span>]) * box_size[:, <span class="literal">None</span>]</span><br><span class="line">xyz_local = np.stack(itertools.product(*offsets)).T</span><br><span class="line">xyz_global = box_pos[:, <span class="literal">None</span>] + box_mat @ xyz_local</span><br><span class="line"></span><br><span class="line"><span class="comment"># Camera matrices multiply homogenous [x, y, z, 1] vectors.</span></span><br><span class="line">corners_homogeneous = np.ones((<span class="number">4</span>, xyz_global.shape[<span class="number">1</span>]), dtype=<span class="built_in">float</span>)</span><br><span class="line">corners_homogeneous[:<span class="number">3</span>, :] = xyz_global</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the camera matrix.</span></span><br><span class="line">camera = mujoco.Camera(physics)</span><br><span class="line">camera_matrix = camera.matrix</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project world coordinates into pixel space. See:</span></span><br><span class="line"><span class="comment"># https://en.wikipedia.org/wiki/3D_projection#Mathematical_formula</span></span><br><span class="line">xs, ys, s = camera_matrix @ corners_homogeneous</span><br><span class="line"><span class="comment"># x and y are in the pixel coordinate system.</span></span><br><span class="line">x = xs / s</span><br><span class="line">y = ys / s</span><br><span class="line"></span><br><span class="line"><span class="comment"># Render the camera view and overlay the projected corner coordinates.</span></span><br><span class="line">pixels = camera.render()</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">ax.imshow(pixels)</span><br><span class="line">ax.plot(x, y, <span class="string">&#x27;+&#x27;</span>, c=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">ax.set_axis_off()</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/5.png" class="" title="projection"></div>
+
+<h2 id="MuJoCo基础和命名索引"><a href="#MuJoCo基础和命名索引" class="headerlink" title="MuJoCo基础和命名索引"></a><strong>MuJoCo基础和命名索引</strong></h2><h3 id="mjModel"><a href="#mjModel" class="headerlink" title="mjModel"></a><strong><code>mjModel</code></strong></h3><p>MuJoCo 的 <code>mjModel</code>, 封装在 <code>physics.model</code>, 包含模型描述, 包括默认的初始状态和其他不是状态函数的固定量, 例如几何体在其父坐标系中的位置. 几何体 <code>box</code> 和 <code>sphere</code> 相对于它们的父体 <code>box_and_sphere</code> 的 (x, y, z) 偏移量由 <code>model.geom_pos</code> 给出:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">physics.model.geom_pos</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>array([[0. , 0. , 0. ],<br>[0.2, 0.2, 0.2]])</p>
+</blockquote>
+<p><code>model.opt</code> 结构包含全局量, 如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;timestep&#x27;</span>, physics.model.opt.timestep)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;gravity&#x27;</span>, physics.model.opt.gravity)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>timestep 0.002<br>gravity [ 0.    0.   -9.81]</p>
+</blockquote>
+<h3 id="mjData"><a href="#mjData" class="headerlink" title="mjData"></a><strong><code>mjData</code></strong></h3><p><code>mjData</code>, 封装在 <code>physics.data</code>，包含依赖于它的状态和数量. 状态由时间, 广义位置和广义速度组成. 它们分别为 <code>data.time</code>, <code>data.qpos</code> 和 <code>data.qvel</code>.</p>
+<p>让我们打印我们之前提到的摆体的状态:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(physics.data.time, physics.data.qpos, physics.data.qvel)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2.0000000000000013 [-0.05319467] [-1.36253678]</p>
+</blockquote>
+<p><code>physics.data</code> 还包含状态函数, 例如物体在世界坐标系中的笛卡尔位置. 两个几何体的 (x, y, z) 位置在 <code>data.geom_xpos</code> 中:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(physics.data.geom_xpos)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[[ 0.00988513  0.00264871 -0.01532153]<br>[ 0.29297533  0.0785025   0.16935694]]</p>
+</blockquote>
+<h3 id="命名索引"><a href="#命名索引" class="headerlink" title="命名索引"></a><strong>命名索引</strong></h3><p>使用 <code>named</code> 封装器使上述数组的语义更加清晰, 它将名称分配给行, 并将类型名称分配给列.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(physics.named.data.geom_xpos)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>FieldIndexer(geom_xpos):<br>x         y         z<br>0      red_box [ 0.00989   0.00265  -0.0153  ]<br>1 green_sphere [ 0.293     0.0785    0.169   ]</p>
+</blockquote>
+<p>注意 <code>model.geom_pos</code> 和 <code>data.geom_xpos</code> 具有相似的语义, 但含义非常不同.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(physics.named.model.geom_pos)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>FieldIndexer(geom_pos):<br>x         y         z<br>0      red_box [ 0         0         0       ]<br>1 green_sphere [ 0.2       0.2       0.2     ]</p>
+</blockquote>
+<p>名称字符串可用于索引到相关的量, 使代码更具可读性和稳健性.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">physics.named.data.geom_xpos[<span class="string">&#x27;green_sphere&#x27;</span>, <span class="string">&#x27;z&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>0.16935693635325777</p>
+</blockquote>
+<p>关节名称可以用于在构型空间中索引相关量(以字母 <code>q</code> 开头):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">physics.named.data.qpos[<span class="string">&#x27;swing&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>array([-0.05319467])</p>
+</blockquote>
+<p>我们可以将 NumPy 切片操作与命名索引混合使用. 例如, 我们可以使用 box 的名称(<code>&quot;red_box&quot;</code>)作为 <code>geom_rgba</code> 数组行索引来设置 box 的颜色.</p>
+<p><strong>通过命名索引更改颜色</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Changing colors using named indexing&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">random_rgb = np.random.rand(<span class="number">3</span>)</span><br><span class="line">physics.named.model.geom_rgba[<span class="string">&#x27;red_box&#x27;</span>, :<span class="number">3</span>] = random_rgb</span><br><span class="line">pixels = physics.render()</span><br><span class="line">PIL.Image.fromarray(pixels)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/6.png" class="" title="change-color"></div>
+
+<p>注意 <code>physics.model</code> 量不会被引擎改变, 我们可以在时间步之间自行改变它们. 然而, 通常不建议这样做, 首选的方法是使用 PyMJCF 库在 XML 级别修改模型, 见下文.</p>
+<h3 id="通过-reset-context-设置状态"><a href="#通过-reset-context-设置状态" class="headerlink" title="通过 reset_context() 设置状态"></a><strong>通过 <code>reset_context()</code> 设置状态</strong></h3><p>为了使作为状态函数的 <code>data</code> 量与状态同步, 需要调用 MuJoCo 的 <code>mj_step1()</code> . 这是由 <code>reset_context()</code> 上下文促成的, 请参阅<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.12983">技术报告</a>2.1节的深入讨论.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">physics.named.data.qpos[<span class="string">&#x27;swing&#x27;</span>] = np.pi</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Without reset_context, spatial positions are not updated:&#x27;</span>,</span><br><span class="line">      physics.named.data.geom_xpos[<span class="string">&#x27;green_sphere&#x27;</span>, [<span class="string">&#x27;z&#x27;</span>]])</span><br><span class="line"><span class="keyword">with</span> physics.reset_context():</span><br><span class="line">  physics.named.data.qpos[<span class="string">&#x27;swing&#x27;</span>] = np.pi</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;After reset_context, positions are up-to-date:&#x27;</span>,</span><br><span class="line">      physics.named.data.geom_xpos[<span class="string">&#x27;green_sphere&#x27;</span>, [<span class="string">&#x27;z&#x27;</span>]])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Without reset_context, spatial positions are not updated: [0.16935694]<br>After reset_context, positions are up-to-date: [-0.6]</p>
+</blockquote>
+<h3 id="自由体-自反转的“tippe-top”"><a href="#自由体-自反转的“tippe-top”" class="headerlink" title="自由体:自反转的“tippe-top”"></a><strong>自由体:自反转的“tippe-top”</strong></h3><p>自由体是具有一个 <code>free</code> 关节的物体, 具有 6 个运动自由度: 3 个平移和 3 个旋转. 我们可以给 <code>box_and_sphere</code> 体一个自由关节, 然后看着它下落, 但是让我们看一些更有趣的东西. “tippe top”是一个旋转的玩具, 它可以翻转过自己的头部(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tippe_top">维基百科</a>). 我们将其建模如下:</p>
+<p><strong>“Tippe-top” 模型</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title The &quot;tippe-top&quot; model&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">tippe_top = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;mujoco model=&quot;tippe top&quot;&gt;</span></span><br><span class="line"><span class="string">  &lt;option integrator=&quot;RK4&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;asset&gt;</span></span><br><span class="line"><span class="string">    &lt;texture name=&quot;grid&quot; type=&quot;2d&quot; builtin=&quot;checker&quot; rgb1=&quot;.1 .2 .3&quot; </span></span><br><span class="line"><span class="string">     rgb2=&quot;.2 .3 .4&quot; width=&quot;300&quot; height=&quot;300&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;material name=&quot;grid&quot; texture=&quot;grid&quot; texrepeat=&quot;8 8&quot; reflectance=&quot;.2&quot;/&gt;</span></span><br><span class="line"><span class="string">  &lt;/asset&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;geom size=&quot;.2 .2 .01&quot; type=&quot;plane&quot; material=&quot;grid&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;light pos=&quot;0 0 .6&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;camera name=&quot;closeup&quot; pos=&quot;0 -.1 .07&quot; xyaxes=&quot;1 0 0 0 1 2&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;body name=&quot;top&quot; pos=&quot;0 0 .02&quot;&gt;</span></span><br><span class="line"><span class="string">      &lt;freejoint/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;ball&quot; type=&quot;sphere&quot; size=&quot;.02&quot; /&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;stem&quot; type=&quot;cylinder&quot; pos=&quot;0 0 .02&quot; size=&quot;0.004 .008&quot;/&gt;</span></span><br><span class="line"><span class="string">      &lt;geom name=&quot;ballast&quot; type=&quot;box&quot; size=&quot;.023 .023 0.005&quot;  pos=&quot;0 0 -.015&quot; </span></span><br><span class="line"><span class="string">       contype=&quot;0&quot; conaffinity=&quot;0&quot; group=&quot;3&quot;/&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">  &lt;keyframe&gt;</span></span><br><span class="line"><span class="string">    &lt;key name=&quot;spinning&quot; qpos=&quot;0 0 0.02 1 0 0 0&quot; qvel=&quot;0 0 0 0 1 200&quot; /&gt;</span></span><br><span class="line"><span class="string">  &lt;/keyframe&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">physics = mujoco.Physics.from_xml_string(tippe_top)</span><br><span class="line">PIL.Image.fromarray(physics.render(camera_id=<span class="string">&#x27;closeup&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/7.png" class="" title="tippe-top"></div>
+
+<p>注意这个模型定义的几个新特性:</p>
+<ol>
+<li>这是使用 <code>&lt;freejoint/&gt;</code> 标签添加的自由关节, 它类似于 <code>&lt;joint type=&quot;free&quot;/&gt;</code>, 但禁用了摩擦或刚度等非物理属性.</li>
+<li>我们使用 <code>&lt;option/&gt;</code> 标签将积分器设置为更精确的 4 阶 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge Kutta</a>.</li>
+<li>我们在 <code>&lt;asset/&gt;</code> 标签中定义地板的网格材质, 并在 “floor” 几何体中引用它.</li>
+<li>我们使用一种不可见的, 无碰撞的 box 几何体, 称为 <code>ballast</code> , 来降低顶部的质心. 低质心是发生翻转行为所必需的(与直觉相反).</li>
+<li>我们将初始旋转状态保存为关键帧. 它绕 Z 轴有很高的旋转速度, 但朝向并不完全重合于世界坐标轴.</li>
+<li>我们在模型中定义了一个 <code>&lt;camera&gt;</code>, 然后使用 <code>camera_id</code> 参数对 <code>update_scene()</code> 进行渲染. 让我们来检查一下现在的状态:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;positions&#x27;</span>, physics.data.qpos)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;velocities&#x27;</span>, physics.data.qvel)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>positions [0.   0.   0.02 1.   0.   0.   0.  ]<br>velocities [0. 0. 0. 0. 0. 0.]</p>
+</blockquote>
+<p>速度很容易解释, 6 个 0, 每个自由度占一个. 长度7的位置呢? 我们可以看到身体最初的 2 厘米高度; 后面的四个数字是三维朝向, 由单位四元数定义. 这些规范化的四元向量, 它们保留了朝向群的拓扑结构, 这是 <code>data.qpos</code> 比 <code>data.qvel</code> 更长的原因: 三维朝向用 <strong>4</strong> 个数字表示, 角速度用 <strong>3</strong> 个数字表示.</p>
+<p><strong>“Tippe-top” 视频</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Video of the tippe-top &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">7</span>    <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">60</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line">physics.reset(<span class="number">0</span>)  <span class="comment"># Reset to keyframe 0 (load a saved state).</span></span><br><span class="line"><span class="keyword">while</span> physics.data.time &lt; duration:</span><br><span class="line">  physics.step()</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; (physics.data.time) * framerate:</span><br><span class="line">    pixels = physics.render(camera_id=<span class="string">&#x27;closeup&#x27;</span>)</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line">display_video(frames, framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="tippe-top.mp4" type="video/mp4">
+</video>
+
+<p><strong>从 <code>physics.data</code> 测量值</strong></p>
+<p><code>physics.data</code> 结构包含仿真产生的所有动态变量和中间结果. 这些将在每个时间步上发生更改.</p>
+<p>下面我们仿真 2000 个时间步, 并绘制球体的状态和高度作为时间的函数.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Measuring values &#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">timevals = []</span><br><span class="line">angular_velocity = []</span><br><span class="line">stem_height = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and save data</span></span><br><span class="line">physics.reset(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">while</span> physics.data.time &lt; duration:</span><br><span class="line">  physics.step()</span><br><span class="line">  timevals.append(physics.data.time)</span><br><span class="line">  angular_velocity.append(physics.data.qvel[<span class="number">3</span>:<span class="number">6</span>].copy())</span><br><span class="line">  stem_height.append(physics.named.data.geom_xpos[<span class="string">&#x27;stem&#x27;</span>, <span class="string">&#x27;z&#x27;</span>])</span><br><span class="line"></span><br><span class="line">dpi = <span class="number">100</span></span><br><span class="line">width = <span class="number">480</span></span><br><span class="line">height = <span class="number">640</span></span><br><span class="line">figsize = (width / dpi, height / dpi)</span><br><span class="line">_, ax = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=figsize, dpi=dpi, sharex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">0</span>].plot(timevals, angular_velocity)</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;angular velocity&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;radians / second&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax[<span class="number">1</span>].plot(timevals, stem_height)</span><br><span class="line">ax[<span class="number">1</span>].set_xlabel(<span class="string">&#x27;time (seconds)&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_ylabel(<span class="string">&#x27;meters&#x27;</span>)</span><br><span class="line">_ = ax[<span class="number">1</span>].set_title(<span class="string">&#x27;stem height&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/8.png" class="" title="measure"></div>
+
+<h2 id="PyMJCF-教程"><a href="#PyMJCF-教程" class="headerlink" title="PyMJCF 教程"></a><strong>PyMJCF 教程</strong></h2><p>这个库为 MuJoCo 基于 XML 的 <a target="_blank" rel="noopener" href="http://www.mujoco.org/book/modeling.html">MJCF</a> 物理建模语言提供了一个 Python 对象模型. 这个库的目标是允许用户在 Python 中轻松地与 MJCF 模型交互和修改, 类似于 JavaScript DOM 对 HTML 的作用.</p>
+<p>这个库的一个关键特性是能够轻松地将多个单独的 MJCF 模型组合成一个更大的模型. 自动消除来自不同模型或同一模型的多个实例的重复名称的歧义.</p>
+<p>一个典型的用例是当我们想要机器人具有可变数量的关节时. 这是对运动学的一个根本性改变, 需要编译一个新的 XML 描述符和新的二进制模型.</p>
+<p>下面的代码片段实现了这个场景, 并提供了这个库用例的快速示例.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Leg</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;A 2-DoF leg with position actuators.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, length, rgba</span>):</span></span><br><span class="line">    self.model = mjcf.RootElement()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Defaults:</span></span><br><span class="line">    self.model.default.joint.damping = <span class="number">2</span></span><br><span class="line">    self.model.default.joint.<span class="built_in">type</span> = <span class="string">&#x27;hinge&#x27;</span></span><br><span class="line">    self.model.default.geom.<span class="built_in">type</span> = <span class="string">&#x27;capsule&#x27;</span></span><br><span class="line">    self.model.default.geom.rgba = rgba  <span class="comment"># Continued below...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Thigh:</span></span><br><span class="line">    self.thigh = self.model.worldbody.add(<span class="string">&#x27;body&#x27;</span>)</span><br><span class="line">    self.hip = self.thigh.add(<span class="string">&#x27;joint&#x27;</span>, axis=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    self.thigh.add(<span class="string">&#x27;geom&#x27;</span>, fromto=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, length, <span class="number">0</span>, <span class="number">0</span>], size=[length/<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Hip:</span></span><br><span class="line">    self.shin = self.thigh.add(<span class="string">&#x27;body&#x27;</span>, pos=[length, <span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line">    self.knee = self.shin.add(<span class="string">&#x27;joint&#x27;</span>, axis=[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line">    self.shin.add(<span class="string">&#x27;geom&#x27;</span>, fromto=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, -length], size=[length/<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Position actuators:</span></span><br><span class="line">    self.model.actuator.add(<span class="string">&#x27;position&#x27;</span>, joint=self.hip, kp=<span class="number">10</span>)</span><br><span class="line">    self.model.actuator.add(<span class="string">&#x27;position&#x27;</span>, joint=self.knee, kp=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>Leg</code> 类描述了一个抽象的铰接腿, 具有两个关节和相应的 PD 执行器.</p>
+<p>注意:</p>
+<ul>
+<li>MJCF 属性直接对应于 <code>add()</code> 方法的参数.</li>
+<li>当引用元素时, 例如当指定执行器连接的关节时, 使用 MJCF 元素本身, 而不是名称字符串.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">BODY_RADIUS = <span class="number">0.1</span></span><br><span class="line">BODY_SIZE = (BODY_RADIUS, BODY_RADIUS, BODY_RADIUS / <span class="number">2</span>)</span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_creature</span>(<span class="params">num_legs</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;Constructs a creature with `num_legs` legs.&quot;&quot;&quot;</span></span><br><span class="line">  rgba = random_state.uniform([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">  model = mjcf.RootElement()</span><br><span class="line">  model.compiler.angle = <span class="string">&#x27;radian&#x27;</span>  <span class="comment"># Use radians.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Make the torso geom.</span></span><br><span class="line">  model.worldbody.add(</span><br><span class="line">      <span class="string">&#x27;geom&#x27;</span>, name=<span class="string">&#x27;torso&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;ellipsoid&#x27;</span>, size=BODY_SIZE, rgba=rgba)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Attach legs to equidistant sites on the circumference.</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_legs):</span><br><span class="line">    theta = <span class="number">2</span> * i * np.pi / num_legs</span><br><span class="line">    hip_pos = BODY_RADIUS * np.array([np.cos(theta), np.sin(theta), <span class="number">0</span>])</span><br><span class="line">    hip_site = model.worldbody.add(<span class="string">&#x27;site&#x27;</span>, pos=hip_pos, euler=[<span class="number">0</span>, <span class="number">0</span>, theta])</span><br><span class="line">    leg = Leg(length=BODY_RADIUS, rgba=rgba)</span><br><span class="line">    hip_site.attach(leg.model)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+
+<p><code>make_creature</code> 函数使用 PyMJCF 的 <code>attach()</code> 方法从程序上将腿附加到躯干上. 请注意, 在这个阶段, 躯干和臀部附属节点都是 <code>worldbody</code> 的子节点, 因为它们的父节点还没有实例化. 我们现在将制作一个带有方格地板和两盏灯的 arena, 并将我们的生物放置在网格中.</p>
+<h3 id="六只生物"><a href="#六只生物" class="headerlink" title="六只生物"></a><strong>六只生物</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Six Creatures on a floor.&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">arena = mjcf.RootElement()</span><br><span class="line">chequered = arena.asset.add(<span class="string">&#x27;texture&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;2d&#x27;</span>, builtin=<span class="string">&#x27;checker&#x27;</span>, width=<span class="number">300</span>,</span><br><span class="line">                            height=<span class="number">300</span>, rgb1=[<span class="number">.2</span>, <span class="number">.3</span>, <span class="number">.4</span>], rgb2=[<span class="number">.3</span>, <span class="number">.4</span>, <span class="number">.5</span>])</span><br><span class="line">grid = arena.asset.add(<span class="string">&#x27;material&#x27;</span>, name=<span class="string">&#x27;grid&#x27;</span>, texture=chequered,</span><br><span class="line">                       texrepeat=[<span class="number">5</span>, <span class="number">5</span>], reflectance=<span class="number">.2</span>)</span><br><span class="line">arena.worldbody.add(<span class="string">&#x27;geom&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;plane&#x27;</span>, size=[<span class="number">2</span>, <span class="number">2</span>, <span class="number">.1</span>], material=grid)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [-<span class="number">2</span>, <span class="number">2</span>]:</span><br><span class="line">  arena.worldbody.add(<span class="string">&#x27;light&#x27;</span>, pos=[x, -<span class="number">1</span>, <span class="number">3</span>], <span class="built_in">dir</span>=[-x, <span class="number">1</span>, -<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate 6 creatures with 3 to 8 legs.</span></span><br><span class="line">creatures = [make_creature(num_legs=num_legs) <span class="keyword">for</span> num_legs <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, <span class="number">9</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Place them on a grid in the arena.</span></span><br><span class="line">height = <span class="number">.15</span></span><br><span class="line">grid = <span class="number">5</span> * BODY_RADIUS</span><br><span class="line">xpos, ypos, zpos = np.meshgrid([-grid, <span class="number">0</span>, grid], [<span class="number">0</span>, grid], [height])</span><br><span class="line"><span class="keyword">for</span> i, model <span class="keyword">in</span> <span class="built_in">enumerate</span>(creatures):</span><br><span class="line">  <span class="comment"># Place spawn sites on a grid.</span></span><br><span class="line">  spawn_pos = (xpos.flat[i], ypos.flat[i], zpos.flat[i])</span><br><span class="line">  spawn_site = arena.worldbody.add(<span class="string">&#x27;site&#x27;</span>, pos=spawn_pos, group=<span class="number">3</span>)</span><br><span class="line">  <span class="comment"># Attach to the arena at the spawn sites, with a free joint.</span></span><br><span class="line">  spawn_site.attach(model).add(<span class="string">&#x27;freejoint&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the physics and render.</span></span><br><span class="line">physics = mjcf.Physics.from_mjcf_model(arena)</span><br><span class="line">PIL.Image.fromarray(physics.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/9.png" class="" title="creature"></div>
+
+<p>多腿生物, 随时准备漫步! 让我们引入一些控制并观察它们的移动. 我们将生成一个固定频率和随机相位的正弦开环控制信号, 记录视频帧和躯干几何体的水平位置, 以绘制运动轨迹.</p>
+<h3 id="运动视频"><a href="#运动视频" class="headerlink" title="运动视频"></a><strong>运动视频</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Video of the movement&#123;vertical-output: true&#125;</span></span><br><span class="line"><span class="comment">#@test &#123;&quot;timeout&quot;: 600&#125;</span></span><br><span class="line"></span><br><span class="line">duration = <span class="number">10</span>   <span class="comment"># (Seconds)</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># (Hz)</span></span><br><span class="line">video = []</span><br><span class="line">pos_x = []</span><br><span class="line">pos_y = []</span><br><span class="line">torsos = []  <span class="comment"># List of torso geom elements.</span></span><br><span class="line">actuators = []  <span class="comment"># List of actuator elements.</span></span><br><span class="line"><span class="keyword">for</span> creature <span class="keyword">in</span> creatures:</span><br><span class="line">  torsos.append(creature.find(<span class="string">&#x27;geom&#x27;</span>, <span class="string">&#x27;torso&#x27;</span>))</span><br><span class="line">  actuators.extend(creature.find_all(<span class="string">&#x27;actuator&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Control signal frequency, phase, amplitude.</span></span><br><span class="line">freq = <span class="number">5</span></span><br><span class="line">phase = <span class="number">2</span> * np.pi * random_state.rand(<span class="built_in">len</span>(actuators))</span><br><span class="line">amp = <span class="number">0.9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate, saving video frames and torso locations.</span></span><br><span class="line">physics.reset()</span><br><span class="line"><span class="keyword">while</span> physics.data.time &lt; duration:</span><br><span class="line">  <span class="comment"># Inject controls and step the physics.</span></span><br><span class="line">  physics.bind(actuators).ctrl = amp * np.sin(freq * physics.data.time + phase)</span><br><span class="line">  physics.step()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Save torso horizontal positions using bind().</span></span><br><span class="line">  pos_x.append(physics.bind(torsos).xpos[:, <span class="number">0</span>].copy())</span><br><span class="line">  pos_y.append(physics.bind(torsos).xpos[:, <span class="number">1</span>].copy())</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Save video frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(video) &lt; physics.data.time * framerate:</span><br><span class="line">    pixels = physics.render()</span><br><span class="line">    video.append(pixels.copy())</span><br><span class="line"></span><br><span class="line">display_video(video, framerate)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="creature.mp4" type="video/mp4">
+</video>
+
+
+<h3 id="运动轨迹"><a href="#运动轨迹" class="headerlink" title="运动轨迹"></a><strong>运动轨迹</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Movement trajectories&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">creature_colors = physics.bind(torsos).rgba[:, :<span class="number">3</span>]</span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">ax.set_prop_cycle(color=creature_colors)</span><br><span class="line">_ = ax.plot(pos_x, pos_y, linewidth=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/10.png" class="" title="trojectory"></div>
+
+<p>上图显示了 creature 位置对应的运动轨迹. 注意如何使用 <code>physics.bind(torsos)</code> 来访问 <code>xpos</code> 和 <code>rgba</code> 值. 一旦由 <code>from_mjcf_model()</code> 实例化了 <code>Physics</code>, <code>bind()</code> 方法将公开 <code>mjcf</code> 元素的关联 <code>mjData</code> 和 <code>mjModel</code> 字段, 从而提供对仿真中所有量的统一访问.</p>
+<h2 id="Composer-教程"><a href="#Composer-教程" class="headerlink" title="Composer 教程"></a><strong>Composer 教程</strong></h2><p>在本教程中, 我们将创建一个任务, 要求我们的 “creature” 以规定的力来按地板上的一个变色按钮. 我们首先将角色设定为 <code>composer.Entity</code>:</p>
+<h3 id="Creature-类"><a href="#Creature-类" class="headerlink" title="Creature 类"></a><strong><code>Creature</code> 类</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title The `Creature` class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Creature</span>(<span class="params">composer.Entity</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;A multi-legged creature derived from `composer.Entity`.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_build</span>(<span class="params">self, num_legs</span>):</span></span><br><span class="line">    self._model = make_creature(num_legs)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_build_observables</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> CreatureObservables(self)</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mjcf_model</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._model</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">actuators</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">tuple</span>(self._model.find_all(<span class="string">&#x27;actuator&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add simple observable features for joint angles and velocities.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreatureObservables</span>(<span class="params">composer.Observables</span>):</span></span><br><span class="line"></span><br><span class="line"><span class="meta">  @composer.observable</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">joint_positions</span>(<span class="params">self</span>):</span></span><br><span class="line">    all_joints = self._entity.mjcf_model.find_all(<span class="string">&#x27;joint&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> observable.MJCFFeature(<span class="string">&#x27;qpos&#x27;</span>, all_joints)</span><br><span class="line"></span><br><span class="line"><span class="meta">  @composer.observable</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">joint_velocities</span>(<span class="params">self</span>):</span></span><br><span class="line">    all_joints = self._entity.mjcf_model.find_all(<span class="string">&#x27;joint&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> observable.MJCFFeature(<span class="string">&#x27;qvel&#x27;</span>, all_joints)</span><br></pre></td></tr></table></figure>
+
+<p><code>Creature</code> 实体包括关节角度和速度的通用 Observables. 因为 <code>find_all()</code> 是在 <code>Creature</code> 的 MJCF 模型上调用的, 它只会返回生物的腿部关节, 而不是它将连接到世界的“自由”关节. 注意, Composer 实体应该重写 <code>_build</code> 和 <code>_build_observables</code> 方法, 而不是 <code>__init__</code>. 在基类中实现 <code>__init__</code> 调用 <code>_build</code> 和 <code>_build_observables</code>, 按此顺序，以确保实体的 MJCF 模型在其 observables 之前创建. 这是一种设计选择, 允许用户将 observables 引用为属性(<code>entity.observables.foo</code>), 同时仍然清晰地表明哪些属性是 observables. 有状态的 <code>Button</code> 类派生自 <code>composer.Entity</code>, 并实现 <code>initialize_episode</code> 和 <code>after_substep</code> 回调函数.</p>
+<h3 id="Button-类"><a href="#Button-类" class="headerlink" title="Button 类"></a><strong><code>Button</code> 类</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title The `Button` class</span></span><br><span class="line">NUM_SUBSTEPS = <span class="number">25</span>  <span class="comment"># The number of physics substeps per control timestep.</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Button</span>(<span class="params">composer.Entity</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;A button Entity which changes colour when pressed with certain force.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_build</span>(<span class="params">self, target_force_range=(<span class="params"><span class="number">5</span>, <span class="number">10</span></span>)</span>):</span></span><br><span class="line">    self._min_force, self._max_force = target_force_range</span><br><span class="line">    self._mjcf_model = mjcf.RootElement()</span><br><span class="line">    self._geom = self._mjcf_model.worldbody.add(</span><br><span class="line">        <span class="string">&#x27;geom&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;cylinder&#x27;</span>, size=[<span class="number">0.25</span>, <span class="number">0.02</span>], rgba=[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    self._site = self._mjcf_model.worldbody.add(</span><br><span class="line">        <span class="string">&#x27;site&#x27;</span>, <span class="built_in">type</span>=<span class="string">&#x27;cylinder&#x27;</span>, size=self._geom.size*<span class="number">1.01</span>, rgba=[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line">    self._sensor = self._mjcf_model.sensor.add(<span class="string">&#x27;touch&#x27;</span>, site=self._site)</span><br><span class="line">    self._num_activated_steps = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_build_observables</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> ButtonObservables(self)</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mjcf_model</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._mjcf_model</span><br><span class="line">  <span class="comment"># Update the activation (and colour) if the desired force is applied.</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">_update_activation</span>(<span class="params">self, physics</span>):</span></span><br><span class="line">    current_force = physics.bind(self.touch_sensor).sensordata[<span class="number">0</span>]</span><br><span class="line">    self._is_activated = (current_force &gt;= self._min_force <span class="keyword">and</span></span><br><span class="line">                          current_force &lt;= self._max_force)</span><br><span class="line">    physics.bind(self._geom).rgba = (</span><br><span class="line">        [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>] <span class="keyword">if</span> self._is_activated <span class="keyword">else</span> [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    self._num_activated_steps += <span class="built_in">int</span>(self._is_activated)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize_episode</span>(<span class="params">self, physics, random_state</span>):</span></span><br><span class="line">    self._reward = <span class="number">0.0</span></span><br><span class="line">    self._num_activated_steps = <span class="number">0</span></span><br><span class="line">    self._update_activation(physics)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">after_substep</span>(<span class="params">self, physics, random_state</span>):</span></span><br><span class="line">    self._update_activation(physics)</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">touch_sensor</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._sensor</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">num_activated_steps</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._num_activated_steps</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ButtonObservables</span>(<span class="params">composer.Observables</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;A touch sensor which averages contact force over physics substeps.&quot;&quot;&quot;</span></span><br><span class="line"><span class="meta">  @composer.observable</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">touch_force</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> observable.MJCFFeature(<span class="string">&#x27;sensordata&#x27;</span>, self._entity.touch_sensor,</span><br><span class="line">                                  buffer_size=NUM_SUBSTEPS, aggregator=<span class="string">&#x27;mean&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意按钮如何在指定力按下期间计算 sub-steps 的数量. 它还暴露了施加在按钮上的力的 <code>Observable</code>, 其值是物理时间步长的读数平均值.</p>
+<p>我们导入了一些 <code>variation</code> 模块和一个 arena factory:</p>
+<h3 id="使用-composer-variation-的随机初始化器"><a href="#使用-composer-variation-的随机初始化器" class="headerlink" title="使用 composer.variation 的随机初始化器"></a><strong>使用 <code>composer.variation</code> 的随机初始化器</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Random initialiser using `composer.variation`</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UniformCircle</span>(<span class="params">variation.Variation</span>):</span></span><br><span class="line">  <span class="string">&quot;&quot;&quot;A uniformly sampled horizontal point on a circle of radius `distance`.&quot;&quot;&quot;</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, distance</span>):</span></span><br><span class="line">    self._distance = distance</span><br><span class="line">    self._heading = distributions.Uniform(<span class="number">0</span>, <span class="number">2</span>*np.pi)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, initial_value=<span class="literal">None</span>, current_value=<span class="literal">None</span>, random_state=<span class="literal">None</span></span>):</span></span><br><span class="line">    distance, heading = variation.evaluate(</span><br><span class="line">        (self._distance, self._heading), random_state=random_state)</span><br><span class="line">    <span class="keyword">return</span> (distance*np.cos(heading), distance*np.sin(heading), <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="PressWithSpecificForce-任务"><a href="#PressWithSpecificForce-任务" class="headerlink" title="PressWithSpecificForce 任务"></a><strong><code>PressWithSpecificForce</code> 任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title The `PressWithSpecificForce` task</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PressWithSpecificForce</span>(<span class="params">composer.Task</span>):</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, creature</span>):</span></span><br><span class="line">    self._creature = creature</span><br><span class="line">    self._arena = floors.Floor()</span><br><span class="line">    self._arena.add_free_entity(self._creature)</span><br><span class="line">    self._arena.mjcf_model.worldbody.add(<span class="string">&#x27;light&#x27;</span>, pos=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">4</span>))</span><br><span class="line">    self._button = Button()</span><br><span class="line">    self._arena.attach(self._button)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Configure initial poses</span></span><br><span class="line">    self._creature_initial_pose = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.15</span>)</span><br><span class="line">    button_distance = distributions.Uniform(<span class="number">0.5</span>, <span class="number">.75</span>)</span><br><span class="line">    self._button_initial_pose = UniformCircle(button_distance)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Configure variators</span></span><br><span class="line">    self._mjcf_variator = variation.MJCFVariator()</span><br><span class="line">    self._physics_variator = variation.PhysicsVariator()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Configure and enable observables</span></span><br><span class="line">    pos_corrptor = noises.Additive(distributions.Normal(scale=<span class="number">0.01</span>))</span><br><span class="line">    self._creature.observables.joint_positions.corruptor = pos_corrptor</span><br><span class="line">    self._creature.observables.joint_positions.enabled = <span class="literal">True</span></span><br><span class="line">    vel_corruptor = noises.Multiplicative(distributions.LogNormal(sigma=<span class="number">0.01</span>))</span><br><span class="line">    self._creature.observables.joint_velocities.corruptor = vel_corruptor</span><br><span class="line">    self._creature.observables.joint_velocities.enabled = <span class="literal">True</span></span><br><span class="line">    self._button.observables.touch_force.enabled = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_button</span>(<span class="params">physics</span>):</span></span><br><span class="line">      button_pos, _ = self._button.get_pose(physics)</span><br><span class="line">      <span class="keyword">return</span> self._creature.global_vector_to_local_frame(physics, button_pos)</span><br><span class="line"></span><br><span class="line">    self._task_observables = &#123;&#125;</span><br><span class="line">    self._task_observables[<span class="string">&#x27;button_position&#x27;</span>] = observable.<span class="type">Generic</span>(to_button)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> obs <span class="keyword">in</span> self._task_observables.values():</span><br><span class="line">      obs.enabled = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    self.control_timestep = NUM_SUBSTEPS * self.physics_timestep</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">root_entity</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._arena</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">task_observables</span>(<span class="params">self</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._task_observables</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize_episode_mjcf</span>(<span class="params">self, random_state</span>):</span></span><br><span class="line">    self._mjcf_variator.apply_variations(random_state)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize_episode</span>(<span class="params">self, physics, random_state</span>):</span></span><br><span class="line">    self._physics_variator.apply_variations(physics, random_state)</span><br><span class="line">    creature_pose, button_pose = variation.evaluate(</span><br><span class="line">        (self._creature_initial_pose, self._button_initial_pose),</span><br><span class="line">        random_state=random_state)</span><br><span class="line">    self._creature.set_pose(physics, position=creature_pose)</span><br><span class="line">    self._button.set_pose(physics, position=button_pose)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_reward</span>(<span class="params">self, physics</span>):</span></span><br><span class="line">    <span class="keyword">return</span> self._button.num_activated_steps / NUM_SUBSTEPS</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例化环境"><a href="#实例化环境" class="headerlink" title="实例化环境"></a><strong>实例化环境</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Instantiating an environment&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">creature = Creature(num_legs=<span class="number">4</span>)</span><br><span class="line">task = PressWithSpecificForce(creature)</span><br><span class="line">env = composer.Environment(task, random_state=np.random.RandomState(<span class="number">42</span>))</span><br><span class="line"></span><br><span class="line">env.reset()</span><br><span class="line">PIL.Image.fromarray(env.physics.render())</span><br></pre></td></tr></table></figure>
+
+<div style="width:50%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/11.png" class="" title="environment"></div>
+
+<h2 id="The-Control-Suite"><a href="#The-Control-Suite" class="headerlink" title="The Control Suite"></a><strong>The <em>Control Suite</em></strong></h2><p><strong>Control Suite</strong> 是一组稳定的, 经过良好测试的任务, 旨在作为持续控制 learning agents 的基准(benchmark). 任务是使用基本的 MuJoCo 封装接口编写的. 标准化的行动(action), 观察(observation)和奖励(reward)结构使 suit-wide 的基准测试变得简单, 学习曲线也易于解释. 为了便于进行基准测试, Control Suite 域不应该被修改. 有关基准测试的详细信息, 请参阅我们的原始<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.00690">文章</a>.</p>
+<p>解决的基准测试任务的视频可以在<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rAai4QzcYbs&feature=youtu.be">这里</a>找到.</p>
+<p>该 suite 为迭代任务提供了方便的模块级元组:</p>
+<h3 id="遍历任务"><a href="#遍历任务" class="headerlink" title="遍历任务"></a><strong>遍历任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Iterating over tasks&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">max_len = <span class="built_in">max</span>(<span class="built_in">len</span>(d) <span class="keyword">for</span> d, _ <span class="keyword">in</span> suite.BENCHMARKING)</span><br><span class="line"><span class="keyword">for</span> domain, task <span class="keyword">in</span> suite.BENCHMARKING:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;domain:&lt;&#123;max_len&#125;</span>&#125;  <span class="subst">&#123;task&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="加载和仿真一个-suite-任务"><a href="#加载和仿真一个-suite-任务" class="headerlink" title="加载和仿真一个 suite 任务"></a><strong>加载和仿真一个 <code>suite</code> 任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Loading and simulating a `suite` task&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the environment</span></span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line">env = suite.load(<span class="string">&#x27;hopper&#x27;</span>, <span class="string">&#x27;stand&#x27;</span>, task_kwargs=&#123;<span class="string">&#x27;random&#x27;</span>: random_state&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate episode with random actions</span></span><br><span class="line">duration = <span class="number">4</span>  <span class="comment"># Seconds</span></span><br><span class="line">frames = []</span><br><span class="line">ticks = []</span><br><span class="line">rewards = []</span><br><span class="line">observations = []</span><br><span class="line"></span><br><span class="line">spec = env.action_spec()</span><br><span class="line">time_step = env.reset()</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> env.physics.data.time &lt; duration:</span><br><span class="line"></span><br><span class="line">  action = random_state.uniform(spec.minimum, spec.maximum, spec.shape)</span><br><span class="line">  time_step = env.step(action)</span><br><span class="line"></span><br><span class="line">  camera0 = env.physics.render(camera_id=<span class="number">0</span>, height=<span class="number">200</span>, width=<span class="number">200</span>)</span><br><span class="line">  camera1 = env.physics.render(camera_id=<span class="number">1</span>, height=<span class="number">200</span>, width=<span class="number">200</span>)</span><br><span class="line">  frames.append(np.hstack((camera0, camera1)))</span><br><span class="line">  rewards.append(time_step.reward)</span><br><span class="line">  observations.append(copy.deepcopy(time_step.observation))</span><br><span class="line">  ticks.append(env.physics.data.time)</span><br><span class="line"></span><br><span class="line">html_video = display_video(frames, framerate=<span class="number">1.</span>/env.control_timestep())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show video and plot reward and observations</span></span><br><span class="line">num_sensors = <span class="built_in">len</span>(time_step.observation)</span><br><span class="line"></span><br><span class="line">_, ax = plt.subplots(<span class="number">1</span> + num_sensors, <span class="number">1</span>, sharex=<span class="literal">True</span>, figsize=(<span class="number">4</span>, <span class="number">8</span>))</span><br><span class="line">ax[<span class="number">0</span>].plot(ticks, rewards)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;reward&#x27;</span>)</span><br><span class="line">ax[-<span class="number">1</span>].set_xlabel(<span class="string">&#x27;time&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, key <span class="keyword">in</span> <span class="built_in">enumerate</span>(time_step.observation):</span><br><span class="line">  data = np.asarray([observations[j][key] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(observations))])</span><br><span class="line">  ax[i+<span class="number">1</span>].plot(ticks, data, label=key)</span><br><span class="line">  ax[i+<span class="number">1</span>].set_ylabel(key)</span><br><span class="line"></span><br><span class="line">html_video</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/12.png" class="" title="suite"></div>
+
+<video controls >
+     <source src="suite.mp4" type="video/mp4">
+</video>
+
+
+<h3 id="在-Control-Suite-中可视化每个域的一个任务的初始状态"><a href="#在-Control-Suite-中可视化每个域的一个任务的初始状态" class="headerlink" title="在 Control Suite 中可视化每个域的一个任务的初始状态"></a><strong>在 Control Suite 中可视化每个域的一个任务的初始状态</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Visualizing an initial state of one task per domain in the Control Suite</span></span><br><span class="line">domains_tasks = &#123;domain: task <span class="keyword">for</span> domain, task <span class="keyword">in</span> suite.ALL_TASKS&#125;</span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line">num_domains = <span class="built_in">len</span>(domains_tasks)</span><br><span class="line">n_col = num_domains // <span class="built_in">int</span>(np.sqrt(num_domains))</span><br><span class="line">n_row = num_domains // n_col + <span class="built_in">int</span>(<span class="number">0</span> &lt; num_domains % n_col)</span><br><span class="line">_, ax = plt.subplots(n_row, n_col, figsize=(<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> ax.flat:</span><br><span class="line">  a.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">  a.grid(<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Iterating over all <span class="subst">&#123;num_domains&#125;</span> domains in the Suite:&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> j, [domain, task] <span class="keyword">in</span> <span class="built_in">enumerate</span>(domains_tasks.items()):</span><br><span class="line">  <span class="built_in">print</span>(domain, task)</span><br><span class="line"></span><br><span class="line">  env = suite.load(domain, task, task_kwargs=&#123;<span class="string">&#x27;random&#x27;</span>: random_state&#125;)</span><br><span class="line">  timestep = env.reset()</span><br><span class="line">  pixels = env.physics.render(height=<span class="number">200</span>, width=<span class="number">200</span>, camera_id=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">  ax.flat[j].imshow(pixels)</span><br><span class="line">  ax.flat[j].set_title(domain + <span class="string">&#x27;: &#x27;</span> + task)</span><br><span class="line"></span><br><span class="line">clear_output()</span><br></pre></td></tr></table></figure>
+
+<div style="width:90%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/13.png" class="" title="initial"></div>
+
+<h2 id="运动"><a href="#运动" class="headerlink" title="运动"></a><strong>运动</strong></h2><h3 id="人物模型在有障碍物的走廊上奔跑"><a href="#人物模型在有障碍物的走廊上奔跑" class="headerlink" title="人物模型在有障碍物的走廊上奔跑"></a><strong>人物模型在有障碍物的走廊上奔跑</strong></h3><p>作为一个使用移动基础结构来构建 RL 环境的示例, 考虑将一个人形角色放置在一个有墙壁的走廊中, 并指定一个任务, 该任务指定人形角色将通过沿着这个走廊奔跑, 使用视觉绕过墙壁障碍物来获得奖励. 我们将环境实例化为 Walker, Arena 和 Task 的组合, 如下所示. 首先, 我们构建了一个位置控制的 CMU 人形角色.</p>
+<p><strong>一个位置控制 <code>cmu_humanoid</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title A position controlled `cmu_humanoid`</span></span><br><span class="line"></span><br><span class="line">walker = cmu_humanoid.CMUHumanoidPositionControlledV2020(</span><br><span class="line">    observable_options=&#123;<span class="string">&#x27;egocentric_camera&#x27;</span>: <span class="built_in">dict</span>(enabled=<span class="literal">True</span>)&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接下来, 我们建造了一个走廊形状的 arena, 它被墙壁挡住.</p>
+<p><strong>一个带有墙壁障碍的走廊 arena</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title A corridor arena with wall obstacles</span></span><br><span class="line"></span><br><span class="line">arena = corridor_arenas.WallsCorridor(</span><br><span class="line">    wall_gap=<span class="number">3.</span>,</span><br><span class="line">    wall_width=distributions.Uniform(<span class="number">2.</span>, <span class="number">3.</span>),</span><br><span class="line">    wall_height=distributions.Uniform(<span class="number">2.5</span>, <span class="number">3.5</span>),</span><br><span class="line">    corridor_width=<span class="number">4.</span>,</span><br><span class="line">    corridor_length=<span class="number">30.</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>任务构造函数将 walker 放置在arena 中.</p>
+<p><strong>在 arena 中导航的任务</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title A task to navigate the arena</span></span><br><span class="line"></span><br><span class="line">task = corridor_tasks.RunThroughCorridor(</span><br><span class="line">    walker=walker,</span><br><span class="line">    arena=arena,</span><br><span class="line">    walker_spawn_position=(<span class="number">0.5</span>, <span class="number">0</span>, <span class="number">0</span>),</span><br><span class="line">    target_velocity=<span class="number">3.0</span>,</span><br><span class="line">    physics_timestep=<span class="number">0.005</span>,</span><br><span class="line">    control_timestep=<span class="number">0.03</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>最后, 一个奖励 agent 以特定速度跑下走廊的任务被实例化为 <code>composer.Environment</code>.</p>
+<p><strong><code>RunThroughCorridor</code></strong> <strong>环境</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title The `RunThroughCorridor` environment</span></span><br><span class="line"></span><br><span class="line">env = composer.Environment(</span><br><span class="line">    task=task,</span><br><span class="line">    time_limit=<span class="number">10</span>,</span><br><span class="line">    random_state=np.random.RandomState(<span class="number">42</span>),</span><br><span class="line">    strip_singleton_obs_buffer_dim=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line">env.reset()</span><br><span class="line">pixels = []</span><br><span class="line"><span class="keyword">for</span> camera_id <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">  pixels.append(env.physics.render(camera_id=camera_id, width=<span class="number">240</span>))</span><br><span class="line">PIL.Image.fromarray(np.hstack(pixels))</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/14.png" class="" title="run"></div>
+
+<h3 id="多智能体足球"><a href="#多智能体足球" class="headerlink" title="多智能体足球"></a><strong>多智能体足球</strong></h3><p>多智能体足球环境(<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1902.07151">文章</a>)建立在 Composer 和 Locomotion 库的基础上, 遵循 Walkers, Arena 和 Task 的一致任务结构, 其中我们引入多个 walkers, 而不是单个, 可以在同一场景中相互进行物理交互. 下面的代码片段展示了如何使用简单的 5 自由度 <code>BoxHead</code> walker 类型实例化一个 2-vs-2 的多代理足球环境.</p>
+<p><strong>2-v-2 <code>Boxhead</code> 足球</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title 2-v-2 `Boxhead` soccer</span></span><br><span class="line"></span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line">env = soccer.load(</span><br><span class="line">    team_size=<span class="number">2</span>,</span><br><span class="line">    time_limit=<span class="number">45.</span>,</span><br><span class="line">    random_state=random_state,</span><br><span class="line">    disable_walker_contacts=<span class="literal">False</span>,</span><br><span class="line">    walker_type=soccer.WalkerType.BOXHEAD,</span><br><span class="line">)</span><br><span class="line">env.reset()</span><br><span class="line">pixels = []</span><br><span class="line"><span class="comment"># Select a random subset of 6 cameras (soccer envs have lots of cameras)</span></span><br><span class="line">cameras = random_state.choice(env.physics.model.ncam, <span class="number">6</span>, replace=<span class="literal">False</span>)</span><br><span class="line"><span class="keyword">for</span> camera_id <span class="keyword">in</span> cameras:</span><br><span class="line">  pixels.append(env.physics.render(camera_id=camera_id, width=<span class="number">240</span>))</span><br><span class="line">image = np.vstack((np.hstack(pixels[:<span class="number">3</span>]), np.hstack(pixels[<span class="number">3</span>:])))</span><br><span class="line">PIL.Image.fromarray(image)</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/15.png" class="" title="boxhead"></div>
+
+<p>其中的 walker 可以被简单地替换为 <code>WalkerType.ANT</code>:</p>
+<p><strong>3-v-3 <code>Ant</code> 足球</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title 3-v-3 `Ant` soccer</span></span><br><span class="line"></span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line">env = soccer.load(</span><br><span class="line">    team_size=<span class="number">3</span>,</span><br><span class="line">    time_limit=<span class="number">45.</span>,</span><br><span class="line">    random_state=random_state,</span><br><span class="line">    disable_walker_contacts=<span class="literal">False</span>,</span><br><span class="line">    walker_type=soccer.WalkerType.ANT,</span><br><span class="line">)</span><br><span class="line">env.reset()</span><br><span class="line"></span><br><span class="line">pixels = []</span><br><span class="line">cameras = random_state.choice(env.physics.model.ncam, <span class="number">6</span>, replace=<span class="literal">False</span>)</span><br><span class="line"><span class="keyword">for</span> camera_id <span class="keyword">in</span> cameras:</span><br><span class="line">  pixels.append(env.physics.render(camera_id=camera_id, width=<span class="number">240</span>))</span><br><span class="line">image = np.vstack((np.hstack(pixels[:<span class="number">3</span>]), np.hstack(pixels[<span class="number">3</span>:])))</span><br><span class="line">PIL.Image.fromarray(image)</span><br></pre></td></tr></table></figure>
+
+<div style="width:80%;margin:auto"><img src="/2023/04/17/dm-control-tutorial/16.png" class="" title="ant"></div>
+
+<h2 id="Manipulation"><a href="#Manipulation" class="headerlink" title="Manipulation"></a><strong>Manipulation</strong></h2><p><code>manipulation</code> 模块提供了一个机械臂, 一组简单的对象, 以及为操作任务构建奖励函数的工具.</p>
+<h3 id="列出所有-manipulation-任务"><a href="#列出所有-manipulation-任务" class="headerlink" title="列出所有 manipulation 任务"></a><strong>列出所有 <code>manipulation</code> 任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Listing all `manipulation` tasks&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># `ALL` is a tuple containing the names of all of the environments in the suite.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>.join(manipulation.ALL))</span><br></pre></td></tr></table></figure>
+
+<h3 id="列出使用视觉的-manipulation-任务"><a href="#列出使用视觉的-manipulation-任务" class="headerlink" title="列出使用视觉的 manipulation 任务"></a><strong>列出使用视觉的 <code>manipulation</code> 任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Listing `manipulation` tasks that use vision&#123;vertical-output: true&#125;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>.join(manipulation.get_environments_by_tag(<span class="string">&#x27;vision&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="加载和模拟-manipulation-任务"><a href="#加载和模拟-manipulation-任务" class="headerlink" title="加载和模拟 manipulation 任务"></a><strong>加载和模拟 <code>manipulation</code> 任务</strong></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Loading and simulating a `manipulation` task&#123;vertical-output: true&#125;</span></span><br><span class="line"></span><br><span class="line">env = manipulation.load(<span class="string">&#x27;stack_2_of_3_bricks_random_order_vision&#x27;</span>, seed=<span class="number">42</span>)</span><br><span class="line">action_spec = env.action_spec()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sample_random_action</span>():</span></span><br><span class="line">  <span class="keyword">return</span> env.random_state.uniform(</span><br><span class="line">      low=action_spec.minimum,</span><br><span class="line">      high=action_spec.maximum,</span><br><span class="line">  ).astype(action_spec.dtype, copy=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Step the environment through a full episode using random actions and record</span></span><br><span class="line"><span class="comment"># the camera observations.</span></span><br><span class="line">frames = []</span><br><span class="line">timestep = env.reset()</span><br><span class="line">frames.append(timestep.observation[<span class="string">&#x27;front_close&#x27;</span>])</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> timestep.last():</span><br><span class="line">  timestep = env.step(sample_random_action())</span><br><span class="line">  frames.append(timestep.observation[<span class="string">&#x27;front_close&#x27;</span>])</span><br><span class="line">all_frames = np.concatenate(frames, axis=<span class="number">0</span>)</span><br><span class="line">display_video(all_frames, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<video controls >
+     <source src="manipulation.mp4" type="video/mp4">
+</video>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2023/04/17/dm-control-tutorial/" title="dm_control 教程">http://shawshai.cn/2023/04/17/dm-control-tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/dm-control/" rel="tag"># dm_control</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/17/lqr-tutorial/" rel="prev" title="LQR 教程">
+      <i class="fa fa-chevron-left"></i> LQR 教程
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-Colab-%E4%B8%AD%E5%AE%89%E8%A3%85-dm-control"><span class="nav-number">1.</span> <span class="nav-text">在 Colab 中安装 dm_control</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E5%AE%89%E8%A3%85MuJoCo%E5%92%8C-dm-control"><span class="nav-number">1.1.</span> <span class="nav-text">运行命令安装MuJoCo和 dm_control</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">导入包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%95%99%E7%A8%8B%E6%89%80%E9%9C%80%E7%9A%84%E6%89%80%E6%9C%89-dm-control-%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="nav-number">2.1.</span> <span class="nav-text">本教程所需的所有 dm_control 导入包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%AF%BC%E5%85%A5%E5%8C%85%E5%92%8C%E5%B8%AE%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">其他导入包和帮助函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%AE%9A%E4%B9%89-%E7%BC%96%E8%AF%91%E5%92%8C%E6%B8%B2%E6%9F%93"><span class="nav-number">3.</span> <span class="nav-text">模型定义, 编译和渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">静态模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%87%AA%E7%94%B1%E5%BA%A6%E5%92%8C%E4%BB%BF%E7%9C%9F-%E9%AB%98%E7%BA%A7%E6%B8%B2%E6%9F%93"><span class="nav-number">3.2.</span> <span class="nav-text">添加自由度和仿真, 高级渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E9%80%89%E9%A1%B9"><span class="nav-number">3.3.</span> <span class="nav-text">渲染选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MuJoCo%E5%9F%BA%E7%A1%80%E5%92%8C%E5%91%BD%E5%90%8D%E7%B4%A2%E5%BC%95"><span class="nav-number">4.</span> <span class="nav-text">MuJoCo基础和命名索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mjModel"><span class="nav-number">4.1.</span> <span class="nav-text">mjModel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mjData"><span class="nav-number">4.2.</span> <span class="nav-text">mjData</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E7%B4%A2%E5%BC%95"><span class="nav-number">4.3.</span> <span class="nav-text">命名索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-reset-context-%E8%AE%BE%E7%BD%AE%E7%8A%B6%E6%80%81"><span class="nav-number">4.4.</span> <span class="nav-text">通过 reset_context() 设置状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E7%94%B1%E4%BD%93-%E8%87%AA%E5%8F%8D%E8%BD%AC%E7%9A%84%E2%80%9Ctippe-top%E2%80%9D"><span class="nav-number">4.5.</span> <span class="nav-text">自由体:自反转的“tippe-top”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyMJCF-%E6%95%99%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">PyMJCF 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E5%8F%AA%E7%94%9F%E7%89%A9"><span class="nav-number">5.1.</span> <span class="nav-text">六只生物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E8%A7%86%E9%A2%91"><span class="nav-number">5.2.</span> <span class="nav-text">运动视频</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9"><span class="nav-number">5.3.</span> <span class="nav-text">运动轨迹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Composer-%E6%95%99%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">Composer 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creature-%E7%B1%BB"><span class="nav-number">6.1.</span> <span class="nav-text">Creature 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Button-%E7%B1%BB"><span class="nav-number">6.2.</span> <span class="nav-text">Button 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-composer-variation-%E7%9A%84%E9%9A%8F%E6%9C%BA%E5%88%9D%E5%A7%8B%E5%8C%96%E5%99%A8"><span class="nav-number">6.3.</span> <span class="nav-text">使用 composer.variation 的随机初始化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PressWithSpecificForce-%E4%BB%BB%E5%8A%A1"><span class="nav-number">6.4.</span> <span class="nav-text">PressWithSpecificForce 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%8E%AF%E5%A2%83"><span class="nav-number">6.5.</span> <span class="nav-text">实例化环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Control-Suite"><span class="nav-number">7.</span> <span class="nav-text">The Control Suite</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E4%BB%BB%E5%8A%A1"><span class="nav-number">7.1.</span> <span class="nav-text">遍历任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E4%BB%BF%E7%9C%9F%E4%B8%80%E4%B8%AA-suite-%E4%BB%BB%E5%8A%A1"><span class="nav-number">7.2.</span> <span class="nav-text">加载和仿真一个 suite 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-Control-Suite-%E4%B8%AD%E5%8F%AF%E8%A7%86%E5%8C%96%E6%AF%8F%E4%B8%AA%E5%9F%9F%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81"><span class="nav-number">7.3.</span> <span class="nav-text">在 Control Suite 中可视化每个域的一个任务的初始状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8"><span class="nav-number">8.</span> <span class="nav-text">运动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E7%89%A9%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%9C%89%E9%9A%9C%E7%A2%8D%E7%89%A9%E7%9A%84%E8%B5%B0%E5%BB%8A%E4%B8%8A%E5%A5%94%E8%B7%91"><span class="nav-number">8.1.</span> <span class="nav-text">人物模型在有障碍物的走廊上奔跑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E8%B6%B3%E7%90%83"><span class="nav-number">8.2.</span> <span class="nav-text">多智能体足球</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manipulation"><span class="nav-number">9.</span> <span class="nav-text">Manipulation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E5%87%BA%E6%89%80%E6%9C%89-manipulation-%E4%BB%BB%E5%8A%A1"><span class="nav-number">9.1.</span> <span class="nav-text">列出所有 manipulation 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E5%87%BA%E4%BD%BF%E7%94%A8%E8%A7%86%E8%A7%89%E7%9A%84-manipulation-%E4%BB%BB%E5%8A%A1"><span class="nav-number">9.2.</span> <span class="nav-text">列出使用视觉的 manipulation 任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%92%8C%E6%A8%A1%E6%8B%9F-manipulation-%E4%BB%BB%E5%8A%A1"><span class="nav-number">9.3.</span> <span class="nav-text">加载和模拟 manipulation 任务</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">90k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : '550e557465cbaf40d1d358152ba29e22',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
