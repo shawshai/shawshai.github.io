@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2023/04/24/mujoco-config/</loc>
+    
+    <lastmod>2023-04-23T17:47:11.696Z</lastmod>
+    
+    <date>1682271261000</date>
+    <title>MuJoCo 配置过程 | 少帥的博客</title>
+    
+    <desc>MuJoCo 环境配置过程.</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2023/04/17/lqr-tutorial/</loc>
     
     <lastmod>2023-04-19T03:08:11.325Z</lastmod>
