@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eigen 快速参考指南">
+<meta property="og:url" content="http://shawshai.cn/2023/05/01/eigen-guide/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-30T18:11:51.000Z">
+<meta property="article:modified_time" content="2023-04-30T18:46:52.147Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="Eigen">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://shawshai.cn/2023/05/01/eigen-guide/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Eigen 快速参考指南 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/05/01/eigen-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="摆脱冷气 只向上走">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Eigen 快速参考指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-05-01 02:11:51 / 修改时间：02:46:52" itemprop="dateCreated datePublished" datetime="2023-05-01T02:11:51+08:00">2023-05-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>14k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</div>
+
+<span id="more"></span>
+
+<p>原文链接: <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html">https://eigen.tuxfamily.org/dox/group__QuickRefPage.html</a></p>
+<h2 id="模块与头文件"><a href="#模块与头文件" class="headerlink" title="模块与头文件"></a>模块与头文件</h2><p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a> 库分为一个核心 (Core) 模块和几个附加模块. 每个模块都有一个相应的头文件, 必须包含头文件才能使用对应的模块. 提供 <code>Dense</code> 和 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html"><code>Eigen</code></a> 头文件是为了方便地一次访问多个模块.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Header file</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Core__Module.html">Core</a></td>
+<td>#include &lt;Eigen/Core&gt;</td>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html">Matrix</a> and <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Array.html">Array</a> classes, basic linear algebra (including triangular and selfadjoint products), array manipulation</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Geometry__Module.html">Geometry</a></td>
+<td>#include &lt;Eigen/Geometry&gt;</td>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Transform.html">Transform</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Translation.html">Translation</a>, Scaling, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Rotation2D.html">Rotation2D</a> and 3D rotations (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Quaternion.html">Quaternion</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1AngleAxis.html">AngleAxis</a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__LU__Module.html">LU</a></td>
+<td>#include &lt;Eigen/LU&gt;</td>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Inverse.html"> Inverse</a>, determinant, LU decompositions with solver (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1FullPivLU.html">FullPivLU</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1PartialPivLU.html">PartialPivLU</a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Cholesky__Module.html">Cholesky</a></td>
+<td>#include &lt;Eigen/Cholesky&gt;</td>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1LLT.html"> LLT</a> and <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1LDLT.html">LDLT</a> Cholesky factorization with solver</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Householder__Module.html">Householder</a></td>
+<td>#include &lt;Eigen/Householder&gt;</td>
+<td>Householder transformations; this module is used by several linear algebra modules</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__SVD__Module.html">SVD</a></td>
+<td>#include &lt;Eigen/SVD&gt;</td>
+<td>SVD decompositions with least-squares solver (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1JacobiSVD.html">JacobiSVD</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html">BDCSVD</a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__QR__Module.html">QR</a></td>
+<td>#include &lt;Eigen/QR&gt;</td>
+<td>QR decomposition with solver (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1HouseholderQR.html">HouseholderQR</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1ColPivHouseholderQR.html">ColPivHouseholderQR</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1FullPivHouseholderQR.html">FullPivHouseholderQR</a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Eigenvalues__Module.html">Eigenvalues</a></td>
+<td>#include &lt;Eigen/Eigenvalues&gt;</td>
+<td>Eigenvalue, eigenvector decompositions (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1EigenSolver.html">EigenSolver</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1SelfAdjointEigenSolver.html">SelfAdjointEigenSolver</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1ComplexEigenSolver.html">ComplexEigenSolver</a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Sparse__Module.html">Sparse</a></td>
+<td>#include &lt;Eigen/Sparse&gt;</td>
+<td>Sparse matrix storage and related basic linear algebra (<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1SparseMatrix.html">SparseMatrix</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1SparseVector.html">SparseVector</a>) (see <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__SparseQuickRefPage.html">Quick reference guide for sparse matrices</a> for details on sparse modules)</td>
+</tr>
+<tr>
+<td></td>
+<td>#include &lt;Eigen/Dense&gt;</td>
+<td>Includes Core, Geometry, LU, Cholesky, SVD, QR, and Eigenvalues header files</td>
+</tr>
+<tr>
+<td></td>
+<td>#include &lt;Eigen/Eigen&gt;</td>
+<td>Includes Dense and Sparse header files (the whole <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a> library)</td>
+</tr>
+</tbody></table>
+<h2 id="数组-矩阵和向量类型"><a href="#数组-矩阵和向量类型" class="headerlink" title="数组, 矩阵和向量类型"></a>数组, 矩阵和向量类型</h2><p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a> 提供了两类 Dense 对象: 由模板类 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html">Matrix</a> 表示的数学矩阵和向量; 以及由模板类 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Array.html">Array</a> 表示的一般一维和二维数组.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> Matrix&lt;Scalar, RowsAtCompileTime, ColsAtCompileTime, Options&gt; MyMatrixType;</span><br><span class="line"><span class="keyword">typedef</span> Array&lt;Scalar, RowsAtCompileTime, ColsAtCompileTime, Options&gt; MyArrayType;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Scalar</code> 为标量类型 (如 <code>float</code>, <code>double</code>, <code>bool</code>, <code>int</code>, 等).</li>
+<li><code>RowsAtCompileTime</code> 和 <code>ColsAtCompileTime</code> 为编译时确定的矩阵行数和列数, 或者为 <code>Dynamic</code>.</li>
+<li><code>Options</code> 可以是 <code>ColMajor</code> 或 <code>RowMajor</code>, 默认为 <code>ColMajor</code>. (更多选项参见类 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html">Matrix</a>)</li>
+</ul>
+<p>所有的组合都是允许的: 你可以有一个固定行数和动态列数的矩阵, 等等. 以下内容均有效:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Matrix&lt;<span class="keyword">double</span>, <span class="number">6</span>, Dynamic&gt;                  <span class="comment">// 动态列数 (堆分配)</span></span><br><span class="line">Matrix&lt;<span class="keyword">double</span>, Dynamic, <span class="number">2</span>&gt;                  <span class="comment">// 动态行数 (堆分配)</span></span><br><span class="line">Matrix&lt;<span class="keyword">double</span>, Dynamic, Dynamic, RowMajor&gt;  <span class="comment">// 完全动态, 行优先 (堆分配)</span></span><br><span class="line">Matrix&lt;<span class="keyword">double</span>, <span class="number">13</span>, <span class="number">3</span>&gt;                       <span class="comment">// 完全固定 (通常在栈上分配)</span></span><br></pre></td></tr></table></figure>
+
+<p>在大多数情况下, 你可以简单地对 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__matrixtypedefs.html">matrices</a> 和 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__arraytypedefs.html">arrays</a> 使用一些方便的预定义类型. 例如:</p>
+<p><strong>Matrices</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Matrix&lt;<span class="keyword">float</span>,Dynamic,Dynamic&gt;   &lt;=&gt;   MatrixXf</span><br><span class="line">Matrix&lt;<span class="keyword">double</span>,Dynamic,<span class="number">1</span>&gt;        &lt;=&gt;   VectorXd</span><br><span class="line">Matrix&lt;<span class="keyword">int</span>,<span class="number">1</span>,Dynamic&gt;           &lt;=&gt;   RowVectorXi</span><br><span class="line">Matrix&lt;<span class="keyword">float</span>,<span class="number">3</span>,<span class="number">3</span>&gt;               &lt;=&gt;   Matrix3f</span><br><span class="line">Matrix&lt;<span class="keyword">float</span>,<span class="number">4</span>,<span class="number">1</span>&gt;               &lt;=&gt;   Vector4f</span><br></pre></td></tr></table></figure>
+
+<p><strong>Arrays</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array&lt;<span class="keyword">float</span>,Dynamic,Dynamic&gt;    &lt;=&gt;   ArrayXXf</span><br><span class="line">Array&lt;<span class="keyword">double</span>,Dynamic,<span class="number">1</span>&gt;         &lt;=&gt;   ArrayXd</span><br><span class="line">Array&lt;<span class="keyword">int</span>,<span class="number">1</span>,Dynamic&gt;            &lt;=&gt;   RowArrayXi</span><br><span class="line">Array&lt;<span class="keyword">float</span>,<span class="number">3</span>,<span class="number">3</span>&gt;                &lt;=&gt;   Array33f</span><br><span class="line">Array&lt;<span class="keyword">float</span>,<span class="number">4</span>,<span class="number">1</span>&gt;                &lt;=&gt;   Array4f</span><br></pre></td></tr></table></figure>
+
+<p>矩阵和数组之间的转换:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Array44f a1, a2;</span><br><span class="line">Matrix4f m1, m2;</span><br><span class="line">m1 = a1 * a2;                     <span class="comment">// 元素乘积, 从数组到矩阵的隐式转换.</span></span><br><span class="line">a1 = m1 * m2;                     <span class="comment">// 矩阵乘积, 从矩阵到数组的隐式转换.</span></span><br><span class="line">a2 = a1 + m1.<span class="built_in">array</span>();             <span class="comment">// 数组和矩阵的混合是被禁止的,</span></span><br><span class="line">m2 = a1.<span class="built_in">matrix</span>() + m1;            <span class="comment">// 需要显式的转换.</span></span><br><span class="line"><span class="function">ArrayWrapper&lt;Matrix4f&gt; <span class="title">m1a</span><span class="params">(m1)</span></span>;   <span class="comment">// m1a 是 m1.array() 的一个别名, 它们共享相同的元素</span></span><br><span class="line"><span class="function">MatrixWrapper&lt;Array44f&gt; <span class="title">a1m</span><span class="params">(a1)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>在本文档的剩余部分, 我们将使用以下符号来强调特定于给定类型对象的特征:</p>
+<ul>
+<li><code>*</code> 仅适用与线性代数矩阵与向量</li>
+<li><code>**</code> 仅适用于数组对象</li>
+</ul>
+<h3 id="基本矩阵操作"><a href="#基本矩阵操作" class="headerlink" title="基本矩阵操作"></a>基本矩阵操作</h3><p><strong>构造</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line">Vector4d  v4;</span><br><span class="line"><span class="function">Vector2f  <span class="title">v1</span><span class="params">(x, y)</span></span>;</span><br><span class="line"><span class="function">Array3i   <span class="title">v2</span><span class="params">(x, y, z)</span></span>;</span><br><span class="line"><span class="function">Vector4d  <span class="title">v3</span><span class="params">(x, y, z, w)</span></span>;</span><br><span class="line">VectorXf  v5; <span class="comment">// 空对象</span></span><br><span class="line"><span class="function">ArrayXf   <span class="title">v6</span><span class="params">(size)</span></span>;</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line">Matrix4f  m1; </span><br><span class="line">MatrixXf  m5; <span class="comment">// 空对象</span></span><br><span class="line"><span class="function">MatrixXf  <span class="title">m6</span><span class="params">(nb_rows, nb_columns)</span></span>;</span><br><span class="line"><span class="comment">// 注: 默认情况下, 不初始化元素</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>逗号初始化</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line">Vector3f  v1;     v1 &lt;&lt; x, y, z;</span><br><span class="line"><span class="function">ArrayXf   <span class="title">v2</span><span class="params">(<span class="number">4</span>)</span></span>;  v2 &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>;</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line">Matrix3f  m1;   m1 &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,</span><br><span class="line">                      <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>,</span><br><span class="line">                      <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>逗号初始化(bis)</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> rows=<span class="number">5</span>, cols=<span class="number">5</span>;</span><br><span class="line"><span class="function">MatrixXf <span class="title">m</span><span class="params">(rows,cols)</span></span>;</span><br><span class="line">m &lt;&lt; (<span class="built_in">Matrix3f</span>() &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>).<span class="built_in">finished</span>(),</span><br><span class="line">     MatrixXf::<span class="built_in">Zero</span>(<span class="number">3</span>,cols<span class="number">-3</span>),</span><br><span class="line">     MatrixXf::<span class="built_in">Zero</span>(rows<span class="number">-3</span>,<span class="number">3</span>),</span><br><span class="line">     MatrixXf::<span class="built_in">Identity</span>(rows<span class="number">-3</span>,cols<span class="number">-3</span>);</span><br><span class="line">cout &lt;&lt; m</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>输出:<br>1 2 3 0 0<br>4 5 6 0 0<br>7 8 9 0 0<br>0 0 0 1 0<br>0 0 0 0 1</p>
+</blockquote>
+<p><strong>运行时信息</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line">vector.<span class="built_in">size</span>();</span><br><span class="line">vector.<span class="built_in">innerStride</span>();</span><br><span class="line">vector.<span class="built_in">data</span>();</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line">matrix.<span class="built_in">rows</span>();          matrix.<span class="built_in">cols</span>();</span><br><span class="line">matrix.<span class="built_in">innerSize</span>();     matrix.<span class="built_in">outerSize</span>();</span><br><span class="line">matrix.<span class="built_in">innerStride</span>();   matrix.<span class="built_in">outerStride</span>();</span><br><span class="line">matrix.<span class="built_in">data</span>();</span><br><span class="line"><span class="comment">// Inner/Outer* 依赖于存储顺序</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>编译时信息</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ObjectType::Scalar              ObjectType::RowsAtCompileTime</span><br><span class="line">ObjectType::RealScalar          ObjectType::ColsAtCompileTime</span><br><span class="line">ObjectType::Index               ObjectType::SizeAtCompileTime</span><br></pre></td></tr></table></figure>
+
+<p><strong>改变规格</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line">vector.<span class="built_in">resize</span>(size);</span><br><span class="line">vector.<span class="built_in">resizeLike</span>(other_vector);</span><br><span class="line">vector.<span class="built_in">conservativeResize</span>(size);</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line">matrix.<span class="built_in">resize</span>(nb_rows, nb_cols);</span><br><span class="line">matrix.<span class="built_in">resize</span>(Eigen::NoChange, nb_cols);</span><br><span class="line">matrix.<span class="built_in">resize</span>(nb_rows, Eigen::NoChange);</span><br><span class="line">matrix.<span class="built_in">resizeLike</span>(other_matrix);</span><br><span class="line">matrix.<span class="built_in">conservativeResize</span>(nb_rows, nb_cols);</span><br><span class="line"><span class="comment">// 如果新规格匹配, 则不执行操作, 否则数据将丢失</span></span><br><span class="line"><span class="comment">// 通过数据保存调整规格</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>带范围检查的元素访问</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line"><span class="built_in">vector</span>(i)     vector.<span class="built_in">x</span>()</span><br><span class="line">vector[i]     vector.<span class="built_in">y</span>()</span><br><span class="line">              vector.<span class="built_in">z</span>()</span><br><span class="line">              vector.<span class="built_in">w</span>()</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line"><span class="built_in">matrix</span>(i,j)</span><br><span class="line"><span class="comment">// 通过定义 NDEBUG 或 EIGEN_NO_DEBUG, 禁用范围检查</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>没有范围检查的元素访问</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一维对象 */</span></span><br><span class="line">vector.<span class="built_in">coeff</span>(i)</span><br><span class="line">vector.<span class="built_in">coeffRef</span>(i)</span><br><span class="line"><span class="comment">/* 二维对象 */</span></span><br><span class="line">matrix.<span class="built_in">coeff</span>(i,j)</span><br><span class="line">matrix.<span class="built_in">coeffRef</span>(i,j)</span><br></pre></td></tr></table></figure>
+
+<p><strong>赋值/拷贝</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">object = expression;</span><br><span class="line">object_of_float = expression_of_double.cast&lt;<span class="keyword">float</span>&gt;();</span><br><span class="line"><span class="comment">// 目标会自动调整规格(如果可能的话)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="预定义矩阵"><a href="#预定义矩阵" class="headerlink" title="预定义矩阵"></a>预定义矩阵</h3><p><strong>固定规格的矩阵或向量</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> &#123;Matrix3f|Array33f&#125; FixedXD;</span><br><span class="line">FixedXD x;</span><br><span class="line"> </span><br><span class="line">x = FixedXD::<span class="built_in">Zero</span>();</span><br><span class="line">x = FixedXD::<span class="built_in">Ones</span>();</span><br><span class="line">x = FixedXD::<span class="built_in">Constant</span>(value);</span><br><span class="line">x = FixedXD::<span class="built_in">Random</span>();</span><br><span class="line">x = FixedXD::<span class="built_in">LinSpaced</span>(size, low, high);</span><br><span class="line"> </span><br><span class="line">x.<span class="built_in">setZero</span>();</span><br><span class="line">x.<span class="built_in">setOnes</span>();</span><br><span class="line">x.<span class="built_in">setConstant</span>(value);</span><br><span class="line">x.<span class="built_in">setRandom</span>();</span><br><span class="line">x.<span class="built_in">setLinSpaced</span>(size, low, high);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>单位和<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#ac7a03a61014f37ddd2fe61ebac0c9539">基向量</a> *</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = FixedXD::<span class="built_in">Identity</span>();</span><br><span class="line">x.<span class="built_in">setIdentity</span>();</span><br><span class="line"> </span><br><span class="line">Vector3f::<span class="built_in">UnitX</span>() <span class="comment">// 1 0 0</span></span><br><span class="line">Vector3f::<span class="built_in">UnitY</span>() <span class="comment">// 0 1 0</span></span><br><span class="line">Vector3f::<span class="built_in">UnitZ</span>() <span class="comment">// 0 0 1</span></span><br><span class="line">Vector4f::<span class="built_in">Unit</span>(i)</span><br><span class="line">x.<span class="built_in">setUnit</span>(i);</span><br></pre></td></tr></table></figure>
+
+<p><strong>动态规格的矩阵</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> &#123;MatrixXf|ArrayXXf&#125; Dynamic2D;</span><br><span class="line">Dynamic2D x;</span><br><span class="line"> </span><br><span class="line">x = Dynamic2D::<span class="built_in">Zero</span>(rows, cols);</span><br><span class="line">x = Dynamic2D::<span class="built_in">Ones</span>(rows, cols);</span><br><span class="line">x = Dynamic2D::<span class="built_in">Constant</span>(rows, cols, value);</span><br><span class="line">x = Dynamic2D::<span class="built_in">Random</span>(rows, cols);</span><br><span class="line">N/A</span><br><span class="line"> </span><br><span class="line">x.<span class="built_in">setZero</span>(rows, cols);</span><br><span class="line">x.<span class="built_in">setOnes</span>(rows, cols);</span><br><span class="line">x.<span class="built_in">setConstant</span>(rows, cols, value);</span><br><span class="line">x.<span class="built_in">setRandom</span>(rows, cols);</span><br><span class="line">N/A</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>单位和<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#ac7a03a61014f37ddd2fe61ebac0c9539">基向量</a> *</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = Dynamic2D::<span class="built_in">Identity</span>(rows, cols);</span><br><span class="line">x.<span class="built_in">setIdentity</span>(rows, cols);</span><br><span class="line"></span><br><span class="line">N/A</span><br></pre></td></tr></table></figure>
+
+<p><strong>动态规格的向量</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> &#123;VectorXf|ArrayXf&#125; Dynamic1D;</span><br><span class="line">Dynamic1D x;</span><br><span class="line"> </span><br><span class="line">x = Dynamic1D::<span class="built_in">Zero</span>(size);</span><br><span class="line">x = Dynamic1D::<span class="built_in">Ones</span>(size);</span><br><span class="line">x = Dynamic1D::<span class="built_in">Constant</span>(size, value);</span><br><span class="line">x = Dynamic1D::<span class="built_in">Random</span>(size);</span><br><span class="line">x = Dynamic1D::<span class="built_in">LinSpaced</span>(size, low, high);</span><br><span class="line"> </span><br><span class="line">x.<span class="built_in">setZero</span>(size);</span><br><span class="line">x.<span class="built_in">setOnes</span>(size);</span><br><span class="line">x.<span class="built_in">setConstant</span>(size, value);</span><br><span class="line">x.<span class="built_in">setRandom</span>(size);</span><br><span class="line">x.<span class="built_in">setLinSpaced</span>(size, low, high);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>单位和<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#ac7a03a61014f37ddd2fe61ebac0c9539">基向量</a> *</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">N/A</span><br><span class="line"></span><br><span class="line">VectorXf::<span class="built_in">Unit</span>(size,i)</span><br><span class="line">x.<span class="built_in">setUnit</span>(size,i);</span><br><span class="line">VectorXf::<span class="built_in">Unit</span>(<span class="number">4</span>,<span class="number">1</span>) == <span class="built_in">Vector4f</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">                    == Vector4f::<span class="built_in">UnitY</span>()</span><br></pre></td></tr></table></figure>
+
+<p>请注意, 允许对动态规格的向量或矩阵调用任意 <code>set*</code> 函数, 而无需传递新的规格. 例如:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MatrixXi <span class="title">M</span><span class="params">(<span class="number">3</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">M.<span class="built_in">setIdentity</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射外部数组"><a href="#映射外部数组" class="headerlink" title="映射外部数组"></a>映射外部数组</h3><p><strong>连续内存</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="function">Map&lt;Vector3f&gt; <span class="title">v1</span><span class="params">(data)</span></span>;       <span class="comment">// uses v1 as a Vector3f object</span></span><br><span class="line"><span class="function">Map&lt;ArrayXf&gt;  <span class="title">v2</span><span class="params">(data,<span class="number">3</span>)</span></span>;     <span class="comment">// uses v2 as a ArrayXf object</span></span><br><span class="line"><span class="function">Map&lt;Array22f&gt; <span class="title">m1</span><span class="params">(data)</span></span>;       <span class="comment">// uses m1 as a Array22f object</span></span><br><span class="line"><span class="function">Map&lt;MatrixXf&gt; <span class="title">m2</span><span class="params">(data,<span class="number">2</span>,<span class="number">2</span>)</span></span>;   <span class="comment">// uses m2 as a MatrixXf object</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Strides 的典型用法</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line">Map&lt;VectorXf,<span class="number">0</span>,InnerStride&lt;<span class="number">2</span>&gt; &gt;  <span class="built_in">v1</span>(data,<span class="number">3</span>);                      <span class="comment">// = [1,3,5]</span></span><br><span class="line">Map&lt;VectorXf,<span class="number">0</span>,InnerStride&lt;&gt; &gt;   <span class="built_in">v2</span>(data,<span class="number">3</span>,InnerStride&lt;&gt;(<span class="number">3</span>));     <span class="comment">// = [1,4,7]</span></span><br><span class="line">Map&lt;MatrixXf,<span class="number">0</span>,OuterStride&lt;<span class="number">3</span>&gt; &gt;  <span class="built_in">m2</span>(data,<span class="number">2</span>,<span class="number">3</span>);                    <span class="comment">// both lines     |1,4,7|</span></span><br><span class="line">Map&lt;MatrixXf,<span class="number">0</span>,OuterStride&lt;&gt; &gt;   <span class="built_in">m1</span>(data,<span class="number">2</span>,<span class="number">3</span>,OuterStride&lt;&gt;(<span class="number">3</span>));   <span class="comment">// are equal to:  |2,5,8|</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="算术运算"><a href="#算术运算" class="headerlink" title="算术运算"></a>算术运算</h2><p><strong>加减</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat3 = mat1 + mat2;           mat3 += mat1;</span><br><span class="line">mat3 = mat1 - mat2;           mat3 -= mat1;</span><br></pre></td></tr></table></figure>
+
+<p><strong>数乘</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat3 = mat1 * s1;             mat3 *= s1;           mat3 = s1 * mat1;</span><br><span class="line">mat3 = mat1 / s1;             mat3 /= s1;</span><br></pre></td></tr></table></figure>
+
+<p><strong>矩阵/向量乘法</strong>*</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">col2 = mat1 * col1;</span><br><span class="line">row2 = row1 * mat1;           row1 *= mat1;</span><br><span class="line">mat3 = mat1 * mat2;           mat3 *= mat1;</span><br></pre></td></tr></table></figure>
+
+<p><strong>转置 伴随</strong>* </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat1 = mat2.<span class="built_in">transpose</span>();      mat1.<span class="built_in">transposeInPlace</span>();</span><br><span class="line">mat1 = mat2.<span class="built_in">adjoint</span>();        mat1.<span class="built_in">adjointInPlace</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#adfd32bf5fcf6ee603c924dde9bf7bc39">点</a>乘 内积</strong>*</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scalar = vec1.<span class="built_in">dot</span>(vec2);</span><br><span class="line">scalar = col1.<span class="built_in">adjoint</span>() * col2;</span><br><span class="line">scalar = (col1.<span class="built_in">adjoint</span>() * col2).<span class="built_in">value</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong>外积</strong>* </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mat = col1 * col2.<span class="built_in">transpose</span>();</span><br></pre></td></tr></table></figure>
+
+<p><strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a196c4ec3c8ffdf5bda45d0f617154975">范数</a> <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a5cf2fd4c57e59604fd4116158fd34308">归一化</a></strong>* </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scalar = vec1.<span class="built_in">norm</span>();         scalar = vec1.<span class="built_in">squaredNorm</span>()</span><br><span class="line">vec2 = vec1.<span class="built_in">normalized</span>();     vec1.<span class="built_in">normalize</span>(); <span class="comment">// inplace</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Geometry__Module.html#ga0024b44eca99cb7135887c2aaf319d28">叉乘</a></strong>*</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Eigen/Geometry&gt;</span></span></span><br><span class="line">vec3 = vec1.<span class="built_in">cross</span>(vec2);</span><br></pre></td></tr></table></figure>
+
+<h2 id="元素优先的数组运算"><a href="#元素优先的数组运算" class="headerlink" title="元素优先的数组运算"></a>元素优先的数组运算</h2><p>除了上述运算符外, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a> 还支持许多元素运算符和函数. 它们中的大多数在数组世界**中毫无疑问是有意义的. 以下操作符可以用于数组, 也可以通过 <code>.array()</code> 用于向量和矩阵:</p>
+<p><strong>算术运算符</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array1 * array2     array1 / array2     array1 *= array2    array1 /= array2</span><br><span class="line">array1 + scalar     array1 - scalar     array1 += scalar    array1 -= scalar</span><br></pre></td></tr></table></figure>
+
+<p><strong>比较</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array1 &lt; array2     array1 &gt; array2     array1 &lt; scalar     array1 &gt; scalar</span><br><span class="line">array1 &lt;= array2    array1 &gt;= array2    array1 &lt;= scalar    array1 &gt;= scalar</span><br><span class="line">array1 == array2    array1 != array2    array1 == scalar    array1 != scalar</span><br><span class="line">array1.<span class="built_in">min</span>(array2)  array1.<span class="built_in">max</span>(array2)  array1.<span class="built_in">min</span>(scalar)  array1.<span class="built_in">max</span>(scalar)</span><br></pre></td></tr></table></figure>
+
+<p><strong>三角函数, 幂函数和其它函数以及类 STL 的变体</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">array1.<span class="built_in">abs2</span>()</span><br><span class="line">array1.<span class="built_in">abs</span>()                  <span class="built_in">abs</span>(array1)</span><br><span class="line">array1.<span class="built_in">sqrt</span>()                 <span class="built_in">sqrt</span>(array1)</span><br><span class="line">array1.<span class="built_in">log</span>()                  <span class="built_in">log</span>(array1)</span><br><span class="line">array1.<span class="built_in">log10</span>()                <span class="built_in">log10</span>(array1)</span><br><span class="line">array1.<span class="built_in">exp</span>()                  <span class="built_in">exp</span>(array1)</span><br><span class="line">array1.<span class="built_in">pow</span>(array2)            <span class="built_in">pow</span>(array1,array2)</span><br><span class="line">array1.<span class="built_in">pow</span>(scalar)            <span class="built_in">pow</span>(array1,scalar)</span><br><span class="line">                              <span class="built_in">pow</span>(scalar,array2)</span><br><span class="line">array1.<span class="built_in">square</span>()</span><br><span class="line">array1.<span class="built_in">cube</span>()</span><br><span class="line">array1.<span class="built_in">inverse</span>()</span><br><span class="line"> </span><br><span class="line">array1.<span class="built_in">sin</span>()                  <span class="built_in">sin</span>(array1)</span><br><span class="line">array1.<span class="built_in">cos</span>()                  <span class="built_in">cos</span>(array1)</span><br><span class="line">array1.<span class="built_in">tan</span>()                  <span class="built_in">tan</span>(array1)</span><br><span class="line">array1.<span class="built_in">asin</span>()                 <span class="built_in">asin</span>(array1)</span><br><span class="line">array1.<span class="built_in">acos</span>()                 <span class="built_in">acos</span>(array1)</span><br><span class="line">array1.<span class="built_in">atan</span>()                 <span class="built_in">atan</span>(array1)</span><br><span class="line">array1.<span class="built_in">sinh</span>()                 <span class="built_in">sinh</span>(array1)</span><br><span class="line">array1.<span class="built_in">cosh</span>()                 <span class="built_in">cosh</span>(array1)</span><br><span class="line">array1.<span class="built_in">tanh</span>()                 <span class="built_in">tanh</span>(array1)</span><br><span class="line">array1.<span class="built_in">arg</span>()                  <span class="built_in">arg</span>(array1)</span><br><span class="line"> </span><br><span class="line">array1.<span class="built_in">floor</span>()                <span class="built_in">floor</span>(array1)</span><br><span class="line">array1.<span class="built_in">ceil</span>()                 <span class="built_in">ceil</span>(array1)</span><br><span class="line">array1.<span class="built_in">round</span>()                <span class="built_in">round</span>(aray1)</span><br><span class="line"> </span><br><span class="line">array1.<span class="built_in">isFinite</span>()             <span class="built_in">isfinite</span>(array1)</span><br><span class="line">array1.<span class="built_in">isInf</span>()                <span class="built_in">isinf</span>(array1)</span><br><span class="line">array1.<span class="built_in">isNaN</span>()                <span class="built_in">isnan</span>(array1)</span><br></pre></td></tr></table></figure>
+
+<p>以下元素操作符可用于所有类型的表达式(矩阵, 向量和数组), 以及实数或复数标量类型:</p>
+<p><strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a></strong> API  ——————- 类STL API**</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat1.<span class="built_in">real</span>()          <span class="built_in">real</span>(array1)    <span class="comment">// 读写, 对实表达式无操作</span></span><br><span class="line">mat1.<span class="built_in">imag</span>()          <span class="built_in">imag</span>(array1)    <span class="comment">// 对实表达式只读, 对复表达式读写</span></span><br><span class="line">mat1.<span class="built_in">conjugate</span>()     <span class="built_in">conj</span>(array1)    <span class="comment">// 对实表达式无操作</span></span><br></pre></td></tr></table></figure>
+
+<p>通过以下 <code>cwise</code>* 方法, 可以很容易地获得一些矩阵和向量的元素优先运算符:</p>
+<p><strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Matrix.html">Matrix</a> API</strong> *</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mat1.<span class="built_in">cwiseMin</span>(mat2)         mat1.<span class="built_in">cwiseMin</span>(scalar)</span><br><span class="line">mat1.<span class="built_in">cwiseMax</span>(mat2)         mat1.<span class="built_in">cwiseMax</span>(scalar)</span><br><span class="line">mat1.<span class="built_in">cwiseAbs2</span>()</span><br><span class="line">mat1.<span class="built_in">cwiseAbs</span>()</span><br><span class="line">mat1.<span class="built_in">cwiseSqrt</span>()</span><br><span class="line">mat1.<span class="built_in">cwiseInverse</span>()</span><br><span class="line">mat1.<span class="built_in">cwiseProduct</span>(mat2)</span><br><span class="line">mat1.<span class="built_in">cwiseQuotient</span>(mat2)</span><br><span class="line">mat1.<span class="built_in">cwiseEqual</span>(mat2)       mat1.<span class="built_in">cwiseEqual</span>(scalar)</span><br><span class="line">mat1.<span class="built_in">cwiseNotEqual</span>(mat2)</span><br></pre></td></tr></table></figure>
+
+<p>通过 <strong><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Array.html">Array</a> 转换</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">min</span>(mat2.<span class="built_in">array</span>())    mat1.<span class="built_in">array</span>().<span class="built_in">min</span>(scalar)</span><br><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">max</span>(mat2.<span class="built_in">array</span>())    mat1.<span class="built_in">array</span>().<span class="built_in">max</span>(scalar)</span><br><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">abs2</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">abs</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">sqrt</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>().<span class="built_in">inverse</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>() * mat2.<span class="built_in">array</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>() / mat2.<span class="built_in">array</span>()</span><br><span class="line">mat1.<span class="built_in">array</span>() == mat2.<span class="built_in">array</span>()      mat1.<span class="built_in">array</span>() == scalar</span><br><span class="line">mat1.<span class="built_in">array</span>() != mat2.<span class="built_in">array</span>()</span><br></pre></td></tr></table></figure>
+
+<p>这两个 API 之间的主要区别在于, 基于 <code>cwise</code>* 方法的 API 返回矩阵世界中的表达式, 而第二个 API (基于<code>.array()</code>) 返回数组表达式. 回顾一下, <code>.array()</code> 没有成本, 它只改变可用的 API 和数据的解释.</p>
+<p>使用 <code>DenseBase::unaryExpr</code> 和 <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/utility/functional/ptr_fun"><code>std::ptr_fun</code></a> (c++03, 在较新的c++版本中已弃用或删除), <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/utility/functional/ref"><code>std::ref</code></a> (c++11) 或 <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/cpp/language/lambda"><code>lambdas</code></a> (c++11) 来应用任何用户定义的函数 <code>foo</code> 也非常简单:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat1.<span class="built_in">unaryExpr</span>(std::<span class="built_in">ptr_fun</span>(foo));</span><br><span class="line">mat1.<span class="built_in">unaryExpr</span>(std::<span class="built_in">ref</span>(foo));</span><br><span class="line">mat1.<span class="built_in">unaryExpr</span>([](<span class="keyword">double</span> x) &#123; <span class="keyword">return</span> <span class="built_in">foo</span>(x); &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>请注意, 不可能将原始函数指针传递给 <code>unaryExpr</code>, 因此请像上面所示的那样进行转换.</p>
+<h2 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h2><p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/namespaceEigen.html">Eigen</a> 提供了一些简化方法, 例如: <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a0739f9c868c331031c7810e21838dcb2">minCoeff()</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a7e6987d106f1cca3ac6ab36d288cc8e1">maxCoeff()</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#addd7080d5c202795820e361768d0140c">sum()</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#af119d9a4efe5a15cd83c1ccdf01b3a4f">prod()</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a544b609f65eb2bd3e368b3fc2d79479e">trace()</a> *, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a196c4ec3c8ffdf5bda45d0f617154975">norm()</a> *, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#ac8da566526419f9742a6c471bbd87e0a">squaredNorm()</a> *, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#ae42ab60296c120e9f45ce3b44e1761a4">all()</a> , 和 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#abfbf4cb72dd577e62fbe035b1c53e695">any()</a> . 所有的简化算符都可以按照 矩阵优先, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a1c0e1b6067ec1de6cb8799da55aa7d30">列优先</a> 或 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a6daa3a3156ca0e0722bf78638e1c7f28">行优先</a> 方式进行. 用法示例:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//       5 3 1</span></span><br><span class="line"><span class="comment">// mat = 2 7 8</span></span><br><span class="line"><span class="comment">//       9 4 6</span></span><br><span class="line">mat.<span class="built_in">minCoeff</span>();              <span class="comment">// 1</span></span><br><span class="line">mat.<span class="built_in">colwise</span>().<span class="built_in">minCoeff</span>();    <span class="comment">// 2 3 1</span></span><br><span class="line">mat.<span class="built_in">rowwise</span>().<span class="built_in">minCoeff</span>();    <span class="comment">// [1 2 4]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#aa28152ba4a42b2d112e5fec5469ec4c1"><code>minCoeff</code></a> 和 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a3780b7a9cd184d0b4f3ea797eba9e2b3"><code>maxCoeff</code></a> 的特殊版本:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i, j;</span><br><span class="line">s = vector.<span class="built_in">minCoeff</span>(&amp;i);        <span class="comment">// s == vector[i]</span></span><br><span class="line">s = matrix.<span class="built_in">maxCoeff</span>(&amp;i, &amp;j);    <span class="comment">// s == matrix(i,j)</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__Core__Module.html#ga4abe6022fbef6cda264ef2947a2be1a9"><code>all()</code></a> 和 <code>any()</code> 的典型用例:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>((array1 &gt; <span class="number">0</span>).<span class="built_in">all</span>()) ...      <span class="comment">// 如果 array1 的所有参数都大于 0 ...</span></span><br><span class="line"><span class="keyword">if</span>((array1 &lt; array2).<span class="built_in">any</span>()) ... <span class="comment">// 如果存在一对 i,j 使得 array1(i,j) &lt; array2(i,j) ...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="子矩阵"><a href="#子矩阵" class="headerlink" title="子矩阵"></a>子矩阵</h2><p>Eigen 3.4 为子矩阵提供了一个改进的 API, 包括对数组的<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__TutorialSlicingIndexing.html">切片和索引</a>:</p>
+<p><strong>对矩阵(或数组)的<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html">列</a>或<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__QuickRefPage.html">行</a>进行读写访问:</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mat1.<span class="built_in">row</span>(i) = mat2.<span class="built_in">col</span>(j);</span><br><span class="line">mat1.<span class="built_in">col</span>(j1).<span class="built_in">swap</span>(mat1.<span class="built_in">col</span>(j2));</span><br></pre></td></tr></table></figure>
+
+<p><strong>对子向量的读写访问:</strong></p>
+<p>默认版本 ——————— 当规格在编译时已知的优化版本</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec1.<span class="built_in">head</span>(n)         vec1.head&lt;n&gt;()        <span class="comment">// 前 n 个元素</span></span><br><span class="line">vec1.<span class="built_in">tail</span>(n)         vec1.tail&lt;n&gt;()        <span class="comment">// 后 n 个元素</span></span><br><span class="line">vec1.<span class="built_in">segment</span>(pos,n)  vec1.segment&lt;n&gt;(pos)  <span class="comment">// 范围 [pos:pos+n-1] 的n个元素</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>对子矩阵的读写访问:</strong></p>
+<p>默认版本 ——————— 当规格在编译时已知的优化版本</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从位置 (i,j) 开始的 rows x cols 子矩阵</span></span><br><span class="line">mat1.<span class="built_in">block</span>(i,j,rows,cols)          mat1.block&lt;rows,cols&gt;(i,j)</span><br><span class="line"><span class="comment">// 四个角落之一的 rows x cols 子矩阵</span></span><br><span class="line">mat1.<span class="built_in">topLeftCorner</span>(rows,cols)      mat1.topLeftCorner&lt;rows,cols&gt;()</span><br><span class="line">mat1.<span class="built_in">topRightCorner</span>(rows,cols)     mat1.topRightCorner&lt;rows,cols&gt;()</span><br><span class="line">mat1.<span class="built_in">bottomLeftCorner</span>(rows,cols)   mat1.bottomLeftCorner&lt;rows,cols&gt;()</span><br><span class="line">mat1.<span class="built_in">bottomRightCorner</span>(rows,cols)  mat1.bottomRightCorner&lt;rows,cols&gt;()</span><br><span class="line"><span class="comment">// 当分块占据两个角落时的特殊版本 block()</span></span><br><span class="line">mat1.<span class="built_in">topRows</span>(rows)                 mat1.topRows&lt;rows&gt;()</span><br><span class="line">mat1.<span class="built_in">bottomRows</span>(rows)              mat1.bottomRows&lt;rows&gt;()</span><br><span class="line">mat1.<span class="built_in">leftCols</span>(cols)                mat1.leftCols&lt;cols&gt;()</span><br><span class="line">mat1.<span class="built_in">rightCols</span>(cols)               mat1.rightCols&lt;cols&gt;()</span><br></pre></td></tr></table></figure>
+
+<h2 id="其它运算"><a href="#其它运算" class="headerlink" title="其它运算"></a>其它运算</h2><p>Eigen 3.4 支持一个新的 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__TutorialReshape.html">Reshape</a> API.</p>
+<h3 id="反转"><a href="#反转" class="headerlink" title="反转"></a>反转</h3><p>向量, 矩阵的行与列都可以进行反转 (参见 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a38ea394036d8b096abf322469c80198f">DenseBase::reverse()</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#adb8045155ea45f7961fc2a5170e1d921">DenseBase::reverseInPlace()</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1VectorwiseOp.html#ab8caf5367e2bd636536c8a0e0c89fe15">VectorwiseOp::reverse()</a>).</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vec.<span class="built_in">reverse</span>()           mat.<span class="built_in">colwise</span>().<span class="built_in">reverse</span>()   mat.<span class="built_in">rowwise</span>().<span class="built_in">reverse</span>()</span><br><span class="line">vec.<span class="built_in">reverseInPlace</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p>向量, 矩阵的行与列可以在任何方向上进行复制 (参见 <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1DenseBase.html#a60dadfe80b813d808e91e4521c722a8e">DenseBase::replicate()</a>,  <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1VectorwiseOp.html#a5f0c8dc9e9c4aeaa2057f15800f5c18c">VectorwiseOp::replicate()</a>).</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vec.<span class="built_in">replicate</span>(times)                                          vec.replicate&lt;Times&gt;</span><br><span class="line">mat.<span class="built_in">replicate</span>(vertical_times, horizontal_times)               mat.replicate&lt;VerticalTimes, HorizontalTimes&gt;()</span><br><span class="line">mat.<span class="built_in">colwise</span>().<span class="built_in">replicate</span>(vertical_times, horizontal_times)     mat.<span class="built_in">colwise</span>().replicate&lt;VerticalTimes, HorizontalTimes&gt;()</span><br><span class="line">mat.<span class="built_in">rowwise</span>().<span class="built_in">replicate</span>(vertical_times, horizontal_times)     mat.<span class="built_in">rowwise</span>().replicate&lt;VerticalTimes, HorizontalTimes&gt;()</span><br></pre></td></tr></table></figure>
+
+<h2 id="对角-三角-自伴矩阵"><a href="#对角-三角-自伴矩阵" class="headerlink" title="对角, 三角, 自伴矩阵"></a>对角, 三角, 自伴矩阵</h2><p>(矩阵世界*)</p>
+<h3 id="对角矩阵"><a href="#对角矩阵" class="headerlink" title="对角矩阵"></a>对角矩阵</h3><p>通过向量构造<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a14235b62c90f93fe910070b4743782d0">对角矩阵</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mat1 = vec1.<span class="built_in">asDiagonal</span>();</span><br></pre></td></tr></table></figure>
+
+<p>声明一个对角矩阵</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DiagonalMatrix&lt;Scalar,SizeAtCompileTime&gt; diag1(size);</span><br><span class="line">diag1.<span class="built_in">diagonal</span>() = vector;</span><br></pre></td></tr></table></figure>
+
+<p>作为向量访问矩阵的<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a2d641a5804fff1c3db99a84ea93ecb63">对角线</a>和<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1MatrixBase.html#a3af2b2e5d1fc3fd4a15750b2f9153762">上/下对角</a> (读/写)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vec1 = mat1.<span class="built_in">diagonal</span>();        mat1.<span class="built_in">diagonal</span>() = vec1;      <span class="comment">// main diagonal</span></span><br><span class="line">vec1 = mat1.<span class="built_in">diagonal</span>(+n);      mat1.<span class="built_in">diagonal</span>(+n) = vec1;    <span class="comment">// n-th super diagonal</span></span><br><span class="line">vec1 = mat1.<span class="built_in">diagonal</span>(-n);      mat1.<span class="built_in">diagonal</span>(-n) = vec1;    <span class="comment">// n-th sub diagonal</span></span><br><span class="line">vec1 = mat1.diagonal&lt;<span class="number">1</span>&gt;();     mat1.diagonal&lt;<span class="number">1</span>&gt;() = vec1;   <span class="comment">// first super diagonal</span></span><br><span class="line">vec1 = mat1.diagonal&lt;<span class="number">-2</span>&gt;();    mat1.diagonal&lt;<span class="number">-2</span>&gt;() = vec1;  <span class="comment">// second sub diagonal</span></span><br></pre></td></tr></table></figure>
+
+<p>优化的乘积和求逆</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mat3  = scalar * diag1 * mat1;</span><br><span class="line">mat3 += scalar * mat1 * vec1.<span class="built_in">asDiagonal</span>();</span><br><span class="line">mat3 = vec1.<span class="built_in">asDiagonal</span>().<span class="built_in">inverse</span>() * mat1</span><br><span class="line">mat3 = mat1 * diag1.<span class="built_in">inverse</span>()</span><br></pre></td></tr></table></figure>
+
+<h3 id="三角矩阵"><a href="#三角矩阵" class="headerlink" title="三角矩阵"></a>三角矩阵</h3><p><a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1TriangularView.html">TriangularView</a> 给出了密集矩阵三角部分的方法, 并允许对其执行优化操作. 相对的三角部分永远不会被引用, 可以用来存储其他信息.</p>
+<blockquote>
+<p><strong>注意:</strong> 如果 <code>.triangularView()</code> 模板成员函数用于依赖模板参数的类型的对象, 则需要 <code>template</code> 关键字; 详细信息请参见<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/TopicTemplateKeyword.html">C++中的模板和类型名关键字</a>.</p>
+</blockquote>
+<p>引用带有可选单位或空对角线的三角矩阵 (读/写):</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m.triangularView&lt;Xxx&gt;()</span><br></pre></td></tr></table></figure>
+
+<p><code>Xxx</code> = <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cdafca2ccebb604f171656deb53e8c083c1">Upper</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cdaf581029282d421eee5aae14238c6f749">Lower</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cda7b37877e0b9b0df28c9c2b669a633265">StrictlyUpper</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cda2424988b6fca98be70b595632753ba81">StrictlyLower</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cdadd28224d7ea92689930be73c1b50b0ad">UnitUpper</a>, <a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/group__enums.html#gga39e3366ff5554d731e7dc8bb642f83cda8f40b928c10a71ba03e5f75ad2a72fda">UnitLower</a>.</p>
+<p>写入一个特定的三角部分 (只计算参考的三角部分):</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m1.triangularView&lt;Eigen::Lower&gt;() = m2 + m3</span><br></pre></td></tr></table></figure>
+
+<p>转换为一个稠密矩阵, 使对三角形部分为零:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m2 = m1.triangularView&lt;Eigen::UnitUpper&gt;()</span><br></pre></td></tr></table></figure>
+
+<p>乘积:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m3 += s1 * m1.<span class="built_in">adjoint</span>().triangularView&lt;Eigen::UnitUpper&gt;() * m2</span><br><span class="line">m3 -= s1 * m2.<span class="built_in">conjugate</span>() * m1.<span class="built_in">adjoint</span>().triangularView&lt;Eigen::Lower&gt;()</span><br></pre></td></tr></table></figure>
+
+<p>求解线性方程:</p>
+<p>$M_2:=L^{-1}_1M_2$,    $M_3:=L^{*-1}_1M_3$,    $M_4:=M_4U^{-1}_1$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1.triangularView&lt;Eigen::UnitLower&gt;().<span class="built_in">solveInPlace</span>(M2)</span><br><span class="line">L1.triangularView&lt;Eigen::Lower&gt;().<span class="built_in">adjoint</span>().<span class="built_in">solveInPlace</span>(M3)</span><br><span class="line">U1.triangularView&lt;Eigen::Upper&gt;().solveInPlace&lt;OnTheRight&gt;(M4)</span><br></pre></td></tr></table></figure>
+
+<h3 id="对称-自伴矩阵"><a href="#对称-自伴矩阵" class="headerlink" title="对称/自伴矩阵"></a>对称/自伴矩阵</h3><p>就像三角矩阵一样, 你可以参考一个方阵的任何三角部分, 将其视为一个自伴矩阵, 并进行特殊的优化操作. 同样, 相对的三角部分永远不会被引用, 可以用来存储其他信息.</p>
+<blockquote>
+<p><strong>注意:</strong> 如果 <code>.selfadjointView()</code> 模板成员函数用于依赖模板参数的类型的对象, 则需要 <code>template</code> 关键字; 详细信息请参见<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/TopicTemplateKeyword.html">C++中的模板和类型名关键字</a>.</p>
+</blockquote>
+<p>转换为密集矩阵:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m2 = m.selfadjointView&lt;Eigen::Lower&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>与另一个一般矩阵或向量的<a target="_blank" rel="noopener" href="https://eigen.tuxfamily.org/dox/classEigen_1_1Product.html">乘积</a>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m3  = s1 * m1.<span class="built_in">conjugate</span>().selfadjointView&lt;Eigen::Upper&gt;() * m3;</span><br><span class="line">m3 -= s1 * m3.<span class="built_in">adjoint</span>() * m1.selfadjointView&lt;Eigen::Lower&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>Rank 1 和 rank K 更新:</p>
+<p>$upper(M_1)\enspace+\negthinspace=s_1M_2M^*_2$,    $lower(M_1)\enspace-\negthinspace=M^*_2M_2$.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">M1.selfadjointView&lt;Eigen::Upper&gt;().<span class="built_in">rankUpdate</span>(M2,s1);</span><br><span class="line">M1.selfadjointView&lt;Eigen::Lower&gt;().<span class="built_in">rankUpdate</span>(M2.<span class="built_in">adjoint</span>(),<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Rank 2 更新:</p>
+<p>$(M\enspace+\negthinspace=suv^*+svu^*)$.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M.selfadjointView&lt;Eigen::Upper&gt;().<span class="built_in">rankUpdate</span>(u,v,s);</span><br></pre></td></tr></table></figure>
+
+<p>求解线性方程:</p>
+<p>$(M_2:=M_1^{-1}M_2)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// via a standard Cholesky factorization</span></span><br><span class="line">m2 = m1.selfadjointView&lt;Eigen::Upper&gt;().<span class="built_in">llt</span>().<span class="built_in">solve</span>(m2);</span><br><span class="line"><span class="comment">// via a Cholesky factorization with pivoting</span></span><br><span class="line">m2 = m1.selfadjointView&lt;Eigen::Lower&gt;().<span class="built_in">ldlt</span>().<span class="built_in">solve</span>(m2);</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2023/05/01/eigen-guide/" title="Eigen 快速参考指南">http://shawshai.cn/2023/05/01/eigen-guide/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Eigen/" rel="tag"># Eigen</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/04/24/mujoco-config/" rel="prev" title="MuJoCo 配置过程">
+      <i class="fa fa-chevron-left"></i> MuJoCo 配置过程
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">模块与头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84-%E7%9F%A9%E9%98%B5%E5%92%8C%E5%90%91%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">数组, 矩阵和向量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%9F%A9%E9%98%B5%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">基本矩阵操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">预定义矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%A4%96%E9%83%A8%E6%95%B0%E7%BB%84"><span class="nav-number">2.3.</span> <span class="nav-text">映射外部数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">算术运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%B4%A0%E4%BC%98%E5%85%88%E7%9A%84%E6%95%B0%E7%BB%84%E8%BF%90%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">元素优先的数组运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">简化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%9F%A9%E9%98%B5"><span class="nav-number">6.</span> <span class="nav-text">子矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E8%BF%90%E7%AE%97"><span class="nav-number">7.</span> <span class="nav-text">其它运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC"><span class="nav-number">7.1.</span> <span class="nav-text">反转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6"><span class="nav-number">7.2.</span> <span class="nav-text">复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%A7%92-%E4%B8%89%E8%A7%92-%E8%87%AA%E4%BC%B4%E7%9F%A9%E9%98%B5"><span class="nav-number">8.</span> <span class="nav-text">对角, 三角, 自伴矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5"><span class="nav-number">8.1.</span> <span class="nav-text">对角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E7%9F%A9%E9%98%B5"><span class="nav-number">8.2.</span> <span class="nav-text">三角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0-%E8%87%AA%E4%BC%B4%E7%9F%A9%E9%98%B5"><span class="nav-number">8.3.</span> <span class="nav-text">对称&#x2F;自伴矩阵</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">108k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : 'd09d214e413c6494b647468ac861c8a9',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

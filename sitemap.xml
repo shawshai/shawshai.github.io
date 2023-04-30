@@ -2,14 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2023/05/01/eigen-guide/</loc>
+    
+    <lastmod>2023-04-30T18:46:52.147Z</lastmod>
+    
+    <date>1682878311000</date>
+    <title>Eigen 快速参考指南 | 少帥的博客</title>
+    
+    <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2023/04/24/mujoco-config/</loc>
     
-    <lastmod>2023-04-23T17:47:11.696Z</lastmod>
+    <lastmod>2023-04-26T08:57:18.850Z</lastmod>
     
     <date>1682271261000</date>
     <title>MuJoCo 配置过程 | 少帥的博客</title>
     
     <desc>MuJoCo 环境配置过程.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2022/03/13/win2sublinux/</loc>
+    
+    <lastmod>2023-04-26T08:57:18.850Z</lastmod>
+    
+    <date>1647139032000</date>
+    <title>Windows10 与子系统 Linux Ubuntu 的文件访问 | 少帥的博客</title>
+    
+    <desc>Win10 与子系统 Ubuntu 的文件互访</desc>
   </url>
   
   <url>
@@ -54,17 +76,6 @@
     <title>博客搭建过程 | 少帥的博客</title>
     
     <desc>记录博客网站的搭建过程。</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2022/03/13/win2sublinux/</loc>
-    
-    <lastmod>2022-03-13T05:22:43.269Z</lastmod>
-    
-    <date>1647139032000</date>
-    <title>Windows10 与子系统 Linux Ubuntu 的文件访问 | 少帥的博客</title>
-    
-    <desc>Win10 与子系统 Ubuntu 的文件互访</desc>
   </url>
   
   <url>
