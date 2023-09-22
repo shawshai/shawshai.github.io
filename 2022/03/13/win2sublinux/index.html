@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
 
   </li>
   </ul>
@@ -229,9 +229,6 @@
 
 
 <span id="more"></span>
-
-
-
 <p>Windows10 出了子系统 Linux Ubuntu，喜大普奔的好消息。</p>
 <p>Win10 系统可以通过 Microsoft Store 安装子系统 Ubuntu 18.04 LTS，二者是两个互相独立的系统。而子系统 Ubuntu 由于依托于主系统 Windows，其全部文件一定能在主系统 Windows 中找到。</p>
 <p>首先附上参考链接：</p>
@@ -241,10 +238,8 @@
 </blockquote>
 <h1 id="在-Win10-中访问子系统-Ubuntu-中的文件"><a href="#在-Win10-中访问子系统-Ubuntu-中的文件" class="headerlink" title="在 Win10 中访问子系统 Ubuntu 中的文件"></a>在 Win10 中访问子系统 Ubuntu 中的文件</h1><p>子系统 Ubuntu 在 Win10 中的 home 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home</span><br></pre></td></tr></table></figure>
-
 <p>子系统 Ubuntu 在 Win10 中的根目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\root</span><br></pre></td></tr></table></figure>
-
 <hr>
 <p>Win10 更新之后，再也不必这么麻烦了，直接打开文件资源管理器就可以看到子系统 Ubuntu 的文件：</p>
 <div style="width:80%;margin:auto"><img src="/2022/03/13/win2sublinux/ubuntu.png" class="" title="ubuntu"></div>
@@ -252,10 +247,8 @@
 <h1 id="在子系统-Ubuntu-中访问-Win10-中的文件"><a href="#在子系统-Ubuntu-中访问-Win10-中的文件" class="headerlink" title="在子系统 Ubuntu 中访问 Win10 中的文件"></a>在子系统 Ubuntu 中访问 Win10 中的文件</h1><p>在子系统 Ubuntu 中，Win10 的硬盘分区均在 <code>\mnt</code> 目录下。</p>
 <p>Ubuntu 中访问 Win10 的 home 目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/c/Users/Win10用户名</span><br></pre></td></tr></table></figure>
-
 <p>Ubuntu 中访问 Win10 的 e 盘目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/e</span><br></pre></td></tr></table></figure>
-
 <h1 id="实现系统间文件互传"><a href="#实现系统间文件互传" class="headerlink" title="实现系统间文件互传"></a>实现系统间文件互传</h1><p>显然，两个系统间的文件互传，根本不需要任何特殊方法。</p>
 <p>在 Win10 中找到子系统文件所在目录，直接对文件（夹）复制粘贴即可。</p>
 <p>在子系统 Ubuntu 中也可以进行同样的操作。</p>
@@ -377,7 +370,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -438,7 +431,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">117k</span>
+    <span title="站点总字数">162k</span>
 </div>
 
         
