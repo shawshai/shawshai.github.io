@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
+    
+    <lastmod>2023-09-23T13:07:31.881Z</lastmod>
+    
+    <date>1619271499000</date>
+    <title>博客搭建过程 | 少帥的博客</title>
+    
+    <desc>记录博客网站的搭建过程。</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2022/03/13/win2sublinux/</loc>
     
     <lastmod>2023-09-23T10:29:01.053Z</lastmod>
@@ -164,17 +175,6 @@
     <title>dm_control 教程 | 少帥的博客</title>
     
     <desc>本文为 dm_control 教程的简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
-    
-    <lastmod>2023-04-13T14:54:23.856Z</lastmod>
-    
-    <date>1619271499000</date>
-    <title>博客搭建过程 | 少帥的博客</title>
-    
-    <desc>记录博客网站的搭建过程。</desc>
   </url>
   
   <url>
