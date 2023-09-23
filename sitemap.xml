@@ -2,6 +2,105 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2022/03/13/win2sublinux/</loc>
+    
+    <lastmod>2023-09-23T10:29:01.053Z</lastmod>
+    
+    <date>1647139032000</date>
+    <title>Windows10 与子系统 Linux Ubuntu 的文件访问 | 少帥的博客</title>
+    
+    <desc>Win10 与子系统 Ubuntu 的文件互访</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2021/05/07/qt-env-config/</loc>
+    
+    <lastmod>2023-09-23T10:28:17.780Z</lastmod>
+    
+    <date>1620361171000</date>
+    <title>Qt 环境配置 | 少帥的博客</title>
+    
+    <desc>配置Qt+VS环境。</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2021/06/08/neper/</loc>
+    
+    <lastmod>2023-09-23T10:27:37.466Z</lastmod>
+    
+    <date>1623130285000</date>
+    <title>Neper 安装与配置过程 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/04/13/mujoco-tutorial/</loc>
+    
+    <lastmod>2023-09-23T10:27:10.629Z</lastmod>
+    
+    <date>1681385442000</date>
+    <title>MuJoCo 教程 | 少帥的博客</title>
+    
+    <desc>本文为 MuJoCo 官方教程的简单翻译.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/04/17/lqr-tutorial/</loc>
+    
+    <lastmod>2023-09-23T10:26:48.922Z</lastmod>
+    
+    <date>1681714639000</date>
+    <title>LQR 教程 | 少帥的博客</title>
+    
+    <desc>本文为 MuJoCo 官方 LQR 教程的简单翻译.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/04/24/mujoco-config/</loc>
+    
+    <lastmod>2023-09-23T10:26:20.755Z</lastmod>
+    
+    <date>1682271261000</date>
+    <title>MuJoCo 配置过程 | 少帥的博客</title>
+    
+    <desc>MuJoCo 环境配置过程.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/05/01/eigen-guide/</loc>
+    
+    <lastmod>2023-09-23T10:24:17.442Z</lastmod>
+    
+    <date>1682878311000</date>
+    <title>Eigen 快速参考指南 | 少帥的博客</title>
+    
+    <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-5/</loc>
+    
+    <lastmod>2023-09-23T10:23:14.269Z</lastmod>
+    
+    <date>1695448648000</date>
+    <title>仿人机器人 - 5 全身运动模式生成 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
+    
+    <lastmod>2023-09-23T10:22:25.538Z</lastmod>
+    
+    <date>1695444267000</date>
+    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2023/09/23/IHR-R/</loc>
     
     <lastmod>2023-09-23T07:33:43.123Z</lastmod>
@@ -19,28 +118,6 @@
     
     <date>1695451855000</date>
     <title>仿人机器人 - 6 动力学仿真 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-5/</loc>
-    
-    <lastmod>2023-09-23T06:46:48.399Z</lastmod>
-    
-    <date>1695448648000</date>
-    <title>仿人机器人 - 5 全身运动模式生成 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
-    
-    <lastmod>2023-09-23T05:52:04.736Z</lastmod>
-    
-    <date>1695444267000</date>
-    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
     
     <desc></desc>
   </url>
@@ -79,50 +156,6 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/2023/05/01/eigen-guide/</loc>
-    
-    <lastmod>2023-04-30T18:55:25.974Z</lastmod>
-    
-    <date>1682878311000</date>
-    <title>Eigen 快速参考指南 | 少帥的博客</title>
-    
-    <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/04/24/mujoco-config/</loc>
-    
-    <lastmod>2023-04-26T08:57:18.850Z</lastmod>
-    
-    <date>1682271261000</date>
-    <title>MuJoCo 配置过程 | 少帥的博客</title>
-    
-    <desc>MuJoCo 环境配置过程.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2022/03/13/win2sublinux/</loc>
-    
-    <lastmod>2023-04-26T08:57:18.850Z</lastmod>
-    
-    <date>1647139032000</date>
-    <title>Windows10 与子系统 Linux Ubuntu 的文件访问 | 少帥的博客</title>
-    
-    <desc>Win10 与子系统 Ubuntu 的文件互访</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/04/17/lqr-tutorial/</loc>
-    
-    <lastmod>2023-04-19T03:08:11.325Z</lastmod>
-    
-    <date>1681714639000</date>
-    <title>LQR 教程 | 少帥的博客</title>
-    
-    <desc>本文为 MuJoCo 官方 LQR 教程的简单翻译.</desc>
-  </url>
-  
-  <url>
     <loc>http://shawshai.cn/2023/04/17/dm-control-tutorial/</loc>
     
     <lastmod>2023-04-17T08:43:33.948Z</lastmod>
@@ -131,17 +164,6 @@
     <title>dm_control 教程 | 少帥的博客</title>
     
     <desc>本文为 dm_control 教程的简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/04/13/mujoco-tutorial/</loc>
-    
-    <lastmod>2023-04-17T07:32:27.541Z</lastmod>
-    
-    <date>1681385442000</date>
-    <title>MuJoCo 教程 | 少帥的博客</title>
-    
-    <desc>本文为 MuJoCo 官方教程的简单翻译.</desc>
   </url>
   
   <url>
@@ -178,17 +200,6 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/2021/06/08/neper/</loc>
-    
-    <lastmod>2021-06-08T14:31:08.174Z</lastmod>
-    
-    <date>1623130285000</date>
-    <title>Neper 安装与配置过程 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
     <loc>http://shawshai.cn/tags/</loc>
     
     <lastmod>2021-06-08T12:28:13.386Z</lastmod>
@@ -208,17 +219,6 @@
     <title>文章分类 | 少帥的博客</title>
     
     <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2021/05/07/qt-env-config/</loc>
-    
-    <lastmod>2021-06-08T12:28:13.384Z</lastmod>
-    
-    <date>1620361171000</date>
-    <title>Qt 环境配置 | 少帥的博客</title>
-    
-    <desc>配置Qt+VS环境。</desc>
   </url>
   
   <url>
