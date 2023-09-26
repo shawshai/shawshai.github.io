@@ -2,45 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shawshai.cn/2023/09/22/IHR-1/</loc>
+    <loc>http://shawshai.cn/2023/09/23/IHR-R/</loc>
     
-    <lastmod>2023-09-26T08:04:02.734Z</lastmod>
+    <lastmod>2023-09-26T08:19:57.266Z</lastmod>
     
-    <date>1695386721000</date>
-    <title>仿人机器人 - 1 引言 | 少帥的博客</title>
+    <date>1695453220000</date>
+    <title>仿人机器人 - 参考文献 | 少帥的博客</title>
     
-    <desc></desc>
+    <desc>为方便学习查看, 这里把原书的参考文献也搬运过来.</desc>
   </url>
   
   <url>
-    <loc>http://shawshai.cn/2023/09/22/IHR-2/</loc>
+    <loc>http://shawshai.cn/2023/09/23/IHR-6/</loc>
     
-    <lastmod>2023-09-26T08:03:49.060Z</lastmod>
+    <lastmod>2023-09-26T08:18:37.566Z</lastmod>
     
-    <date>1695394239000</date>
-    <title>仿人机器人 - 2 运动学 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-3/</loc>
-    
-    <lastmod>2023-09-26T08:03:29.923Z</lastmod>
-    
-    <date>1695442273000</date>
-    <title>仿人机器人 - 3 零力矩点与动力学 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
-    
-    <lastmod>2023-09-26T08:02:50.524Z</lastmod>
-    
-    <date>1695444267000</date>
-    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
+    <date>1695451855000</date>
+    <title>仿人机器人 - 6 动力学仿真 | 少帥的博客</title>
     
     <desc></desc>
   </url>
@@ -48,7 +26,7 @@
   <url>
     <loc>http://shawshai.cn/2023/09/23/IHR-5/</loc>
     
-    <lastmod>2023-09-26T08:00:46.186Z</lastmod>
+    <lastmod>2023-09-26T08:18:26.641Z</lastmod>
     
     <date>1695448648000</date>
     <title>仿人机器人 - 5 全身运动模式生成 | 少帥的博客</title>
@@ -57,12 +35,45 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-6/</loc>
+    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
     
-    <lastmod>2023-09-26T08:00:27.946Z</lastmod>
+    <lastmod>2023-09-26T08:18:09.242Z</lastmod>
     
-    <date>1695451855000</date>
-    <title>仿人机器人 - 6 动力学仿真 | 少帥的博客</title>
+    <date>1695444267000</date>
+    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-3/</loc>
+    
+    <lastmod>2023-09-26T08:17:44.454Z</lastmod>
+    
+    <date>1695442273000</date>
+    <title>仿人机器人 - 3 零力矩点与动力学 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/22/IHR-2/</loc>
+    
+    <lastmod>2023-09-26T08:17:31.620Z</lastmod>
+    
+    <date>1695394239000</date>
+    <title>仿人机器人 - 2 运动学 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/22/IHR-1/</loc>
+    
+    <lastmod>2023-09-26T08:17:15.741Z</lastmod>
+    
+    <date>1695386721000</date>
+    <title>仿人机器人 - 1 引言 | 少帥的博客</title>
     
     <desc></desc>
   </url>
@@ -164,17 +175,6 @@
     <title>Eigen 快速参考指南 | 少帥的博客</title>
     
     <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-R/</loc>
-    
-    <lastmod>2023-09-23T07:33:43.123Z</lastmod>
-    
-    <date>1695453220000</date>
-    <title>仿人机器人 - 参考文献 | 少帥的博客</title>
-    
-    <desc></desc>
   </url>
   
   <url>
