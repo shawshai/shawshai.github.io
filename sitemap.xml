@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/about/</loc>
+    
+    <lastmod>2024-03-10T15:31:42.098Z</lastmod>
+    
+    <date>1620361993000</date>
+    <title>关于我 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
     
     <lastmod>2023-10-21T08:08:36.795Z</lastmod>
@@ -217,17 +228,6 @@
     
     <date>1620361959000</date>
     <title>文章分类 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/about/</loc>
-    
-    <lastmod>2021-06-08T12:28:13.384Z</lastmod>
-    
-    <date>1620361993000</date>
-    <title>关于我 | 少帥的博客</title>
     
     <desc></desc>
   </url>
