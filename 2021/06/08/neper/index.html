@@ -14,11 +14,10 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="article">
@@ -145,10 +144,6 @@
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -230,7 +225,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <div style="width:70%; margin:auto"><img src="/2021/06/08/neper/gene_gene-min.png" class="" title="neper"></div>
+        <div style="width:70%; margin:auto"><img data-src="/2021/06/08/neper/gene_gene-min.png" class="" title="neper"></div>
 
 <span id="more"></span>
 <p>Neper <a target="_blank" rel="noopener" href="https://neper.info/">官网</a>。</p>
@@ -265,14 +260,14 @@
 <p>另外按<a target="_blank" rel="noopener" href="https://neper.info/generation.html">文档</a>中的例子导出一个可查看的文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制示例网格并生成 tess_1.tess 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o tess_1</span><br><span class="line"><span class="comment"># 使用可视化模块生成图片 image_1.png</span></span><br><span class="line">neper -V  tess_1.tess -datacellcol id -<span class="built_in">print</span> image_1</span><br><span class="line"><span class="comment"># 将导出文件格式改为Gmsh格式，导出为 gmsh_1.geo 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o gmsh_1 -format geo</span><br></pre></td></tr></table></figure>
 <p>详细参数见官方文档<a target="_blank" rel="noopener" href="https://neper.info/docs/neper.pdf">Neper Reference Manual</a>。</p>
-<div style="width:70%;margin:auto"><img src="/2021/06/08/neper/neper-save.png" class="" title="output_options"></div>
+<div style="width:70%;margin:auto"><img data-src="/2021/06/08/neper/neper-save.png" class="" title="output_options"></div>
 
 <p>此时文件夹下新生成了 <code>tess_1.tess</code>, <code>image_1.png</code>, <code>gmsh_1.geo</code> 三个文件。</p>
-<div style="width:50%;margin:auto"><img src="/2021/06/08/neper/image_1.png" class="" title="image_1.png"></div>
+<div style="width:50%;margin:auto"><img data-src="/2021/06/08/neper/image_1.png" class="" title="image_1.png"></div>
 
 <p>安装Gmsh之后，可查看<code>.geo</code>文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gmsh gmsh_1.geo</span><br></pre></td></tr></table></figure>
-<div style="width:50%;margin:auto"><img src="/2021/06/08/neper/gmsh_1.png" class="" title="gmsh_1.geo"></div>
+<div style="width:50%;margin:auto"><img data-src="/2021/06/08/neper/gmsh_1.png" class="" title="gmsh_1.geo"></div>
 
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="在Win10中配置WSL"><a href="#在Win10中配置WSL" class="headerlink" title="在Win10中配置WSL"></a>在Win10中配置WSL</h2><p>开始菜单右键 =&gt;  应用和功能 =&gt; 程序和功能（在右侧） =&gt; 启动或关闭Windows功能 =&gt; 适用于Linux的Windows子系统。打勾，确定，重启。</p>
 <p>打开微软应用商店，搜索Ubuntu，选择一个Ubuntu系统安装即可。</p>
@@ -435,6 +430,10 @@
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -468,7 +467,7 @@
 
         
 <div class="busuanzi-count">
-  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -501,9 +500,6 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -517,65 +513,6 @@
 
 
 <script src="/js/next-boot.js"></script>
-
-  <script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
-  ],
-  switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
-  },
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
-});
-
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
-    var code = element.text || element.textContent || element.innerHTML || '';
-    var parent = element.parentNode;
-    parent.removeChild(element);
-    var script = document.createElement('script');
-    if (element.id) {
-      script.id = element.id;
-    }
-    if (element.className) {
-      script.className = element.className;
-    }
-    if (element.type) {
-      script.type = element.type;
-    }
-    if (element.src) {
-      script.src = element.src;
-      // Force synchronous loading of peripheral JS.
-      script.async = false;
-    }
-    if (element.dataset.pjax !== undefined) {
-      script.dataset.pjax = '';
-    }
-    if (code !== '') {
-      script.appendChild(document.createTextNode(code));
-    }
-    parent.appendChild(script);
-  });
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
-</script>
 
 
 
@@ -596,7 +533,6 @@ window.addEventListener('pjax:success', () => {
 
 
 
-    <div id="pjax">
   
 
   
@@ -623,6 +559,5 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
-    </div>
 </body>
 </html>

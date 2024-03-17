@@ -14,11 +14,10 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="本文为 MuJoCo 官方 LQR 教程的简单翻译.">
@@ -258,10 +257,6 @@ mjx-container[display="true"] + br {
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -360,14 +355,14 @@ mjx-container[display="true"] + br {
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br></pre></td></tr></table></figure>
 <p><code>data</code> 对象的状态为默认配置. 让我们调用正向动力学来填充所有的派生的量(如几何体的世界坐标), 更新场景并渲染它:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
-<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/0.png" class="" title="humanoid"></div>
+<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/0.png" class="" title="humanoid"></div>
 
 <p>该模型带有一些内置的“关键帧”, 这些关键帧保存了仿真状态.</p>
 <p>可以用 <code>mj_resetDataKeyframe</code> 来加载它们, 让我们看看它们长什么样:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> <span class="built_in">range</span>(model.nkey):</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, key)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  renderer.update_scene(data)</span><br><span class="line">  media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
-<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/1.png" class="" title="kframe1"></div>
+<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/1.png" class="" title="kframe1"></div>
 
-<div style="width:50%;margin:auto"><img src="/2023/04/17/lqr-tutorial/2.png" class="" title="kframe2"></div>
+<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/2.png" class="" title="kframe2"></div>
 
 <p>现在让我们物理仿真并渲染来制作一个视频.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DURATION  = <span class="number">3</span>   <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>  <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize to the standing-on-one-leg pose.</span></span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display video.</span></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
@@ -414,7 +409,7 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 <p>检查由反向动力学得到的力, 我们看到一些相当令人不安的东西. 有一个非常大的力作用在第三自由度(DoF), 即根关节的垂直运动自由度.</p>
 <p>这意味着, 为了解释加速度为零的设定, 反向动力学必须创造一个直接作用于根关节的“神奇”的力. 让我们看看当我们将人体模型上下移动 1mm 时, 这个力是如何变化的, 增量为 1μm:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">height_offsets = np.linspace(-<span class="number">0.001</span>, <span class="number">0.001</span>, <span class="number">2001</span>)</span><br><span class="line">vertical_forces = []</span><br><span class="line"><span class="keyword">for</span> offset <span class="keyword">in</span> height_offsets:</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  data.qacc = <span class="number">0</span></span><br><span class="line">  <span class="comment"># Offset the height by `offset`.</span></span><br><span class="line">  data.qpos[<span class="number">2</span>] += offset</span><br><span class="line">  mujoco.mj_inverse(model, data)</span><br><span class="line">  vertical_forces.append(data.qfrc_inverse[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find the height-offset at which the vertical force is smallest.</span></span><br><span class="line">idx = np.argmin(np.<span class="built_in">abs</span>(vertical_forces))</span><br><span class="line">best_offset = height_offsets[idx]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the relationship.</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(height_offsets * <span class="number">1000</span>, vertical_forces, linewidth=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># Red vertical line at offset corresponding to smallest vertical force.</span></span><br><span class="line">plt.axvline(x=best_offset*<span class="number">1000</span>, color=<span class="string">'red'</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line"><span class="comment"># Green horizontal line at the humanoid's weight.</span></span><br><span class="line">weight = model.body_subtreemass[<span class="number">1</span>]*np.linalg.norm(model.opt.gravity)</span><br><span class="line">plt.axhline(y=weight, color=<span class="string">'green'</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Height offset (mm)'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Vertical force (N)'</span>)</span><br><span class="line">plt.grid(which=<span class="string">'major'</span>, color=<span class="string">'#DDDDDD'</span>, linewidth=<span class="number">0.8</span>)</span><br><span class="line">plt.grid(which=<span class="string">'minor'</span>, color=<span class="string">'#EEEEEE'</span>, linestyle=<span class="string">':'</span>, linewidth=<span class="number">0.5</span>)</span><br><span class="line">plt.minorticks_on()</span><br><span class="line">plt.title(<span class="string">f'Smallest vertical force '</span></span><br><span class="line">          <span class="string">f'found at offset <span class="subst">{best_offset*<span class="number">1000</span>:<span class="number">.4</span>f}</span>mm.'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<div style="width:70%;margin:auto"><img src="/2023/04/17/lqr-tutorial/3.png" class="" title="force"></div>
+<div style="width:70%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/3.png" class="" title="force"></div>
 
 <p>在上面的图中, 我们可以看到由于脚的接触而产生的强非线性关系. 在左边, 当我们把人体模型推到地板上时, 唯一能解释它没有跳出地板的原因是一个巨大的外力把它往<strong>下</strong>推. 在右边, 当我们将人体模型移离地面时, 解释加速度为零的唯一方法是有一个力向<strong>上</strong>支撑着它, 我们可以清楚地看到脚离开地面的高度, 所需的力正好等于人体模型的重量(绿线), 并且在我们不断向上移动时保持不变.</p>
 <p>在 -0.5mm 附近是完美的高度偏移量(红线), 在这里, 零垂直加速度可以完全用关节内力来解释, 而不需要借助“神奇的”外力. 让我们修正初始姿态的高度, 将其保存在 <code>qpos0</code> 中, 并再次通过反向动力学计算受力:</p>
@@ -631,6 +626,10 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -664,7 +663,7 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 
         
 <div class="busuanzi-count">
-  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -697,9 +696,6 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -713,65 +709,6 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 
 
 <script src="/js/next-boot.js"></script>
-
-  <script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
-  ],
-  switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
-  },
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
-});
-
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
-    var code = element.text || element.textContent || element.innerHTML || '';
-    var parent = element.parentNode;
-    parent.removeChild(element);
-    var script = document.createElement('script');
-    if (element.id) {
-      script.id = element.id;
-    }
-    if (element.className) {
-      script.className = element.className;
-    }
-    if (element.type) {
-      script.type = element.type;
-    }
-    if (element.src) {
-      script.src = element.src;
-      // Force synchronous loading of peripheral JS.
-      script.async = false;
-    }
-    if (element.dataset.pjax !== undefined) {
-      script.dataset.pjax = '';
-    }
-    if (code !== '') {
-      script.appendChild(document.createTextNode(code));
-    }
-    parent.appendChild(script);
-  });
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
-</script>
 
 
 
@@ -792,7 +729,6 @@ window.addEventListener('pjax:success', () => {
 
 
 
-    <div id="pjax">
   
 
   
@@ -874,6 +810,5 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
-    </div>
 </body>
 </html>

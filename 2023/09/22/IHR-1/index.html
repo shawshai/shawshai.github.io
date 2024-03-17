@@ -14,11 +14,10 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="article">
@@ -267,10 +266,6 @@ mjx-container[display="true"] + br {
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -352,7 +347,7 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <div style="width:50%; margin:auto"><img src="/2023/09/22/IHR-1/cover.png" class=""></div>
+        <div style="width:50%; margin:auto"><img data-src="/2023/09/22/IHR-1/cover.png" class=""></div>
 
 <span id="more"></span>
 <p>本文为书籍 <a target="_blank" rel="noopener" href="https://link.springer.com/book/10.1007/978-3-642-54536-8">Introduction to Humanoid Robotics</a> 的汉化, 主要借助翻译器 DeepL. </p>
@@ -369,49 +364,49 @@ mjx-container[display="true"] + br {
 <p>第二个特点应该意味着类似的效果. 人类的大多数工具都是为人类使用而设计的. 例如, 椅子的大小和形状是为了让人坐上去而决定的, 餐桌的高度是为了让人在上面吃饭而决定的. 驾驶舱是为控制汽车而设计的. 螺丝刀或剪刀的形状最好是由铰接的手指来操作. 人类的工具很可能会被仿人机器人使用. 使用仿人机器人应该比重新设计大量工具更经济. </p>
 <p>Issac Asimov 的小说《钢之洞穴》中也有类似的论述. 一位世界知名的教授在小说中解释了为什么机器人应该是仿人机器人, 并得出了与我们类似的结论. 老实说, 我们需要很多年才能得出结论. 令人惊奇的是, 同样的结论已经在一本 50 年前的小说中得出. </p>
 <p>第三个特点需要解释一下. 当机器人看起来像人时, 就很容易被人格化. 机器人离人类的外形越远, 人类就越感觉不到机器人是人类. 看两足仿人机器人跳舞很有趣, 但看轮式机器人跳舞就不那么吸引人了. 要实现一个能让我们愉悦的伙伴机器人, 类似人类的外形是非常重要的. 第三个特点一定是许多机器人在科幻小说中酷似人类的主要原因. 在现实世界中, 早稻田大学的 Ichiro Kato 等人于 1973 年研制出了 WABOT-1 (见图 1.1) . </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/0.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/0.png" class=""></div>
 
 <p>WABOT-1 可以用视觉识别物体, 听懂有声语言, 用人工语音说话, 用双手操纵物体和双足行走, 但当时的技术水平还不太成熟. 因此, 称 WABOT-1 为第一个仿人机器人是合理的. 加藤一郎 (Ichiro Kato) 小组还于 1984 年开发出了能够弹钢琴的 WABOT-2 (见图 1.1) [68]D WABOT-2 曾在 85 年日本筑波科学博览会上弹钢琴. </p>
 <p>1996 年, 本田人形机器人 P2 的惊世亮相开启了人形机器人的时代. 1986 年, 在 WABOT-2 弹钢琴一年之后, 本田公司开始了一项秘密的仿人机器人项目. P2 身高 180 厘米, 体重 210 千克, 是第一个能够用双腿行走, 具有足够稳定性并在身体上安装计算机和电池的仿人机器人. 1997 年, 本田发布了身高 160 厘米, 体重 130 千克的 P3, 2000 年发布了体重 120 厘米, 体重 43 千克的 ASIMO. P2, P3 和 ASIMO 的图片见图 1.2. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/1.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/1.png" class=""></div>
 
 <p>在 P2 发布之前, 机器人界的大多数人都对开发出能够稳定行走的双足仿人机器人持怀疑态度. 这就是本田 P2 惊艳世界的原因所在. 那么, 传统的仿人机器人与 P2 的主要区别在哪里呢？我们先来看看硬件. </p>
 <p>大多数大学开发的仿人机器人都是由研究生或小型制造商制造的. 这样一来, 机器人的机械链节就必须通过弯曲或切割来完成, 整个结构的刚性不足. 减速机构是通过背隙较大的重型齿轮实现的. 与老式机器人相比, 本田仿人机器人采用了最先进的机械 CAD, 使用了刚性高, 重量轻的铸造机械链节. 很明显, 铸造链节应具有这样的特性, 但这种链节过于昂贵, 无法由单个项目开发. 本田仿人机器人使用无间隙的谐波驱动器. 传统的谐波驱动装置可转换的力矩太小, 无法应用于双足行走, 因此本田开发了具有高力矩能力的谐波驱动装置. 本田 P2 问世后, 大多数先进的仿人机器人都采用了与本田仿人机器人相当的配置. </p>
 <p>让我们考虑一下机器人的传感器. 即使规划了理想的行走模式, 双足行走也可能因干扰而不稳定. 这就需要通过反馈控制来稳定行走, 而反馈控制需要适当的传感器. 早期开发的仿人机器人没有必要的传感器, 但本田仿人机器人有加速度计和陀螺仪, 用于确定身体的方向, 还有六轴力/力矩传感器, 用于确定脚与地面之间的接触力/力矩. </p>
 <p>这本教科书的目的是提供开发软件的理论背景, 以控制上述精心设计的硬件. </p>
 <p>第 2 章概述了仿人机器人的运动学. 在介绍了三维空间旋转, 角速度矢量以及旋转矩阵导数与角速度矢量之间的关系之后, 介绍了机器人运动的表示方法. 然后介绍了如何根据给定的关节角度找到机器人手或脚等链节的位置和方向. 这种方法称为正向运动学. 然后, 说明如何根据给定的特定链节的位置和方向找到相应的关节角度. 这种计算是正向运动学的逆过程, 称为逆运动学. 1.3 举例说明了反向运动学问题. 当给出 1.3(a) 所示的机器人配置时, 问题是如何找到 1.3(b) 所示的右脚抬高 0.3 [m] 并绕 Y 轴旋转 20 [deg]的相应关节角度. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/2.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/2.png" class=""></div>
 
 <p>一般来说, 由于机器人的大多数关节都是旋转关节, 因此链节的位置和方向以及关节角度都由非线性方程表示. 逆运动学问题可以通过寻找非线性方程的解析解来解决, 但对于变量多, 贝祖特数高的非线性方程, 即使旋转参数代数化, 也不太可能求解. 然而, 连杆的位置和旋转导数与关节角度导数之间的关系可以用线性方程来表示, 逆运动学问题可以通过寻找线性方程的解并对解进行积分来解决. 线性方程的系数矩阵称为雅各比, 它是包括机器人学在内的许多领域的重要概念. </p>
 <p>第 3 章解释了在仿人机器人运动控制中起重要作用的 ZMP (零力矩点) 概念. 当机器人下落时, 支撑脚的脚底不应再与地面接触. Vukobratović 等人提出的 ZMP (零力矩点) 是判断脚底与地面接触是否可以保持的标准, 而无需求解相应的运动方程. 如果 ZMP 是鞋底的一个内部点, 则可以保持接触. 当机器人不动时, 如果机器人质心在地面上的投影是鞋底的一个内部点, 则保持接触. 见图 1.4. 可以将 ZMP 视为投影的动态延伸. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/3.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/3.png" class=""></div>
 
 <p>ZMP 可用于规划运动模式, 使机器人在保持支撑脚底与地面接触的情况下行走. 本田 P2 出现后, 大多数仿人机器人的行走模式都是根据 ZMP 生成的. </p>
 <p>即使支撑脚的脚底离开地面, 机器人也不会倒下. 它可以通过控制摆动腿和改变触地位置来保持行走或站立. ZMP 标准是防止机器人摔倒的充分条件, 而不是必要条件. 当机器人在崎岖不平的地形或楼梯上行走时, 它无法严格判断是否保持接触. 当机器人抓住扶手行走时, 接触可能会更加稳定, 但 ZMP 标准无法判断接触应稳定到什么程度. 人们曾多次尝试扩展该准则, 但至今仍未建立起通用而严格的准则. 第 3 章介绍了 ZMP 的概念, 接触力与 ZMP 之间的关系, ZMP 的感应以及基于仿人机器人前向动力学的 ZMP 计算算法. </p>
 <p>第 4 章介绍如何生成双足机器人的行走模式并控制其行走. 一般来说, 规划行走模式的目的是使机器人起初在不受干扰的情况下行走, 然后应用反馈控制来稳定运动. 有多种方法可用于控制行走模式. 一种方法以线性倒立摆的动力学为基础, 通过控制接触力和摆长来保持质心的高度. 另一种方法以 ZMP 作为判断接触稳定性的标准来生成模式. </p>
 <p>第 4 章从介绍基于二维线性倒立摆的方法开始, 将该方法扩展到基于三维倒立摆的方法, 并将其应用于生成多连杆模型的模式. 图 1.5 显示了三维线性倒立摆的概念. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/4.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/4.png" class=""></div>
 
 <p>此外, 还概述了基于 ZMP 的方法. 关节角度导数与 ZMP 之间的关系可以用非线性微分方程给出. 这就是 ZMP 方程. 由于非线性, 很难找到能让 ZMP 遵循指定 ZMP 的关节角轨迹. 在几个假设条件下对 ZMP 方程进行了简化, 并在早期阶段通过批处理找到了它们的解. 即使在本田 P2 发布时, 也是以离线方式计算行走模式. 本田开发了一种实时方法来寻找模式, 并将其应用于 ASIMO. Nishiwaki 等人发明了另一种实时算法, 通过将腰部关节的运动限制在水平面上来求解方程. Kajita 等人通过预览控制实时求解线性化方程, 并将其应用于仿人机器人 HRP-2. 第 4 章介绍了这些方法. </p>
 <p>即使对运动模式进行了精心规划, 使行走变得稳定, 仿人机器人仍有可能因地面雨水, 机械结构刚度低和减速齿轮的反向间隙造成的干扰而摔倒. 因此, 需要通过传感器 (包括加速度计和陀螺仪测量的身体方位以及力/力矩传感器测量的脚部接触力和力矩) 来了解机器人的状态, 并应用一些反馈控制来稳定运动. 目前的反馈控制器配置包括身体的方向控制, 质量中心控制, 脚接触的顺应性控制, 脚触地的冲击力控制等. 如上所述, 由于机器人的硬件取得了长足进步, 对反馈控制器进行微调成为可能. 本章概述了反馈控制器的原理. 图 1.6 显示了仿人机器人 HRP-2 的脚部运动, 该机器人在坡道最大高度为 2 [cm], 坡度最大倾角为 5 % 的崎岖地形上行走. 要实现行走, 反馈控制是必不可少的. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/5.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/5.png" class=""></div>
 
 <p>第 5 章介绍如何实现仿人机器人除双足行走外的全身运动. 仿人机器人可以躺下, 站起, 搬运物品, 通过狭窄的地方和跳舞. 如图 1.7 所示, AIST 实现了第一个可以躺下和站起的仿人机器人. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/6.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/6.png" class=""></div>
 
 <p>本章概述了如何生成和控制各种全身运动. 本章介绍了如何生成机器人的整体运动, 包括使用运动捕捉系统, 图形用户界面和搜索机器人配置空间的方法. 这些方法在生成动作时既不考虑机器人的动力学特性, 也不考虑机器人与环境之间的接触稳定性, 因此, 真实机器人可能无法执行这些动作, 在大多数情况下, 机器人可能会摔倒. 此外, 捕捉到的人的动作与真实机器人的动作不一致. 为解决这些问题, 人们提出了各种方法, 包括动力学滤波器和反馈控制器. 本章还涉及仿人机器人的远程操作. </p>
 <p>虽然双足机器人可以上下楼梯, 跨越坡道和通过狭窄的地方, 但由于质量中心相对较高, 脚印较小, 机器人可能会摔倒, 造成严重损伤. 要让机器人为社会所接受, 就必须增强其优势, 克服其劣势. AIST 于 2003 年 2 月实现了人形机器人的下落运动控制. 这种运动就像柔道中的 "受身" (Ukemi) 运动一样, 当运动员被对手摔倒时, 可以最大限度地减少对身体的伤害. 目前, 可控制的下落运动仅限于向后下落. 索尼为 QRIO 实现了各种跌落动作的跌落运动控制, 但 QRIO 是一种比人类体型更小的机器人. 当一个人形大小的仿人机器人倒下时, 触地的冲击力要大得多, 我们应该有一个坚固的硬件和更好的控制器来处理它. 第 5 章介绍了摔倒运动控制器以及实现躺下和站起的方法. </p>
 <p>第 6 章介绍仿人机器人动力学仿真算法. 机器人的正向动力学问题是在给定机器人的当前状态和关节的广义力的情况下, 求出机器人关节的更新状态. 机器人的反向动力学问题是找到关节的广义力, 以实现机器人所需的更新状态. 本章的重点是正向动力学, 即从一个在无重力空间中旋转的刚体的动力学出发, 将公式扩展到包括刚体的平移运动. 计算出的运动示例如图 1.8 所示. 最后, 我们考虑了连接体 (即机器人) 的正向动力学, 使读者了解如何实现仿人机器人的动力学模拟. 该方法基于牛顿-欧拉方程, 解决该方程的高效算法在 20 世纪 80 年代就已提出. 本文将介绍由 Fetherstone 开发的一种具有代表性的算法. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/7.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/7.png" class=""></div>
 
 <p>这是教科书的摘要. 教科书的目的是为开发控制仿人机器人各种运动的软件奠定基础. </p>
 <p>下文将概述仿人机器人技术的未来前景. 仿人机器人可以成为各种机器人技术的集成平台, 因为它有两只手, 两条腿以及视觉和听觉传感器. 然而, 由于机器人的空间限制, 机器人上可用的计算资源和传感器应该相当有限. 我们必须使计算机和传感器更加紧凑, 功能更加强大, 才能解决这个问题. 这样就可以在平台上集成更多的智能, 仿人机器人技术的重点就可能从移动性转向智能性和基于智能性的应用. </p>
 <p>日本经济产业省 (METI) 于 1998 年至 2002 年实施了仿人机器人项目 (简称 HRP) . HRP 的负责人是来自东京大学的井上广千香, HRP 开发了仿人机器人的基础技术, 并探索了其应用领域. </p>
 <p>仿人机器人的第一个特点是 "仿人机器人可以在人类所处的环境中工作". 仿人机器人 HRP-1 能够在包括星形平台, 坡道和坑道的模拟工业厂房中执行任务. 图 1.9 展示了人形机器人 HRP-1 在模拟厂房中下楼梯的情景. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/8.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/8.png" class=""></div>
 
 <p>第二个特点是 "仿人机器人可以像人类一样使用工具", 并将工业车辆的驾驶作为应用实例进行了研究. 我们的想法是, 让仿人机器人驾驶工业车辆, 并由人类操作员在远程空间控制机器人, 从而实现工业车辆的远程操作系统, 该系统可应用于救援工作. 图 1.10 显示了由人类操作员远程操作的仿人机器人 HRP-1S 驾驶的挖掘机. HRP-1S 穿着防水服. 仔细观察, 图片中可以看到一些水滴. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/9.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/9.png" class=""></div>
 
 <p>第三个特点是 "仿人机器人具有类似人类的外形", 这个特点的一个微不足道的应用就是娱乐. 本田 ASIMO 和索尼 Qrio 已出现在许多商业信息中, HRP-2 重现了日本传统舞蹈, 实现了舞蹈文化的数字存档. 该功能的另一个可能应用是人类模拟器, 用于评估汽车驾驶舱和福利设备等人类工具. </p>
 <p>仿人机器人技术正处于 1996 年后的第一个飞速发展时期, 但要利用仿人机器人实现重大产品, 不经历一段噩梦般的时期仍然非常困难. 如果我们的目标是实现与人类能力相当的仿人机器人, 我们可能需要一个世纪. 即使要实现自主仿人机器人, 至少也需要十年时间. 从这个角度出发, 我们想把 2010 年的目标设定为: 能够在日常环境中在地板上行走, 上下楼梯和梯子, 自主规划路径, 摔倒时不会受到严重伤害, 从地上爬起来, 跨过小障碍物, 通过狭窄空间, 开关门, 一只手操纵物体, 另一只手支撑身体的仿人机器人. 在实现移动性后, 机器人可能的应用应包括工业厂房的维护任务和危险物品的管理. 在这些目标中, 最难实现的是仿人机器人摔倒时不会造成严重损坏. 即使在机器人摔倒时对其进行适当的控制, 目前的机器人硬件也过于脆弱, 无法保持机动性. 我们需要更多的工作来解决这个问题. </p>
@@ -421,17 +416,17 @@ mjx-container[display="true"] + br {
 <h2 id="2005-年以来-AIST-的发展"><a href="#2005-年以来-AIST-的发展" class="headerlink" title="2005 年以来 AIST 的发展"></a>2005 年以来 AIST 的发展</h2><p>在本节中, 我们将介绍自上一节撰写以来 AIST (国立产业技术综合研究所) 的发展情况. </p>
 <p>2005 年, 在新能源和工业技术开发组织 (NEDO) 和 AIST 的支持下, 我们开发了双足恐龙机器人. 目的是在 2005 年爱知世界博览会上进行展览. 与此同时, 我们还打算寻求双足技术在娱乐业的可能应用. </p>
 <p>图 1.11 显示了开发的恐龙机器人 [38]. 霸王龙机器人从头到尾长 3.5 米, 重 83 千克, 有 27 个自由度 (DoF) . 副栉龙机器人的身体长度相同, 但重量为 81 千克, 自由度为 26. 它们的比例是真实恐龙的 1/3.5. 在为期半年的博览会期间, 这些机器人成功地进行了 1812 次演示, 为观众带来了无穷的乐趣. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/10.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/10.png" class=""></div>
 
 <p>如前一节所述, 日本经济产业省在 1998 财年至 2002 财年期间实施了仿人机器人项目 (HRP) . 该项目成果之一是由川田工业株式会社, 安川电机株式会社, 清水株式会社和 AIST [65] 共同开发的仿人机器人 HRP-2. 在本书中, 我们将以 HRP-2 作为典型机器人来讲解仿人机器人技术的基础知识. </p>
 <p>另一方面, HRP-2 机器人在操纵能力和实际工作环境 (如建筑工地) 方面存在局限性. 为了解决这些局限性, 川田工业公司, 川崎重工和 AIST 于 2007 年共同开发了新型仿人机器人 HRP-3. 该项目得到了 NEDO 的支持 [67]. 图 1.12 所示的 HRP-3 是一个仿人机器人, 高度为 1606 毫米, 重量为 68 千克, 总 DoF 为 42. 为了获得更好的操纵能力, 该机器人有 7 个 DoF 的手臂和 6 个 DoF 的双手 (HRP-2 有 6 个 DoF 的手臂和 1 个 DoF 的双手) . 此外, 考虑到各种环境, 整个机器人和硬件都采用了防尘和防溅设计. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/11.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/11.png" class=""></div>
 
 <p>2009 年, 我们开发了一种新型仿人机器人--控制论人 HRP-4C. 该机器人的身体尺寸接近日本年轻女性的平均尺寸[63]. 在图 1.13(a) 中, 我们可以看到 HRP-4C 的外观 (左) 比我们之前的 HRP-2 更像人类 (右) . 这次开发的目的是寻求人形机器人在娱乐行业的应用, 例如时装表演. 我们还打算使用该机器人来评估为人类设计的装置. 通过使用 HRP-4C, 我们实现了脚趾支撑期的仿人行走 (图 1.13(b)) [69]. 图 1.13(c) 展示了 HRP-4C 与人类舞者共舞的表演. 针对这种表演, 我们开发了一种新软件, 用于高效编舞[122]. 自 2009 年以来, HRP-4C 的硬件不断改良, 目前的规格为 160 厘米高, 46 千克重和 44 DoF [64]. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/12.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/12.png" class=""></div>
 
 <p>2010 年, 川田工业公司和 AIST 联合开发了另一款仿人机器人 HRP-4. 图 1.14 显示了这款身高 151 厘米, 体重 39 千克, 拥有 34 DoF 的机器人[64]. HRP-4 是作为研发平台而设计的, 与我们以前的平台 HRP-2 相比, 它具有轻巧纤细的机身. 为了比 HRP-2 更好地实现物体操作, 该机器人配备了 7 DoF 的手臂和 2 DoF 的手. </p>
-<div style="width:80%; text-align:left"><img src="/2023/09/22/IHR-1/13.png" class=""></div>
+<div style="width:80%; text-align:left"><img data-src="/2023/09/22/IHR-1/13.png" class=""></div>
 
 <h2 id="大学和研究所"><a href="#大学和研究所" class="headerlink" title="大学和研究所"></a>大学和研究所</h2><p>近几十年来, 世界各地对双足仿人机器人的研究活动都在加速进行. 在日本, 早稻田大学的 Takanishi 教授小组继 Kato 教授制造出世界上第一个仿人机器人 WABOT-1 之后, 又积极开发了许多双足仿人机器人. 2006 年, 他们的 WABIAN-2R 展示了令人印象深刻的类人行走功能, 包括膝关节伸展, 脚跟接触和脚趾离开运动 [142]. </p>
 <p>另一个著名的研究小组由东京大学的 Inaba 教授领导. 2010 年, 他们展示了 HRP-2, 该机器人可以根据对操作力的在线估计来处理重量未知的物体 [123]. 他们还在开发自己独创的双足机器人, 即使被踢或受到其他干扰也能保持平衡 [52]. </p>
@@ -604,6 +599,10 @@ mjx-container[display="true"] + br {
 
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -637,7 +636,7 @@ mjx-container[display="true"] + br {
 
         
 <div class="busuanzi-count">
-  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -670,9 +669,6 @@ mjx-container[display="true"] + br {
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
@@ -686,65 +682,6 @@ mjx-container[display="true"] + br {
 
 
 <script src="/js/next-boot.js"></script>
-
-  <script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
-  ],
-  switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
-  },
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
-});
-
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
-    var code = element.text || element.textContent || element.innerHTML || '';
-    var parent = element.parentNode;
-    parent.removeChild(element);
-    var script = document.createElement('script');
-    if (element.id) {
-      script.id = element.id;
-    }
-    if (element.className) {
-      script.className = element.className;
-    }
-    if (element.type) {
-      script.type = element.type;
-    }
-    if (element.src) {
-      script.src = element.src;
-      // Force synchronous loading of peripheral JS.
-      script.async = false;
-    }
-    if (element.dataset.pjax !== undefined) {
-      script.dataset.pjax = '';
-    }
-    if (code !== '') {
-      script.appendChild(document.createTextNode(code));
-    }
-    parent.appendChild(script);
-  });
-  NexT.boot.refresh();
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
-</script>
 
 
 
@@ -765,7 +702,6 @@ window.addEventListener('pjax:success', () => {
 
 
 
-    <div id="pjax">
   
 
   
@@ -847,6 +783,5 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
 });
 </script>
 
-    </div>
 </body>
 </html>
