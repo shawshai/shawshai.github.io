@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 7.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
@@ -264,7 +264,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo</span><br><span class="line"><span class="comment"># 添加所有变化，工作区-&gt;暂存区</span></span><br><span class="line">git add -A</span><br><span class="line"><span class="comment"># 暂存区-&gt;版本库</span></span><br><span class="line">git commit -m <span class="string">&quot;add all hexo files&quot;</span></span><br><span class="line"><span class="comment"># 本地库-&gt;远程库</span></span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>此处发现主题文件夹next由于是从GitHub克隆，自动作为子模块，无法正常push到远程仓库hexo，须增加以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除Git文件</span></span><br><span class="line">rm -r themes/next/.git*</span><br><span class="line"><span class="comment"># 逆初始化模块</span></span><br><span class="line">git submodule deinit themes/next</span><br><span class="line"><span class="comment"># 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）</span></span><br><span class="line">git rm --cached themes/next </span><br><span class="line"><span class="comment"># 提交更改到代码库</span></span><br><span class="line">git commit -am <span class="string">&quot;Remove next submodule.&quot;</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除Git文件</span></span><br><span class="line"><span class="built_in">rm</span> -r themes/next/.git*</span><br><span class="line"><span class="comment"># 逆初始化模块</span></span><br><span class="line">git submodule deinit themes/next</span><br><span class="line"><span class="comment"># 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）</span></span><br><span class="line">git <span class="built_in">rm</span> --cached themes/next </span><br><span class="line"><span class="comment"># 提交更改到代码库</span></span><br><span class="line">git commit -am <span class="string">&quot;Remove next submodule.&quot;</span> </span><br></pre></td></tr></table></figure>
 <p>再重复步骤3，Done！</p>
 </li>
 </ol>
@@ -285,14 +285,14 @@
 <p>目前有两种方式插入本地图片：</p>
 <ol>
 <li><p>使用markdown语法</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-attr">[图片信息描述]</span>(abc.jpg)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-attr">[图片信息描述]</span>(abc.jpg)</span><br></pre></td></tr></table></figure>
 <p>此方法无法控制图片大小，默认占满父容器宽度。Typora中一旦设置图片缩放，便转化成了html语法，部署后图片路径出错，无法显示。</p>
 </li>
 <li><p>使用html语法</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:50%;margin:auto&quot;</span>&gt;</span>&#123;% asset_img abc.png 图片信息描述 %&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此方法在Typora中无法像显示图像，但能够实现调整网页中图像大小。</p>
 <p>参考了以下链接：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Hexo</span> 自定义图片大小</span><br><span class="line"><span class="attribute">https</span>://www.dazhuanlan.com/<span class="number">2019</span>/<span class="number">10</span>/<span class="number">07</span>/<span class="number">5</span>d<span class="number">9</span>a<span class="number">759</span>c<span class="number">66188</span>/</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Hexo</span> 自定义图片大小</span><br><span class="line"><span class="attribute">https</span>://www.dazhuanlan.com/<span class="number">2019</span>/<span class="number">10</span>/<span class="number">07</span>/<span class="number">5</span>d9a759c66188/</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>还是希望能够调整图片大小，因此目前采用了第二种方法。</p>
@@ -306,7 +306,7 @@
 <p>主题文件next无法<code>push</code>的原因：该主题是从Github克隆的，自动作为hexo的子模块。</p>
 <p>正确解决方案如下：</p>
 <p>先删除其Git文件，然后删除其子模块身份。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除Git文件</span></span><br><span class="line">rm -r themes/next/.git*</span><br><span class="line"><span class="comment"># 逆初始化模块</span></span><br><span class="line">git submodule deinit themes/next</span><br><span class="line"><span class="comment"># 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）</span></span><br><span class="line">git rm --cached themes/next </span><br><span class="line"><span class="comment"># 提交更改到代码库</span></span><br><span class="line">git commit -am <span class="string">&quot;Remove a submodule.&quot;</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除Git文件</span></span><br><span class="line"><span class="built_in">rm</span> -r themes/next/.git*</span><br><span class="line"><span class="comment"># 逆初始化模块</span></span><br><span class="line">git submodule deinit themes/next</span><br><span class="line"><span class="comment"># 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）</span></span><br><span class="line">git <span class="built_in">rm</span> --cached themes/next </span><br><span class="line"><span class="comment"># 提交更改到代码库</span></span><br><span class="line">git commit -am <span class="string">&quot;Remove a submodule.&quot;</span> </span><br></pre></td></tr></table></figure>
 <p>如此，主题文件next便能正常push，后续将不会遭遇此问题。（已补充到第2节异地管理第4步中）</p>
 <p>Done.</p>
 <h2 id="4-3-还是Git问题"><a href="#4-3-还是Git问题" class="headerlink" title="4.3 还是Git问题"></a>4.3 还是Git问题</h2><p>由于时常需要在笔记本和台式机之间切换，在使用Git时遇到一点问题。</p>
@@ -340,16 +340,16 @@
 <li><p>更改转义规则</p>
 <p>在博客根目录下，进入<code>node_modules\kramed\lib\rules\inline.js</code>。</p>
 <p>把第11行的escape变量的值做相应的修改：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">escape</span>: <span class="regexp">/^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/</span>,</span><br></pre></td></tr></table></figure>
 <p>改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()$+\-.!&gt;])/</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">escape</span>: <span class="regexp">/^\\([`*\[\]()$+\-.!&gt;])/</span>,</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这里，我比参考博客里多删了 <code>#</code> 和 <code>_</code> 字符，因为在编辑包含 <code>#</code> 和 <code>_</code> 的公式时出现编译错误，这样修改后得到解决。同理，其它类似的语义冲突问题也要修改这里。</p>
 </blockquote>
 <p>同时把第20行的 <code>em</code> 变量也要做相应的修改：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: <span class="regexp">/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">em</span>: <span class="regexp">/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
 <p>改为</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">em</span>: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>以上即可解决语义冲突的问题。另外，还可以参考两个博客，更换 MathJax 的 CDN 链接。</p>
