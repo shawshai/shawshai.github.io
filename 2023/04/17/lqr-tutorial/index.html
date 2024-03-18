@@ -1,88 +1,69 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
-  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="LQR 教程" />
+    <meta name="hexo-theme-A4" content="v1.8.9" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>少帥的博客 | Shaw Shai&#39;s Blog</title>
 
-<link rel="stylesheet" href="/css/main.css">
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
 
-  <meta name="description" content="本文为 MuJoCo 官方 LQR 教程的简单翻译.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LQR 教程">
-<meta property="og:url" content="http://shawshai.cn/2023/04/17/lqr-tutorial/">
-<meta property="og:site_name" content="少帥的博客">
-<meta property="og:description" content="本文为 MuJoCo 官方 LQR 教程的简单翻译.">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/0.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/1.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/2.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/3.png">
-<meta property="article:published_time" content="2023-04-17T06:57:19.000Z">
-<meta property="article:modified_time" content="2023-10-21T07:53:14.550Z">
-<meta property="article:author" content="少帥">
-<meta property="article:tag" content="lqr">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://shawshai.cn/2023/04/17/lqr-tutorial/0.png">
-
-<link rel="canonical" href="http://shawshai.cn/2023/04/17/lqr-tutorial/">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
 
-  <title>LQR 教程 | 少帥的博客</title>
-  
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
 
 
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<style>mjx-container[jax="SVG"] {
+<meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -196,149 +177,77 @@ mjx-container[display="true"] + br {
 }
 </style><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">少帥的博客</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
     
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
             
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
 
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/04/17/lqr-tutorial/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ss-128x128.png">
-      <meta itemprop="name" content="少帥">
-      <meta itemprop="description" content="摆脱冷气 只向上走">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="少帥的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          LQR 教程
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-04-17 14:57:19" itemprop="dateCreated datePublished" datetime="2023-04-17T14:57:19+08:00">2023-04-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-21 15:53:14" itemprop="dateModified" datetime="2023-10-21T15:53:14+08:00">2023-10-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B1%89%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">汉化</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>15k</span>
-            </span>
-
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">少帥的博客</a> 
+            <span class="description">摆脱冷气 只向上走</span> 
         </div>
-      </header>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+        <div class="post-main-title">
+            LQR 教程
+        </div>
       
-        <div align="center">本文为 MuJoCo 官方 LQR 教程的简单翻译. </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="post-toc-text">安装 MuJoCo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="post-toc-text">检查是否安装成功</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%85%B6%E5%AE%83%E5%AF%BC%E5%85%A5%E5%8C%85%E4%B8%8E%E5%B8%AE%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="post-toc-text">其它导入包与帮助函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%B8%B2%E6%9F%93%E6%A0%87%E5%87%86%E4%BA%BA%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="post-toc-text">加载与渲染标准人体模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%A8%B3%E5%AE%9A%E7%9A%84%E5%8D%95%E8%85%BF%E7%AB%99%E7%AB%8B"><span class="post-toc-text">稳定的单腿站立</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#LQR-%E7%90%86%E8%AE%BA%E5%9B%9E%E9%A1%BE"><span class="post-toc-text">LQR 理论回顾</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%90%86%E8%A7%A3%E7%BA%BF%E6%80%A7%E5%8C%96%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="post-toc-text">理解线性化设定值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AF%BB%E6%89%BE%E6%8E%A7%E5%88%B6%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="post-toc-text">通过反向动力学寻找控制设定值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%80%89%E6%8B%A9-Q-%E5%92%8C-R-%E7%9F%A9%E9%98%B5"><span class="post-toc-text">选择  和  矩阵</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%A1%E7%AE%97-LQR-%E5%A2%9E%E7%9B%8A%E7%9F%A9%E9%98%B5-K"><span class="post-toc-text">计算 LQR 增益矩阵 </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%A8%B3%E5%AE%9A%E7%AB%99%E7%AB%8B"><span class="post-toc-text">稳定站立</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9C%80%E7%BB%88%E8%A7%86%E9%A2%91"><span class="post-toc-text">最终视频</span></a></li></ol></li></ol>
+            
+        
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><div align="center">本文为 MuJoCo 官方 LQR 教程的简单翻译. </div>
 
 <span id="more"></span>
 <p>原文链接如下:</p>
@@ -355,14 +264,14 @@ mjx-container[display="true"] + br {
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = mujoco.MjModel.from_xml_string(xml)</span><br><span class="line">data = mujoco.MjData(model)</span><br><span class="line">renderer = mujoco.Renderer(model)</span><br></pre></td></tr></table></figure>
 <p><code>data</code> 对象的状态为默认配置. 让我们调用正向动力学来填充所有的派生的量(如几何体的世界坐标), 更新场景并渲染它:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mujoco.mj_forward(model, data)</span><br><span class="line">renderer.update_scene(data)</span><br><span class="line">media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
-<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/0.png" class="" title="humanoid"></div>
+<div style="width:50%;margin:auto"><a href="/2023/04/17/lqr-tutorial/0.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/17/lqr-tutorial/0.png" class="" title="humanoid"></a></div>
 
 <p>该模型带有一些内置的“关键帧”, 这些关键帧保存了仿真状态.</p>
 <p>可以用 <code>mj_resetDataKeyframe</code> 来加载它们, 让我们看看它们长什么样:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> <span class="built_in">range</span>(model.nkey):</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, key)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  renderer.update_scene(data)</span><br><span class="line">  media.show_image(renderer.render())</span><br></pre></td></tr></table></figure>
-<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/1.png" class="" title="kframe1"></div>
+<div style="width:50%;margin:auto"><a href="/2023/04/17/lqr-tutorial/1.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/17/lqr-tutorial/1.png" class="" title="kframe1"></a></div>
 
-<div style="width:50%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/2.png" class="" title="kframe2"></div>
+<div style="width:50%;margin:auto"><a href="/2023/04/17/lqr-tutorial/2.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/17/lqr-tutorial/2.png" class="" title="kframe2"></a></div>
 
 <p>现在让我们物理仿真并渲染来制作一个视频.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DURATION  = <span class="number">3</span>   <span class="comment"># seconds</span></span><br><span class="line">FRAMERATE = <span class="number">60</span>  <span class="comment"># Hz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize to the standing-on-one-leg pose.</span></span><br><span class="line">mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"><span class="keyword">while</span> data.time &lt; DURATION:</span><br><span class="line">  <span class="comment"># Step the simulation.</span></span><br><span class="line">  mujoco.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Render and save frames.</span></span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * FRAMERATE:</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    pixels = renderer.render()</span><br><span class="line">    frames.append(pixels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display video.</span></span><br><span class="line">media.show_video(frames, fps=FRAMERATE)</span><br></pre></td></tr></table></figure>
@@ -409,7 +318,7 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 <p>检查由反向动力学得到的力, 我们看到一些相当令人不安的东西. 有一个非常大的力作用在第三自由度(DoF), 即根关节的垂直运动自由度.</p>
 <p>这意味着, 为了解释加速度为零的设定, 反向动力学必须创造一个直接作用于根关节的“神奇”的力. 让我们看看当我们将人体模型上下移动 1mm 时, 这个力是如何变化的, 增量为 1μm:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">height_offsets = np.linspace(-<span class="number">0.001</span>, <span class="number">0.001</span>, <span class="number">2001</span>)</span><br><span class="line">vertical_forces = []</span><br><span class="line"><span class="keyword">for</span> offset <span class="keyword">in</span> height_offsets:</span><br><span class="line">  mujoco.mj_resetDataKeyframe(model, data, <span class="number">1</span>)</span><br><span class="line">  mujoco.mj_forward(model, data)</span><br><span class="line">  data.qacc = <span class="number">0</span></span><br><span class="line">  <span class="comment"># Offset the height by `offset`.</span></span><br><span class="line">  data.qpos[<span class="number">2</span>] += offset</span><br><span class="line">  mujoco.mj_inverse(model, data)</span><br><span class="line">  vertical_forces.append(data.qfrc_inverse[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find the height-offset at which the vertical force is smallest.</span></span><br><span class="line">idx = np.argmin(np.<span class="built_in">abs</span>(vertical_forces))</span><br><span class="line">best_offset = height_offsets[idx]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the relationship.</span></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">plt.plot(height_offsets * <span class="number">1000</span>, vertical_forces, linewidth=<span class="number">3</span>)</span><br><span class="line"><span class="comment"># Red vertical line at offset corresponding to smallest vertical force.</span></span><br><span class="line">plt.axvline(x=best_offset*<span class="number">1000</span>, color=<span class="string">'red'</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line"><span class="comment"># Green horizontal line at the humanoid's weight.</span></span><br><span class="line">weight = model.body_subtreemass[<span class="number">1</span>]*np.linalg.norm(model.opt.gravity)</span><br><span class="line">plt.axhline(y=weight, color=<span class="string">'green'</span>, linestyle=<span class="string">'--'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Height offset (mm)'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Vertical force (N)'</span>)</span><br><span class="line">plt.grid(which=<span class="string">'major'</span>, color=<span class="string">'#DDDDDD'</span>, linewidth=<span class="number">0.8</span>)</span><br><span class="line">plt.grid(which=<span class="string">'minor'</span>, color=<span class="string">'#EEEEEE'</span>, linestyle=<span class="string">':'</span>, linewidth=<span class="number">0.5</span>)</span><br><span class="line">plt.minorticks_on()</span><br><span class="line">plt.title(<span class="string">f'Smallest vertical force '</span></span><br><span class="line">          <span class="string">f'found at offset <span class="subst">{best_offset*<span class="number">1000</span>:<span class="number">.4</span>f}</span>mm.'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<div style="width:70%;margin:auto"><img data-src="/2023/04/17/lqr-tutorial/3.png" class="" title="force"></div>
+<div style="width:70%;margin:auto"><a href="/2023/04/17/lqr-tutorial/3.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/17/lqr-tutorial/3.png" class="" title="force"></a></div>
 
 <p>在上面的图中, 我们可以看到由于脚的接触而产生的强非线性关系. 在左边, 当我们把人体模型推到地板上时, 唯一能解释它没有跳出地板的原因是一个巨大的外力把它往<strong>下</strong>推. 在右边, 当我们将人体模型移离地面时, 解释加速度为零的唯一方法是有一个力向<strong>上</strong>支撑着它, 我们可以清楚地看到脚离开地面的高度, 所需的力正好等于人体模型的重量(绿线), 并且在我们不断向上移动时保持不变.</p>
 <p>在 -0.5mm 附近是完美的高度偏移量(红线), 在这里, 零垂直加速度可以完全用关节内力来解释, 而不需要借助“神奇的”外力. 让我们修正初始姿态的高度, 将其保存在 <code>qpos0</code> 中, 并再次通过反向动力学计算受力:</p>
@@ -477,338 +386,220 @@ A=\frac{\partial f}{\partial x} \quad\quad B=\frac{\partial f}{\partial u}</scri
 <video controls="">
      <source src="final.mp4" type="video/mp4">
 </video>
-
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
     </div>
 
-    
-    
-    
+    <div class="post-meta">
+        <i>
         
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>少帥
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://shawshai.cn/2023/04/17/lqr-tutorial/" title="LQR 教程">http://shawshai.cn/2023/04/17/lqr-tutorial/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/lqr/" rel="tag"><i class="fa fa-tag"></i> lqr</a>
-          </div>
-
+            <span>2023-04-17</span>
+            
+                <span>该篇文章被 少帥</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/lqr/'>
+                            lqr
+                        </a>
+                    
+                </span>
+             
+             
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E6%B1%89%E5%8C%96/'>
+                            汉化
+                        </a>
+                    
+                </span>
+            
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/04/13/mujoco-tutorial/" rel="prev" title="MuJoCo 教程">
-      <i class="fa fa-chevron-left"></i> MuJoCo 教程
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/04/17/dm-control-tutorial/" rel="next" title="dm_control 教程">
-      dm_control 教程 <i class="fa fa-chevron-right"></i>
-    </a></div>
+        </i>
     </div>
-      </footer>
+    <br>
     
-  </article>
-  
-  
-  
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
 
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="nav-text">安装 MuJoCo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-text">检查是否安装成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%AF%BC%E5%85%A5%E5%8C%85%E4%B8%8E%E5%B8%AE%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="nav-text">其它导入包与帮助函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%B8%B2%E6%9F%93%E6%A0%87%E5%87%86%E4%BA%BA%E4%BD%93%E6%A8%A1%E5%9E%8B"><span class="nav-text">加载与渲染标准人体模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E7%9A%84%E5%8D%95%E8%85%BF%E7%AB%99%E7%AB%8B"><span class="nav-text">稳定的单腿站立</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LQR-%E7%90%86%E8%AE%BA%E5%9B%9E%E9%A1%BE"><span class="nav-text">LQR 理论回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E7%BA%BF%E6%80%A7%E5%8C%96%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="nav-text">理解线性化设定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%8F%8D%E5%90%91%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%AF%BB%E6%89%BE%E6%8E%A7%E5%88%B6%E8%AE%BE%E5%AE%9A%E5%80%BC"><span class="nav-text">通过反向动力学寻找控制设定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9-Q-%E5%92%8C-R-%E7%9F%A9%E9%98%B5"><span class="nav-text">选择  和  矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97-LQR-%E5%A2%9E%E7%9B%8A%E7%9F%A9%E9%98%B5-K"><span class="nav-text">计算 LQR 增益矩阵 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%B3%E5%AE%9A%E7%AB%99%E7%AB%8B"><span class="nav-text">稳定站立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E8%A7%86%E9%A2%91"><span class="nav-text">最终视频</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="少帥"
-      src="/images/ss-128x128.png">
-  <p class="site-author-name" itemprop="name">少帥</p>
-  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
+    
         
-          <span class="site-state-item-count">18</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        以上 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
+    
         
 
-        
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://comment.shawshai.cn',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
 
-<div class="copyright">
-  
-  &copy; 2021 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-at"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">少帥</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">283k</span>
-</div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
             });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
+            
         }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2021-2024 China 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>摆脱冷气 只向上走</span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
 
     
 
-  
+    
+<script src="/js/randomHeaderContent.js"></script>
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
 
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'b752126035a0b861c44c',
-      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
-      repo        : 'shawshai.github.io',
-      owner       : 'shawshai',
-      admin       : ['shawshai'],
-      id          : '9f5e72b96709822fb00ca1ed983f7164',
-        language: 'zh-CN',
-      distractionFreeMode: true
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
+
+
+    <!--暗黑模式-->
+    <script src="/js/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+        const options = {
+            bottom: '53px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '42px', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+    
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+        
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+  
 </html>

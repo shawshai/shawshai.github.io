@@ -2,6 +2,105 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2021/04/24/hello-world/</loc>
+    
+    <lastmod>2024-03-18T12:41:54.576Z</lastmod>
+    
+    <date>1619271296000</date>
+    <title>Hello, World! | 少帥的博客</title>
+    
+    <desc>欢迎来到少帥的博客~</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/support/</loc>
+    
+    <lastmod>2024-03-18T12:25:47.019Z</lastmod>
+    
+    <date>1710764746000</date>
+    <title>support | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/contact/</loc>
+    
+    <lastmod>2024-03-18T12:25:36.488Z</lastmod>
+    
+    <date>1710764736000</date>
+    <title>contact | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/friends/</loc>
+    
+    <lastmod>2024-03-18T12:25:24.061Z</lastmod>
+    
+    <date>1710764724000</date>
+    <title>friends | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/categories/index-1</loc>
+    
+    <lastmod>2024-03-18T12:22:33.856Z</lastmod>
+    
+    <date>1710764553000</date>
+    <title>categories | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/tags/index-1</loc>
+    
+    <lastmod>2024-03-18T12:22:16.511Z</lastmod>
+    
+    <date>1710764536000</date>
+    <title>tags | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/about/index-1</loc>
+    
+    <lastmod>2024-03-18T12:22:04.084Z</lastmod>
+    
+    <date>1710764524000</date>
+    <title>about | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/list/</loc>
+    
+    <lastmod>2024-03-18T12:21:52.962Z</lastmod>
+    
+    <date>1710764512000</date>
+    <title>list | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/index/</loc>
+    
+    <lastmod>2024-03-18T12:21:36.118Z</lastmod>
+    
+    <date>1710764496000</date>
+    <title>index | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2023/05/01/eigen-guide/</loc>
     
     <lastmod>2024-03-17T15:30:33.004Z</lastmod>
@@ -186,17 +285,6 @@
     <title>MuJoCo 配置过程 | 少帥的博客</title>
     
     <desc>MuJoCo 环境配置过程.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2021/04/24/hello-world/</loc>
-    
-    <lastmod>2021-09-26T02:28:10.602Z</lastmod>
-    
-    <date>1619271296000</date>
-    <title>Hello, World! | 少帥的博客</title>
-    
-    <desc>欢迎来到少帥的博客~</desc>
   </url>
   
   <url>

@@ -1,245 +1,150 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.1.1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-16x16.png">
-  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta name="description" content="MuJoCo 环境配置过程.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MuJoCo 配置过程">
-<meta property="og:url" content="http://shawshai.cn/2023/04/24/mujoco-config/">
-<meta property="og:site_name" content="少帥的博客">
-<meta property="og:description" content="MuJoCo 环境配置过程.">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/layout.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/import.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/cpu-z.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/cmake.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/install.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/props1.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/props2.png">
-<meta property="og:image" content="http://shawshai.cn/2023/04/24/mujoco-config/hello.png">
-<meta property="article:published_time" content="2023-04-23T17:34:21.000Z">
-<meta property="article:modified_time" content="2023-09-23T10:26:20.755Z">
-<meta property="article:author" content="少帥">
-<meta property="article:tag" content="mujoco">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://shawshai.cn/2023/04/24/mujoco-config/layout.png">
-
-<link rel="canonical" href="http://shawshai.cn/2023/04/24/mujoco-config/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>MuJoCo 配置过程 | 少帥的博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">少帥的博客</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Shaw Shai's Blog</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="MuJoCo 配置过程" />
+    <meta name="hexo-theme-A4" content="v1.8.9" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>少帥的博客 | Shaw Shai&#39;s Blog</title>
 
     
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-          <div class="content post posts-expand">
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
             
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/04/24/mujoco-config/">
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ss-128x128.png">
-      <meta itemprop="name" content="少帥">
-      <meta itemprop="description" content="摆脱冷气 只向上走">
-    </span>
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="少帥的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          MuJoCo 配置过程
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+    
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
 
-              <time title="创建时间：2023-04-24 01:34:21" itemprop="dateCreated datePublished" datetime="2023-04-24T01:34:21+08:00">2023-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-23 18:26:20" itemprop="dateModified" datetime="2023-09-23T18:26:20+08:00">2023-09-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
-                </span>
-            </span>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
-            </span>
-
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">少帥的博客</a> 
+            <span class="description">摆脱冷气 只向上走</span> 
         </div>
-      </header>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+            
+                <li><a href="/about/">关于</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+        <div class="post-main-title">
+            MuJoCo 配置过程
+        </div>
       
-        <div align="center">MuJoCo 环境配置过程. </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="post-toc-text">安装 MuJoCo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#C-%E7%89%88%E6%9C%AC"><span class="post-toc-text">C 版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Python-%E7%89%88%E6%9C%AC"><span class="post-toc-text">Python 版本</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="post-toc-text">出现的问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="post-toc-text">显卡驱动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9F%A5%E7%9C%8B-CPU-%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81-AVX-%E6%8C%87%E4%BB%A4"><span class="post-toc-text">查看 CPU 是否支持 AVX 指令</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%A1%A5%E5%85%85"><span class="post-toc-text">补充</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%B1%9E%E6%80%A7%E8%A1%A8"><span class="post-toc-text">设置属性表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85-GLFW"><span class="post-toc-text">安装 GLFW</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="post-toc-text">测试示例程序</span></a></li></ol></li></ol>
+            
+        
+        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><div align="center">MuJoCo 环境配置过程. </div>
 
 <span id="more"></span>
 <h2 id="安装-MuJoCo"><a href="#安装-MuJoCo" class="headerlink" title="安装 MuJoCo"></a>安装 MuJoCo</h2><p>正如<a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco">官方介绍</a>中所描述的, MuJoCo 的安装过程 “非常简单”.</p>
 <h3 id="C-版本"><a href="#C-版本" class="headerlink" title="C 版本"></a>C 版本</h3><p>对于 C 版本, 只需要下载对应的预编译 <a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco/releases">release 版本</a> 解压即可.</p>
 <p>为了验证, 可以直接运行  <code>bin</code> 目录中的可执行程序 <code>simulate</code>, 若出现以下界面, 则表示安装成功.</p>
-<div style="width:67%;margin:auto"><img data-src="/2023/04/24/mujoco-config/layout.png" class="" title="layout"></div>
+<div style="width:67%;margin:auto"><a href="/2023/04/24/mujoco-config/layout.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/layout.png" class="" title="layout"></a></div>
 
 <p>接下来就可以开心地玩耍了. 比如, 从 <code>model</code> 目录中找到  <code>humanoid.xml</code> 直接拖进来, 界面中便出现了一个站立的铰接人体模型, 随着鼠标键的抬起而垮在地上.</p>
-<div style="width:67%;margin:auto"><img data-src="/2023/04/24/mujoco-config/import.png" class="" title="import"></div>
+<div style="width:67%;margin:auto"><a href="/2023/04/24/mujoco-config/import.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/import.png" class="" title="import"></a></div>
 
 <h3 id="Python-版本"><a href="#Python-版本" class="headerlink" title="Python 版本"></a>Python 版本</h3><p>对于 Python 版本, 只需要运行一条命令即可:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mujoco</span><br></pre></td></tr></table></figure>
@@ -260,24 +165,24 @@
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h3><p>通过 <code>nvidia-smi</code> 命令查看显卡驱动是否成功安装.</p>
 <p>若需要重新安装显卡驱动, Windows 中有可能安装失败, 问题在于之前的驱动无法卸载干净. 这时需要另一个软件 <a target="_blank" rel="noopener" href="https://www.wagnardsoft.com/display-driver-uninstaller-DDU-">DDU</a> 的帮助. 在安全模式下运行 DDU, 即可完全删除之前的显卡驱动. 重启后重新安装驱动即可成功.</p>
 <h3 id="查看-CPU-是否支持-AVX-指令"><a href="#查看-CPU-是否支持-AVX-指令" class="headerlink" title="查看 CPU 是否支持 AVX 指令"></a>查看 CPU 是否支持 <code>AVX</code> 指令</h3><p>有很多软件可以查看, Windows 下推荐一个软件 <a target="_blank" rel="noopener" href="https://www.cpuid.com/softwares/cpu-z.html">CPU-Z</a>, 可以下载免安装版. 运行即可查看 CPU 的相关参数. 可以看到我的 CPU 支持的指令集中不包含 <code>AVX</code>. 机器确实太老了.</p>
-<div style="width:67%;margin:auto"><img data-src="/2023/04/24/mujoco-config/cpu-z.png" class="" title="lcpu-z"></div>
+<div style="width:67%;margin:auto"><a href="/2023/04/24/mujoco-config/cpu-z.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/cpu-z.png" class="" title="lcpu-z"></a></div>
 
 <p>对于这种不支持 <code>AVX</code> 指令集的 CPU, 只能通过 MuJoCo 的源码自行 CMake 一个 non-AVX 的版本.</p>
 <p>从<a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco/releases">官方链接</a>中找一个 Source code 下载. 在 CMake 中, 只需要把 <code>AVX</code> 相关的两项取消打勾, 然后生成即可. 注意 CMake 版本别太老就好.</p>
-<div style="width:90%;margin:auto"><img data-src="/2023/04/24/mujoco-config/cmake.png" class="" title="cmake"></div>
+<div style="width:90%;margin:auto"><a href="/2023/04/24/mujoco-config/cmake.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/cmake.png" class="" title="cmake"></a></div>
 
 <p>另外, 注意 <code>CMAKE_INSTALL_PREFIX</code> 设置最终编译安装的目录.</p>
 <p>生成完成之后, 在 Visual Studio 中生成解决方案, 然后 <code>仅生成INSTALL</code> 即可.</p>
-<div style="width:80%;margin:auto"><img data-src="/2023/04/24/mujoco-config/install.png" class="" title="install"></div>
+<div style="width:80%;margin:auto"><a href="/2023/04/24/mujoco-config/install.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/install.png" class="" title="install"></a></div>
 
 <p>现在, 就可以在 <code>CMAKE_INSTALL_PREFIX</code> 中设置的安装目录中看到编译好的文件了. 运行 <code>bin</code> 目录下的 <code>simulate</code> 即出现本文开始的软件界面.</p>
 <p>对于 Python 版本, 如果 CPU 不支持 AVX 指令的话, 暂时仍未找到解决办法.</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>如果要使用 C 版本的 MuJoCo 库, 理论上还需要将 MuJoCo 安装目录中的 <code>bin</code>, <code>lib</code> 和 <code>include</code> 路径加入系统环境变量中. 然而本着尽量不影响系统配置的原则, 我没有这样做.</p>
 <h3 id="设置属性表"><a href="#设置属性表" class="headerlink" title="设置属性表"></a>设置属性表</h3><p>由于 MuJoCo 库并不常用, 我这里选择使用配置属性表的方法, 避免向系统环境变量中添加路径.</p>
 <p>在项目中新建属性表, 将上述三个路径分别配置在 <code>VC++目录</code> 的这三项中, 以及将库目录中的 <code>lib</code> 文件名填入 <code>链接器</code> → <code>输入</code> → <code>附加依赖项</code> 中.</p>
-<div style="width:80%;margin:auto"><img data-src="/2023/04/24/mujoco-config/props1.png" class="" title="props1"></div>
+<div style="width:80%;margin:auto"><a href="/2023/04/24/mujoco-config/props1.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/props1.png" class="" title="props1"></a></div>
 
-<div style="width:80%;margin:auto"><img data-src="/2023/04/24/mujoco-config/props2.png" class="" title="props2"></div>
+<div style="width:80%;margin:auto"><a href="/2023/04/24/mujoco-config/props2.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/props2.png" class="" title="props2"></a></div>
 
 <p>这样就完成了 MuJoCo 库的属性表配置, 可以将这个属性表文件保存好, 以后再在这台电脑写 MuJoCo 的项目就可以直接添加现有属性表了. 非常方便.</p>
 <p>最后一个问题, 就是程序编译的时候, 可能会报 “找不到 mujoco.dll” 之类的错误. 解决办法有两种: 1. 将 <code>bin</code> 中的 <code>mujoco.dll</code> 复制到系统目录 <code>C:\Windows\System32</code> 和 <code>C:\Windows\SysWOW64</code> 中; 2. 将 <code>mujoco.dll</code> 复制到当前项目目录中. 本着尽量不影响系统配置的原则, 我一般都选择第 2 种方法.</p>
@@ -285,286 +190,223 @@
 <h3 id="测试示例程序"><a href="#测试示例程序" class="headerlink" title="测试示例程序"></a>测试示例程序</h3><p>以上准备工作完成后, 挑一个模型文件(如 <code>humanoid.xml</code>)复制过来, 就可以运行 <code>sample</code> 目录中的示例程序了, 比如 <code>basic.cc</code> 程序, 这里把它改得稍微精简一些.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GLFW/glfw3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mujoco/mujoco.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MuJoCo 数据结构</span></span><br><span class="line">mjModel* m = <span class="literal">NULL</span>;                  <span class="comment">// MuJoCo model</span></span><br><span class="line">mjData* d = <span class="literal">NULL</span>;                   <span class="comment">// MuJoCo data</span></span><br><span class="line">mjvCamera cam;                      <span class="comment">// abstract camera</span></span><br><span class="line">mjvOption opt;                      <span class="comment">// visualization options</span></span><br><span class="line">mjvScene scn;                       <span class="comment">// abstract scene</span></span><br><span class="line">mjrContext con;                     <span class="comment">// custom GPU context</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 主函数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> error[<span class="number">1000</span>];</span><br><span class="line">  <span class="comment">// 读取模型文件</span></span><br><span class="line">    m = <span class="built_in">mj_loadXML</span>(<span class="string">&quot;humanoid.xml&quot;</span>, <span class="literal">NULL</span>, error, <span class="number">1000</span>);</span><br><span class="line">  <span class="comment">// make data</span></span><br><span class="line">    d = <span class="built_in">mj_makeData</span>(m);</span><br><span class="line">  <span class="comment">// 初始化 GLFW</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">glfwInit</span>()) &#123;</span><br><span class="line">        <span class="built_in">mju_error</span>(<span class="string">&quot;Could not initialize GLFW&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">// 创建窗口, make OpenGL context current, request v-sync</span></span><br><span class="line">    GLFWwindow* window = <span class="built_in">glfwCreateWindow</span>(<span class="number">1200</span>, <span class="number">900</span>, <span class="string">&quot;Demo&quot;</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">glfwMakeContextCurrent</span>(window);</span><br><span class="line">    <span class="built_in">glfwSwapInterval</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="comment">// 初始化可视数据结构</span></span><br><span class="line">    <span class="built_in">mjv_defaultCamera</span>(&amp;cam);</span><br><span class="line">    <span class="built_in">mjv_defaultOption</span>(&amp;opt);</span><br><span class="line">    <span class="built_in">mjv_defaultScene</span>(&amp;scn);</span><br><span class="line">    <span class="built_in">mjr_defaultContext</span>(&amp;con);</span><br><span class="line">  <span class="comment">// 创建场景和上下文</span></span><br><span class="line">    <span class="built_in">mjv_makeScene</span>(m, &amp;scn, <span class="number">2000</span>);</span><br><span class="line">    <span class="built_in">mjr_makeContext</span>(m, &amp;con, mjFONTSCALE_150);</span><br><span class="line">  <span class="comment">// 设置相机距离</span></span><br><span class="line">    cam.distance = <span class="number">5</span>;</span><br><span class="line">  <span class="comment">// 启动主循环, 进行模拟</span></span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">glfwWindowShouldClose</span>(window)) &#123;</span><br><span class="line">        mjtNum simstart = d-&gt;time;</span><br><span class="line">        <span class="keyword">while</span> (d-&gt;time - simstart &lt; <span class="number">1.0</span> / <span class="number">60.0</span>) &#123;</span><br><span class="line">            <span class="built_in">mj_step</span>(m, d);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// get framebuffer viewport</span></span><br><span class="line">        mjrRect viewport = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line">        <span class="built_in">glfwGetFramebufferSize</span>(window, &amp;viewport.width, &amp;viewport.height);</span><br><span class="line">        <span class="comment">// 更新场景与渲染</span></span><br><span class="line">        <span class="built_in">mjv_updateScene</span>(m, d, &amp;opt, <span class="literal">NULL</span>, &amp;cam, mjCAT_ALL, &amp;scn);</span><br><span class="line">        <span class="built_in">mjr_render</span>(viewport, &amp;scn, &amp;con);</span><br><span class="line">        <span class="comment">// swap OpenGL buffers (blocking call due to v-sync)</span></span><br><span class="line">        <span class="built_in">glfwSwapBuffers</span>(window);</span><br><span class="line">        <span class="comment">// process pending GUI events, call GLFW callbacks</span></span><br><span class="line">        <span class="built_in">glfwPollEvents</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 清空可视化缓存</span></span><br><span class="line">    <span class="built_in">mjv_freeScene</span>(&amp;scn);</span><br><span class="line">    <span class="built_in">mjr_freeContext</span>(&amp;con);</span><br><span class="line">    <span class="comment">// 清空 MuJoCo 模型和数据</span></span><br><span class="line">    <span class="built_in">mj_deleteData</span>(d);</span><br><span class="line">    <span class="built_in">mj_deleteModel</span>(m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行程序, 再次见证站立小人倒下的过程.</p>
-<div style="width:40%;margin:auto"><img data-src="/2023/04/24/mujoco-config/hello.png" class="" title="hello"></div>
+<div style="width:40%;margin:auto"><a href="/2023/04/24/mujoco-config/hello.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/04/24/mujoco-config/hello.png" class="" title="hello"></a></div>
 
 <p><strong>Hello World!</strong></p>
-
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
     </div>
 
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-04-24</span>
+            
+                <span>该篇文章被 少帥</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/mujoco/'>
+                            mujoco
+                        </a>
+                    
+                </span>
+             
+             
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E8%AE%B0%E5%BD%95/'>
+                            记录
+                        </a>
+                    
+                </span>
+            
+        
+        </i>
+    </div>
+    <br>
     
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
+
     
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        以上 
+    </div>
     
         
 
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>少帥
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://shawshai.cn/2023/04/24/mujoco-config/" title="MuJoCo 配置过程">http://shawshai.cn/2023/04/24/mujoco-config/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://comment.shawshai.cn',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
 </div>
 
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/mujoco/" rel="tag"><i class="fa fa-tag"></i> mujoco</a>
-          </div>
 
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/04/17/dm-control-tutorial/" rel="prev" title="dm_control 教程">
-      <i class="fa fa-chevron-left"></i> dm_control 教程
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/05/01/eigen-guide/" rel="next" title="Eigen 快速参考指南">
-      Eigen 快速参考指南 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
+                                      
+                    
+                    
+                    <div class="footer">
     
-  </article>
-  
-  
-  
+        <span> 
+            © 2021-2024 China 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>摆脱冷气 只向上走</span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
 
 
 
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
     });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-MuJoCo"><span class="nav-text">安装 MuJoCo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E7%89%88%E6%9C%AC"><span class="nav-text">C 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python-%E7%89%88%E6%9C%AC"><span class="nav-text">Python 版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">出现的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="nav-text">显卡驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-CPU-%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81-AVX-%E6%8C%87%E4%BB%A4"><span class="nav-text">查看 CPU 是否支持 AVX 指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%B1%9E%E6%80%A7%E8%A1%A8"><span class="nav-text">设置属性表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-GLFW"><span class="nav-text">安装 GLFW</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="nav-text">测试示例程序</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="少帥"
-      src="/images/ss-128x128.png">
-  <p class="site-author-name" itemprop="name">少帥</p>
-  <div class="site-description" itemprop="description">摆脱冷气 只向上走</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">18</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">16</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 2021 – 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-at"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">少帥</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">283k</span>
-</div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
-
-<script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
-    var gitalk = new Gitalk({
-      clientID    : 'b752126035a0b861c44c',
-      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
-      repo        : 'shawshai.github.io',
-      owner       : 'shawshai',
-      admin       : ['shawshai'],
-      id          : '1f376568be13ab02d4876c3e1b034f4a',
-        language: 'zh-CN',
-      distractionFreeMode: true
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
     });
-    gitalk.render('gitalk-container');
-  }, window.Gitalk);
-});
 </script>
+<script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
+
+
+    <!--暗黑模式-->
+    <script src="/js/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+        const options = {
+            bottom: '53px', // default: '32px'
+            right: 'unset', // default: '32px'
+            left: '42px', // default: 'unset'
+            time: '0.3s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+    
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+        
+        }
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+  
 </html>
