@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
+    
+    <lastmod>2024-03-19T10:00:26.662Z</lastmod>
+    
+    <date>1619271499000</date>
+    <title>博客搭建过程 | 少帥的博客</title>
+    
+    <desc>记录博客网站的搭建过程。</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/04/17/lqr-tutorial/</loc>
+    
+    <lastmod>2024-03-19T09:56:06.051Z</lastmod>
+    
+    <date>1681714639000</date>
+    <title>LQR 教程 | 少帥的博客</title>
+    
+    <desc>本文为 MuJoCo 官方 LQR 教程的简单翻译.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2024/03/19/hexo-theme-a4/</loc>
+    
+    <lastmod>2024-03-19T09:54:00.038Z</lastmod>
+    
+    <date>1710831640000</date>
+    <title>更换博客主题 A4 | 少帥的博客</title>
+    
+    <desc>更换博客主题 A4</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/index/</loc>
     
     <lastmod>2024-03-18T16:30:40.465Z</lastmod>
@@ -10,17 +43,6 @@
     <title>index | 少帥的博客</title>
     
     <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/04/17/lqr-tutorial/</loc>
-    
-    <lastmod>2024-03-18T16:23:38.664Z</lastmod>
-    
-    <date>1681714639000</date>
-    <title>LQR 教程 | 少帥的博客</title>
-    
-    <desc>本文为 MuJoCo 官方 LQR 教程的简单翻译.</desc>
   </url>
   
   <url>
@@ -131,17 +153,6 @@
     <title>关于我 | 少帥的博客</title>
     
     <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
-    
-    <lastmod>2023-10-21T08:08:36.795Z</lastmod>
-    
-    <date>1619271499000</date>
-    <title>博客搭建过程 | 少帥的博客</title>
-    
-    <desc>记录博客网站的搭建过程。</desc>
   </url>
   
   <url>
