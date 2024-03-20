@@ -2,6 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
+    
+    <lastmod>2024-03-20T12:08:05.219Z</lastmod>
+    
+    <date>1695444267000</date>
+    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-3/</loc>
+    
+    <lastmod>2024-03-20T12:02:44.544Z</lastmod>
+    
+    <date>1695442273000</date>
+    <title>仿人机器人 - 3 零力矩点与动力学 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/index/</loc>
     
     <lastmod>2024-03-20T07:51:42.898Z</lastmod>
@@ -151,28 +173,6 @@
     
     <date>1620361993000</date>
     <title>关于我 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-3/</loc>
-    
-    <lastmod>2023-10-21T07:34:42.400Z</lastmod>
-    
-    <date>1695442273000</date>
-    <title>仿人机器人 - 3 零力矩点与动力学 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
-    
-    <lastmod>2023-10-21T07:34:42.400Z</lastmod>
-    
-    <date>1695444267000</date>
-    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
     
     <desc></desc>
   </url>
