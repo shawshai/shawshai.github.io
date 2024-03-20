@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/index/</loc>
+    
+    <lastmod>2024-03-20T07:51:42.898Z</lastmod>
+    
+    <date>1710764496000</date>
+    <title>index | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2021/04/24/hexo-github-study/</loc>
     
     <lastmod>2024-03-19T10:00:26.662Z</lastmod>
@@ -32,17 +43,6 @@
     <title>更换博客主题 A4 | 少帥的博客</title>
     
     <desc>更换博客主题 A4</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/index/</loc>
-    
-    <lastmod>2024-03-18T16:30:40.465Z</lastmod>
-    
-    <date>1710764496000</date>
-    <title>index | 少帥的博客</title>
-    
-    <desc></desc>
   </url>
   
   <url>

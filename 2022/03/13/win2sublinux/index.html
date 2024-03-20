@@ -7,7 +7,7 @@
     <meta name="description" content="Windows10 与子系统 Linux Ubuntu 的文件访问" />
     <meta name="hexo-theme-A4" content="v1.8.9" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>少帥的博客 | Shaw Shai&#39;s Blog</title>
+    <title>少帥的博客</title>
 
     
         
@@ -63,7 +63,9 @@
 <link rel="stylesheet" href="/css/lightgallery.min.css">
 
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
     
     
@@ -89,7 +91,7 @@
         height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
         <div class="header-content">
             <a class="logo" href="/">少帥的博客</a> 
-            <span class="description">摆脱冷气 只向上走</span> 
+            <span class="description">Shaw Shai&#39;s Blog</span> 
         </div>
         
     </div>
@@ -98,15 +100,15 @@
     <ul class="nav">
         
             
-                <li><a href="/">首页</a></li>
+                <li><a href="/">🌄首页</a></li>
             
         
             
-                <li><a href="/list/">文章</a></li>
+                <li><a href="/list/">📖文章</a></li>
             
         
             
-                <li><a href="/about/">关于</a></li>
+                <li><a href="/about/">⛄关于</a></li>
             
         
     </ul>
@@ -135,7 +137,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9C%A8-Win10-%E4%B8%AD%E8%AE%BF%E9%97%AE%E5%AD%90%E7%B3%BB%E7%BB%9F-Ubuntu-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="post-toc-text">在 Win10 中访问子系统 Ubuntu 中的文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9C%A8%E5%AD%90%E7%B3%BB%E7%BB%9F-Ubuntu-%E4%B8%AD%E8%AE%BF%E9%97%AE-Win10-%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6"><span class="post-toc-text">在子系统 Ubuntu 中访问 Win10 中的文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%B3%BB%E7%BB%9F%E9%97%B4%E6%96%87%E4%BB%B6%E4%BA%92%E4%BC%A0"><span class="post-toc-text">实现系统间文件互传</span></a></li></ol>
             
         
-        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><div align="center" style="width:70%; margin:auto">Win10 与子系统 Ubuntu 的文件互访</div>
+        <div class=".article-gallery"><div align="center" style="width:70%; margin:auto">Win10 与子系统 Ubuntu 的文件互访</div>
 
 
 
@@ -148,18 +150,18 @@
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/27a2f62fda5f">https://www.jianshu.com/p/27a2f62fda5f</a></p>
 </blockquote>
 <h1 id="在-Win10-中访问子系统-Ubuntu-中的文件"><a href="#在-Win10-中访问子系统-Ubuntu-中的文件" class="headerlink" title="在 Win10 中访问子系统 Ubuntu 中的文件"></a>在 Win10 中访问子系统 Ubuntu 中的文件</h1><p>子系统 Ubuntu 在 Win10 中的 home 目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home</span><br></pre></td></tr></tbody></table></figure>
 <p>子系统 Ubuntu 在 Win10 中的根目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\root</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Win10用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\root</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <p>Win10 更新之后，再也不必这么麻烦了，直接打开文件资源管理器就可以看到子系统 Ubuntu 的文件：</p>
 <div style="width:80%;margin:auto"><a href="/2022/03/13/win2sublinux/ubuntu.png" class="gallery-item" style="box-shadow: none;"> <img src="/2022/03/13/win2sublinux/ubuntu.png" class="" title="ubuntu"></a></div>
 
 <h1 id="在子系统-Ubuntu-中访问-Win10-中的文件"><a href="#在子系统-Ubuntu-中访问-Win10-中的文件" class="headerlink" title="在子系统 Ubuntu 中访问 Win10 中的文件"></a>在子系统 Ubuntu 中访问 Win10 中的文件</h1><p>在子系统 Ubuntu 中，Win10 的硬盘分区均在 <code>\mnt</code> 目录下。</p>
 <p>Ubuntu 中访问 Win10 的 home 目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/c/Users/Win10用户名</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/c/Users/Win10用户名</span><br></pre></td></tr></tbody></table></figure>
 <p>Ubuntu 中访问 Win10 的 e 盘目录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/e</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/e</span><br></pre></td></tr></tbody></table></figure>
 <h1 id="实现系统间文件互传"><a href="#实现系统间文件互传" class="headerlink" title="实现系统间文件互传"></a>实现系统间文件互传</h1><p>显然，两个系统间的文件互传，根本不需要任何特殊方法。</p>
 <p>在 Win10 中找到子系统文件所在目录，直接对文件（夹）复制粘贴即可。</p>
 <p>在子系统 Ubuntu 中也可以进行同样的操作。</p>

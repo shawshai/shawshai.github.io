@@ -7,7 +7,7 @@
     <meta name="description" content="更换博客主题 A4" />
     <meta name="hexo-theme-A4" content="v1.8.9" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>少帥的博客 | Shaw Shai&#39;s Blog</title>
+    <title>少帥的博客</title>
 
     
         
@@ -63,7 +63,9 @@
 <link rel="stylesheet" href="/css/lightgallery.min.css">
 
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
     
     
@@ -89,7 +91,7 @@
         height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
         <div class="header-content">
             <a class="logo" href="/">少帥的博客</a> 
-            <span class="description">摆脱冷气 只向上走</span> 
+            <span class="description">Shaw Shai&#39;s Blog</span> 
         </div>
         
     </div>
@@ -98,15 +100,15 @@
     <ul class="nav">
         
             
-                <li><a href="/">首页</a></li>
+                <li><a href="/">🌄首页</a></li>
             
         
             
-                <li><a href="/list/">文章</a></li>
+                <li><a href="/list/">📖文章</a></li>
             
         
             
-                <li><a href="/about/">关于</a></li>
+                <li><a href="/about/">⛄关于</a></li>
             
         
     </ul>
@@ -135,7 +137,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%B8%BB%E9%A2%98%E4%BA%AE%E7%82%B9"><span class="post-toc-text">主题亮点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9B%B4%E6%8D%A2%E8%BF%87%E7%A8%8B"><span class="post-toc-text">更换过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%85%B6%E4%BB%96"><span class="post-toc-text">其他</span></a></li></ol>
             
         
-        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><div align="center"> 更换博客主题 A4 </div>
+        <div class=".article-gallery"><div align="center"> 更换博客主题 A4 </div>
 
 <span id="more"></span>
 <p>本博客框架为 <a target="_blank" rel="noopener" href="https://hexo.io/">hexo</a>，之前一直用的主题是 <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">NexT</a>，昨天发现了一款更加简洁美观的主题 <a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">A4</a>，非常喜欢，特此记录一下更换过程。</p>
@@ -156,7 +158,7 @@
 <p>由于我已经有 Hexo 的基本环境，所以更换起来非常方便。这里使用了作者推荐的 npm 方式。</p>
 <ul>
 <li><p>将博客根目录下的 <code>_config.yml</code> 文件中将主题设置为 A4</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">A4</span>  <span class="comment"># next</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">A4</span>  <span class="comment"># next</span></span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><p>执行命令 <code>npm install hexo-theme-a4@latest</code></p>
 </li>
@@ -168,7 +170,7 @@
 <p>关于评论系统的配置参考 <a target="_blank" rel="noopener" href="https://waline.js.org/guide/get-started/">Waline 文档</a>，只参考这一个页面按照步骤操作即可，里面也有操作演示视频。注意选择国际版 LeanCloud。</p>
 <p>剩下的就是慢慢给博客添砖加瓦了。</p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>A4 主题的主页独立于普通文章之外，测试发现其中的图片资源均位于路径 <code>source/img</code> 下，因此插图也很方便。在 Typora 中直接插入本地图片，路径改为 <code>img/xxx.jpg</code> 这样即可，如下所示。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;img/logo.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;logo&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:60%; margin:auto&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/logo.jpg"</span> <span class="attr">alt</span>=<span class="string">"logo"</span> <span class="attr">style</span>=<span class="string">"width:60%; margin:auto"</span> /&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 </div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'

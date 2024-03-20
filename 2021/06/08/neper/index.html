@@ -7,7 +7,7 @@
     <meta name="description" content="Neper 安装与配置过程" />
     <meta name="hexo-theme-A4" content="v1.8.9" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>少帥的博客 | Shaw Shai&#39;s Blog</title>
+    <title>少帥的博客</title>
 
     
         
@@ -63,7 +63,9 @@
 <link rel="stylesheet" href="/css/lightgallery.min.css">
 
 
-<meta name="generator" content="Hexo 7.1.1"><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
     
     
@@ -89,7 +91,7 @@
         height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
         <div class="header-content">
             <a class="logo" href="/">少帥的博客</a> 
-            <span class="description">摆脱冷气 只向上走</span> 
+            <span class="description">Shaw Shai&#39;s Blog</span> 
         </div>
         
     </div>
@@ -98,15 +100,15 @@
     <ul class="nav">
         
             
-                <li><a href="/">首页</a></li>
+                <li><a href="/">🌄首页</a></li>
             
         
             
-                <li><a href="/list/">文章</a></li>
+                <li><a href="/list/">📖文章</a></li>
             
         
             
-                <li><a href="/about/">关于</a></li>
+                <li><a href="/about/">⛄关于</a></li>
             
         
     </ul>
@@ -135,7 +137,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="post-toc-text">安装环境</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="post-toc-text">编译安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E8%BF%90%E8%A1%8C%E4%BE%8B%E5%AD%90"><span class="post-toc-text">运行例子</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E8%A1%A5%E5%85%85"><span class="post-toc-text">补充</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%9C%A8Win10%E4%B8%AD%E9%85%8D%E7%BD%AEWSL"><span class="post-toc-text">在Win10中配置WSL</span></a></li></ol></li></ol>
             
         
-        <link rel="stylesheet" type="text/css" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/lightgallery.min.css" /><div class=".article-gallery"><div style="width:70%; margin:auto"><a href="/2021/06/08/neper/gene_gene-min.png" class="gallery-item" style="box-shadow: none;"> <img src="/2021/06/08/neper/gene_gene-min.png" class="" title="neper"></a></div>
+        <div class=".article-gallery"><div style="width:70%; margin:auto"><a href="/2021/06/08/neper/gene_gene-min.png" class="gallery-item" style="box-shadow: none;"> <img src="/2021/06/08/neper/gene_gene-min.png" class="" title="neper"></a></div>
 
 <span id="more"></span>
 <p>Neper <a target="_blank" rel="noopener" href="https://neper.info/">官网</a>。</p>
@@ -154,21 +156,21 @@
 <p>gcc, g++; cmake; gsl; nlopt; povray; gmsh; imagemagick</p>
 </blockquote>
 <h1 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h1><p>安装组件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cmake</span><br><span class="line">sudo apt install g++</span><br><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt-get install libnlopt.dev</span><br><span class="line">sudo apt-get install povray</span><br><span class="line">sudo apt-get install libgmsh-dev</span><br><span class="line">sudo apt-get install imagemagick</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cmake</span><br><span class="line">sudo apt install g++</span><br><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt-get install libnlopt.dev</span><br><span class="line">sudo apt-get install povray</span><br><span class="line">sudo apt-get install libgmsh-dev</span><br><span class="line">sudo apt-get install imagemagick</span><br></pre></td></tr></tbody></table></figure>
 <p>安装GSL（此处参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/nju2014/p/5334928.html">该链接</a>）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgsl0-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgsl0-dev</span><br></pre></td></tr></tbody></table></figure>
 <h1 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h1><p>参考官方文档 Neper Reference Manual.</p>
 <p>下载neper，时间较长。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/rquey/neper.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/rquey/neper.git</span><br></pre></td></tr></tbody></table></figure>
 <p>进入<code>neper/src/</code>目录，执行编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> buid &amp;&amp; cmake ..</span><br><span class="line">make -j</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> build &amp;&amp; <span class="built_in">cd</span> buid &amp;&amp; cmake ..</span><br><span class="line">make -j</span><br><span class="line">sudo make install</span><br></pre></td></tr></tbody></table></figure>
 <p>继续在<code>build</code>目录下执行测试，可以在该目录下找到相应的生成文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="built_in">test</span></span><br></pre></td></tr></tbody></table></figure>
 <h1 id="运行例子"><a href="#运行例子" class="headerlink" title="运行例子"></a>运行例子</h1><p>保存以下例子为 <code>gene_gene.sh</code>，执行 <code>sudo sh ./gene_gene.sh</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">NEPER=<span class="string">&quot;neper --rcfile none&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">&quot;cube(1,1,1)&quot;</span>       -o gene_gene_1</span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">&quot;cylinder(1,1,200)&quot;</span> -o gene_gene_2</span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">&quot;sphere(1,1000)&quot;</span>    -o gene_gene_3</span><br><span class="line"></span><br><span class="line">C=<span class="string">&quot;-datacellcol id -datacelltrs 0.5 -cameraangle 12 -imagesize 600:600&quot;</span></span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_1.tess <span class="variable">$C</span> -<span class="built_in">print</span> gene_gene_1</span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_2.tess <span class="variable">$C</span> -showedge <span class="string">&quot;cyl==0&quot;</span>   -cameraangle 11 -<span class="built_in">print</span> gene_gene_2</span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_3.tess <span class="variable">$C</span> -showedge <span class="string">&quot;polynb&gt;1&quot;</span> -cameraangle 9 -<span class="built_in">print</span> gene_gene_3</span><br><span class="line"></span><br><span class="line">convert +append gene_gene_?.png gene_gene.png</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">NEPER=<span class="string">"neper --rcfile none"</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">"cube(1,1,1)"</span>       -o gene_gene_1</span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">"cylinder(1,1,200)"</span> -o gene_gene_2</span><br><span class="line"><span class="variable">$NEPER</span> -T -n 1000 -domain <span class="string">"sphere(1,1000)"</span>    -o gene_gene_3</span><br><span class="line"></span><br><span class="line">C=<span class="string">"-datacellcol id -datacelltrs 0.5 -cameraangle 12 -imagesize 600:600"</span></span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_1.tess <span class="variable">$C</span> -<span class="built_in">print</span> gene_gene_1</span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_2.tess <span class="variable">$C</span> -showedge <span class="string">"cyl==0"</span>   -cameraangle 11 -<span class="built_in">print</span> gene_gene_2</span><br><span class="line"><span class="variable">$NEPER</span> -V gene_gene_3.tess <span class="variable">$C</span> -showedge <span class="string">"polynb&gt;1"</span> -cameraangle 9 -<span class="built_in">print</span> gene_gene_3</span><br><span class="line"></span><br><span class="line">convert +append gene_gene_?.png gene_gene.png</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></tbody></table></figure>
 <p>生成的结果为最开始的图片。</p>
 <p>另外按<a target="_blank" rel="noopener" href="https://neper.info/generation.html">文档</a>中的例子导出一个可查看的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制示例网格并生成 tess_1.tess 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o tess_1</span><br><span class="line"><span class="comment"># 使用可视化模块生成图片 image_1.png</span></span><br><span class="line">neper -V  tess_1.tess -datacellcol <span class="built_in">id</span> -<span class="built_in">print</span> image_1</span><br><span class="line"><span class="comment"># 将导出文件格式改为Gmsh格式，导出为 gmsh_1.geo 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o gmsh_1 -format geo</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制示例网格并生成 tess_1.tess 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o tess_1</span><br><span class="line"><span class="comment"># 使用可视化模块生成图片 image_1.png</span></span><br><span class="line">neper -V  tess_1.tess -datacellcol <span class="built_in">id</span> -<span class="built_in">print</span> image_1</span><br><span class="line"><span class="comment"># 将导出文件格式改为Gmsh格式，导出为 gmsh_1.geo 文件</span></span><br><span class="line">neper -T -n 10 -morpho graingrowth -o gmsh_1 -format geo</span><br></pre></td></tr></tbody></table></figure>
 <p>详细参数见官方文档<a target="_blank" rel="noopener" href="https://neper.info/docs/neper.pdf">Neper Reference Manual</a>。</p>
 <div style="width:70%;margin:auto"><a href="/2021/06/08/neper/neper-save.png" class="gallery-item" style="box-shadow: none;"> <img src="/2021/06/08/neper/neper-save.png" class="" title="output_options"></a></div>
 
@@ -176,7 +178,7 @@
 <div style="width:50%;margin:auto"><a href="/2021/06/08/neper/image_1.png" class="gallery-item" style="box-shadow: none;"> <img src="/2021/06/08/neper/image_1.png" class="" title="image_1.png"></a></div>
 
 <p>安装Gmsh之后，可查看<code>.geo</code>文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gmsh gmsh_1.geo</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gmsh gmsh_1.geo</span><br></pre></td></tr></tbody></table></figure>
 <div style="width:50%;margin:auto"><a href="/2021/06/08/neper/gmsh_1.png" class="gallery-item" style="box-shadow: none;"> <img src="/2021/06/08/neper/gmsh_1.png" class="" title="gmsh_1.geo"></a></div>
 
 <h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="在Win10中配置WSL"><a href="#在Win10中配置WSL" class="headerlink" title="在Win10中配置WSL"></a>在Win10中配置WSL</h2><p>开始菜单右键 =&gt;  应用和功能 =&gt; 程序和功能（在右侧） =&gt; 启动或关闭Windows功能 =&gt; 适用于Linux的Windows子系统。打勾，确定，重启。</p>
@@ -186,7 +188,7 @@
 <li><p>在Windows中安装<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>，一路默认下一步即可。完成后打开<code>XLaunch</code>，一路默认下一步。</p>
 </li>
 <li><p>在Ubuntu bash中，运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export DISPLAY=:0.0&quot;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"export DISPLAY=:0.0"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
 </li>
 </ol>
 <p>Done!</p>
