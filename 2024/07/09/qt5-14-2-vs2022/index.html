@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Qt 5.14.2 + VS2022 配置" />
+    <meta name="hexo-theme-A4" content="v1.8.9" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>少帥的博客</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+    
+    
+    <body>
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">少帥的博客</a> 
+            <span class="description">Shaw Shai&#39;s Blog</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">🌄首页</a></li>
+            
+        
+            
+                <li><a href="/list/">📖文章</a></li>
+            
+        
+            
+                <li><a href="/about/">⛄关于</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+
+    
+        <div class="post-main-title">
+            Qt 5.14.2 + VS2022 配置
+        </div>
+      
+    
+
+    <div class="post-md">
+        
+        <div class=".article-gallery"><h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h1><h2 id="1-1-安装-VS-2022"><a href="#1-1-安装-VS-2022" class="headerlink" title="1.1 安装 VS 2022"></a>1.1 安装 VS 2022</h2><p>下载链接  <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/downloads/">https://visualstudio.microsoft.com/zh-hans/downloads/</a></p>
+<p>社区版免费，已足够个人开发使用。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/00.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/00.png" class="" title="00.png"></a></div>
+
+<p>根据个人需求选择安装组件即可，后续可通过 Visual Studio Installer 修改组件安装。</p>
+<h2 id="1-2-安装-Qt-5-14-2"><a href="#1-2-安装-Qt-5-14-2" class="headerlink" title="1.2 安装 Qt 5.14.2"></a>1.2 安装 Qt 5.14.2</h2><p>官方下载链接 <a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe">https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe</a></p>
+<p>以上链接目前为止是有效的，无法访问的话需科学上网。</p>
+<p>Qt 版本自 5.15 开始不再提供离线安装包，需在线安装或者自己下载源码编译安装，因此 5.14.2 最后一个可以离线安装的版本。</p>
+<p>安装过程中需登录 Qt 账号，最少需选择以下组件，其它按需选择即可。</p>
+<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/01.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/01.png" class="" title="01.png"></a></div>
+
+<p>详细安装步骤可参考博客 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2248312">https://cloud.tencent.com/developer/article/2248312</a></p>
+<h2 id="1-3-安装-Qt-Visual-Studio-Tools"><a href="#1-3-安装-Qt-Visual-Studio-Tools" class="headerlink" title="1.3 安装 Qt Visual Studio Tools"></a>1.3 安装 Qt Visual Studio Tools</h2><p>在 Visual Studio 打开 <code>扩展</code> → <code>管理扩展</code>，搜索安装 Qt Visual Studio Tools 即可。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/02.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/02.png" class="" title="02.png"></a></div>
+
+<p>装好扩展后，在菜单栏 <code>扩展</code> → <code>Qt VS Tools</code> → <code>Options</code> 中关联 Qt。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/03.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/03.png" class="" title="03.png"></a></div>
+
+<p>可点击下方 <code>Autodetect</code> 按钮，将自动关联已安装的 Qt 版本，选择一个默认版本打勾即可。</p>
+<h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2 配置"></a>2 配置</h1><p>如果只是在 Qt 项目中使用 Qt 编程，并不需要额外配置。这里针对的情况，是在普通 C/C++ 项目中使用 Qt 编程。</p>
+<h2 id="2-1-设置属性表"><a href="#2-1-设置属性表" class="headerlink" title="2.1 设置属性表"></a>2.1 设置属性表</h2><p>个人喜欢通过属性表进行目录配置，这样可以避免在系统环境变量中添加额外 Qt 目录。这里我的 Qt 安装目录为 <code>C:\ProgramLibs\Qt\</code>。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/04.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/04.png" class="" title="04.png"></a></div>
+
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/05.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/05.png" class="" title="05.png"></a></div>
+
+<h2 id="2-2-拷贝-dll-文件"><a href="#2-2-拷贝-dll-文件" class="headerlink" title="2.2 拷贝 dll 文件"></a>2.2 拷贝 <code>dll</code> 文件</h2><p>从 <code>C:\ProgramLibs\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin</code> 找到所需的 <code>dll</code> 文件，拷贝到项目文件夹中。</p>
+<p>一般常用的 <code>dll</code> 文件有 <code>Qt5Core</code> <code>Qt5Gui</code> <code>Qt5Widgets</code> 等。具体需要哪些 <code>dll</code> 文件，可通过编译报错信息来确定。</p>
+<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/06.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/06.png" class="" title="06.png"></a></div>
+
+<h2 id="2-3-拷贝-qplatform-文件夹"><a href="#2-3-拷贝-qplatform-文件夹" class="headerlink" title="2.3 拷贝 qplatform 文件夹"></a>2.3 拷贝 <code>qplatform</code> 文件夹</h2><p>将 <code>C:\ProgramLibs\Qt\Qt5.14.2\5.14.2\msvc2017_64\plugins</code> 中的 <code>platforms</code> 文件夹，直接拷贝到 <code>项目文件夹\x64</code> 中的 <code>Debug</code> 或 <code>Release</code> 中。</p>
+<p>缺少这一步可能会引发以下报错。</p>
+<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/07.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/07.png" class="" title="07.png"></a></div>
+
+<p>详情可参考博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42495740/article/details/118992097">https://blog.csdn.net/qq_42495740/article/details/118992097</a></p>
+<h1 id="3-测试"><a href="#3-测试" class="headerlink" title="3 测试"></a>3 测试</h1><h2 id="3-1-简单测试"><a href="#3-1-简单测试" class="headerlink" title="3.1 简单测试"></a>3.1 简单测试</h2><p>安装完成后，可直接新建一个 Qt 项目来测试是否安装成功。这里选择新建 Qt Quick Application，一路默认下一步即可，最后直接点击编译运行。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/08.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/08.png" class="" title="08.png"></a></div>
+
+<div align="center" style="width:60%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/09.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/09.png" class="" title="09.png"></a></div>
+
+<h2 id="3-2-在非-Qt-工程中使用-Qt"><a href="#3-2-在非-Qt-工程中使用-Qt" class="headerlink" title="3.2 在非 Qt 工程中使用 Qt"></a>3.2 在非 Qt 工程中使用 Qt</h2><h3 id="3-2-1-配置步骤"><a href="#3-2-1-配置步骤" class="headerlink" title="3.2.1 配置步骤"></a>3.2.1 配置步骤</h3><p>这里展示如何在一个 C++ 空项目中配置 Qt 中的钟表示例（Analog Clock Window Example）。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/10.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/10.png" class="" title="10.png"></a></div>
+
+<p>新建 C++ 空项目 <code>testQt</code>，首先将所需的 <code>dll</code> 文件与已建好的属性表文件拷贝到项目文件夹。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/11.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/11.png" class="" title="11.png"></a></div>
+
+<p>在项目属性管理器中添加现有属性表，选择项目文件夹中已建好的 Qt 属性表文件。</p>
+<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/12.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/12.png" class="" title="12.png"></a></div>
+
+<p>将 <code>platforms</code> 文件夹拷贝到项目第一层目录的 <code>x64</code> 文件夹中的 <code>Debug</code> 或 <code>Release</code> 文件夹中。</p>
+<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/13.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/13.png" class="" title="13.png"></a></div>
+
+<p>在项目中分别建立以下头文件与源文件，代码见 3.2.2。</p>
+<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/14.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/14.png" class="" title="14.png"></a></div>
+
+<p>其中 <code>RasterWindow.h</code> 中存在 <code>QObject</code> 类，需要在项目文件夹中通过 <code>moc</code> 命令生成 <code>moc_RasterWindow.cpp</code> 文件，然后添加到项目的资源文件中。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moc RasterWindow.h -o moc_RasterWindow.cpp</span><br></pre></td></tr></tbody></table></figure>
+<p>另外，如果项目中有 <code>.ui</code> 文件，也需要在项目文件夹中通过 <code>uic</code> 命令生成 <code>.h</code> 文件，然后添加到项目中。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uic abc.ui -o ui_abc.h</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="3-2-2-源代码"><a href="#3-2-2-源代码" class="headerlink" title="3.2.2 源代码"></a>3.2.2 源代码</h3><p><code>main.cpp</code></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"AnalogClockWindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtWidgets/QApplication&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="function">QApplication <span class="title">app</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">	AnalogClockWindow* clock = <span class="keyword">new</span> <span class="built_in">AnalogClockWindow</span>();</span><br><span class="line">	clock-&gt;<span class="built_in">show</span>();</span><br><span class="line">	<span class="keyword">return</span> app.<span class="built_in">exec</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>AnalogClockWindow.h</code></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"RasterWindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QTimerEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QPainter&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QTime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QPoint&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QColor&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AnalogClockWindow</span> : <span class="keyword">public</span> RasterWindow</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">AnalogClockWindow</span>();</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">timerEvent</span><span class="params">(QTimerEvent*)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">render</span><span class="params">(QPainter* p)</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> m_timerId;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p><code>AnalogClockWindow.cpp</code></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"AnalogClockWindow.h"</span></span></span><br><span class="line"></span><br><span class="line">AnalogClockWindow::<span class="built_in">AnalogClockWindow</span>()</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">setTitle</span>(<span class="string">"Analog Clock"</span>);</span><br><span class="line">    <span class="built_in">resize</span>(<span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">    m_timerId = <span class="built_in">startTimer</span>(<span class="number">1000</span>);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AnalogClockWindow::timerEvent</span><span class="params">(QTimerEvent* event)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (event-&gt;<span class="built_in">timerId</span>() == m_timerId)</span><br><span class="line">        <span class="built_in">renderLater</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AnalogClockWindow::render</span><span class="params">(QPainter* p)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> QPoint hourHand[<span class="number">3</span>] = { <span class="built_in">QPoint</span>(<span class="number">7</span>, <span class="number">8</span>), <span class="built_in">QPoint</span>(<span class="number">-7</span>, <span class="number">8</span>), <span class="built_in">QPoint</span>(<span class="number">0</span>, <span class="number">-40</span>) };</span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> QPoint minuteHand[<span class="number">3</span>] = { <span class="built_in">QPoint</span>(<span class="number">7</span>, <span class="number">8</span>), <span class="built_in">QPoint</span>(<span class="number">-7</span>, <span class="number">8</span>), <span class="built_in">QPoint</span>(<span class="number">0</span>, <span class="number">-70</span>) };</span><br><span class="line">    <span class="function">QColor <span class="title">hourColor</span><span class="params">(<span class="number">127</span>, <span class="number">0</span>, <span class="number">127</span>)</span></span>;</span><br><span class="line">    <span class="function">QColor <span class="title">minuteColor</span><span class="params">(<span class="number">0</span>, <span class="number">127</span>, <span class="number">127</span>, <span class="number">191</span>)</span></span>;</span><br><span class="line">    p-&gt;<span class="built_in">setRenderHint</span>(QPainter::Antialiasing);</span><br><span class="line">    p-&gt;<span class="built_in">translate</span>(<span class="built_in">width</span>() / <span class="number">2</span>, <span class="built_in">height</span>() / <span class="number">2</span>);</span><br><span class="line">    <span class="type">int</span> side = <span class="built_in">qMin</span>(<span class="built_in">width</span>(), <span class="built_in">height</span>());</span><br><span class="line">    p-&gt;<span class="built_in">scale</span>(side / <span class="number">200.0</span>, side / <span class="number">200.0</span>);</span><br><span class="line">    p-&gt;<span class="built_in">setPen</span>(Qt::NoPen);</span><br><span class="line">    p-&gt;<span class="built_in">setBrush</span>(hourColor);</span><br><span class="line">    QTime time = QTime::<span class="built_in">currentTime</span>();</span><br><span class="line">    p-&gt;<span class="built_in">save</span>();</span><br><span class="line">    p-&gt;<span class="built_in">rotate</span>(<span class="number">30.0</span> * ((time.<span class="built_in">hour</span>() + time.<span class="built_in">minute</span>() / <span class="number">60.0</span>)));</span><br><span class="line">    p-&gt;<span class="built_in">drawConvexPolygon</span>(hourHand, <span class="number">3</span>);</span><br><span class="line">    p-&gt;<span class="built_in">restore</span>();</span><br><span class="line">    p-&gt;<span class="built_in">setPen</span>(hourColor);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">12</span>; ++i)</span><br><span class="line">    {</span><br><span class="line">        p-&gt;<span class="built_in">drawLine</span>(<span class="number">88</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">0</span>);</span><br><span class="line">        p-&gt;<span class="built_in">rotate</span>(<span class="number">30.0</span>);</span><br><span class="line">    }</span><br><span class="line">    p-&gt;<span class="built_in">setPen</span>(Qt::NoPen);</span><br><span class="line">    p-&gt;<span class="built_in">setBrush</span>(minuteColor);</span><br><span class="line">    p-&gt;<span class="built_in">save</span>();</span><br><span class="line">    p-&gt;<span class="built_in">rotate</span>(<span class="number">6.0</span> * (time.<span class="built_in">minute</span>() + time.<span class="built_in">second</span>() / <span class="number">60.0</span>));</span><br><span class="line">    p-&gt;<span class="built_in">drawConvexPolygon</span>(minuteHand, <span class="number">3</span>);</span><br><span class="line">    p-&gt;<span class="built_in">restore</span>();</span><br><span class="line">    p-&gt;<span class="built_in">setPen</span>(minuteColor);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">60</span>; ++j)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span> ((j % <span class="number">5</span>) != <span class="number">0</span>)</span><br><span class="line">            p-&gt;<span class="built_in">drawLine</span>(<span class="number">92</span>, <span class="number">0</span>, <span class="number">96</span>, <span class="number">0</span>);</span><br><span class="line">        p-&gt;<span class="built_in">rotate</span>(<span class="number">6.0</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><code>RasterWindow.h</code></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QWindow&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QPainter&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QResizeEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QBackingStore&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RasterWindow</span> : <span class="keyword">public</span> QWindow</span><br><span class="line">{</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">RasterWindow</span><span class="params">(QWindow* parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">render</span><span class="params">(QPainter* painter)</span></span>;</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderLater</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderNow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">event</span><span class="params">(QEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">resizeEvent</span><span class="params">(QResizeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">exposeEvent</span><span class="params">(QExposeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QBackingStore* m_backingStore;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p><code>RasterWindow.cpp</code></p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"RasterWindow.h"</span></span></span><br><span class="line"></span><br><span class="line">RasterWindow::<span class="built_in">RasterWindow</span>(QWindow* parent) : <span class="built_in">QWindow</span>(parent) , <span class="built_in">m_backingStore</span>(<span class="keyword">new</span> <span class="built_in">QBackingStore</span>(<span class="keyword">this</span>))</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">setGeometry</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">200</span>);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::exposeEvent</span><span class="params">(QExposeEvent*)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::resizeEvent</span><span class="params">(QResizeEvent* resizeEvent)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">resize</span>(resizeEvent-&gt;<span class="built_in">size</span>());</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderNow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="function">QRect <span class="title">rect</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, width(), height())</span></span>;</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">beginPaint</span>(rect);</span><br><span class="line">    QPaintDevice* device = m_backingStore-&gt;<span class="built_in">paintDevice</span>();</span><br><span class="line">    <span class="function">QPainter <span class="title">painter</span><span class="params">(device)</span></span>;</span><br><span class="line">    painter.<span class="built_in">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>(), QGradient::NightFade);</span><br><span class="line">    <span class="built_in">render</span>(&amp;painter);</span><br><span class="line">    painter.<span class="built_in">end</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">endPaint</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">flush</span>(rect);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::render</span><span class="params">(QPainter* painter)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    painter-&gt;<span class="built_in">drawText</span>(<span class="built_in">QRectF</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>()), Qt::AlignCenter, <span class="built_in">QStringLiteral</span>(<span class="string">"QWindow"</span>));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderLater</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">requestUpdate</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">RasterWindow::event</span><span class="params">(QEvent* event)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (event-&gt;<span class="built_in">type</span>() == QEvent::UpdateRequest)</span><br><span class="line">    {</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> QWindow::<span class="built_in">event</span>(event);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-07-09</span>
+            
+                <span>该篇文章被 少帥</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Qt/'>
+                            Qt
+                        </a>
+                    
+                        <a href='/tags/VS/'>
+                            VS
+                        </a>
+                    
+                </span>
+             
+             
+                <span>归为分类:
+                    
+                    
+                        <a href='/categories/%E8%AE%B0%E5%BD%95/'>
+                            记录
+                        </a>
+                    
+                </span>
+            
+        
+        </i>
+    </div>
+    <br>
+    
+    <!-- <div class="post-footer-pre-next">
+        <span>上一篇：<a href=""></a></span>
+        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
+    </div> -->
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        以上 
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://comment.shawshai.cn',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 2021-2024 China 
+
+            
+                
+
+            
+        </span>
+    
+</div>
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>摆脱冷气 只向上走</span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+
+
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+
+
+</html>
