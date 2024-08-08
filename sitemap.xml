@@ -2,6 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/about/index-1</loc>
+    
+    <lastmod>2024-08-08T15:39:59.055Z</lastmod>
+    
+    <date>1710764524000</date>
+    <title>about | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/about/</loc>
+    
+    <lastmod>2024-08-08T15:39:50.037Z</lastmod>
+    
+    <date>1620361993000</date>
+    <title>关于我 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2024/07/18/complex-number/</loc>
     
     <lastmod>2024-07-17T16:46:25.327Z</lastmod>
@@ -167,17 +189,6 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/about/index-1</loc>
-    
-    <lastmod>2024-03-18T12:22:04.000Z</lastmod>
-    
-    <date>1710764524000</date>
-    <title>about | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
     <loc>http://shawshai.cn/list/</loc>
     
     <lastmod>2024-03-18T12:21:52.000Z</lastmod>
@@ -197,17 +208,6 @@
     <title>Eigen 快速参考指南 | 少帥的博客</title>
     
     <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/about/</loc>
-    
-    <lastmod>2024-03-12T15:29:37.000Z</lastmod>
-    
-    <date>1620361993000</date>
-    <title>关于我 | 少帥的博客</title>
-    
-    <desc></desc>
   </url>
   
   <url>
