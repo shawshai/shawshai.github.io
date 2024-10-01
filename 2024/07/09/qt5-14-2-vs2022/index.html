@@ -60,7 +60,7 @@
     
     
    
-<link rel="stylesheet" href="/css/lightgallery.min.css">
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
 <meta name="generator" content="Hexo 7.1.1">
@@ -69,7 +69,23 @@
 </head>
     
     
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
     <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
         
             <div class="left-toc-container">
                 <nav id="toc" class="bs-docs-sidebar"></nav>
@@ -123,12 +139,48 @@
                     <!--说明是文章post页面-->
                     
                         <div class="post-main">
+    
 
     
-        <div class="post-main-title">
-            Qt 5.14.2 + VS2022 配置
-        </div>
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Qt 5.14.2 + VS2022 配置
+                </div>
+            
+        
       
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-07-09</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
     
 
     <div class="post-md">
@@ -201,12 +253,7 @@
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QWindow&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QPainter&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QResizeEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QBackingStore&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RasterWindow</span> : <span class="keyword">public</span> QWindow</span><br><span class="line">{</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">RasterWindow</span><span class="params">(QWindow* parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">render</span><span class="params">(QPainter* painter)</span></span>;</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderLater</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderNow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">event</span><span class="params">(QEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">resizeEvent</span><span class="params">(QResizeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">exposeEvent</span><span class="params">(QExposeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QBackingStore* m_backingStore;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p><code>RasterWindow.cpp</code></p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"RasterWindow.h"</span></span></span><br><span class="line"></span><br><span class="line">RasterWindow::<span class="built_in">RasterWindow</span>(QWindow* parent) : <span class="built_in">QWindow</span>(parent) , <span class="built_in">m_backingStore</span>(<span class="keyword">new</span> <span class="built_in">QBackingStore</span>(<span class="keyword">this</span>))</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">setGeometry</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">200</span>);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::exposeEvent</span><span class="params">(QExposeEvent*)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::resizeEvent</span><span class="params">(QResizeEvent* resizeEvent)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">resize</span>(resizeEvent-&gt;<span class="built_in">size</span>());</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderNow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="function">QRect <span class="title">rect</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, width(), height())</span></span>;</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">beginPaint</span>(rect);</span><br><span class="line">    QPaintDevice* device = m_backingStore-&gt;<span class="built_in">paintDevice</span>();</span><br><span class="line">    <span class="function">QPainter <span class="title">painter</span><span class="params">(device)</span></span>;</span><br><span class="line">    painter.<span class="built_in">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>(), QGradient::NightFade);</span><br><span class="line">    <span class="built_in">render</span>(&amp;painter);</span><br><span class="line">    painter.<span class="built_in">end</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">endPaint</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">flush</span>(rect);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::render</span><span class="params">(QPainter* painter)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    painter-&gt;<span class="built_in">drawText</span>(<span class="built_in">QRectF</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>()), Qt::AlignCenter, <span class="built_in">QStringLiteral</span>(<span class="string">"QWindow"</span>));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderLater</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">requestUpdate</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">RasterWindow::event</span><span class="params">(QEvent* event)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (event-&gt;<span class="built_in">type</span>() == QEvent::UpdateRequest)</span><br><span class="line">    {</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> QWindow::<span class="built_in">event</span>(event);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-</div><script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+</div>
     </div>
 
     <div class="post-meta">
@@ -245,10 +292,23 @@
     </div>
     <br>
     
-    <!-- <div class="post-footer-pre-next">
-        <span>上一篇：<a href=""></a></span>
-        <span class="post-footer-pre-next-last-span-right">上一篇：<a href=""></a></span>
-    </div> -->
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2024/07/18/complex-number/'>四元数系列 - 1 复数</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/04/05/basic-analytical-mechanics/">分析力学中的一些基本概念</a>
+                    </span>
+                
+            </div>
+    
+        
+    
 
     
         
@@ -311,8 +371,12 @@
 
             
         </span>
+       
     
 </div>
+
+
+
 <!--这是指一条线往下的内容-->
 <div class="footer-last">
     
@@ -355,9 +419,54 @@
 
 
 
-<script src="/js/lightgallery.min.js"></script>
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
 
 
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
 
                 </div>
             
@@ -394,6 +503,4 @@
 <script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
-
-
 </html>
