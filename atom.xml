@@ -6,7 +6,7 @@
   <link href="http://shawshai.cn/atom.xml" rel="self"/>
   
   <link href="http://shawshai.cn/"/>
-  <updated>2024-07-17T16:46:25.327Z</updated>
+  <updated>2025-01-06T17:34:26.213Z</updated>
   <id>http://shawshai.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试加密文章</title>
+    <link href="http://shawshai.cn/2025/01/07/test-private-blog/"/>
+    <id>http://shawshai.cn/2025/01/07/test-private-blog/</id>
+    <published>2025-01-06T16:19:41.000Z</published>
+    <updated>2025-01-06T17:34:26.213Z</updated>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="请检查密码是否正确." data-whm="请重新检查密码.">  <script id="hbeData" type="hbeData" data-hmacdigest="00801e686e2f00a1dece5d64af06c63c3173126c3e59679db91276f7f6062dc9">52c8f8a550eb119517bbba39a77d6cc7ee93e5056ed09b30b2aeaa02fb48ab51ecb25cdf60e2321a6d248ea36d48af65a840ed879e510efea4eec5329b2a60c5e56236c3c4336ae6cda5397b97ec4d507645839c97b3f945a1809d59d607d3deb959123d53c8b1e4690363a137c9c354256a217bbce383cbfc5d1c66b831c4262d4220f9e1f3a901ac0da562833074d20895fc04099adc9dde66a47f93a4f221a598854544fb1330c94559fb9debb847997603ef7c611576afdee4bda930c9fb597dea19672a35ef83a8e41cc7149f158060180a075fcf2a687880a4265b9aa579e38abd9fd73bc6bca4c616f3ea6899f23786c942038de8d968b355dadd6caac46b209c68a73065a275cfd9f036427f91f300ee2e1b3a78a619b634b0b8f392996c3441846de8a7e23912563fb4ed9612ff8ef692b4d17be3059f936db8210f8812d23f34899a6eb5399e10858bbed5b3e06e928d076cc9a68b6db7bbfee50de971eedb407e5f49e087a1818f9fb975cd1bc5ccceb9c1dec6a76c35fec56ac0cc64f346d95c400fdb00a4b4bb5cb014e6337d26f70cf02b14ba9343ca64c4827544c2fb061cf2e9fb371940442c2c87c5ef814bdc2bb4aab71dbd491763f9c1d77fa54a99dad735624cfb4d215b16379067a712d6083e199b54d0d4940cee0153aaa06e84b1f15ade479181cda987fefcba1954347bc806228b1903672ba2c140b105e14859eb847633a805e40cef259ef687c04ea8944acb93af02b65f74388eaace29a12c61aaf5d684a999dc3175964756300c489ffad733ff16ba2475576cd513aee6236fcc0f40a21b6bd5664ff655f3bdc9479473d9b7312c1dbb6e7e46c5f05b6d9494e0dd7e8e6a580daba8fcbcce5add76a1e6a137b48637f9325d1980697218b7f0d8f8701bab7ab857854c8476f89dc1bf16a1b3ec228a5916568695d9d8cbd17e04a2938d2b45a57fc025341b37698f838d37414c4d8e0c07bde3fbca8c53c2156264c0388678244673f525d8bbb0d6fe4bca17ad000c698a05b00e859abbeb89b3fa2a135740c8765018fcc5ae6f3d8998da2086bdf8a58ea1fe7a301bae83a1f507981d2337ae65fd7fd3582de704e6c5fde3cf6a9e052da78a13bf506b65a02e22b5daa1870752f51d64f7a7c9e2ccff333a42df2288c05b73a849ddbd6e81c65c49e7179a76e0136b1f20a4850cd91e22311d8aec94abad4c28710f4fe7baf38518ef359992f01858b8a829dcdb834d731ce3217c3c872153069644dc10723992fb81acfd7f3527837b9b58155f4fa8ce1a0fc493c3152ca5d89d10bd5d031df3fad807fdf7dbd03fb59942a0affd8108b3b8d71d1a9e27bbd0eb4243cca1378ec2a0f610d6c5eea42f8c8716c9035476f8701f61409637216ce04991b03eee9feb64b2fa0be72cf20527311433fb319b6acdd1629b5f90298831d5f0e70375b5506219e16e519a845656322b7d06b84cd53aa055ebdef95158888304e01bf0bc9587ed28c9ef431c69927fadd2f5cd6e5c6ccd97a6d7f2a1b0f0fdc8c3682cb00c2493078499044f622dcf9f74752ea4ae4f473c39acbdf20da931d326a379b170d776fc3421e31901388121b7013b755e18a1404177cfbd9db417cd69cb236183f2433d8093581ee7e62cf5dbe9933a95e23b5afb8af303ed04bbf86384cfc9eb827855d8d08253779a10e020bf2f84352983b13c5d34e035205a98a12a78ffe69eae7b0164f85748274a9918161fd34735e6c0b1cc04d0ed8b9d2ef4ed5d43e033082c96a8e88005bf23ebdd550ce31f6e04905283a5297dd351887a1d152f7f460cc897865d1e1e83f5442342ddf8e6daff89a9157a4cef353a901a79627f30e854c8bbf821b4614c2451c02f327aef5b6588b64f7ae344d45502b1f557da287dd51d2573970c9d778ff747812b566dfc1c0030aeb443d21e565b50bfa4b526200eeef2eb1ac0a1c5b83a5ce688360e1f1f327049002d8fd097e35d6987ee70bc04ec2ebdbf8f1f9325979e9f107e4d792d2edc0f80452a2ba399b0bb20a926a6ebdd2c7e99159f74f52d3f56c07eced72fce57a1eb8a44a78dc7ac494452b76ee7c54ba9fd6ac06559df88d9b1253c0dec486ccf5988e8961dbce2769722718fc8ba6b3b65612373b89afb51fa032c340c5aba786320ffdf58cc3870fec8a7df2af1b427835777adfeed6be1e0b1579b9db207926df173a10b2c6df452d0718a697af59acb1515d35dbbcbf88fdeb9f575324d54d918583db24b0e3c3dec113147e84f853c5f1d09c2c38aa188b2c9fcce8195632d85b0a0ed74357d7901c998ca24ae7a3fb033d2c2175273b17192f66fdb34c3b0013b0417fb027e692acaeec24f3fe645d72dd46611a1164ad7bece455780dc3bf07add9082dc5cb03939708b99e84f7deeab3db0609cfdb7b03cf5b8f54137b99aae18840863254503d2f146c2f755fa6d8e3533c33fcd1b6e8a62f6a1d118a20d53c667cd5d3721b885102ccb9373998699dac992c3b703253ba8beef96988cacecad0726538fbb048b39bd1c9a2227a850c1afb9912585985529dd74011f684715cd49aae40c2102e7d141d7136da9bcc8af51ba78f5862c7d3d83700b98378d0fff24f97c64bc7c9657c8d889f85b40b9732469acd59975d5ab59f40a980c285a52b94e7cba215b4c1088ce8e365107ab479d80fa031eaa8e97dd2eb6cbf4b36971b44d1b6f7bfaa128fbec2f99609fd1033e9adcc6f95dcb8e071e4fd586ac0b3ae86e57bab9360c11889c6100e15eebe34edaee3ee244a62233f30ce50341051037a313319024141da1f9ccd7a4b2f74be331427c15862f976a633796b10c5af86e9035d04cc8458382c0f2aa68123113be9c361c4676163faf3a8616ead7e8f508a371771c8efe6a8bb4f5b4c9293cb6de6683dd1121fad8b84b0a07de5714a6511cc6807572c547adcd69e00a7ffe82b43c0571f9d77247745b2b2fef84081462ff2300738094956daf29efc7a25d7ae138e5ec7be43837f913a6b2edc29732c9721b577d950dd8a055525d4069f66486ecbf24d84abd0ae5f2f68deba08c6a4f1fee70f8ccac4ba8e59a892c48aa544e49423c46080084e55fa57866a37f9c3157602383fb1c420f3a2cb7998af5743ed5e62db8f32f62b1d3316e4a846181d39352f604953c998c5700163dded6ee06270928dc2a26b464ee2d3622af1976d090dbfd977a2ac1d2866e07f69ca9158991b91e1a0d7dfb257c96dc3e75ed4d74774bd7c8d089dde741b42a0f9fadec81a05c994d732ad68cb78ee6e85cff8ce8b2de308a3bbbbed60bf336d4e6184a9a3e1ccf533cd32e8ae1f581f5f322b03b38fae6315bfe8c250a7e1612bd8b8719b3345f0e6b2ae38ca087f5ecd3b7a5b807d08dc8661f5d5cd8eff41b03ef628ada9f9d8f2a38c5ffd6bb180166e7770dfcb575f09619f08ea6cd436bf1f3608c88b937b5105d0a9bd3f6d13537b60d38be82005b6bb11e620ea0bbb3e037f0a2d83b32bf45ea3408d572f4d5d043883a78c30f76dd049dd5567b345a264e8762e37168207de61211bfb3e395b422fb7b813dfde4538d044a71b7f056811f4806effaf249ccac01fe09e8ebe71cd705cd10ff1b55caf2cd0cc781298412f85d7d043c784e062839f4f8a78015b2b3c1a51aefbef0cfb08838d6488382d3c8cb78b70278b77d1a016cccaa9974f010af5827e5d2ee7d4abb458da9f19a2142b000730708d5f529f20fa4ee267c35dfbee83bb4f7f36e496387123289582fdd9b759ef2695c817dd5b164148f4cb7265b7b93ce30c8955bbbb5cc6ac1db45fcab05a346d8c009c27ed0f9c2a5bbbcecc95ded6be5bda963f158b91582ee22f1dcf8f90eaac1c9fbcf1fc6b4b1b91be8df9d3e1ca4f3f00745b427ff3f029e16d9ba56eb107827e2955bede70d1789c85c27570f28bf0c0172ec2578264649c62e73c45f422b1835d026cfd011ccdb920492048d73087579fa743edefe876e91855a45be8aa8ed237d7d1b73c375dca0ed2693c3c92e9ac7bd99b01cca5c3c6db92dfe1d12fda78e422a523abde14bcd137985f62a220d8f64c922f0ea7edf8877598cd958b9a19e3265fda78a26b8a0be0b3348e9459461d664418f79f9e5bf9781529326e3cc0027786877ac22baf5fd6e278a0f486890435870bdd4fdb237f360fdba301afd94665bcb842397ecf03b7cdf911e3a5170d53f7e7820eda446fbd8d4361d7926bf09e5758dae1f28e2ae698fc9d85ae7874d29c10e9a0f</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <summary type="html">本文需要密码才能访问</summary>
+    
+    
+    
+    
+    <category term="测试" scheme="http://shawshai.cn/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>四元数系列 - 1 复数</title>
@@ -425,29 +444,6 @@
     <category term="Neper" scheme="http://shawshai.cn/tags/Neper/"/>
     
     <category term="有限元" scheme="http://shawshai.cn/tags/%E6%9C%89%E9%99%90%E5%85%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Qt 环境配置</title>
-    <link href="http://shawshai.cn/2021/05/07/qt-env-config/"/>
-    <id>http://shawshai.cn/2021/05/07/qt-env-config/</id>
-    <published>2021-05-07T04:19:31.000Z</published>
-    <updated>2023-09-23T10:28:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<div class=".article-gallery"><div align="center">配置Qt+VS环境。</div><span id="more"></span><h1 id="版本选择"><a href="#版本选择" class="headerlink" title="版本选择"></a>版本选择</h1><p>Qt4选择最后一个版本4.8.7。搭配VS2010。</p><p>Qt5从5.15开始收费，且只能在线安装，于是选择5.14.2版本。搭配VS2019。</p><h1 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h1><ul><li><p>Qt4</p><p><a href="https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-vs2010-4.8.7.exe">qt-opensource-windows-x86-vs2010-4.8.7.exe</a></p><p><a href="https://download.qt.io/archive/vsaddin/1.1.11/qt-vs-addin-1.1.11-opensource.exe">qt-vs-addin-1.1.11-opensource.exe</a></p></li><li><p>Qt5</p><p><a href="https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe">qt-opensource-windows-x86-5.14.2.exe</a></p><p><a href="https://download.qt.io/archive/vsaddin/2.7.1/qt-vsaddin-msvc2019-2.7.1.vsix">qt-vsaddin-msvc2019-2.7.1.vsix</a>（可从VS2019扩展中搜索下载）</p></li></ul><h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><p>先安装VS。</p><p>Qt 4.8.7直接下一步即可。</p><p>Qt 5.14.2 选择组件 MSVC 2017 32-bit 和MSVC 2017 64-bit。</p><p>Qt 允许用户自定义安装路径，但是请注意，安装路径不能带空格、中文字符或者其它任何特殊字符。</p></div>]]></content>
-    
-    
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;div align=&quot;center&quot;&gt;配置Qt+VS环境。&lt;/div&gt;&lt;/div&gt;</summary>
-    
-    
-    
-    <category term="记录" scheme="http://shawshai.cn/categories/%E8%AE%B0%E5%BD%95/"/>
-    
-    
-    <category term="Qt" scheme="http://shawshai.cn/tags/Qt/"/>
-    
-    <category term="VS" scheme="http://shawshai.cn/tags/VS/"/>
     
   </entry>
   
