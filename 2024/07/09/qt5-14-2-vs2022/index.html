@@ -1,243 +1,300 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="Qt 5.14.2 + VS2022 配置" />
-    <meta name="hexo-theme-A4" content="v1.9.6" />
-    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>少帥的博客</title>
-
-    
-        
-<link rel="stylesheet" href="/css/highlight/style1.css">
-
-        
-<link rel="stylesheet" href="/css/reset.css">
-
-        
-<link rel="stylesheet" href="/css/markdown.css">
-
-        
-<link rel="stylesheet" href="/css/fonts.css">
- 
-         <!--注意：首页既不是post也不是page-->
-        
-            
-<link rel="stylesheet" href="/css/waline.css">
-
-        
-        
-        
-<link rel="stylesheet" href="/css/ui.css">
- 
-        
-<link rel="stylesheet" href="/css/style.css">
-
-
-        
-            <!--返回顶部css-->
-            
-<link rel="stylesheet" href="/css/returnToTop.css">
-
-            
-<link rel="stylesheet" href="/css/unicons.css">
-
-        
-        
-            <!--目录-->
-            
-<link rel="stylesheet" href="/css/toc.css">
-
-        
-    
-
-    
-        
-<link rel="stylesheet" href="/css/returnToLastPage.css">
-
-    
-    
-   
-<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
-
-
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-32x32.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="记录使用 VS2022 开发 Qt5 时的基础配置过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt 5.14.2 + VS2022 配置">
+<meta property="og:url" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="记录使用 VS2022 开发 Qt5 时的基础配置过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/00.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/01.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/02.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/03.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/04.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/05.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/06.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/07.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/08.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/09.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/10.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/11.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/12.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/13.png">
+<meta property="og:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/14.png">
+<meta property="article:published_time" content="2024-07-09T04:08:24.000Z">
+<meta property="article:modified_time" content="2025-01-07T14:11:48.125Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content="VS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/00.png">
+
+<link rel="canonical" href="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Qt 5.14.2 + VS2022 配置 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
-    
-    
 
-    
-    
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-
-
-    
-
-    
-    
-
-    
-    
-    
-    <body>
-        <script src="/js/darkmode-js.min.js"></script>
-        
-        
-            <div class="left-toc-container">
-                <nav id="toc" class="bs-docs-sidebar"></nav>
-            </div>
-        
-        <div class="paper">
-            
-            
-            
-            
-                <div class="shadow-drop-2-bottom paper-main">
-                    
-
-
-<div class="header">
-    <div class="header-container">
-        <img style="
-        width: 56px;
-        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
-        <div class="header-content">
-            <a class="logo" href="/">少帥的博客</a> 
-            <span class="description">Shaw Shai&#39;s Blog</span> 
-        </div>
-        
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    
-   
-    <ul class="nav">
-        
-            
-                <li><a href="/">🌄首页</a></li>
-            
-        
-            
-                <li><a href="/list/">📖文章</a></li>
-            
-        
-            
-                <li><a href="/about/">⛄关于</a></li>
-            
-        
-    </ul>
-</div> 
-        
-                    
-                    
+  </div>
 
-                    
-                    
-                    
-                    <!--说明是文章post页面-->
-                    
-                        <div class="post-main">
-    
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">24</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
-        
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
             
-                <div class="post-main-title" style="text-align: center;">
-                    Qt 5.14.2 + VS2022 配置
-                </div>
-            
-        
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="Shaw Shai's Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Qt 5.14.2 + VS2022 配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-09 12:08:24" itemprop="dateCreated datePublished" datetime="2024-07-09T12:08:24+08:00">2024-07-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-07 22:11:48" itemprop="dateModified" datetime="2025-01-07T22:11:48+08:00">2025-01-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">记录</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    
+        <div align="center">记录使用 VS2022 开发 Qt5 时的基础配置过程。</div>
 
-    
-
-        
-            <div class="post-head-meta-center">
-        
-                
-                    <span>最近更新：2024-07-09</span> 
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                     <span>字数总计：1.4k</span>
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                    <span>阅读估时：6分钟</span>
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                    <span id="busuanzi_container_page_pv">
-                        阅读量：<span id="busuanzi_value_page_pv"></span>次
-                    </span>
-                
-            </div>
-    
-
-    <div class="post-md">
-        
-        <div class=".article-gallery"><h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h1><h2 id="1-1-安装-VS-2022"><a href="#1-1-安装-VS-2022" class="headerlink" title="1.1 安装 VS 2022"></a>1.1 安装 VS 2022</h2><p>下载链接  <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/downloads/">https://visualstudio.microsoft.com/zh-hans/downloads/</a></p>
+<span id="more"></span>
+<h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h1><h2 id="1-1-安装-VS-2022"><a href="#1-1-安装-VS-2022" class="headerlink" title="1.1 安装 VS 2022"></a>1.1 安装 VS 2022</h2><p>下载链接  <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/downloads/">https://visualstudio.microsoft.com/zh-hans/downloads/</a></p>
 <p>社区版免费，已足够个人开发使用。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/00.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/00.png" class="" title="00.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/00.png" class="" title="00.png"></div>
 
 <p>根据个人需求选择安装组件即可，后续可通过 Visual Studio Installer 修改组件安装。</p>
 <h2 id="1-2-安装-Qt-5-14-2"><a href="#1-2-安装-Qt-5-14-2" class="headerlink" title="1.2 安装 Qt 5.14.2"></a>1.2 安装 Qt 5.14.2</h2><p>官方下载链接 <a target="_blank" rel="noopener" href="https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe">https://download.qt.io/archive/qt/5.14/5.14.2/qt-opensource-windows-x86-5.14.2.exe</a></p>
 <p>以上链接目前为止是有效的，无法访问的话需科学上网。</p>
 <p>Qt 版本自 5.15 开始不再提供离线安装包，需在线安装或者自己下载源码编译安装，因此 5.14.2 最后一个可以离线安装的版本。</p>
 <p>安装过程中需登录 Qt 账号，最少需选择以下组件，其它按需选择即可。</p>
-<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/01.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/01.png" class="" title="01.png"></a></div>
+<div align="center" style="width:100%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/01.png" class="" title="01.png"></div>
 
 <p>详细安装步骤可参考博客 <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2248312">https://cloud.tencent.com/developer/article/2248312</a></p>
 <h2 id="1-3-安装-Qt-Visual-Studio-Tools"><a href="#1-3-安装-Qt-Visual-Studio-Tools" class="headerlink" title="1.3 安装 Qt Visual Studio Tools"></a>1.3 安装 Qt Visual Studio Tools</h2><p>在 Visual Studio 打开 <code>扩展</code> → <code>管理扩展</code>，搜索安装 Qt Visual Studio Tools 即可。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/02.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/02.png" class="" title="02.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/02.png" class="" title="02.png"></div>
 
 <p>装好扩展后，在菜单栏 <code>扩展</code> → <code>Qt VS Tools</code> → <code>Options</code> 中关联 Qt。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/03.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/03.png" class="" title="03.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/03.png" class="" title="03.png"></div>
 
 <p>可点击下方 <code>Autodetect</code> 按钮，将自动关联已安装的 Qt 版本，选择一个默认版本打勾即可。</p>
 <h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2 配置"></a>2 配置</h1><p>如果只是在 Qt 项目中使用 Qt 编程，并不需要额外配置。这里针对的情况，是在普通 C/C++ 项目中使用 Qt 编程。</p>
 <h2 id="2-1-设置属性表"><a href="#2-1-设置属性表" class="headerlink" title="2.1 设置属性表"></a>2.1 设置属性表</h2><p>个人喜欢通过属性表进行目录配置，这样可以避免在系统环境变量中添加额外 Qt 目录。这里我的 Qt 安装目录为 <code>C:\ProgramLibs\Qt\</code>。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/04.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/04.png" class="" title="04.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/04.png" class="" title="04.png"></div>
 
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/05.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/05.png" class="" title="05.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/05.png" class="" title="05.png"></div>
 
 <h2 id="2-2-拷贝-dll-文件"><a href="#2-2-拷贝-dll-文件" class="headerlink" title="2.2 拷贝 dll 文件"></a>2.2 拷贝 <code>dll</code> 文件</h2><p>从 <code>C:\ProgramLibs\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin</code> 找到所需的 <code>dll</code> 文件，拷贝到项目文件夹中。</p>
 <p>一般常用的 <code>dll</code> 文件有 <code>Qt5Core</code> <code>Qt5Gui</code> <code>Qt5Widgets</code> 等。具体需要哪些 <code>dll</code> 文件，可通过编译报错信息来确定。</p>
-<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/06.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/06.png" class="" title="06.png"></a></div>
+<div align="center" style="width:100%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/06.png" class="" title="06.png"></div>
 
 <h2 id="2-3-拷贝-qplatform-文件夹"><a href="#2-3-拷贝-qplatform-文件夹" class="headerlink" title="2.3 拷贝 qplatform 文件夹"></a>2.3 拷贝 <code>qplatform</code> 文件夹</h2><p>将 <code>C:\ProgramLibs\Qt\Qt5.14.2\5.14.2\msvc2017_64\plugins</code> 中的 <code>platforms</code> 文件夹，直接拷贝到 <code>项目文件夹\x64</code> 中的 <code>Debug</code> 或 <code>Release</code> 中。</p>
 <p>缺少这一步可能会引发以下报错。</p>
-<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/07.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/07.png" class="" title="07.png"></a></div>
+<div align="center" style="width:100%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/07.png" class="" title="07.png"></div>
 
 <p>详情可参考博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42495740/article/details/118992097">https://blog.csdn.net/qq_42495740/article/details/118992097</a></p>
 <h1 id="3-测试"><a href="#3-测试" class="headerlink" title="3 测试"></a>3 测试</h1><h2 id="3-1-简单测试"><a href="#3-1-简单测试" class="headerlink" title="3.1 简单测试"></a>3.1 简单测试</h2><p>安装完成后，可直接新建一个 Qt 项目来测试是否安装成功。这里选择新建 Qt Quick Application，一路默认下一步即可，最后直接点击编译运行。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/08.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/08.png" class="" title="08.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/08.png" class="" title="08.png"></div>
 
-<div align="center" style="width:60%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/09.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/09.png" class="" title="09.png"></a></div>
+<div align="center" style="width:60%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/09.png" class="" title="09.png"></div>
 
 <h2 id="3-2-在非-Qt-工程中使用-Qt"><a href="#3-2-在非-Qt-工程中使用-Qt" class="headerlink" title="3.2 在非 Qt 工程中使用 Qt"></a>3.2 在非 Qt 工程中使用 Qt</h2><h3 id="3-2-1-配置步骤"><a href="#3-2-1-配置步骤" class="headerlink" title="3.2.1 配置步骤"></a>3.2.1 配置步骤</h3><p>这里展示如何在一个 C++ 空项目中配置 Qt 中的钟表示例（Analog Clock Window Example）。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/10.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/10.png" class="" title="10.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/10.png" class="" title="10.png"></div>
 
 <p>新建 C++ 空项目 <code>testQt</code>，首先将所需的 <code>dll</code> 文件与已建好的属性表文件拷贝到项目文件夹。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/11.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/11.png" class="" title="11.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/11.png" class="" title="11.png"></div>
 
 <p>在项目属性管理器中添加现有属性表，选择项目文件夹中已建好的 Qt 属性表文件。</p>
-<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/12.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/12.png" class="" title="12.png"></a></div>
+<div align="center" style="width:100%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/12.png" class="" title="12.png"></div>
 
 <p>将 <code>platforms</code> 文件夹拷贝到项目第一层目录的 <code>x64</code> 文件夹中的 <code>Debug</code> 或 <code>Release</code> 文件夹中。</p>
-<div align="center" style="width:80%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/13.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/13.png" class="" title="13.png"></a></div>
+<div align="center" style="width:80%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/13.png" class="" title="13.png"></div>
 
 <p>在项目中分别建立以下头文件与源文件，代码见 3.2.2。</p>
-<div align="center" style="width:100%;margin:auto"><a href="/2024/07/09/qt5-14-2-vs2022/14.png" class="gallery-item" style="box-shadow: none;"> <img src="/2024/07/09/qt5-14-2-vs2022/14.png" class="" title="14.png"></a></div>
+<div align="center" style="width:100%;margin:auto"><img data-src="/2024/07/09/qt5-14-2-vs2022/14.png" class="" title="14.png"></div>
 
 <p>其中 <code>RasterWindow.h</code> 中存在 <code>QObject</code> 类，需要在项目文件夹中通过 <code>moc</code> 命令生成 <code>moc_RasterWindow.cpp</code> 文件，然后添加到项目的资源文件中。</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">moc RasterWindow.h -o moc_RasterWindow.cpp</span><br></pre></td></tr></tbody></table></figure>
@@ -253,254 +310,284 @@
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QWindow&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtCore/QEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QPainter&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QResizeEvent&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QtGui/QBackingStore&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RasterWindow</span> : <span class="keyword">public</span> QWindow</span><br><span class="line">{</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">RasterWindow</span><span class="params">(QWindow* parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">render</span><span class="params">(QPainter* painter)</span></span>;</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderLater</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">renderNow</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">event</span><span class="params">(QEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">resizeEvent</span><span class="params">(QResizeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">exposeEvent</span><span class="params">(QExposeEvent* event)</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QBackingStore* m_backingStore;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <p><code>RasterWindow.cpp</code></p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"RasterWindow.h"</span></span></span><br><span class="line"></span><br><span class="line">RasterWindow::<span class="built_in">RasterWindow</span>(QWindow* parent) : <span class="built_in">QWindow</span>(parent) , <span class="built_in">m_backingStore</span>(<span class="keyword">new</span> <span class="built_in">QBackingStore</span>(<span class="keyword">this</span>))</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">setGeometry</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">300</span>, <span class="number">200</span>);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::exposeEvent</span><span class="params">(QExposeEvent*)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::resizeEvent</span><span class="params">(QResizeEvent* resizeEvent)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">resize</span>(resizeEvent-&gt;<span class="built_in">size</span>());</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderNow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">isExposed</span>())</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="function">QRect <span class="title">rect</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>, width(), height())</span></span>;</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">beginPaint</span>(rect);</span><br><span class="line">    QPaintDevice* device = m_backingStore-&gt;<span class="built_in">paintDevice</span>();</span><br><span class="line">    <span class="function">QPainter <span class="title">painter</span><span class="params">(device)</span></span>;</span><br><span class="line">    painter.<span class="built_in">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>(), QGradient::NightFade);</span><br><span class="line">    <span class="built_in">render</span>(&amp;painter);</span><br><span class="line">    painter.<span class="built_in">end</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">endPaint</span>();</span><br><span class="line">    m_backingStore-&gt;<span class="built_in">flush</span>(rect);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::render</span><span class="params">(QPainter* painter)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    painter-&gt;<span class="built_in">drawText</span>(<span class="built_in">QRectF</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="built_in">width</span>(), <span class="built_in">height</span>()), Qt::AlignCenter, <span class="built_in">QStringLiteral</span>(<span class="string">"QWindow"</span>));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">RasterWindow::renderLater</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">requestUpdate</span>();</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">RasterWindow::event</span><span class="params">(QEvent* event)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">if</span> (event-&gt;<span class="built_in">type</span>() == QEvent::UpdateRequest)</span><br><span class="line">    {</span><br><span class="line">        <span class="built_in">renderNow</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> QWindow::<span class="built_in">event</span>(event);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-</div>
+
     </div>
 
-    <div class="post-meta">
-        <i>
-        
-            <span>2024-07-09</span>
-            
-                <span>该篇文章被 少帥</span>
-            
-            
-                <span>打上标签:
-                    
-                    
-                        <a href='/tags/Qt/'>
-                            Qt
-                        </a>
-                    
-                        <a href='/tags/VS/'>
-                            VS
-                        </a>
-                    
-                </span>
-             
-             
-                <span>归为分类:
-                    
-                    
-                        <a href='/categories/%E8%AE%B0%E5%BD%95/'>
-                            记录
-                        </a>
-                    
-                </span>
-            
-        
-        </i>
-    </div>
-    <br>
+    
     
     
         
-            
-    
-            <div class="post-footer-pre-next">
-                
-                    <span>上一篇：<a href='/2024/07/18/complex-number/'>四元数系列 - 1 复数</a></span>
-                
 
-                
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/04/05/basic-analytical-mechanics/">分析力学中的一些基本概念</a>
-                    </span>
-                
-            </div>
-    
-        
-    
-
-    
-        
-    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-         
-    </div>
-    
-        
-
-    <div id="waline"></div>
-    <script type="module"  >
-        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
-        function loadWaline() {
-            init({
-                el: '#waline',
-                serverURL: 'https://comment.shawshai.cn',
-                lang: 'zh-CN',
-                dark: 'body[class~="dark-mode"]',
-                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
-                search: false, // 禁止表情包搜索
-                reaction: false, // 对文章打分
-                pageview: false, // 浏览量统计
-                comment: false, // 评论数统计
-
-                locale: {
-                    placeholder: '留下你的评论吧。', 
-                    sofa: ''
-                },
-            });
-            
-        }
-        window.addEventListener('DOMContentLoaded', loadWaline);
-    </script>
-
-
-
-    
-    
-    
-    </div>
-
-
-     
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/" title="Qt 5.14.2 + VS2022 配置">http://shawshai.cn/2024/07/09/qt5-14-2-vs2022/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Qt/" rel="tag"><i class="fa fa-tag"></i> Qt</a>
+              <a href="/tags/VS/" rel="tag"><i class="fa fa-tag"></i> VS</a>
+          </div>
 
-                                      
-                    
-                    
-                    <div class="footer">
-    
-        <span> 
-            © 2021-2024 China 
-
-            
-                
-
-            
-        </span>
-       
-    
-</div>
-
-
-
-<!--这是指一条线往下的内容-->
-<div class="footer-last">
-    
-            <span>摆脱冷气 只向上走</span>
-            
-    
-</div>
-
-
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-    <!--目录-->
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
         
-<script src="/js/toc.js"></script>
 
-    
 
-    
-<script src="/js/randomHeaderContent.js"></script>
-
-    <!--回到顶部按钮-->
-    
         
-<script src="/js/returnToTop.js"></script>
-
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/05/basic-analytical-mechanics/" rel="prev" title="分析力学中的一些基本概念">
+      <i class="fa fa-chevron-left"></i> 分析力学中的一些基本概念
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/18/quat-1-complex-number/" rel="next" title="四元数系列 - 1 复数">
+      四元数系列 - 1 复数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
     
-
-    
-        
-<script src="/js/returnToLastPage.js"></script>
-
-    
+  </article>
+  
+  
+  
 
 
 
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
 
-
-<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
-
-
-
-<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
-
-
-
-<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
-
-
-
-
-<script type="text/javascript">
-     
-    if (typeof lightGallery !== "undefined") {
-        var options1 = {
-            selector: '.gallery-item',
-            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
-            thumbnail: true,          // 显示缩略图
-            zoom: true,               // 启用缩放功
-            rotate: true,             // 启用旋转功能能
-            autoplay: true,        // 启用自动播放功能
-            fullScreen: true,      // 启用全屏功能
-            pager: false, //页码,
-            zoomFromOrigin: true,   // 从原始位置缩放
-            actualSize: true,       // 启用查看实际大小的功能
-            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-    
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-                </div>
-            
-            
-                <!-- 回到顶部的按钮-->  
-                <div class="progress-wrap shadow-drop-2-bottom">
-                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
-                    </svg>
-                </div>
-            
-            
-                <!-- 返回的按钮-->  
-                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
-                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
-                    </svg>
-                </div>
-            
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85"><span class="nav-text">1 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%AE%89%E8%A3%85-VS-2022"><span class="nav-text">1.1 安装 VS 2022</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%AE%89%E8%A3%85-Qt-5-14-2"><span class="nav-text">1.2 安装 Qt 5.14.2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%AE%89%E8%A3%85-Qt-Visual-Studio-Tools"><span class="nav-text">1.3 安装 Qt Visual Studio Tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE"><span class="nav-text">2 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E8%AE%BE%E7%BD%AE%E5%B1%9E%E6%80%A7%E8%A1%A8"><span class="nav-text">2.1 设置属性表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%8B%B7%E8%B4%9D-dll-%E6%96%87%E4%BB%B6"><span class="nav-text">2.2 拷贝 dll 文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E6%8B%B7%E8%B4%9D-qplatform-%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">2.3 拷贝 qplatform 文件夹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95"><span class="nav-text">3 测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E7%AE%80%E5%8D%95%E6%B5%8B%E8%AF%95"><span class="nav-text">3.1 简单测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%9C%A8%E9%9D%9E-Qt-%E5%B7%A5%E7%A8%8B%E4%B8%AD%E4%BD%BF%E7%94%A8-Qt"><span class="nav-text">3.2 在非 Qt 工程中使用 Qt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-text">3.2.1 配置步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-text">3.2.2 源代码</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">Shaw Shai's Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">300k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : 'df677909be0274630020b1f9e50208d4',
+        language: 'zh-CN',
+      distractionFreeMode: true
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
 </html>

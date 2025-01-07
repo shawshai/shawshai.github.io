@@ -1,69 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    
-    <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="仿人机器人 - 参考文献" />
-    <meta name="hexo-theme-A4" content="v1.9.6" />
-    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
-    <title>少帥的博客</title>
-
-    
-        
-<link rel="stylesheet" href="/css/highlight/style1.css">
-
-        
-<link rel="stylesheet" href="/css/reset.css">
-
-        
-<link rel="stylesheet" href="/css/markdown.css">
-
-        
-<link rel="stylesheet" href="/css/fonts.css">
- 
-         <!--注意：首页既不是post也不是page-->
-        
-            
-<link rel="stylesheet" href="/css/waline.css">
-
-        
-        
-        
-<link rel="stylesheet" href="/css/ui.css">
- 
-        
-<link rel="stylesheet" href="/css/style.css">
-
-
-        
-            <!--返回顶部css-->
-            
-<link rel="stylesheet" href="/css/returnToTop.css">
-
-            
-<link rel="stylesheet" href="/css/unicons.css">
-
-        
-        
-            <!--目录-->
-            
-<link rel="stylesheet" href="/css/toc.css">
-
-        
-    
-
-    
-        
-<link rel="stylesheet" href="/css/returnToLastPage.css">
-
-    
-    
-   
-<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
-
-
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-32x32.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="仿人机器人 - 参考文献">
+<meta property="og:url" content="http://shawshai.cn/2023/09/23/IHR-R/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2023/09/23/IHR-R/cover.png">
+<meta property="article:published_time" content="2023-09-23T07:13:40.000Z">
+<meta property="article:modified_time" content="2023-09-26T08:50:38.000Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="Robotics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2023/09/23/IHR-R/cover.png">
+
+<link rel="canonical" href="http://shawshai.cn/2023/09/23/IHR-R/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>仿人机器人 - 参考文献 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <style>mjx-container[jax="SVG"] {
   direction: ltr;
@@ -179,373 +193,484 @@ mjx-container[display="true"] + br {
 }
 </style><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
 </head>
-    
-    
 
-    
-    
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-
-
-    
-
-    
-    
-
-    
-    
-    
-    <body>
-        <script src="/js/darkmode-js.min.js"></script>
-        
-        
-            <div class="left-toc-container">
-                <nav id="toc" class="bs-docs-sidebar"></nav>
-            </div>
-        
-        <div class="paper">
-            
-            
-            
-            
-                <div class="shadow-drop-2-bottom paper-main">
-                    
-
-
-<div class="header">
-    <div class="header-container">
-        <img style="
-        width: 56px;
-        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
-        <div class="header-content">
-            <a class="logo" href="/">少帥的博客</a> 
-            <span class="description">Shaw Shai&#39;s Blog</span> 
-        </div>
-        
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    
-   
-    <ul class="nav">
-        
-            
-                <li><a href="/">🌄首页</a></li>
-            
-        
-            
-                <li><a href="/list/">📖文章</a></li>
-            
-        
-            
-                <li><a href="/about/">⛄关于</a></li>
-            
-        
-    </ul>
-</div> 
-        
-                    
-                    
+  </div>
 
-                    
-                    
-                    
-                    <!--说明是文章post页面-->
-                    
-                        <div class="post-main">
-    
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">24</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
 
     
-        
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
             
-                <div class="post-main-title" style="text-align: center;">
-                    仿人机器人 - 参考文献
-                </div>
-            
-        
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2023/09/23/IHR-R/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="Shaw Shai's Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          仿人机器人 - 参考文献
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-23 15:13:40" itemprop="dateCreated datePublished" datetime="2023-09-23T15:13:40+08:00">2023-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-26 16:50:38" itemprop="dateModified" datetime="2023-09-26T16:50:38+08:00">2023-09-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%89%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">汉化</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>23k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    
-
-    
-
-        
-            <div class="post-head-meta-center">
-        
-                
-                    <span>最近更新：2023-09-26</span> 
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                     <span>字数总计：4.1k</span>
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                    <span>阅读估时：25分钟</span>
-                
-                
-                    
-                        &nbsp; | &nbsp;
-                    
-                    <span id="busuanzi_container_page_pv">
-                        阅读量：<span id="busuanzi_value_page_pv"></span>次
-                    </span>
-                
-            </div>
-    
-
-    <div class="post-md">
-        
-        <div class=".article-gallery"><div style="width:50%; margin:auto"><a href="/2023/09/23/IHR-R/cover.png" class="gallery-item" style="box-shadow: none;"> <img src="/2023/09/23/IHR-R/cover.png" class=""></a></div>
+        <div style="width:50%; margin:auto"><img data-src="/2023/09/23/IHR-R/cover.png" class=""></div>
 
 <span id="more"></span>
 <p>为方便学习查看, 这里把原书的参考文献也搬运过来.</p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Aldebaran</span> robotics, http://www.aldebaran-robotics.com</span><br><span class="line"><span class="attribute">Carnegie</span> mellon university TARTAN RESCUE, http://www.rec.ri.cmu.edu/projects/tartanrescue/</span><br><span class="line"><span class="attribute">DARPA</span> Robotics Challenge, http://www.theroboticschallenge.org</span><br><span class="line"><span class="attribute">Products</span> of Kondo Kagaku Co. Ltd. (in Japanese), http://kondo-robot.com/product/</span><br><span class="line"><span class="attribute">Broad</span> Agency Announcement DARPA Robotics Challenge, DARPA-BAA-<span class="number">12</span>-<span class="number">39</span> (April <span class="number">2012</span>)</span><br><span class="line"><span class="attribute">Takanishi</span>, A., Ishida, M., Yamazaki, Y., Kato, I.: The realization of dynamic walking by the biped walking robot. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics and Automation, pp. <span class="number">459</span>–<span class="number">466</span> (<span class="number">1985</span>)</span><br><span class="line"><span class="attribute">Goswami</span>, A., Espiau, B., Keramane, A.: Limit cycles in a passive compass gait biped and passivity-mimicking control laws. Journal of Autonomous Robots <span class="number">4</span>(<span class="number">3</span>), <span class="number">273</span>–<span class="number">286</span> (<span class="number">1997</span>)</span><br><span class="line"><span class="attribute">Harashima</span>, A.: Mechanics I, II. Shokabo (<span class="number">1972</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Herdt</span>, A., Diedam, H., Wieber, P.-B., Dimitrov, D., Mombaur, K., Diehl, M.: Online walking motion generation with automatic footstep placement. Advanced Robotics <span class="number">24</span>, <span class="number">719</span>–<span class="number">737</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Takanishi</span>, A., Ishida, M., Yamazaki, Y., Kato, I.: The realization of dynamic walking by the biped walking robot WL-<span class="number">10</span>RD. In: Proceedings of <span class="number">1985</span> International Conference <span class="literal">on</span> Advanced Robotics (ICAR), pp. <span class="number">459</span>–<span class="number">466</span> (<span class="number">1985</span>)</span><br><span class="line"><span class="attribute">Takanishi</span>, A., Egusa, Y., Tochizawa, M., Takeya, T., Kato, I.: Realization of dynamic biped walking stabilized with trunk motion. In: Proceedings of RoManSy <span class="number">7</span>: <span class="number">7</span>th CISM-IFToMM Symposium <span class="literal">on</span> Theory and Practice of Robots and Manipulators, pp. <span class="number">68</span>–<span class="number">79</span> (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">Cho</span>, B.K., Park, S.S., Oh, J.H.: Controllers for running in the humanoid robot, HUBO. In: Proceedings of IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots, pp. <span class="number">385</span>–<span class="number">390</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Lim</span>, B., Lee, J., Kim, J., Lee, M., Kwak, H., Kwon, S., Lee, H., Kwon, W., Roh, K.: Optimal gait primitives for dynamic bipedal locomotion. In: Proceedings of the IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">4013</span>–<span class="number">4018</span> (<span class="number">2012</span>)</span><br><span class="line"><span class="attribute">Thuilot</span>, B., Goswami, A., Espiau, B.: Bifurcation and chaos in a simple passive bipedal gait. In: Proceedings of the <span class="number">1997</span> IEEE International Conference <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">792</span>–<span class="number">798</span> (<span class="number">1997</span>)</span><br><span class="line"><span class="attribute">DLR</span> (German Aerospace Center). The robot is complete – arms and hands for TORO, the walking machine, http://www.dlr.de/dlr/en/desktopdefault.aspx/tabid-<span class="number">10080</span>/<span class="number">150</span>_read-<span class="number">6601</span>/year-<span class="number">2013</span>/<span class="number">150</span>_page-<span class="number">5</span>/#gallery/<span class="number">9208</span></span><br><span class="line"><span class="attribute">Ott</span>, C., Baumg¨artner, C., Mayr, J., Fuchs, M., Burger, R., Lee, D., Eiberger, O., Albu-Sch¨affer, A., Grebenstein, M., Hirzinger, G.: Development of a biped robot with torque controlled joints. In: Proceedings of IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots (Humanoids <span class="number">2010</span>), pp. <span class="number">167</span>–<span class="number">173</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">TOYOTA</span> MOTOR CORPORATION. Partner robot, http://www.toyota-global.com/innovation/partner_robot/</span><br><span class="line"><span class="attribute">Craig</span>, J.J.: Introduction to Robotics: Mechanics and Control, <span class="number">2</span>nd edn. Addison-Wesley Publishing Company, Inc. (<span class="number">1989</span>)</span><br><span class="line"><span class="attribute">Witt</span>, D.C.: A feasibility study <span class="literal">on</span> powerd lower-limb prostheses. In: Proceedings of Symposium <span class="literal">on</span> the Basic Problems of Prehension, Movement and Control of Artificial Limbs, pp. <span class="number">1</span>–<span class="number">8</span> (<span class="number">1968</span>)</span><br><span class="line"><span class="attribute">de</span> Garis, H.: Gennets: Genetically programmed neural net. In: Proceedings of IJCNN <span class="number">1991</span> Singapore. In: Int. Joint Conf. <span class="literal">on</span> Neural Networks, pp. <span class="number">1391</span>–<span class="number">1396</span> (<span class="number">1991</span>)</span><br><span class="line"><span class="attribute">Hobbelen</span>, D.G.E., Wisse, M.: Active lateral placement for <span class="number">3</span>D stabilization of a limit cycle walker prototype. International Journal of Humanoid Robotics <span class="number">6</span>(<span class="number">1</span>), <span class="number">93</span>–<span class="number">116</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Lahr</span>, D., Hong, D.: The development of CHARLI: A linear actuated powered full size humanoid robot. In: Proceedings of the International Conference <span class="literal">on</span> Ubiquitous Robots and Ambient Intelligence (URAI <span class="number">2008</span>) (November <span class="number">2008</span>)</span><br><span class="line"><span class="attribute">Nakano</span>, E., Komoriya, K., Yoneda, K., Takahashi, T.: Advanced Mobile Robotics. Kodansha Scientific (<span class="number">2004</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Westervelt</span>, E.R., Grizzle, J.W., Chevallereau, C., Choi, J.H., Morris, B.: Feedback Control of Dynamic Bipedal Robot Locomoation. CRC Press (<span class="number">2007</span>)</span><br><span class="line"><span class="attribute">Neo</span>, E.S., Yokoi, K., Kajita, S., Kanehiro, F., Tanie, K.: A switching command-based whole-body operation method for humanoid robots. IEEE/ASME Tras. Mechatronics <span class="number">10</span>(<span class="number">5</span>), <span class="number">2569</span>–<span class="number">2574</span> (<span class="number">2005</span>)</span><br><span class="line"><span class="attribute">Neo</span>, E.S., Yokoi, K., Kajita, S., Tanie, K.: A framework for remote execution of whole body motions for humanoid robots. In: Proceedings of IEEE-RAS Int. Conf. Humanoid Robots, pp. <span class="number">58</span>–<span class="number">68</span> (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Miura</span>, H., et al.: Collected articles of biped robots (Nisoku-hokou robot siryou-shuu), <span class="number">2</span>nd edn. Report of Grants-in-Aid for Scientific Research. Ministry of Education</span><br><span class="line"><span class="attribute">Kanehiro</span>, F., Kaneko, K., Fujiwara, K., Harada, K., Kajita, S., Yokoi, K., Hirukawa, H., Akachi, K., Isozumi, T.: The first humanoid robot that has the same size as a human and that can lie down and get up. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics and Automation, pp. <span class="number">1633</span>–<span class="number">1639</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Asano</span>, F., Yamakita, M.: Virtual gravity and coupling control for robotic gait synthesis. IEEE Transactions <span class="literal">on</span> Systems, Man and Cybernetics, Part A: Systems and Humans <span class="number">31</span>(<span class="number">6</span>), <span class="number">737</span>–<span class="number">745</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Roy</span> Featherstone. Robot Dynamics Algorithms. Kluwer Academic Publishers (<span class="number">1987</span>)</span><br><span class="line"><span class="attribute">Kanehiro</span>, F., Hirukawa, H., Kajita, S.: OpenHRP: Open Architecture Humanoid Robotics Platform. The International Journal o Robotics Research <span class="number">23</span>(<span class="number">2</span>), <span class="number">155</span>–<span class="number">165</span> (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Miyazaki</span>, F., Arimoto, S.: A control theoretic study <span class="literal">on</span> dynamical biped locomotion. Journal of Dynamic Systems, Measurement, and Control <span class="number">102</span>, <span class="number">233</span>–<span class="number">239</span> (<span class="number">1980</span>)</span><br><span class="line"><span class="attribute">Fujisoft</span>, Inc. PALRO (in japanese), http://palro.jp/</span><br><span class="line"><span class="attribute">Metta</span>, G., Sandini, G., Vernon, D., Natale, L., Nori, F.: The iCub humanoid robot: an open platform for research in embodied cognition. In: Proceedings of the <span class="number">8</span>th Workshop <span class="literal">on</span> Performance Metrics for Intelligent Systems (PerMIS <span class="number">2008</span>), pp. <span class="number">50</span>–<span class="number">56</span> (<span class="number">2008</span>)</span><br><span class="line"><span class="attribute">Nelson</span>, G., Saunders, A., Neville, N., Swilling, B., Bondaryk, J., Billings, D., Lee, C., Playter, R., Raibert, M.: PETMAN: A humanoid robot for testing chemical protective clothing. Journal of the Robotics Society of Japan <span class="number">30</span>(<span class="number">4</span>), <span class="number">372</span>–<span class="number">377</span> (<span class="number">2012</span>)</span><br><span class="line"><span class="attribute">Goldstein</span>, H.: Classical Mechanics, <span class="number">2</span>nd edn. Addison-Wesley (<span class="number">1980</span>)</span><br><span class="line"><span class="attribute">Goswami</span>, A.: Posturel Stability of Biped Robots and the Foot-Rotation Indicator(FRI) Point. Int. J. of Robotics Research <span class="number">18</span>(<span class="number">6</span>), <span class="number">523</span>–<span class="number">533</span> (<span class="number">1999</span>)</span><br><span class="line"><span class="attribute">Hirukawa</span>, H., Kanehiro, F., Kaneko, K., Kajita, S., Morisawa, M.: Dinosaur robotics for entertainment applications. IEEE Robotics &amp; Automation Magazine <span class="number">14</span>(<span class="number">3</span>), <span class="number">43</span>–<span class="number">51</span> (<span class="number">2007</span>)</span><br><span class="line"><span class="attribute">Hirukawa</span>, H., Hattori, S., Harada, K., Kajita, S., Kanehiro, F., Fujiwara, K., Morisawa, M.: A Universal Stability Criterion of the Foot Contact of Legged Robots - Adios ZMP. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics and Automation (ICRA <span class="number">2006</span>), pp. <span class="number">1976</span>–<span class="number">1983</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Kondo</span>, H., Shimizu, J., Hashimoto, K., Hattori, K., Nishikawa, K., Takezaki, Y., Hama, Y., Yoshimura, Y., Lim, H., Takanishi, A.: Realization of Walking by FFT-based Online Pattern Generation. In: Proceedings of the <span class="number">12</span>th International Conference <span class="literal">on</span> Climbing and Walking Robots and the Support Technologies for Mobile Machines (CLAWAR <span class="number">2009</span>), pp. <span class="number">615</span>–<span class="number">622</span> (September <span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Miura</span>, H., Shimoyama, I.: Dynamic walk of a biped. International Journal of Robotics Research <span class="number">3</span>(<span class="number">2</span>), <span class="number">60</span>–<span class="number">74</span> (<span class="number">1984</span>)</span><br><span class="line"><span class="attribute">Hyon</span>, S.-H.: Compliant terrain adaptation for biped humanoids without measureing ground suface and contact forces. IEEE Transactions <span class="literal">on</span> Robotics <span class="number">25</span>(<span class="number">1</span>), <span class="number">171</span>–<span class="number">178</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Honda</span> Motor Co. Inc. NEWS: Honda unveils <span class="literal">all</span>-new ASIMO with significant advancements, http://asimo.honda.com/news/honda-unveils-<span class="literal">all</span>-new-asimo-with-significant-advancements/newsarticle_0125/</span><br><span class="line"><span class="attribute">Englsberger</span>, J., Ott, C., Roa, M.A., Albu-Sch¨affer, A., Hirzinger, G.: Bipedal walking control based <span class="literal">on</span> capture point dynamics. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems (IROS <span class="number">2011</span>) (<span class="number">2011</span>)</span><br><span class="line"><span class="attribute">Jet</span> Propulsion Laboratory (Caltech). DARPA robotics challenge, RoboSimian (track A), http://www-robotics.jpl.nasa.gov/tasks/showTask.cfm?TaskID=<span class="number">236</span>&amp;tdaID=<span class="number">700043</span></span><br><span class="line"><span class="attribute">Furusho</span>, J., Sano, A.: Sensor-based control of a nine-link biped. International Journal of Robotics Research <span class="number">9</span>(<span class="number">2</span>), <span class="number">83</span>–<span class="number">98</span> (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">Furusho</span>, J., Masubuchi, M.: A theoretically motivated reduced order model for the control of dynamic biped locomotion. Journal of Dynamic Systems, Measurement, and Control <span class="number">109</span>, <span class="number">155</span>–<span class="number">163</span> (<span class="number">1987</span>)</span><br><span class="line"><span class="attribute">Kuffner</span>, J.J., LaValle, S.M.: RRT-connect: An efficient approach to single-query path planning. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">995</span>–<span class="number">1001</span> (<span class="number">2000</span>)</span><br><span class="line"><span class="attribute">Kuffner</span>, J., Nishiwaki, K., Kagami, S., Inaba, M., Inoue, H.: Motion planning for humanoid robots under obstacle and dynamic balance constraints. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">692</span>–<span class="number">698</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Pratt</span>, J., Carff, J., Drakunov, S., Goswami, A.: Capture point: A step toward humanoid push recovery. In: Proceedings of IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots (Humanoids <span class="number">2006</span>), pp. <span class="number">200</span>–<span class="number">207</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Urata</span>, J., Nishiwaki, K., Okada, K., Kagami, S., Inaba, M.: Online decision of foot placement using singular LQ preview regulation. In: Proceedings of IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots (Humanoids <span class="number">2011</span>), pp. <span class="number">13</span>–<span class="number">18</span> (<span class="number">2011</span>)</span><br><span class="line"><span class="attribute">Urata</span>, J., Nishiwaki, K., Nakanishi, Y., Okada, K., Kagami, S., Inaba, M.: Online walking pattern generation for push recovery and minimum delay to commanded changed of direction and speed. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">3411</span>–<span class="number">3416</span> (<span class="number">2012</span>)</span><br><span class="line"><span class="attribute">Yamaguchi</span>, J., Soga, E., Inoue, S., Takanishi, A.: Development of a bipedal humanoid robot - control method of whole body cooperative dynamic biped walking. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics and Automation, pp. <span class="number">368</span>–<span class="number">374</span> (<span class="number">1999</span>)</span><br><span class="line"><span class="attribute">Aida</span>, K., Kitamori, T.: A relation between optimal preview control and least-squares smoothing and a scheme of smoothed inverse system. Transactions of SICE <span class="number">25</span>(<span class="number">4</span>), <span class="number">419</span>–<span class="number">426</span> (<span class="number">1989</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Kailath</span>, T.: Linear Systems. Prentice-Hall, Inc. (<span class="number">1980</span>)</span><br><span class="line"><span class="attribute">Kawada</span> Industries, Inc. Humanoid robot HRP-<span class="number">4</span>, http://global.kawada.jp/mechatronics/hrp4.html</span><br><span class="line"><span class="attribute">Doya</span>, K.: Walking pattern learning robot (hokou pattern gakushu robot). Journal of the Robotics Society of Japan <span class="number">8</span>(<span class="number">3</span>), <span class="number">117</span> (<span class="number">1990</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Fujiwara</span>, K., Kanehiro, F., Kajita, S., Yokoi, K., Saito, H., Harada, K., Kaneko, K., Hirukawa, H.: The first human-size humanoid that can fall over safely and stand-up again. In: Proceedings of IEEE/RSJ Int. Conf. <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">1920</span>–<span class="number">1926</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Hara</span>, K., Yokogawa, R., Sadao, K.: Dynamic control of biped locomotin robot for disturbance <span class="literal">on</span> lateral plane. In: Proceedings of the Japan Society of Machanical Engineers <span class="number">72</span>nd Kansai Meeting, vol. <span class="number">38</span>, pp. <span class="number">10</span>–<span class="number">37</span> (<span class="number">1998</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Harada</span>, K., Kajita, S., Kaneko, K., Hirukawa, H.: An analytical method for real-time gait planning for humanoid robots. International Journal of Humanoid Robotics <span class="number">3</span>(<span class="number">1</span>), <span class="number">1</span>–<span class="number">19</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Hase</span>, K., Yamazaki, N.: Computer simulation study of human locomotion with a three-dimensional entire-body neuro-musculo-skeletal model. JSME International Journal, Series C <span class="number">45</span>(<span class="number">4</span>), <span class="number">1040</span>–<span class="number">1072</span> (<span class="number">2002</span>)</span><br><span class="line"><span class="attribute">Hirai</span>, K., Hirose, M., Haikawa, Y., Takenaka, T.: The development of honda humanoid robot. In: Proceedings of the <span class="number">1998</span> IEEE International Conference <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">1321</span>–<span class="number">1326</span> (<span class="number">1998</span>)</span><br><span class="line"><span class="attribute">Kaneko</span>, K., Kanehiro, F., Morisawa, M., Miura, K., Nakaoka, S., Kajita, S.: Cybernetic human HRP-<span class="number">4</span>C. In: Proceedings of <span class="number">9</span>th IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots, pp. <span class="number">7</span>–<span class="number">14</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Kaneko</span>, K., Kanehiro, F., Morisawa, M., Tsuji, T., Miura, K., Nakaoka, S., Kajita, S., Yokoi, K.: Hardware improvement of cybernetic human HRP-<span class="number">4</span>C towards entertainment use. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">4392</span>–<span class="number">4399</span> (<span class="number">2011</span>)</span><br><span class="line"><span class="attribute">Kaneko</span>, K., Kanehiro, F., Kajita, S., Hirukawa, H., Kawasaki, T., Hirata, M., Akachi, K., Isozumi, T.: Humanoid robot HRP-<span class="number">2</span>. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics and Automation, pp. <span class="number">1083</span>–<span class="number">1090</span> (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Kaneko</span>, K., Kanehiro, F., Kajita, S., Yokoyama, K., Akachi, K., Kawasaki, T., Ota, S., Isozumi, T.: Design of prototype humanoid robotics platform for HRP</span><br><span class="line"><span class="attribute">Kaneko</span>, K., Harada, K., Miyamori, G., Akachi, K.: Humanoid robot HRP-<span class="number">3</span>. In: Proceedings of <span class="number">2008</span> IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">2471</span>–<span class="number">2478</span> (<span class="number">2008</span>)</span><br><span class="line"><span class="attribute">Koganezawa</span>, K., Takanisi, A., Sugano, S. (eds.): Development of Waseda robot — The study of biomechanisms at Kato Laboratory, <span class="number">3</span>rd edn. Ichiro Kato Laboratory (<span class="number">1991</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Miura</span>, K., Morisawa, M., Kanehiro, F., Kajita, S., Kaneko, K., Yokoi, K.: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">4428</span>–<span class="number">4435</span> (<span class="number">2011</span>)</span><br><span class="line"><span class="attribute">Nagasaka</span>, K., Inaba, M., Inoue, H.: Stabilization of dynamic walk <span class="literal">on</span> a humanoid using torso position compliance control. In: Proceedings of <span class="number">17</span>th Annual Conference of the Robotics Society of Japan, pp. <span class="number">1193</span>–<span class="number">1194</span> (<span class="number">1999</span>) (in Japenese)</span><br><span class="line"><span class="attribute">Narioka</span>, K., Tsugawa, S., Hosoda, K.: <span class="number">3</span>D limit cycle walking of musculoskeletal humanoid robot with flat feet. In: Proceedings of the IEEE/RSJ International Confernce <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">4676</span>–<span class="number">4681</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Nishiwaki</span>, K., Kagami, S.: Sensor feedback modification methods that are suitable for the short cycle pattern generation of humanoid walking. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems (IROS <span class="number">2007</span>), pp. <span class="number">4214</span>–<span class="number">4220</span> (<span class="number">2007</span>)</span><br><span class="line"><span class="attribute">Nishiwaki</span>, K., Kagami, S., Kuniyoshi, Y., Inaba, M., Inoue, H.: Online generation of desired walking motion <span class="literal">on</span> humanoid based <span class="literal">on</span> a fast method of motion pattern that follows desired ZMP. In: Proceedings of <span class="number">19</span>th Annual Conference of Robotics Society of Japan, pp. <span class="number">985</span>–<span class="number">986</span> (<span class="number">2001</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Osuka</span>, K., Kirihara, K.: Motion analysis and experiments of passive walking robot Quartet II. In: Proceedings of IEEE International Conferene <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">3052</span>–<span class="number">3056</span> (<span class="number">2000</span>)</span><br><span class="line"><span class="attribute">Sorao</span>, K., Murakami, T., Ohnishi, K.: Walking control of a biped robot by impedance control. Transaction of IEE of Japan <span class="number">117</span>-D(<span class="number">10</span>), <span class="number">1227</span>–<span class="number">1233</span> (<span class="number">1997</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Yamane</span>, K.: Simulating and Generating Motions of Human Figures. Springer (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Yamane</span>, K., Nakamura, Y.: Dynamics computation of structure-varying kinematic chains for motion synthesis of humanoid. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics and Automation (ICRA1999), pp. <span class="number">714</span>–<span class="number">721</span> (<span class="number">1999</span>)</span><br><span class="line"><span class="attribute">Yamane</span>, K., Nakamura, Y.: Efficient parallel dynamics computation of human figures. In: Proceedings of the <span class="number">2002</span> IEEE International Conference <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">530</span>–<span class="number">537</span> (<span class="number">2002</span>)</span><br><span class="line"><span class="attribute">Yamane</span>, K., Nakamura, Y.: Dynamics filter–concept and implementation of online motion generator for human figures. IEEE Trans. <span class="literal">on</span> Robotics &amp; Automation <span class="number">19</span>(<span class="number">3</span>), <span class="number">421</span>–<span class="number">432</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Yoneda</span>, K., Hirose, S.: Tumble stability criterion of integrated locomotion and manipulation. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems <span class="number">1996</span> (IROS <span class="number">1996</span>), pp. <span class="number">870</span>–<span class="number">876</span> (<span class="number">1996</span>)</span><br><span class="line"><span class="attribute">Vukobratovi</span>´c, M., Borovac, B., Surla, D., Stoki´c, D.: Biped Locomotion - Dynamics, Stability, Control and Application. Springer (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">Hayase</span>, M., Ichikawa, K.: Optimal servosystem utilizing future value of desired function. Transactions of SICE <span class="number">5</span>(<span class="number">1</span>), <span class="number">86</span>–<span class="number">94</span> (<span class="number">1969</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Hirose</span>, M., Takenaka, T., Gomi, H., Ozawa, N.: Humanoid robot. Journal of the Robotics Society of Japan <span class="number">15</span>(<span class="number">7</span>), <span class="number">983</span>–<span class="number">985</span> (<span class="number">1997</span>) (in Japenese)</span><br><span class="line"><span class="attribute">Kumagai</span>, M., Tomita, H., Emura, T.: Sensor-based walking of human type biped robot – <span class="number">2</span>nd report, active control of body attitude. In: Proceedings of JSME Conference <span class="literal">on</span> Robotics and Mechatronics (ROBOMEC <span class="number">1998</span>), pp. <span class="number">2</span>CIII1–<span class="number">2</span> (<span class="number">1998</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Morisawa</span>, M., Kanehiro, F., Kaneko, K., Mansard, N., Sola, J., Yoshida, E., Yokoi, K., Laumond, J.-P.: Combining suppression of the disturbance and reactive stepping for recovering balance. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">3150</span>–<span class="number">3156</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Tomizuka</span>, M., Rosenthal, D.E.: <span class="literal">On</span> the optimal digital state vector feedback controller with integral and preview actions. Transaction of the ASME, Journal of Dynamic Systems, Measurement, and Control <span class="number">101</span>, <span class="number">172</span>–<span class="number">178</span> (<span class="number">1979</span>)</span><br><span class="line"><span class="attribute">Uchiyama</span>, M., Nakamura, Y.: Iwanami Lecture of Robotics <span class="number">2</span>: Robot Motion. Iwanami Shoten (<span class="number">2004</span>) (in Japanse)</span><br><span class="line"><span class="attribute">Vukobratovi</span>´c, M., Borovac, B.: Zero-Moment Point - Thirty Five Years <span class="literal">on</span> its Life. International Journal of Humanoid Robotics <span class="number">1</span>(<span class="number">1</span>), <span class="number">157</span>–<span class="number">173</span> (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Vukobratovi</span>´c, M., Borovac, B., ˇSurdilovi´c, D.: Zero-moment point - proper interpreation and new applications. In: Proceedings of IEEE-RAS Intr. Conf. <span class="literal">on</span> Humanoid Robots, pp. <span class="number">237</span>–<span class="number">244</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Vukobratovi</span>´c, M., Stepanenko, J.: <span class="literal">On</span> the stability of anthropomorphic systems. Mathematical Biosciences <span class="number">15</span>, <span class="number">1</span>–<span class="number">37</span> (<span class="number">1972</span>)</span><br><span class="line"><span class="attribute">Spong</span>, M.W., Bullo, F.: Controlled symmetries and passive walking. IEEE Transactions <span class="literal">on</span> Automatic Control <span class="number">50</span>(<span class="number">7</span>), <span class="number">1082</span>–<span class="number">1085</span> (<span class="number">2005</span>)</span><br><span class="line"><span class="attribute">Walker</span>, M.W., Orin, D.E.: Efficient dynamics computer simulation of robotic mechanisms. Journal of Dynamic Systems, Measurement, and Control <span class="number">104</span>, <span class="number">205</span>–<span class="number">211</span> (<span class="number">1982</span>)</span><br><span class="line"><span class="attribute">Nagasaka</span>, K.: Whole body motion generation for humanoid robot by dynamics filter (Dourikigaku-filter niyoru ningengata-robot no zenshin-unndou seisei). The University of Tokyo (<span class="number">2000</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Napoleon</span>, N., Izu, H., Nakaura, S., Sampei, M.: An analysis of ZMP control problem of humanoid robot with compliances in sole of the foot. In: Proceedings of the <span class="number">16</span>th IFAC World Congress (<span class="number">2005</span>)</span><br><span class="line"><span class="attribute">Sugimoto</span>, N., Morimoto, J., Hyon, S.-H., Kawato, M.: The eMOSAIC model for humanoid robot control. Neural Networks <span class="number">30</span>(<span class="number">0</span>), <span class="number">8</span>–<span class="number">19</span> (<span class="number">2012</span>)</span><br><span class="line"><span class="attribute">Paul</span>, R.P.: Robot Manipulators: Mathematics, Programming, and Control. MIT Press (<span class="number">1981</span>)</span><br><span class="line"><span class="attribute">Raibert</span>, M.H.: Legged robots that balance. MIT Press, Cambridge (<span class="number">1986</span>)</span><br><span class="line"><span class="attribute">Featherstone</span>, R.: A divide-and-conquer articulated-body algorithm for parallel O(log(n)) calculation of rigid-body dynamics. International Journal of Robotics Research <span class="number">18</span>(<span class="number">9</span>), <span class="number">867</span>–<span class="number">892</span> (<span class="number">1999</span>)</span><br><span class="line"><span class="attribute">Featherstone</span>, R.: The acceleration vector of a rigid body. The International Journal of Robotics Research <span class="number">20</span>(<span class="number">11</span>), <span class="number">841</span>–<span class="number">846</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Katoh</span>, R., Mori, M.: Control method of biped locomotion giving asymtotic stability of trajectory. Automatica <span class="number">20</span>(<span class="number">4</span>), <span class="number">405</span>–<span class="number">414</span> (<span class="number">1984</span>)</span><br><span class="line"><span class="attribute">Murray</span>, R.M., Li, Z., Sastry, S.S.: A Mathematical Introduction to Robotics Manipulation. CRC Press (<span class="number">1994</span>)</span><br><span class="line"><span class="attribute">PAL</span> Robotics. REEM-C, http://www.pal-robotics.com/robots/reem-c</span><br><span class="line"><span class="attribute">ROBOTIS</span>. Open platform humanoid project, http://www.robotis.com/xe/darwin_en</span><br><span class="line"><span class="attribute">Rockafellar</span>, R.T.: Convex Analysis. Princeton University Press (<span class="number">1970</span>)</span><br><span class="line"><span class="attribute">Feynman</span>, R.P., Leighton, R.B., Sands, M.L.: ch. <span class="number">52</span>. Addison-Wesley (<span class="number">1965</span>)</span><br><span class="line"><span class="attribute">Tedrake</span>, R., Zhang, T.W., Seung, H.S.: Stochastic policy gradient reinforcement learning <span class="literal">on</span> a simple <span class="number">3</span>D biped. In: Proceedings of <span class="number">2004</span> IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems (IROS <span class="number">2004</span>), pp. <span class="number">2849</span>–<span class="number">2854</span> (<span class="number">2004</span>)</span><br><span class="line"><span class="attribute">Hyon</span>, S.-H., Morimoto, J., Kawato, M.: From compliant balancing to dynamic walking <span class="literal">on</span> humanoid robot: Integration of CNS and CPG. In: Proceedings of <span class="number">2010</span> IEEE International Conference <span class="literal">on</span> Robotics and Automation, pp. <span class="number">1084</span>–<span class="number">1085</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Kajita</span>, S., Kanehiro, F., Fujiwara, K., Harada, K., Yokoi, K., Hirukawa, H.: Resolved momentum control: Humanoid motion planning based <span class="literal">on</span> the linear and angular momentum. In: Proceedings of IEEE/RSJ Int. Conf. <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">1644</span>–<span class="number">1650</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Arimoto</span>, S., Miyazaki, F.: A hierachical control scheme for biped robots. Journal of the Robotics Society of Japan <span class="number">1</span>(<span class="number">3</span>), <span class="number">167</span>–<span class="number">175</span> (<span class="number">1983</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Collins</span>, S., Ruina, A., Tedrake, R., Wisse, M.: Efficient bipedal robots based <span class="literal">on</span> passive-dynamic walkers. Science <span class="number">307</span>, <span class="number">1082</span>–<span class="number">1085</span> (<span class="number">2005</span>)</span><br><span class="line"><span class="attribute">Collins</span>, S.H., Wisse, M., Ruina, A.: A three-dimensional passive-dynamic walking robot with two legs and knees. International Journal of Robotics Research <span class="number">20</span>(<span class="number">7</span>), <span class="number">607</span>–<span class="number">615</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Kagami</span>, S., Kanehiro, F., Tajima, Y., Inaba, M., Inoue, H.: Autobalancer: An online dynamic balance compensation scheme for humanoid robot. In: Proceedings of <span class="number">4</span>th Int. Workshop <span class="literal">on</span> Algorithmic Foundations <span class="literal">on</span> Robotics, pp. SA79–SA89 (<span class="number">2000</span>)</span><br><span class="line"><span class="attribute">Kagami</span>, S., Nishiwaki, K., Kuffner Jr., J.J., Kuniyoshi, Y., Inaba, M., Inoue, H.: Design and implementation of software research platform for humanoid robotics: H7. In: Proceedings of the <span class="number">2001</span> IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots, pp. <span class="number">253</span>–<span class="number">258</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Kagami</span>, S., Nishiwaki, K., Kitagawa, T., Sugihara, T., Inaba, M., Inoue, H.: A fast generation method of a dynamically stable humanoid robot trajectory with enhanced ZMP constraint. In: Proceedings of IEEE International Conference <span class="literal">on</span> Humanoid Robot (<span class="number">2000</span>)</span><br><span class="line"><span class="attribute">Kajita</span>, S., Tani, K.: Study of dynamic walk control of a biped robot <span class="literal">on</span> rugged terrain - derivation and application of the linear inverted pendulum mode. Journal of Robotics and Mechatronics <span class="number">5</span>(<span class="number">6</span>), <span class="number">516</span>–<span class="number">523</span> (<span class="number">1993</span>)</span><br><span class="line"><span class="attribute">Kajita</span>, S., Tani, K.: Experimental study of biped dynamic walking. IEEE Control Systems <span class="number">16</span>(<span class="number">1</span>), <span class="number">13</span>–<span class="number">19</span> (<span class="number">1996</span>)</span><br><span class="line"><span class="attribute">Kajita</span>, S., Morisawa, M., Miura, K., Nakaoka, S., Harada, K., Kaneko, K., Kanehiro, F., Yokoi, K.: Biped walking stabilization based <span class="literal">on</span> linear inverted pendulum tracking. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems (IROS <span class="number">2010</span>), pp. <span class="number">4489</span>–<span class="number">4496</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Kajita</span>, S., Matsumoto, O., Saigo, M.: Real-time <span class="number">3</span>D walking pattern generation for a biped robot with telescopic legs. In: Proceedings of the IEEE International Conference <span class="literal">on</span> Robotics and Automation, pp. <span class="number">2299</span>–<span class="number">2306</span> (<span class="number">2001</span>)</span><br><span class="line"><span class="attribute">Lohmeier</span>, S., Buschmann, T., Ulbrich, H.: Humanoid robot LOLA. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics and Automation, pp. <span class="number">775</span>–<span class="number">780</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Masaki</span>, S., Shimizu, M., Endo, K., Furuta, T., Okumura, Y., Tawaara, T., Kitano, H.: A foot sensor using multiple independent force sensors for compactsized humanoid robots. In: Proceedings of ROBOMEC (<span class="number">2003</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Nakaoka</span>, S., Nakazawa, A., Yokoi, K., Hirukawa, H., Ikeuchi, K.: Generating whole body motions for a biped humanoid robot from captured human dances. In: Proceedings of IEEE Int.Conf. <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">3905</span>–<span class="number">3910</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Nakaoka</span>, S., Kajita, S., Yokoi, K.: Intuitive and flexible user interface for creating whole body motions of biped humanoid robots. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">1675</span>–<span class="number">1682</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Nozaawa</span>, S., Ueda, R., Kakiuchi, Y., Okada, K., Inaba, M.: A full-body motion control method for a humanoid robot based <span class="literal">on</span> <span class="literal">on</span>-line estimation of the operational force of an object with an unknown weight. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">2684</span>–<span class="number">2691</span> (<span class="number">2010</span>)</span><br><span class="line"><span class="attribute">Sugihara</span>, T.: Solvability-unconcerned inverse kinematics based <span class="literal">on</span> Levenberg-Marquardt method with robust damping. In: Proceedings of <span class="number">9</span>th IEEE-RAS International Conference <span class="literal">on</span> Humanoid Robots, pp. <span class="number">555</span>–<span class="number">560</span> (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Sugihara</span>, T.: Standing Stabilizability and Stepping Maneuver in Planar Bipedalism based <span class="literal">on</span> the Best COM-ZMP Regulator. In: IEEE International Conference <span class="literal">on</span> Robotics and Automation (ICRA <span class="number">2009</span>) (<span class="number">2009</span>)</span><br><span class="line"><span class="attribute">Taga</span>, G., Yamaguchi, Y., Shimizu, H.: Self-organized control of bipedal locomotion by neural oscillators in unpredictable environment. Biological Cybernetics (<span class="number">65</span>), <span class="number">147</span>–<span class="number">159</span> (<span class="number">1991</span>)</span><br><span class="line"><span class="attribute">Takano</span>, M.: Robot Kinematics. Ohmsha (<span class="number">2004</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Sheridan</span>, T.B.: Three models of preview control. IEEE Transaction <span class="literal">on</span> Human Factors in Electronics <span class="number">7</span>(<span class="number">2</span>), <span class="number">91</span>–<span class="number">108</span> (<span class="number">1966</span>)</span><br><span class="line"><span class="attribute">Furuta</span>, T., Tawara, T., Okumura, Y., Shimizu, M., Shimomura, M., Endo, K., Yamanaka, S., Kitano, H.: Morph3: A compact-size humanoid robot system with acrobatic behavior capability. In: Proceedings of ROBOMEC (<span class="number">2003</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Katayama</span>, T., Ohki, T., Inoue, T., Kato, T.: Desing of an optimal controller for a discrete time system subject to previewable demand. International Journal of Control <span class="number">41</span>(<span class="number">3</span>), <span class="number">677</span>–<span class="number">699</span> (<span class="number">1985</span>)</span><br><span class="line"><span class="attribute">McGeer</span>, T.: Passive dynamic walking. The International Journal of Robotics Research <span class="number">9</span>(<span class="number">2</span>), <span class="number">62</span>–<span class="number">82</span> (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">McGeer</span>, T.: Passive walking with knees. In: Proceedings of IEEE Int. Conf. <span class="literal">on</span> Robotics &amp; Automation, vol. <span class="number">3</span>, pp. <span class="number">1640</span>–<span class="number">1645</span> (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">Mita</span>, T., Yamaguchi, T., Kashiwase, T., Kawase, T.: Realization of a high speed biped using modern control theory. International Journal of Control <span class="number">40</span>(<span class="number">1</span>), <span class="number">107</span>–<span class="number">119</span> (<span class="number">1984</span>)</span><br><span class="line"><span class="attribute">Sugihara</span>, T., Nakamura, Y., Inoue, H.: Realtime humanoid motion generation through ZMP manipulation based <span class="literal">on</span> inverted pendulum control. In: Proceedings of the IEEE International Conference <span class="literal">on</span> Robotics and Automation, pp. <span class="number">1404</span>–<span class="number">1409</span> (<span class="number">2002</span>)</span><br><span class="line"><span class="attribute">Wampler</span>, C.W.: Manipulator inverse kinematic solutions based <span class="literal">on</span> vector formulations and damped least-square methods. IEEE Transactions <span class="literal">on</span> Systems, Man, and Cybernetics <span class="number">16</span>(<span class="number">1</span>), <span class="number">93</span>–<span class="number">101</span> (<span class="number">1986</span>)</span><br><span class="line"><span class="attribute">Press</span>, W.H., Flannery, B.P., Teukolsky, S.A., Vetterling, W.T.: Numerical Recipes in C. Cambridge University Press (<span class="number">1988</span>)</span><br><span class="line"><span class="attribute">Wieber</span>, P.-B.: Trajectory Free Linear Model Predictive Control for Stable Walking in the Presence of Strong Perturbations, pp. <span class="number">137</span>–<span class="number">142</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Yakamura</span>, Y., Hanafusa, H.: Inverse kinematic solutions with singularity robustness for robot manipulator control. Journal of Dynamic Systems, Measurement and Control <span class="number">108</span>, <span class="number">163</span>–<span class="number">171</span> (<span class="number">1986</span>)</span><br><span class="line"><span class="attribute">Choi</span>, Y., Kim, D., You, B.-J.: <span class="literal">On</span> the walking control for humanoid robot based <span class="literal">on</span> the kinematic resolution of COM Jacobian with embedded motion. In: Proceedings of the <span class="number">2006</span> IEEE International Conference <span class="literal">on</span> Robotics and Automation (ICRA <span class="number">2006</span>), pp. <span class="number">2655</span>–<span class="number">2660</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Fujimoto</span>, Y., Kawamura, A.: Three dimensional digital simulation and autonomous walking control for eight-axis biped robot. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics and Automation (ICRA <span class="number">1995</span>), pp. <span class="number">2877</span>–<span class="number">2884</span> (<span class="number">1995</span>)</span><br><span class="line"><span class="attribute">Ikemata</span>, Y., Sano, A., Fujimoto, H.: A physical principle of gait generation and its stabilization derived from mechanism of fixed point. In: Proceedings of IEEE International Conference <span class="literal">on</span> Robotics &amp; Automation, pp. <span class="number">836</span>–<span class="number">841</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Ogura</span>, Y., Shimomura, K., Kondo, H., Morishima, A., Okubo, T., Momoki, S., Lim, H., Takanishi, A.: Human-like walking with knee stretched, heel-contact and toe-<span class="literal">off</span> motion by a humanoid robot. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems, pp. <span class="number">3976</span>–<span class="number">3981</span> (<span class="number">2006</span>)</span><br><span class="line"><span class="attribute">Okumura</span>, Y., Tawara, T., Endo, K., Furuta, T., Shimzu, M.: Realtime ZMP compensation for biped walking robot using adaptive inertia force control. In: Proceedings of the <span class="number">2003</span> IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robots and Systems (IROS <span class="number">2003</span>), pp. <span class="number">335</span>–<span class="number">339</span> (<span class="number">2003</span>)</span><br><span class="line"><span class="attribute">Yoshikawa</span>, T.: Foundations of Robotics: Analysis and Control. MIT Press (<span class="number">1990</span>)</span><br><span class="line"><span class="attribute">Yoshino</span>, R.: Stabilizing control of high-speed walking robot by walking pattern regulator. Journal of the Robotics Society of Japan <span class="number">18</span>(<span class="number">8</span>), <span class="number">1122</span>–<span class="number">1132</span> (<span class="number">2000</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Sumi</span>, Y., Kawai, Y., Yoshimi, T., Tomita, F.: <span class="number">3</span>D object recognition in cluttered environments by segment-based stereo vision. Int. J. Computer Vision <span class="number">46</span>(<span class="number">1</span>), <span class="number">5</span>–<span class="number">23</span> (<span class="number">2002</span>)</span><br><span class="line"><span class="attribute">Tamiya</span>, Y., Inaba, M., Inoue, H.: Realtime balance compensation for dynamic motion of full-body humanoid standing <span class="literal">on</span> one leg. Journal of Robotics Society Japan <span class="number">17</span>(<span class="number">2</span>), <span class="number">268</span>–<span class="number">274</span> (<span class="number">1999</span>) (in Japanese)</span><br><span class="line"><span class="attribute">Peng</span>, Z., Fu, Y., Tang, Z., Huang, Q., Xiao, T.: Online walking pattern generation and system software of humanoid BHR-<span class="number">2</span>. In: Proceedings of IEEE/RSJ International Conference <span class="literal">on</span> Intelligent Robot and Systems, pp. <span class="number">5471</span>–<span class="number">5476</span> (<span class="number">2006</span>)</span><br></pre></td></tr></tbody></table></figure>
-</div>
+
     </div>
 
-    <div class="post-meta">
-        <i>
-        
-            <span>2023-09-23</span>
-            
-                <span>该篇文章被 少帥</span>
-            
-            
-                <span>打上标签:
-                    
-                    
-                        <a href='/tags/Robotics/'>
-                            Robotics
-                        </a>
-                    
-                </span>
-             
-             
-                <span>归为分类:
-                    
-                    
-                        <a href='/categories/%E6%B1%89%E5%8C%96/'>
-                            汉化
-                        </a>
-                    
-                </span>
-            
-        
-        </i>
-    </div>
-    <br>
+    
     
     
         
-            
-    
-            <div class="post-footer-pre-next">
-                
-                    <span>上一篇：<a href='/2024/03/19/hexo-theme-a4/'>更换博客主题 A4</a></span>
-                
 
-                
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/09/23/IHR-6/">仿人机器人 - 6 动力学仿真</a>
-                    </span>
-                
-            </div>
-    
-        
-    
-
-    
-        
-    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-         
-    </div>
-    
-        
-
-    <div id="waline"></div>
-    <script type="module"  >
-        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
-        function loadWaline() {
-            init({
-                el: '#waline',
-                serverURL: 'https://comment.shawshai.cn',
-                lang: 'zh-CN',
-                dark: 'body[class~="dark-mode"]',
-                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
-                search: false, // 禁止表情包搜索
-                reaction: false, // 对文章打分
-                pageview: false, // 浏览量统计
-                comment: false, // 评论数统计
-
-                locale: {
-                    placeholder: '留下你的评论吧。', 
-                    sofa: ''
-                },
-            });
-            
-        }
-        window.addEventListener('DOMContentLoaded', loadWaline);
-    </script>
-
-
-
-    
-    
-    
-    </div>
-
-
-     
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2023/09/23/IHR-R/" title="仿人机器人 - 参考文献">http://shawshai.cn/2023/09/23/IHR-R/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Robotics/" rel="tag"><i class="fa fa-tag"></i> Robotics</a>
+          </div>
 
-                                      
-                    
-                    
-                    <div class="footer">
-    
-        <span> 
-            © 2021-2024 China 
-
-            
-                
-
-            
-        </span>
-       
-    
-</div>
-
-
-
-<!--这是指一条线往下的内容-->
-<div class="footer-last">
-    
-            <span>摆脱冷气 只向上走</span>
-            
-    
-</div>
-
-
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
-    <!--目录-->
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
         
-<script src="/js/toc.js"></script>
 
-    
 
-    
-<script src="/js/randomHeaderContent.js"></script>
-
-    <!--回到顶部按钮-->
-    
         
-<script src="/js/returnToTop.js"></script>
-
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/23/IHR-6/" rel="prev" title="仿人机器人 - 6 动力学仿真">
+      <i class="fa fa-chevron-left"></i> 仿人机器人 - 6 动力学仿真
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/03/19/hexo-theme-a4/" rel="next" title="更换博客主题 A4">
+      更换博客主题 A4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
     
-
-    
-        
-<script src="/js/returnToLastPage.js"></script>
-
-    
+  </article>
+  
+  
+  
 
 
 
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
 
-
-<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
-
-
-
-<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
-
-
-
-<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
-
-
-<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
-
-
-
-
-<script type="text/javascript">
-     
-    if (typeof lightGallery !== "undefined") {
-        var options1 = {
-            selector: '.gallery-item',
-            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
-            thumbnail: true,          // 显示缩略图
-            zoom: true,               // 启用缩放功
-            rotate: true,             // 启用旋转功能能
-            autoplay: true,        // 启用自动播放功能
-            fullScreen: true,      // 启用全屏功能
-            pager: false, //页码,
-            zoomFromOrigin: true,   // 从原始位置缩放
-            actualSize: true,       // 启用查看实际大小的功能
-            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
     }
-    
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-                </div>
-            
-            
-                <!-- 回到顶部的按钮-->  
-                <div class="progress-wrap shadow-drop-2-bottom">
-                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
-                    </svg>
-                </div>
-            
-            
-                <!-- 返回的按钮-->  
-                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
-                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
-                    </svg>
-                </div>
-            
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">Shaw Shai's Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">300k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
         }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : '2f51aa119b044fe8b268600e22c18b8b',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
