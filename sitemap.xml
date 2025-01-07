@@ -365,23 +365,23 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/categories/</loc>
-    
-    <lastmod>2021-06-08T12:28:13.000Z</lastmod>
-    
-    <date>1620361959000</date>
-    <title>文章分类 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
     <loc>http://shawshai.cn/tags/</loc>
     
     <lastmod>2021-06-08T12:28:13.000Z</lastmod>
     
     <date>1620361982000</date>
     <title>标签 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/categories/</loc>
+    
+    <lastmod>2021-06-08T12:28:13.000Z</lastmod>
+    
+    <date>1620361959000</date>
+    <title>文章分类 | 少帥的博客</title>
     
     <desc></desc>
   </url>
