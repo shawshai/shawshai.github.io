@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
+    
+    <lastmod>2025-01-07T16:13:01.112Z</lastmod>
+    
+    <date>1736180381000</date>
+    <title>测试加密文章 | 少帥的博客</title>
+    
+    <desc>本文需要密码才能访问</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2024/07/18/quat-1-complex-number/</loc>
     
     <lastmod>2025-01-07T14:51:34.534Z</lastmod>
@@ -43,17 +54,6 @@
     <title>Eigen 快速参考指南 | 少帥的博客</title>
     
     <desc>本文为 Eigen 官方文档 Quick reference guide 的搬运与简单翻译.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
-    
-    <lastmod>2025-01-06T17:34:26.213Z</lastmod>
-    
-    <date>1736180381000</date>
-    <title>测试加密文章 | 少帥的博客</title>
-    
-    <desc>本文需要密码才能访问</desc>
   </url>
   
   <url>
@@ -365,23 +365,23 @@
   </url>
   
   <url>
-    <loc>http://shawshai.cn/tags/</loc>
-    
-    <lastmod>2021-06-08T12:28:13.000Z</lastmod>
-    
-    <date>1620361982000</date>
-    <title>标签 | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
     <loc>http://shawshai.cn/categories/</loc>
     
     <lastmod>2021-06-08T12:28:13.000Z</lastmod>
     
     <date>1620361959000</date>
     <title>文章分类 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/tags/</loc>
+    
+    <lastmod>2021-06-08T12:28:13.000Z</lastmod>
+    
+    <date>1620361982000</date>
+    <title>标签 | 少帥的博客</title>
     
     <desc></desc>
   </url>
