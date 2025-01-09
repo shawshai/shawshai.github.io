@@ -2,20 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
+    <loc>http://shawshai.cn/2025/01/08/quat-3-quaternion/</loc>
     
-    <lastmod>2025-01-07T16:13:01.112Z</lastmod>
+    <lastmod>2025-01-09T03:20:40.204Z</lastmod>
     
-    <date>1736180381000</date>
-    <title>测试加密文章 | 少帥的博客</title>
+    <date>1736320335000</date>
+    <title>四元数系列 - 3 四元数 | 少帥的博客</title>
     
-    <desc>本文需要密码才能访问</desc>
+    <desc>四元数的基本定义与性质.</desc>
   </url>
   
   <url>
     <loc>http://shawshai.cn/2024/07/18/quat-1-complex-number/</loc>
     
-    <lastmod>2025-01-07T14:51:34.534Z</lastmod>
+    <lastmod>2025-01-08T19:17:56.632Z</lastmod>
     
     <date>1721232975000</date>
     <title>四元数系列 - 1 复数 | 少帥的博客</title>
@@ -26,12 +26,23 @@
   <url>
     <loc>http://shawshai.cn/2025/01/07/quat-2-3d-rotation/</loc>
     
-    <lastmod>2025-01-07T14:51:22.349Z</lastmod>
+    <lastmod>2025-01-08T19:17:56.632Z</lastmod>
     
     <date>1736251850000</date>
     <title>四元数系列 - 2 三维空间中的旋转 | 少帥的博客</title>
     
     <desc>三维空间中旋转公式的推导.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
+    
+    <lastmod>2025-01-07T16:13:01.112Z</lastmod>
+    
+    <date>1736180381000</date>
+    <title>测试加密文章 | 少帥的博客</title>
+    
+    <desc>本文需要密码才能访问</desc>
   </url>
   
   <url>

@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://shawshai.cn/2025/01/07/quat-2-3d-rotation/fig02.png">
 <meta property="og:image" content="http://shawshai.cn/2025/01/07/quat-2-3d-rotation/fig03.png">
 <meta property="article:published_time" content="2025-01-07T12:10:50.000Z">
-<meta property="article:modified_time" content="2025-01-07T14:51:22.349Z">
+<meta property="article:modified_time" content="2025-01-08T19:17:56.632Z">
 <meta property="article:author" content="少帥">
 <meta property="article:tag" content="rotation">
 <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">24</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">25</span></a>
 
   </li>
   </ul>
@@ -293,10 +293,16 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-01-07 20:10:50 / 修改时间：22:51:22" itemprop="dateCreated datePublished" datetime="2025-01-07T20:10:50+08:00">2025-01-07</time>
+              <time title="创建时间：2025-01-07 20:10:50" itemprop="dateCreated datePublished" datetime="2025-01-07T20:10:50+08:00">2025-01-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-09 03:17:56" itemprop="dateModified" datetime="2025-01-09T03:17:56+08:00">2025-01-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -320,7 +326,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
+              <span>3.2k</span>
             </span>
 
         </div>
@@ -398,6 +404,9 @@ mjx-container[display="true"] + br {
 &=(\boldsymbol{u}\cdot\boldsymbol{v})\boldsymbol{u}+\cos(\theta)\left(\boldsymbol{v}-(\boldsymbol{u}\cdot\boldsymbol{v})\boldsymbol{u}\right)+\sin(\theta)(\boldsymbol{u}\times\boldsymbol{v})\\
 &=\cos(\theta)\boldsymbol{v}+(1-\cos(\theta))(\boldsymbol{u}\cdot\boldsymbol{v})\boldsymbol{u}+\sin(\theta)(\boldsymbol{u}\times\boldsymbol{v})\tag{8}
 \end{align*}</script><p>式 (8) 即为著名的<font color="blue">罗德里格旋转公式</font> (Rodrigues’ Rotation Formula).</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li>Krasjet. 四元数与三维旋转. <a target="_blank" rel="noopener" href="https://github.com/Krasjet/quaternion">https://github.com/Krasjet/quaternion</a></li>
+</ol>
 
     </div>
 
@@ -437,7 +446,10 @@ mjx-container[display="true"] + br {
     <a href="/2025/01/07/test-private-blog/" rel="prev" title="测试加密文章">
       <i class="fa fa-chevron-left"></i> 测试加密文章
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2025/01/08/quat-3-quaternion/" rel="next" title="四元数系列 - 3 四元数">
+      四元数系列 - 3 四元数 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -497,7 +509,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%97%8B%E8%BD%AC%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">1 旋转的分解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%B9%B3%E8%A1%8C%E5%88%86%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">2 平行分量的旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%9E%82%E7%9B%B4%E5%88%86%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">3 垂直分量的旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%A9%BA%E9%97%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">4 空间向量的旋转</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E6%97%8B%E8%BD%AC%E7%9A%84%E5%88%86%E8%A7%A3"><span class="nav-text">1 旋转的分解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%B9%B3%E8%A1%8C%E5%88%86%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">2 平行分量的旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%9E%82%E7%9B%B4%E5%88%86%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">3 垂直分量的旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%A9%BA%E9%97%B4%E5%90%91%E9%87%8F%E7%9A%84%E6%97%8B%E8%BD%AC"><span class="nav-text">4 空间向量的旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">参考文献</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -513,7 +525,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -524,7 +536,7 @@ mjx-container[display="true"] + br {
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -576,7 +588,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">300k</span>
+    <span title="站点总字数">307k</span>
 </div>
 
         
