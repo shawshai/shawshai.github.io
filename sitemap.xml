@@ -2,14 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
+    
+    <lastmod>2025-01-18T13:05:37.263Z</lastmod>
+    
+    <date>1736180381000</date>
+    <title>测试加密文章 | 少帥的博客</title>
+    
+    <desc>本文需要密码才能访问</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2025/01/13/quat-4-quaternion-3d-rotation/</loc>
+    
+    <lastmod>2025-01-14T13:37:31.266Z</lastmod>
+    
+    <date>1736768416000</date>
+    <title>四元数系列 - 4 四元数与三维旋转 | 少帥的博客</title>
+    
+    <desc>讨论四元数与三维空间中旋转的关系.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2025/01/07/quat-2-3d-rotation/</loc>
+    
+    <lastmod>2025-01-14T13:37:31.265Z</lastmod>
+    
+    <date>1736251850000</date>
+    <title>四元数系列 - 2 三维空间中的旋转 | 少帥的博客</title>
+    
+    <desc>三维空间中旋转公式的推导.</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2025/01/08/quat-3-quaternion/</loc>
     
-    <lastmod>2025-01-09T03:20:40.204Z</lastmod>
+    <lastmod>2025-01-14T13:37:31.265Z</lastmod>
     
     <date>1736320335000</date>
     <title>四元数系列 - 3 四元数 | 少帥的博客</title>
     
     <desc>四元数的基本定义与性质.</desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
+    
+    <lastmod>2025-01-13T18:02:29.062Z</lastmod>
+    
+    <date>1695444267000</date>
+    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
+    
+    <desc></desc>
   </url>
   
   <url>
@@ -21,28 +65,6 @@
     <title>四元数系列 - 1 复数 | 少帥的博客</title>
     
     <desc>复数的基本定义与性质.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2025/01/07/quat-2-3d-rotation/</loc>
-    
-    <lastmod>2025-01-08T19:17:56.632Z</lastmod>
-    
-    <date>1736251850000</date>
-    <title>四元数系列 - 2 三维空间中的旋转 | 少帥的博客</title>
-    
-    <desc>三维空间中旋转公式的推导.</desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
-    
-    <lastmod>2025-01-07T16:13:01.112Z</lastmod>
-    
-    <date>1736180381000</date>
-    <title>测试加密文章 | 少帥的博客</title>
-    
-    <desc>本文需要密码才能访问</desc>
   </url>
   
   <url>
@@ -107,17 +129,6 @@
     
     <date>1710764496000</date>
     <title>index | 少帥的博客</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>http://shawshai.cn/2023/09/23/IHR-4/</loc>
-    
-    <lastmod>2024-03-20T12:08:05.000Z</lastmod>
-    
-    <date>1695444267000</date>
-    <title>仿人机器人 - 4 双足行走 | 少帥的博客</title>
     
     <desc></desc>
   </url>
