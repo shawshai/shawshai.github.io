@@ -2,6 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://shawshai.cn/paypal_demo/</loc>
+    
+    <lastmod>2025-07-01T03:27:57.491Z</lastmod>
+    
+    <date>1751335200000</date>
+    <title>PayPal 收款演示页面 | 少帥的博客</title>
+    
+    <desc></desc>
+  </url>
+  
+  <url>
+    <loc>http://shawshai.cn/2025/01/27/mjspec-tutorial/</loc>
+    
+    <lastmod>2025-07-01T03:23:31.750Z</lastmod>
+    
+    <date>1737954060000</date>
+    <title>MjSpec 教程 | 少帥的博客</title>
+    
+    <desc>本文为 MjSpec 官方教程的简单翻译.</desc>
+  </url>
+  
+  <url>
     <loc>http://shawshai.cn/2025/01/07/test-private-blog/</loc>
     
     <lastmod>2025-01-18T13:05:37.263Z</lastmod>

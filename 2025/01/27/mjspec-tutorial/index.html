@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ss-128x128.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ss-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ss-32x32.png">
+  <link rel="mask-icon" href="/images/ss-128x128.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shawshai.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本文为 MjSpec 官方教程的简单翻译.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MjSpec 教程">
+<meta property="og:url" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/">
+<meta property="og:site_name" content="少帥的博客">
+<meta property="og:description" content="本文为 MjSpec 官方教程的简单翻译.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig01.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig02.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig03.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig04.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig05.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig06.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig07.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig08.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig09.png">
+<meta property="og:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig10.png">
+<meta property="article:published_time" content="2025-01-27T05:01:00.000Z">
+<meta property="article:modified_time" content="2025-07-01T03:23:31.750Z">
+<meta property="article:author" content="少帥">
+<meta property="article:tag" content="mujoco">
+<meta property="article:tag" content="mjspec">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shawshai.cn/2025/01/27/mjspec-tutorial/fig01.png">
+
+<link rel="canonical" href="http://shawshai.cn/2025/01/27/mjspec-tutorial/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MjSpec 教程 | 少帥的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="少帥的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">少帥的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shawshai.cn/2025/01/27/mjspec-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ss-128x128.png">
+      <meta itemprop="name" content="少帥">
+      <meta itemprop="description" content="Shaw Shai's Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="少帥的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MjSpec 教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-01-27 13:01:00" itemprop="dateCreated datePublished" datetime="2025-01-27T13:01:00+08:00">2025-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-01 11:23:31" itemprop="dateModified" datetime="2025-07-01T11:23:31+08:00">2025-07-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%89%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">汉化</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>16k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">本文为 MjSpec 官方教程的简单翻译. </div>
+
+<span id="more"></span>
+<p>首先附上 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/google-deepmind/mujoco/blob/main/python/mjspec.ipynb">原文链接</a> 和 <a target="_blank" rel="noopener" href="https://github.com/deepmind/mujoco#readme">官方 GitHub 链接</a>.</p>
+<p>本文为使用 <code>mjSpec</code> API 在 MuJoCo 中编辑模型的入门教程. 本文假设读者已经熟悉MuJoCo的基本概念, 如 <a target="_blank" rel="noopener" href="https://github.com/google-deepmind/mujoco?tab=readme-ov-file#getting-started">introductory tutorial</a> 中所示. 此 API 的文档可以在官方文档 (C API) 中的章节 <a target="_blank" rel="noopener" href="https://www.google.com/url?q=https%3A%2F%2Fmujoco.readthedocs.io%2Fen%2Flatest%2Fprogramming%2Fmodeledit.html">Model Editing</a> 和 <a target="_blank" rel="noopener" href="https://www.google.com/url?q=https%3A%2F%2Fmujoco.readthedocs.io%2Fen%2Flatest%2Fpython.html%23model-editing">Python</a> 中找到. 这里我们使用 Python API.</p>
+<p>这些 API 的目标是允许用户在 Python 中轻松地与 MuJoCo 模型进行交互和修改, 类似于 JavaScript DOM 对 HTML 的作用.</p>
+<p><strong>导入相关包, 定义相关函数</strong> </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">!pip install mujoco</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set up GPU rendering.</span></span><br><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> files</span><br><span class="line"><span class="keyword">import</span> distutils.util</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">if</span> subprocess.run(<span class="string">'nvidia-smi'</span>).returncode:</span><br><span class="line">  <span class="keyword">raise</span> RuntimeError(</span><br><span class="line">      <span class="string">'Cannot communicate with GPU. '</span></span><br><span class="line">      <span class="string">'Make sure you are using a GPU Colab runtime. '</span></span><br><span class="line">      <span class="string">'Go to the Runtime menu and select Choose runtime type.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an ICD config so that glvnd can pick up the Nvidia EGL driver.</span></span><br><span class="line"><span class="comment"># This is usually installed as part of an Nvidia driver package, but the Colab</span></span><br><span class="line"><span class="comment"># kernel doesn't install its driver via APT, and as a result the ICD is missing.</span></span><br><span class="line"><span class="comment"># (https://github.com/NVIDIA/libglvnd/blob/master/src/EGL/icd_enumeration.md)</span></span><br><span class="line">NVIDIA_ICD_CONFIG_PATH = <span class="string">'/usr/share/glvnd/egl_vendor.d/10_nvidia.json'</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(NVIDIA_ICD_CONFIG_PATH):</span><br><span class="line">  <span class="keyword">with</span> <span class="built_in">open</span>(NVIDIA_ICD_CONFIG_PATH, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">"""{</span></span><br><span class="line"><span class="string">    "file_format_version" : "1.0.0",</span></span><br><span class="line"><span class="string">    "ICD" : {</span></span><br><span class="line"><span class="string">        "library_path" : "libEGL_nvidia.so.0"</span></span><br><span class="line"><span class="string">    }</span></span><br><span class="line"><span class="string">}</span></span><br><span class="line"><span class="string">"""</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure MuJoCo to use the EGL rendering backend (requires GPU)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Setting environment variable to use GPU rendering:'</span>)</span><br><span class="line">%env MUJOCO_GL=egl</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check if installation was succesful.</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">'Checking that the installation succeeded:'</span>)</span><br><span class="line">  <span class="keyword">import</span> mujoco <span class="keyword">as</span> mj</span><br><span class="line">  mj.MjModel.from_xml_string(<span class="string">'&lt;mujoco/&gt;'</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="keyword">raise</span> e <span class="keyword">from</span> RuntimeError(</span><br><span class="line">      <span class="string">'Something went wrong during installation. Check the shell output above '</span></span><br><span class="line">      <span class="string">'for more information.\n'</span></span><br><span class="line">      <span class="string">'If using a hosted Colab runtime, make sure you enable GPU acceleration '</span></span><br><span class="line">      <span class="string">'by going to the Runtime menu and selecting "Choose runtime type".'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Installation successful.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Other imports and helper functions</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Graphics and plotting.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Installing mediapy:'</span>)</span><br><span class="line">!command -v ffmpeg &gt;/dev/null || (apt update &amp;&amp; apt install -y ffmpeg)</span><br><span class="line">!pip install -q mediapy</span><br><span class="line"><span class="keyword">import</span> mediapy <span class="keyword">as</span> media</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># More legible printing from numpy.</span></span><br><span class="line">np.set_printoptions(precision=<span class="number">3</span>, suppress=<span class="literal">True</span>, linewidth=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> clear_output, HTML, display</span><br><span class="line">clear_output()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get MuJoCo's humanoid model and a Franka arm from the MuJoCo Menagerie.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Getting MuJoCo humanoid XML description from GitHub:'</span>)</span><br><span class="line">!git clone https://github.com/google-deepmind/mujoco</span><br><span class="line">humanoid_file = <span class="string">'mujoco/model/humanoid/humanoid.xml'</span></span><br><span class="line">humanoid100_file = <span class="string">'mujoco/model/humanoid/humanoid100.xml'</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'Getting MuJoCo Menagerie Franka XML description from GitHub:'</span>)</span><br><span class="line">!git clone https://github.com/google-deepmind/mujoco_menagerie</span><br><span class="line">franka_file = <span class="string">'mujoco_menagerie/franka_fr3/fr3.xml'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_xml</span>(<span class="params">xml_string</span>):</span><br><span class="line">  formatter = pygments.formatters.HtmlFormatter(style=<span class="string">'lovelace'</span>)</span><br><span class="line">  lexer = pygments.lexers.XmlLexer()</span><br><span class="line">  highlighted = pygments.highlight(xml_string, lexer, formatter)</span><br><span class="line">  display(HTML(<span class="string">f"&lt;style&gt;<span class="subst">{formatter.get_style_defs()}</span>&lt;/style&gt;<span class="subst">{highlighted}</span>"</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render</span>(<span class="params">model, data=<span class="literal">None</span>, height=<span class="number">250</span></span>):</span><br><span class="line">  <span class="keyword">if</span> data <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    data = mj.MjData(model)</span><br><span class="line">  <span class="keyword">with</span> mj.Renderer(model, <span class="number">480</span>, <span class="number">640</span>) <span class="keyword">as</span> renderer:</span><br><span class="line">    mj.mj_forward(model, data)</span><br><span class="line">    renderer.update_scene(data)</span><br><span class="line">    media.show_image(renderer.render(), height=height)</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="将-XML-解析为-mjSpec-并编译为-mjModel"><a href="#将-XML-解析为-mjSpec-并编译为-mjModel" class="headerlink" title="将 XML 解析为 mjSpec 并编译为 mjModel"></a>将 XML 解析为 <code>mjSpec</code> 并编译为 <code>mjModel</code></h1><p>不同于 <code>mj_loadXML</code> 的直接包含解析和编译过程, 使用 <code>mjSpec</code> 时, 解析和编译是分开的, 允许编辑中间步骤: </p>
+<h2 id="字符串形式的静态模型"><a href="#字符串形式的静态模型" class="headerlink" title="字符串形式的静态模型"></a>字符串形式的静态模型</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A static model, from string</span></span><br><span class="line">static_model = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;light name="top" pos="0 0 1"/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name="red_box" type="box" size=".2 .2 .2" rgba="1 0 0 1"/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name="green_sphere" pos=".2 .2 .2" size=".1" rgba="0 1 0 1"/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">spec = mj.MjSpec.from_string(static_model)</span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Change the mjSpec, re-compile and re-render</span></span><br><span class="line">spec.modelname = <span class="string">"edited model"</span></span><br><span class="line">geoms = spec.worldbody.find_all(mj.mjtObj.mjOBJ_GEOM)</span><br><span class="line">geoms[<span class="number">0</span>].name = <span class="string">'blue_box'</span></span><br><span class="line">geoms[<span class="number">0</span>].rgba = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">geoms[<span class="number">1</span>].name = <span class="string">'yellow_sphere'</span></span><br><span class="line">geoms[<span class="number">1</span>].rgba = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">spec.worldbody.add_geom(name=<span class="string">'magenta cylinder'</span>,</span><br><span class="line">                        <span class="built_in">type</span>=mj.mjtGeom.mjGEOM_CYLINDER,</span><br><span class="line">                        rgba=[<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                        pos=[-<span class="number">.2</span>, <span class="number">0</span>, <span class="number">.2</span>],</span><br><span class="line">                        size=[<span class="number">.1</span>, <span class="number">.1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig01.png" class=""></div>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig02.png" class=""></div>
+
+<p><code>mjSpec</code> 可以将 XML 保存为字符串, 以便进行所有修改: </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print_xml(spec.to_xml())</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="从头开始构建-mjSpec"><a href="#从头开始构建-mjSpec" class="headerlink" title="从头开始构建 mjSpec"></a>从头开始构建 <code>mjSpec</code></h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Building an `mjSpec` from scratch</span></span><br><span class="line">spec = mj.MjSpec()</span><br><span class="line">spec.worldbody.add_light(name=<span class="string">"top"</span>, pos=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">body = spec.worldbody.add_body(name=<span class="string">"box_and_sphere"</span>, euler=[<span class="number">0</span>, <span class="number">0</span>, -<span class="number">30</span>])</span><br><span class="line">body.add_joint(name=<span class="string">"swing"</span>, <span class="built_in">type</span>=mj.mjtJoint.mjJNT_HINGE,</span><br><span class="line">               axis=[<span class="number">1</span>, -<span class="number">1</span>, <span class="number">0</span>], pos=[-<span class="number">.2</span>, -<span class="number">.2</span>, -<span class="number">.2</span>])</span><br><span class="line">body.add_geom(name=<span class="string">"red_box"</span>, <span class="built_in">type</span>=mj.mjtGeom.mjGEOM_BOX,</span><br><span class="line">              size=[<span class="number">.2</span>, <span class="number">.2</span>, <span class="number">.2</span>], rgba=[<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">body.add_geom(name=<span class="string">"green_sphere"</span>, pos=[<span class="number">.2</span>, <span class="number">.2</span>, <span class="number">.2</span>],</span><br><span class="line">              size=[<span class="number">.1</span>, <span class="number">0</span>, <span class="number">0</span>], rgba=[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line">duration = <span class="number">2</span>    <span class="comment"># (seconds)</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># (Hz)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable joint visualization option:</span></span><br><span class="line">scene_option = mj.MjvOption()</span><br><span class="line">scene_option.flags[mj.mjtVisFlag.mjVIS_JOINT] = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate and display video.</span></span><br><span class="line">frames = []</span><br><span class="line">data = mj.MjData(model)</span><br><span class="line">mj.mj_resetData(model, data)</span><br><span class="line"><span class="keyword">with</span> mj.Renderer(model) <span class="keyword">as</span> renderer:</span><br><span class="line">  <span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">    mj.mj_step(model, data)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(frames) &lt; data.time * framerate:</span><br><span class="line">      renderer.update_scene(data, scene_option=scene_option)</span><br><span class="line">      pixels = renderer.render()</span><br><span class="line">      frames.append(pixels)</span><br><span class="line"></span><br><span class="line">media.show_video(frames, fps=framerate)</span><br></pre></td></tr></tbody></table></figure>
+<video controls="">
+     <source src="video01.mp4" type="video/mp4">
+</video>
+
+
+<h1 id="控制示例"><a href="#控制示例" class="headerlink" title="控制示例"></a>控制示例</h1><p>该库的一个关键特性是能够轻松地将多个模型连接到一个更大的模型中. 使用用户定义的命名空间, 以消除来自不同模型或同一模型的多个实例的重名歧义. </p>
+<p>一个示例用例是构造具有可变关节数量的机器人, 这是对运动学结构的根本改变. 下面的代码片段实现了这个场景.</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">leg_model = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;compiler angle="radian"/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;default&gt;</span></span><br><span class="line"><span class="string">    &lt;joint damping="2" type="hinge"/&gt;</span></span><br><span class="line"><span class="string">    &lt;geom type="capsule"/&gt;</span></span><br><span class="line"><span class="string">  &lt;/default&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;body name="thigh"&gt;</span></span><br><span class="line"><span class="string">      &lt;joint name="hip" axis="0 0 1"/&gt;</span></span><br><span class="line"><span class="string">      &lt;body name="shin"&gt;</span></span><br><span class="line"><span class="string">        &lt;joint name="knee" axis="0 1 0"/&gt;</span></span><br><span class="line"><span class="string">      &lt;/body&gt;</span></span><br><span class="line"><span class="string">    &lt;/body&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;actuator&gt;</span></span><br><span class="line"><span class="string">    &lt;position joint="hip" kp="10" name="hip"/&gt;</span></span><br><span class="line"><span class="string">    &lt;position joint="knee" kp="10" name="knee"/&gt;</span></span><br><span class="line"><span class="string">  &lt;/actuator&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Leg</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">  <span class="string">"""A 2-DoF leg with position actuators."""</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, length, rgba</span>):</span><br><span class="line">    self.spec = mj.MjSpec.from_string(leg_model)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Thigh:</span></span><br><span class="line">    thigh = self.spec.find_body(<span class="string">'thigh'</span>)</span><br><span class="line">    thigh.add_geom(fromto=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, length, <span class="number">0</span>, <span class="number">0</span>], size=[length/<span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>], rgba=rgba)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Hip:</span></span><br><span class="line">    shin = self.spec.find_body(<span class="string">'shin'</span>)</span><br><span class="line">    shin.add_geom(fromto=[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, -length], size=[length/<span class="number">5</span>, <span class="number">0</span>, <span class="number">0</span>], rgba=rgba)</span><br><span class="line">    shin.pos[<span class="number">0</span>] = length</span><br></pre></td></tr></tbody></table></figure>
+<p><code>Leg</code> 类描述了一个抽象的铰接腿, 具有两个关节以及相应的 PD 控制器.</p>
+<p>请注意:</p>
+<ul>
+<li>MJCF 属性直接对应于 <code>add_()</code> 方法的参数.</li>
+<li>当引用元件时, 例如当指定执行器所连接的关节时, 使用 MJCF 元件的名称字符串.</li>
+</ul>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">BODY_RADIUS = <span class="number">0.1</span></span><br><span class="line">random_state = np.random.RandomState(<span class="number">42</span>)</span><br><span class="line">creature_model = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;mujoco&gt;</span></span><br><span class="line"><span class="string">  &lt;compiler angle="radian"/&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;worldbody&gt;</span></span><br><span class="line"><span class="string">    &lt;geom name="torso" type="ellipsoid" size="{} {} {}"/&gt;</span></span><br><span class="line"><span class="string">  &lt;/worldbody&gt;</span></span><br><span class="line"><span class="string">&lt;/mujoco&gt;</span></span><br><span class="line"><span class="string">"""</span>.<span class="built_in">format</span>(BODY_RADIUS, BODY_RADIUS, BODY_RADIUS / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_creature</span>(<span class="params">num_legs</span>):</span><br><span class="line">  <span class="string">"""Constructs a creature with `num_legs` legs."""</span></span><br><span class="line">  rgba = random_state.uniform([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">  spec = mj.MjSpec.from_string(creature_model)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Attach legs to equidistant sites on the circumference.</span></span><br><span class="line">  spec.worldbody.first_geom().rgba = rgba</span><br><span class="line">  leg = Leg(length=BODY_RADIUS, rgba=rgba)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_legs):</span><br><span class="line">    theta = <span class="number">2</span> * i * np.pi / num_legs</span><br><span class="line">    hip_pos = BODY_RADIUS * np.array([np.cos(theta), np.sin(theta), <span class="number">0</span>])</span><br><span class="line">    hip_site = spec.worldbody.add_site(pos=hip_pos, euler=[<span class="number">0</span>, <span class="number">0</span>, theta])</span><br><span class="line">    hip_site.attach_body(leg.spec.find_body(<span class="string">'thigh'</span>), <span class="string">''</span>, <span class="string">'-'</span> + <span class="built_in">str</span>(i))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> spec</span><br></pre></td></tr></tbody></table></figure>
+<p><code>make_creature</code> 函数使用 <code>attach()</code> 方法以程序方式将腿附加到躯干. 请注意, 在这个阶段, 躯干和臀部连接点都是 <code>worldbody</code> 的子节点, 因为它们的父体还没有被实例化. 我们现在要做一个有方格地板和两盏灯的竞技场, 把创建的生物以网格形式排列在地板上.</p>
+<h2 id="地板上的六足生物"><a href="#地板上的六足生物" class="headerlink" title="地板上的六足生物"></a>地板上的六足生物</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Six Creatures on a floor.</span></span><br><span class="line">arena = mj.MjSpec()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">hasattr</span>(arena, <span class="string">'compiler'</span>):</span><br><span class="line">  arena.compiler.degree = <span class="literal">False</span>  <span class="comment"># MuJoCo dev (next release).</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  arena.degree = <span class="literal">False</span>  <span class="comment"># MuJoCo release</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make arena with textured floor.</span></span><br><span class="line">chequered = arena.add_texture(</span><br><span class="line">    name=<span class="string">"chequered"</span>, <span class="built_in">type</span>=mj.mjtTexture.mjTEXTURE_2D,</span><br><span class="line">    builtin=mj.mjtBuiltin.mjBUILTIN_CHECKER,</span><br><span class="line">    width=<span class="number">300</span>, height=<span class="number">300</span>, rgb1=[<span class="number">.2</span>, <span class="number">.3</span>, <span class="number">.4</span>], rgb2=[<span class="number">.3</span>, <span class="number">.4</span>, <span class="number">.5</span>])</span><br><span class="line">grid = arena.add_material(</span><br><span class="line">    name=<span class="string">'grid'</span>, texrepeat=[<span class="number">5</span>, <span class="number">5</span>], reflectance=<span class="number">.2</span></span><br><span class="line">    ).textures[mj.mjtTextureRole.mjTEXROLE_RGB] = <span class="string">'chequered'</span></span><br><span class="line">arena.worldbody.add_geom(</span><br><span class="line">    <span class="built_in">type</span>=mj.mjtGeom.mjGEOM_PLANE, size=[<span class="number">2</span>, <span class="number">2</span>, <span class="number">.1</span>], material=<span class="string">'grid'</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [-<span class="number">2</span>, <span class="number">2</span>]:</span><br><span class="line">  arena.worldbody.add_light(pos=[x, -<span class="number">1</span>, <span class="number">3</span>], <span class="built_in">dir</span>=[-x, <span class="number">1</span>, -<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate 6 creatures with 3 to 8 legs.</span></span><br><span class="line">creatures = [make_creature(num_legs=num_legs) <span class="keyword">for</span> num_legs <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, <span class="number">9</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Place them on a grid in the arena.</span></span><br><span class="line">height = <span class="number">.15</span></span><br><span class="line">grid = <span class="number">5</span> * BODY_RADIUS</span><br><span class="line">xpos, ypos, zpos = np.meshgrid([-grid, <span class="number">0</span>, grid], [<span class="number">0</span>, grid], [height])</span><br><span class="line"><span class="keyword">for</span> i, spec <span class="keyword">in</span> <span class="built_in">enumerate</span>(creatures):</span><br><span class="line">  <span class="comment"># Place spawn sites on a grid.</span></span><br><span class="line">  spawn_pos = (xpos.flat[i], ypos.flat[i], zpos.flat[i])</span><br><span class="line">  spawn_site = arena.worldbody.add_site(pos=spawn_pos, group=<span class="number">3</span>)</span><br><span class="line">  <span class="comment"># Attach to the arena at the spawn sites, with a free joint.</span></span><br><span class="line">  spawn_body = spawn_site.attach_body(spec.worldbody, <span class="string">''</span>, <span class="string">'-'</span> + <span class="built_in">str</span>(i))</span><br><span class="line">  spawn_body.add_freejoint()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate the physics and render.</span></span><br><span class="line">model = arena.<span class="built_in">compile</span>()</span><br><span class="line">render(model)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig03.png" class=""></div>
+
+
+<p>多足生物, 准备漫游! 让我们引入一些控制并观察它们的运动. 我们将生成一个固定频率和随机相位的正弦开环控制信号, 记录视频帧和躯干的几何水平位置, 以便绘制运动轨迹.</p>
+<h2 id="运动视频"><a href="#运动视频" class="headerlink" title="运动视频"></a>运动视频</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Video of the movement</span></span><br><span class="line">data = mj.MjData(model)</span><br><span class="line">duration = <span class="number">10</span>   <span class="comment"># (Seconds)</span></span><br><span class="line">framerate = <span class="number">30</span>  <span class="comment"># (Hz)</span></span><br><span class="line">video = []</span><br><span class="line">pos_x = []</span><br><span class="line">pos_y = []</span><br><span class="line">geoms = arena.worldbody.find_all(mj.mjtObj.mjOBJ_GEOM)</span><br><span class="line">torsos_data = [data.bind(geom) <span class="keyword">for</span> geom <span class="keyword">in</span> geoms <span class="keyword">if</span> <span class="string">'torso'</span> <span class="keyword">in</span> geom.name]</span><br><span class="line">torsos_model = [model.bind(geom) <span class="keyword">for</span> geom <span class="keyword">in</span> geoms <span class="keyword">if</span> <span class="string">'torso'</span> <span class="keyword">in</span> geom.name]</span><br><span class="line">actuators = [data.bind(actuator) <span class="keyword">for</span> actuator <span class="keyword">in</span> arena.actuators]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Control signal frequency, phase, amplitude.</span></span><br><span class="line">freq = <span class="number">5</span></span><br><span class="line">phase = <span class="number">2</span> * np.pi * random_state.rand(<span class="built_in">len</span>(arena.actuators))</span><br><span class="line">amp = <span class="number">0.9</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Simulate, saving video frames and torso locations.</span></span><br><span class="line">mj.mj_resetData(model, data)</span><br><span class="line"><span class="keyword">with</span> mj.Renderer(model) <span class="keyword">as</span> renderer:</span><br><span class="line">  <span class="keyword">while</span> data.time &lt; duration:</span><br><span class="line">    <span class="comment"># Inject controls and step the physics.</span></span><br><span class="line">    <span class="keyword">for</span> i, actuator <span class="keyword">in</span> <span class="built_in">enumerate</span>(actuators):</span><br><span class="line">      actuator.ctrl = amp * np.sin(freq * data.time + phase[i])</span><br><span class="line">    mj.mj_step(model, data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Save torso horizontal positions using name indexing.</span></span><br><span class="line">    pos_x.append([torso.xpos[<span class="number">0</span>] <span class="keyword">for</span> torso <span class="keyword">in</span> torsos_data])</span><br><span class="line">    pos_y.append([torso.xpos[<span class="number">1</span>] <span class="keyword">for</span> torso <span class="keyword">in</span> torsos_data])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Save video frames.</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(video) &lt; data.time * framerate:</span><br><span class="line">      renderer.update_scene(data)</span><br><span class="line">      pixels = renderer.render()</span><br><span class="line">      video.append(pixels.copy())</span><br><span class="line"></span><br><span class="line">media.show_video(video, fps=framerate)</span><br></pre></td></tr></tbody></table></figure>
+<video controls="">
+     <source src="video02.mp4" type="video/mp4">
+</video>
+
+<h2 id="运动轨迹"><a href="#运动轨迹" class="headerlink" title="运动轨迹"></a>运动轨迹</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Movement trajectories</span></span><br><span class="line">creature_colors = [torso.rgba[:<span class="number">3</span>] <span class="keyword">for</span> torso <span class="keyword">in</span> torsos_model]</span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">4</span>, <span class="number">4</span>))</span><br><span class="line">ax.set_prop_cycle(color=creature_colors)</span><br><span class="line">_ = ax.plot(pos_x, pos_y, linewidth=<span class="number">4</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig04.png" class=""></div>
+
+
+<p>上图显示了生物位置的相应运动轨迹. 注意 <code>mjSpec</code> 属性 <code>id</code> 是如何用来访问 <code>xpos</code> 和 <code>rgba</code> 值的. 此属性仅在模型编译后才有效.</p>
+<h1 id="模型编辑"><a href="#模型编辑" class="headerlink" title="模型编辑"></a>模型编辑</h1><p><code>mjSpec</code>元素可以通过两种方式遍历:</p>
+<ul>
+<li>对于运动树内部的元素, 可以使用 <code>first</code> 和 <code>next</code> 函数遍历树.</li>
+<li>对于所有其他元素, 我们提供一个列表.</li>
+</ul>
+<h2 id="遍历-spec"><a href="#遍历-spec" class="headerlink" title="遍历 spec"></a>遍历 spec</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Traversing the spec.</span></span><br><span class="line">spec = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Function that recursively prints all body names</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_bodies</span>(<span class="params">parent, level=<span class="number">0</span></span>):</span><br><span class="line">  body = parent.first_body()</span><br><span class="line">  <span class="keyword">while</span> body:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">''</span>.join([<span class="string">'-'</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(level)]) + body.name)</span><br><span class="line">    print_bodies(body, level + <span class="number">1</span>)</span><br><span class="line">    body = parent.next_body(body)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The spec has the following actuators:"</span>)</span><br><span class="line"><span class="keyword">for</span> actuator <span class="keyword">in</span> spec.actuators:</span><br><span class="line">  <span class="built_in">print</span>(actuator.name)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"\nThe spec has the following bodies:"</span>)</span><br><span class="line">print_bodies(spec.worldbody)</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>The spec has the following actuators:<br>abdomen_z<br>abdomen_y<br>abdomen_x<br>hip_x_right<br>hip_z_right<br>hip_y_right<br>knee_right<br>ankle_y_right<br>ankle_x_right<br>hip_x_left<br>hip_z_left<br>hip_y_left<br>knee_left<br>ankle_y_left<br>ankle_x_left<br>shoulder1_right<br>shoulder2_right<br>elbow_right<br>shoulder1_left<br>shoulder2_left<br>elbow_left </p>
+<p>The spec has the following bodies:<br>torso<br>-head<br>-waist_lower<br>--pelvis<br>---thigh_right<br>----shin_right<br>-----foot_right<br>---thigh_left<br>----shin_left<br>-----foot_left<br>-upper_arm_right<br>--lower_arm_right<br>---hand_right<br>-upper_arm_left<br>--lower_arm_left<br>---hand_left</p>
+</blockquote>
+<p>一个 <code>mjSpec</code> 可以被编译多次. 如果必须在不同的编译之间保留状态, 则必须使用函数 <code>recompile()</code>, 该函数返回包含映射状态的新 <code>mjData</code>, 可能具有与源不同的维度.</p>
+<h2 id="保持状态的模型重编译"><a href="#保持状态的模型重编译" class="headerlink" title="保持状态的模型重编译"></a>保持状态的模型重编译</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Model re-compilation with state preservation.</span></span><br><span class="line">spec = mj.MjSpec.from_file(humanoid100_file)</span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">data = mj.MjData(model)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run for 5 seconds</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">  mj.mj_step(model, data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show result</span></span><br><span class="line">render(model, data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create list of all bodies we want to delete</span></span><br><span class="line">body = spec.worldbody.first_body()</span><br><span class="line">delete_list = []</span><br><span class="line"><span class="keyword">while</span> body:</span><br><span class="line">  geom_type = body.first_geom().<span class="built_in">type</span></span><br><span class="line">  <span class="keyword">if</span> (geom_type == mj.mjtGeom.mjGEOM_BOX <span class="keyword">or</span></span><br><span class="line">      geom_type == mj.mjtGeom.mjGEOM_ELLIPSOID):</span><br><span class="line">    delete_list.append(body)</span><br><span class="line">  body = spec.worldbody.next_body(body)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove all bodies in the list from the spec</span></span><br><span class="line"><span class="keyword">for</span> body <span class="keyword">in</span> delete_list:</span><br><span class="line">  spec.detach_body(body)</span><br><span class="line"></span><br><span class="line"><span class="comment"># # Add another humanoid</span></span><br><span class="line">spec_humanoid = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line">attachment_frame = spec.worldbody.add_frame(pos=[<span class="number">0</span>, -<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">attachment_frame.attach_body(spec_humanoid.find_body(<span class="string">'torso'</span>), <span class="string">'a'</span>, <span class="string">'b'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Recompile preserving the state</span></span><br><span class="line">new_model, new_data = spec.recompile(model, data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show result</span></span><br><span class="line">render(new_model, new_data)</span><br></pre></td></tr></tbody></table></figure>
+<div align="center">
+    <div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig05.png" class=""></div>
+    <div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig06.png" class=""></div>
+</div>
+
+
+
+<p>让我们加载人形模型并检查它.</p>
+<h2 id="Humanoid-模型"><a href="#Humanoid-模型" class="headerlink" title="Humanoid 模型"></a>Humanoid 模型</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Humanoid model.</span></span><br><span class="line">spec = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line"></span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig07.png" class=""></div>
+
+
+<p>把模型手臂去掉, 换上腿. 这可以通过提前存储躯干坐标系中的手臂位置来完成. 然后就可以把手臂拆卸下来, 再将腿部安装到坐标系中.</p>
+<h2 id="将-Humanoid-的手臂换成腿部"><a href="#将-Humanoid-的手臂换成腿部" class="headerlink" title="将 Humanoid 的手臂换成腿部"></a>将 Humanoid 的手臂换成腿部</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Humanoid with arms replaced by legs.</span></span><br><span class="line">spec = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the torso, arm, and leg bodies</span></span><br><span class="line">arm_left = spec.find_body(<span class="string">'upper_arm_left'</span>)</span><br><span class="line">arm_right = spec.find_body(<span class="string">'upper_arm_right'</span>)</span><br><span class="line">leg_left = spec.find_body(<span class="string">'thigh_left'</span>)</span><br><span class="line">leg_right = spec.find_body(<span class="string">'thigh_right'</span>)</span><br><span class="line">torso = spec.find_body(<span class="string">'torso'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Attach frames at the arm positions</span></span><br><span class="line">shoulder_left = torso.add_frame(pos=arm_left.pos)</span><br><span class="line">shoulder_right = torso.add_frame(pos=arm_right.pos)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove the arms</span></span><br><span class="line">spec.detach_body(arm_left)</span><br><span class="line">spec.detach_body(arm_right)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add new legs</span></span><br><span class="line">shoulder_left.attach_body(leg_left, <span class="string">'shoulder'</span>, <span class="string">'left'</span>)</span><br><span class="line">shoulder_right.attach_body(leg_right, <span class="string">'shoulder'</span>, <span class="string">'right'</span>)</span><br><span class="line"></span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model, height=<span class="number">400</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig08.png" class=""></div>
+
+
+<p>同样, 不同的模型可以连接在一起. 比如, 把右臂拆下来, 再把来自不同模型的机器人手臂连接上.</p>
+<h2 id="带-Franka-手臂的-Humanoid"><a href="#带-Franka-手臂的-Humanoid" class="headerlink" title="带 Franka 手臂的 Humanoid"></a>带 Franka 手臂的 Humanoid</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Humanoid with Franka arm.</span></span><br><span class="line">spec = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line">franka = mj.MjSpec.from_file(franka_file)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">hasattr</span>(spec, <span class="string">'compiler'</span>):</span><br><span class="line">  spec.compiler.degree = <span class="literal">False</span>  <span class="comment"># MuJoCo dev (next release).</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  spec.degree = <span class="literal">False</span>  <span class="comment"># MuJoCo release</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Replace right arm with frame</span></span><br><span class="line">arm_right = spec.find_body(<span class="string">'upper_arm_right'</span>)</span><br><span class="line">torso = spec.find_body(<span class="string">'torso'</span>)</span><br><span class="line">shoulder_right = torso.add_frame(pos=arm_right.pos, quat=[<span class="number">0</span>, <span class="number">0.8509035</span>, <span class="number">0</span>, <span class="number">0.525322</span>])</span><br><span class="line">spec.detach_body(arm_right)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Attach Franka arm to humanoid</span></span><br><span class="line">franka_arm = franka.find_body(<span class="string">'fr3_link2'</span>)</span><br><span class="line">shoulder_right.attach_body(franka_arm, <span class="string">'franka'</span>, <span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model, height=<span class="number">400</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig09.png" class=""></div>
+
+
+<p>执行此操作时, 执行器和附加子树引用的所有其他对象将导入新模型中. 所有资源当前都已导入, 无论是否被引用.</p>
+<h2 id="导入的驱动器"><a href="#导入的驱动器" class="headerlink" title="导入的驱动器"></a>导入的驱动器</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Imported actuators.</span></span><br><span class="line"><span class="keyword">for</span> actuator <span class="keyword">in</span> spec.actuators:</span><br><span class="line">  <span class="built_in">print</span>(actuator.name)</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>abdomen_z<br>abdomen_y<br>abdomen_x<br>hip_x_right<br>hip_z_right<br>hip_y_right<br>knee_right<br>ankle_y_right<br>ankle_x_right<br>hip_x_left<br>hip_z_left<br>hip_y_left<br>knee_left<br>ankle_y_left<br>ankle_x_left<br>shoulder1_left<br>shoulder2_left<br>elbow_left<br>frankafr3_joint2<br>frankafr3_joint3<br>frankafr3_joint4<br>frankafr3_joint5<br>frankafr3_joint6<br>frankafr3_joint7</p>
+</blockquote>
+<p>域随机化可以通过多次附加相同的 spec 来执行, 每次使用随机化参数的新实例进行编辑.</p>
+<h2 id="具有随机头部和手臂姿态的-Humanoid"><a href="#具有随机头部和手臂姿态的-Humanoid" class="headerlink" title="具有随机头部和手臂姿态的 Humanoid"></a>具有随机头部和手臂姿态的 Humanoid</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#@title Humanoid with randomized heads and arm poses.{vertical-output: true}</span></span><br><span class="line">humanoid = mj.MjSpec.from_file(humanoid_file)</span><br><span class="line">spec = mj.MjSpec()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Delete all key frames to avoid name conflicts</span></span><br><span class="line"><span class="keyword">while</span> humanoid.keys:</span><br><span class="line">  humanoid.keys[-<span class="number">1</span>].delete()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a grid of humanoids by attaching humanoid to spec multiple times</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    humanoid.materials[<span class="number">0</span>].rgba = [</span><br><span class="line">        np.random.uniform(), np.random.uniform(),</span><br><span class="line">        np.random.uniform(), <span class="number">1</span>]  <span class="comment"># Randomize color</span></span><br><span class="line">    humanoid.find_body(<span class="string">'head'</span>).first_geom().size = [</span><br><span class="line">        <span class="number">.18</span>*np.random.uniform(), <span class="number">0</span>, <span class="number">0</span>]  <span class="comment"># Randomize head size</span></span><br><span class="line">    humanoid.find_body(<span class="string">'upper_arm_left'</span>).quat = [</span><br><span class="line">        np.random.uniform(), np.random.uniform(),</span><br><span class="line">        np.random.uniform(), np.random.uniform()]  <span class="comment"># Randomize left arm orientation</span></span><br><span class="line">    humanoid.find_body(<span class="string">'upper_arm_right'</span>).quat = [</span><br><span class="line">        np.random.uniform(), np.random.uniform(),</span><br><span class="line">        np.random.uniform(), np.random.uniform()]  <span class="comment"># Randomize right arm orientation</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># attach randomized humanoid to parent spec</span></span><br><span class="line">    frame = spec.worldbody.add_frame(pos=[i, j, <span class="number">0</span>])</span><br><span class="line">    frame.attach_body(humanoid.find_body(<span class="string">'torso'</span>), <span class="built_in">str</span>(i), <span class="built_in">str</span>(j))</span><br><span class="line"></span><br><span class="line">spec.worldbody.add_light(mode=mj.mjtCamLight.mjCAMLIGHT_TARGETBODYCOM,</span><br><span class="line">                         targetbody=<span class="string">'3torso3'</span>, diffuse=[<span class="number">.8</span>, <span class="number">.8</span>, <span class="number">.8</span>],</span><br><span class="line">                         specular=[<span class="number">0.3</span>, <span class="number">0.3</span>, <span class="number">0.3</span>], pos=[<span class="number">0</span>, -<span class="number">6</span>, <span class="number">4</span>], cutoff=<span class="number">30</span>)</span><br><span class="line">model = spec.<span class="built_in">compile</span>()</span><br><span class="line">render(model, height=<span class="number">400</span>)</span><br></pre></td></tr></tbody></table></figure>
+<div style="width:80%; margin:auto"><img data-src="/2025/01/27/mjspec-tutorial/fig10.png" class=""></div>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>少帥
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://shawshai.cn/2025/01/27/mjspec-tutorial/" title="MjSpec 教程">http://shawshai.cn/2025/01/27/mjspec-tutorial/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/mujoco/" rel="tag"><i class="fa fa-tag"></i> mujoco</a>
+              <a href="/tags/mjspec/" rel="tag"><i class="fa fa-tag"></i> mjspec</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/01/13/quat-4-quaternion-3d-rotation/" rel="prev" title="四元数系列 - 4 四元数与三维旋转">
+      <i class="fa fa-chevron-left"></i> 四元数系列 - 4 四元数与三维旋转
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86-XML-%E8%A7%A3%E6%9E%90%E4%B8%BA-mjSpec-%E5%B9%B6%E7%BC%96%E8%AF%91%E4%B8%BA-mjModel"><span class="nav-text">将 XML 解析为 mjSpec 并编译为 mjModel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BD%A2%E5%BC%8F%E7%9A%84%E9%9D%99%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-text">字符串形式的静态模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA-mjSpec"><span class="nav-text">从头开始构建 mjSpec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">控制示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E6%9D%BF%E4%B8%8A%E7%9A%84%E5%85%AD%E8%B6%B3%E7%94%9F%E7%89%A9"><span class="nav-text">地板上的六足生物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E8%A7%86%E9%A2%91"><span class="nav-text">运动视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9"><span class="nav-text">运动轨迹</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BC%96%E8%BE%91"><span class="nav-text">模型编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86-spec"><span class="nav-text">遍历 spec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E7%8A%B6%E6%80%81%E7%9A%84%E6%A8%A1%E5%9E%8B%E9%87%8D%E7%BC%96%E8%AF%91"><span class="nav-text">保持状态的模型重编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Humanoid-%E6%A8%A1%E5%9E%8B"><span class="nav-text">Humanoid 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86-Humanoid-%E7%9A%84%E6%89%8B%E8%87%82%E6%8D%A2%E6%88%90%E8%85%BF%E9%83%A8"><span class="nav-text">将 Humanoid 的手臂换成腿部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6-Franka-%E6%89%8B%E8%87%82%E7%9A%84-Humanoid"><span class="nav-text">带 Franka 手臂的 Humanoid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E7%9A%84%E9%A9%B1%E5%8A%A8%E5%99%A8"><span class="nav-text">导入的驱动器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E6%9C%89%E9%9A%8F%E6%9C%BA%E5%A4%B4%E9%83%A8%E5%92%8C%E6%89%8B%E8%87%82%E5%A7%BF%E6%80%81%E7%9A%84-Humanoid"><span class="nav-text">具有随机头部和手臂姿态的 Humanoid</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="少帥"
+      src="/images/ss-128x128.png">
+  <p class="site-author-name" itemprop="name">少帥</p>
+  <div class="site-description" itemprop="description">Shaw Shai's Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shawshai" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shawshai" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shawshai@qq.com" title="E-Mail → mailto:shawshai@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-at"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">少帥</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">333k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'b752126035a0b861c44c',
+      clientSecret: '43f0a83102491853e4c9a6edeb2a92e4d1212a9c',
+      repo        : 'shawshai.github.io',
+      owner       : 'shawshai',
+      admin       : ['shawshai'],
+      id          : 'ef42f03b8b0abbb53094ed2be0e8016e',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
